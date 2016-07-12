@@ -1,0 +1,4 @@
+[submodule "toolchain/BoneOS-toolchain"]
+	path = toolchain/BoneOS-toolchain
+	url = https://github.com/rm-hull/barebones-toolchain.git
+	branch = master
