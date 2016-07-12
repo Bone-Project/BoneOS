@@ -6,7 +6,17 @@ BoneOS Kernel and Operating System Source Tree
 ## Compiling OS 
 
 ###Linux And Mac OSX
-Make sure to have QEMU Installed
+Clone this GIT Repo
+```sh
+git clone --recursive https://github.com/amanuel2/BoneOS.git
+```
+
+Install GRUB
+```sh
+sudo apt install grub
+```
+
+Install Qemu
 ```sh
 sudo apt-get install qemu
 ```
