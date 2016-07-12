@@ -4,7 +4,8 @@ as = i686-elf-as
 bin_dir = bin/iso/boot/BoneOS.bin 
 iso_dir = bin/iso/boot/BoneOS.iso
 LINK_FLAGS = -ffreestanding -O2 -nostdlib linker/obj/boot.o linker/obj/kernel.o -lgcc
-all:
+all: 
+	cd toolchain/barebones-toolchain/ && . ./setenv.sh 
 	$(as) src/bootstrapping/boot.S -o bin/iso/bootstrapping/boot.o
 	cp bin/iso/bootstrapping/boot.o linker/obj
 	$(gcc) -c src/kernel/kernel.c -o bin/iso/kernel/kernel.o $(GCC_FLAGS)
@@ -14,6 +15,13 @@ all:
 clean:
 	rm bin/iso/bootstrapping/boot.o
 	rm bin/iso/kernel/kernel.o
-	rm linker/obj/boot.0
-	rm linker/obj/kernel.0
+	rm linker/obj/boot.o
+	rm linker/obj/kernel.o
+cd_rom:
+	qemu-system-i386 -cdrom $(iso_dir)
 
+kernel_multiboot:
+	qemu-system-i386 -kernel $(bin_dir)
+
+test_hardware:
+	sudo dd if=$(iso_dir) of=/dev/sdx && sync
