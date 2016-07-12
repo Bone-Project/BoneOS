@@ -5,7 +5,7 @@ BoneOS Kernel and Operating System Source Tree
 
 ## Compiling OS 
 
-###Linux
+###Linux And Mac OSX
 Make sure to have QEMU Installed
 ```sh
 sudo apt-get install qemu
@@ -19,3 +19,7 @@ or
 ```sh
 make cd_rom
 ```
+
+###Windows
+Watch [this](https://www.youtube.com/watch?v=hCCely7L8Oo) viedo on guide to installation. Make sure to look at descripton! 
+
