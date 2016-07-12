@@ -1,0 +1,10 @@
+# Temporary vim file
+*.swp
+
+# Build folder & object/binaries
+build/
+*.bin
+*.o
+
+#ToolChains
+toolchain/
