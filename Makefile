@@ -7,7 +7,7 @@ iso_dir = bin/iso
 iso = bin/BoneOS.iso
 LINK_FLAGS = -ffreestanding -O2 -nostdlib linker/obj/boot.o linker/obj/kernel.o -lgcc
 all:  
-	cd toolchain/barebones-toolchain/ && . ./setenv.sh 
+	cd toolchain/BoneOS-toolchain/ && . ./setenv.sh 
 	$(as) src/bootstrapping/boot.S -o bin/iso/bootstrapping/boot.o
 	cp bin/iso/bootstrapping/boot.o linker/obj
 	$(gcc) -c src/kernel/kernel.c -o $(kernel_dir) $(GCC_FLAGS)
