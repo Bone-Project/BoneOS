@@ -3,9 +3,9 @@
 
 BoneOS Kernel and Operating System Source Tree
 
-## Compiling OS 
+## Compiling OS
 
-###Linux And Mac OSX
+###Linux
 Clone this GIT Repo
 ```sh
 git clone --recursive https://github.com/amanuel2/BoneOS.git
@@ -21,7 +21,7 @@ Install Qemu
 sudo apt-get install qemu
 ```
 
-and then you can run 
+and then you can run
 ```sh
 make kernel_multiboot
 ```
@@ -31,5 +31,7 @@ make cd_rom
 ```
 
 ###Windows
-Watch [this](https://www.youtube.com/watch?v=hCCely7L8Oo) viedo on guide to installation. Make sure to look at descripton! 
+Watch [this](https://www.youtube.com/watch?v=hCCely7L8Oo) viedo on guide to installation. Make sure to look at descripton!
 
+### OS X
+Working on it...
