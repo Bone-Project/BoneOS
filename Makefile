@@ -9,6 +9,9 @@ iso = bin/BoneOS.iso
 LINK_FLAGS = -ffreestanding -O2 -nostdlib linker/obj/boot.o linker/obj/kernel.o -lgcc
 all: 
 	cd toolchain/BoneOS-toolchain/ && . ./setenv.sh 
+	rm -rf bin/iso/bootstrapping
+	rm -rf bin/iso/kernel
+	rm -rf linker/obj
 	cd bin/iso && mkdir bootstrapping
 	cd bin/iso && mkdir kernel
 	cd linker && mkdir obj
