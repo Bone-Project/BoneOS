@@ -59,7 +59,7 @@ _start:
 	# constructors and exceptions will require runtime support to work as well.
 
 	# Enter the high-level kernel.
-	call kernel_main
+	call main
 
 	# If the system has nothing more to do, put the computer into an infinite
 	# loop. To do that:
