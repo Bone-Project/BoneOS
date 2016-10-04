@@ -1,0 +1,6 @@
+{
+  "name": "Boneos",
+  "tagline": "BoneOS Kernel and Operating System Source Tree",
+  "body": "# Currently in Learning Proccess [Here](https://github.com/amanuel2/OS_MIRROR) . BoneOS Will Be Started as soon as i start to get more proficient in osdev\r\n\r\n# BoneOS\r\n<img src=\"https://designapp.io/user-design-function/previewMyLogo/?logo_id=271982&hash=129ac10fa5\"/>\r\n\r\nBoneOS Kernel and Operating System Source Tree\r\n\r\n\r\n##Getting OS\r\n\tThere is an ISO File Available For you on the\r\n\tcurrent directory.\r\n\r\n##Building From Source Required Dependencies\r\n\tgit\r\n\tgrub\r\n\tqemu | virtualbox\r\n\tmake | nmake\r\n\tATLEAST v.2.7 Python Compiler\r\n\tNasm Compiler\r\n\r\n## Compiling OS For Building From Source\r\n\tSee docs/installation/{Desired OS} Folder For More Info\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
