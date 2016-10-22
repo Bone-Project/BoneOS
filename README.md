@@ -23,9 +23,9 @@ and it should be all good or please request an issue
 
 Video Made for building from source. Its an Windows Ubuntu Bash , so will work in Ubuntu and Windows.
 
-1) Compiling and Getting the ISO File : [**here**](https://www.youtube.com/watch?v=cPuapJhOFUw&feature=youtu.be)
+1. Compiling and Getting the ISO File : [**here**](https://www.youtube.com/watch?v=cPuapJhOFUw&feature=youtu.be)
   
-2) Running BoneOS with that ISO Using a VirtualMachine (VMWare, VirtualBox) : [**here**](https://www.youtube.com/watch?v=fk3fiqYrjDk&feature=youtu.be)
+2. Running BoneOS with that ISO Using a VirtualMachine (VMWare, VirtualBox) : [**here**](https://www.youtube.com/watch?v=fk3fiqYrjDk&feature=youtu.be)
 
 ### WindowsOS required dependencies
 
