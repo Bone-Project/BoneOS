@@ -29,7 +29,7 @@ LDPARAMS =  -melf_i386
 i686 = i686-elf-	
 VB=virtualbox
 VBM=VBoxManage
-SCRIPT_CC = scripts/cross_compiler/toolchain.py
+SCRIPT_CC = utils/cross_compiler/toolchain.py
 
 objects = ../../main/i386/kernel.o ../../boot/i386/boot.o \
   		  ../../libc/i386/stdio/printf/printf.o \
@@ -57,7 +57,7 @@ compile:
 BoneOS.bin:
 	cd linkage;make	
 c_compiler:
-	python scripts/cross_compiler/toolchain.py
+	python utils/cross_compiler/toolchain.py
 BoneOS.iso:
 	cp BoneOS.bin boot/boot/BoneOS.bin	
 	grub-mkrescue --output=BoneOS.iso boot
