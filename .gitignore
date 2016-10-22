@@ -1,3 +1,6 @@
+#Cross Compiler Folder
+cross/
+
 #Binary File
 BoneOS.bin
 
