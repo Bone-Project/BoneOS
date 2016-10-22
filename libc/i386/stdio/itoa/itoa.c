@@ -21,7 +21,22 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include "itoa.h"
+#include <include/libc/i386/stdio/itoa/itoa.h>
+
+/*
+ * @function __itoa:
+ *    __itoa is itoa version
+ *    #2 which contains the base
+ *    on which you inputed.
+ *
+ *      @param i:
+ *          integer to convert
+ *      @param base:
+ *          base of the integer to convert
+ *      @param buf:
+ *          The result will be inserted
+ *          in this character buffer
+ */
 
 char tbuf[32];
 char bchars[] = {'0','1','2','3','4','5','6','7',
@@ -51,6 +66,22 @@ void __itoa(unsigned i,unsigned base,char* buf)
     buf[opos] = 0;
 }
 
+/*
+ * @function itoa:
+ *     itoa is the First version
+ *     of itoa functions. This
+ *     does not require the base.
+ *     
+ *       @param val:
+ *           integer to convert to
+ *           a character buffer.
+ *          
+ *       @return {Character Buffer}:
+ *          Returns the character buffer
+ *          resulted from the translation
+ *          from specified integer
+ *     
+ */
 char *itoa(int val)
 
 {

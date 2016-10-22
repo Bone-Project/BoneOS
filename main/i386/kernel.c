@@ -25,6 +25,8 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <include/GlobalDefintions.h>
+#include <include/libc/i386/stdio/stdio.h>
+#include <include/multiboot/i386/multiboot.h>
 
 
 
@@ -43,7 +45,6 @@ extern void callConstructors()
         (*i)();
 }
 
-extern void printf(const char* fmt, ...);
 
 /*
  * @function kernelMain:
@@ -52,7 +53,7 @@ extern void printf(const char* fmt, ...);
  *      calls when Loading the kernel.
  *
  */
-extern void kernelMain(void* multiboot_structure,uint32_t magicnumber)
+extern void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
    printf("Best Numba Eva : %d Yay! Hex : %x lala. Char : %c And a string : %s" , 42 , 0x332, 'w', "Stringty String");	
    __asm__ __volatile__ ("cli");
