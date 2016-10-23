@@ -27,6 +27,7 @@
 #include <include/GlobalDefintions.h>
 #include <include/libc/i386/stdio/stdio.h>
 #include <include/multiboot/i386/multiboot.h>
+#include <include/cpu/gdt/i386/gdt.h>
 
 
 
@@ -53,9 +54,10 @@ extern void callConstructors()
  *      calls when Loading the kernel.
  *
  */
-extern void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
+void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-   printf("Best Numba Eva : %d Yay! Hex : %x lala. Char : %c And a string : %s" , 42 , 0x332, 'w', "Stringty String");	
+   printf("Best Numba Eva : %d Yay! Hex : %x lala. Char : %c And a string : %s" , 42 , 0x332, 'w', "Stringty String");
+   install_gdt();	
    __asm__ __volatile__ ("cli");
    __asm__ __volatile__ ("hlt");  
 }
