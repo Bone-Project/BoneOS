@@ -37,6 +37,8 @@ Our firectory structure currently is as follows:
    - ***boot***: Grub Multiboot information
 - ***linkage***: Where the linker is located.
 - ***main***: Main kernel function getting called by GRUB Bootloader
+- ***libc***: C Library constructed and used by BoneOS.
+- ***libasm***: Assembly Library constructed and used by BoneOS.
 - ***utils***: Utilities for users.
    - ***cross_compiler***: Script for installing the cross compiler
 

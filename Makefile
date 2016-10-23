@@ -13,7 +13,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
 
-GCCPARAMS =  -O2 -g -Wall -Wextra -Werror \
+GCCPARAMS =  -O2 -g -Wall -Wextra -Werror -Wpedantic -g \
 			 -Wno-unused-parameter -Wno-unused-but-set-parameter
 
 ARCH_FAMILY=x86
