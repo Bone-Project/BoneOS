@@ -26,7 +26,7 @@
 #include <stddef.h>
 #include <include/GlobalDefintions.h>
 #include <include/libc/i386/stdio/stdio.h>
-#include <include/multiboot/i386/multiboot.h>
+#include <boot/i386/multiboot/multiboot.h>
 #include <include/cpu/gdt/i386/gdt.h>
 
 

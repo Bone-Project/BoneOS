@@ -1,2 +1,2 @@
 all:
-	cd $(ARCH); make
+	cd stdio;make

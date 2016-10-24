@@ -30,4 +30,4 @@ A Virtual Machine Emulator(Like VirtualBox or VMWare) on the ISO And Finally Run
 
 #Issues
 
-If there are any whatsoever issues , please request an issue here! https://github.com/Bone-Project/BoneOS/issues
+If there are any whatsoever issues , please request an issue here! https://meta.boneos.org/
