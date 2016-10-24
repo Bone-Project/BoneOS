@@ -1,5 +1,7 @@
 # [BoneOS](https://BoneOS.org)
 
+### [BoneOS Meta](https://meta.boneos.org/)
+
 <img src="https://i.imgur.com/H6ixAr4.png" width="300" height="300" />
 
 Welcome! This is the official and main repository of BoneOS. This project is currently in high development, as we are working on getting the basic setup sorted out. Later on, we will start developing multitude of features. We have converted the project from C++ to C. This Operating System is predominately written in C, but there are parts (like hardware communication, scripting, building, etc ...) which will use other common languages. If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)! If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request [**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
