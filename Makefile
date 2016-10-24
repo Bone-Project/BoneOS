@@ -31,7 +31,7 @@ VB=virtualbox
 VBM=VBoxManage
 SCRIPT_CC = utils/cross_compiler/toolchain.py
 
-objects = ../../main/i386/kernel.o ../../boot/i386/boot.o \
+objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
   		  ../../libc/i386/stdio/printf/printf.o \
   		  ../../libc/i386/stdio/putchar/putchar.o \
   		  ../../libc/i386/stdio/itoa/itoa.o \
@@ -58,9 +58,9 @@ compile:
 	cd libc;make
 	cd libasm;make
 	cd cpu;make
-	cd main;make
+	cd kernel;make
 BoneOS.bin:
-	cd linkage;make	
+	cd link;make	
 c_compiler:
 	python utils/cross_compiler/toolchain.py
 BoneOS.iso:

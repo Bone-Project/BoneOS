@@ -35,8 +35,8 @@ Our firectory structure currently is as follows:
 - ***cpu***: Directory for processor related code
 - ***boot***: GRUB Bootloader information 
    - ***boot***: Grub Multiboot information
-- ***linkage***: Where the linker is located.
-- ***main***: Main kernel function getting called by GRUB Bootloader
+- ***link***: Where the linker is located.
+- ***kernel***: Main kernel function getting called by GRUB Bootloader
 - ***libc***: C Library constructed and used by BoneOS.
 - ***libasm***: Assembly Library constructed and used by BoneOS.
 - ***utils***: Utilities for users.
