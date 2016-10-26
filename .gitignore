@@ -4,5 +4,13 @@ cross/
 #Binary File
 BoneOS.bin
 
-#Output Files
+#Object Files
 *.o
+*.obj
+
+#Executable Files
+*.out
+*.exe
+
+#Library Files
+*.a
