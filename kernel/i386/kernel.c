@@ -25,9 +25,10 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <include/GlobalDefintions.h>
-#include <include/libc/i386/stdio/stdio.h>
+#include <include/libc/stdio/stdio.h>
 #include <boot/i386/multiboot/multiboot.h>
 #include <include/cpu/gdt/i386/gdt.h>
+#include <include/libc/string/string.h>
 
 
 
@@ -56,7 +57,18 @@ extern void callConstructors()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-   printf("Best Numba Eva : %d Yay! Hex : %x lala. Char : %c And a string : %s" , 42 , 0x332, 'w', "Stringty String");
+    char str[] = "Hello Woorrrlld"; // Works ;)
+    memset(str,'$',7);
+    printf("\n%s\n", (str));
+     
+   printf("\n%d\n", (int)strlen(str));
+
+   strcpy(str, "Bye, world!");
+   printf("%s\n", str);
+   
+   printf("%s\n", strchr(str,'e'));
+
+
    install_gdt();	
    __asm__ __volatile__ ("cli");
    __asm__ __volatile__ ("hlt");  

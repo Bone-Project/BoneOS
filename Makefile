@@ -38,7 +38,9 @@ objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
   		  ../../io/i386/io_asm.o
 
 libraries = --start-group \
+			 ../../cpu/i386/cpu.a \
  			 ../../libc/stdio/stdio.a \
+ 			 ../../libc/string/string.a \
  			 --end-group  
   		  
 

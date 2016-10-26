@@ -21,9 +21,9 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <include/libc/i386/stdio/printf/printf.h>
+#include <include/libc/stdio/printf/printf.h>
 #include <include/screen/i386/putch/putch.h>
-#include <include/libc/i386/stdio/itoa/itoa.h>
+#include <include/libc/stdio/itoa/itoa.h>
 
 
 size_t terminal_column=0;

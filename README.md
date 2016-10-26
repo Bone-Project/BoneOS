@@ -26,10 +26,8 @@ There are two ways to install BoneOS: one for the normal user to get it into his
 
  First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `sh setup.sh`. Then install the cross compiler using `make c_compiler`. Next, set the cross compiler in your environment variables `cd cross` and then `. ./setenv.sh`. Finally, run the following commands:
  ```
- cd ../
- make compile
- make BoneOS.bin -B
- make BoneOS.iso -B
+ cd ../ # Get Back to Root Directory
+ make q_c
  ```
  That should set you up with the development environment.
  
@@ -40,7 +38,7 @@ Directory Structure
 ----
 Our firectory structure currently is as follows:
 
-- ***arch*** : archecture dependant assembly files
+- ***arch*** : architecture dependant assembly files
 - ***Documentation*** : For More Documentation on BoneOS
 - ***io*** : I/O Software Code
 - ***cpu***: Directory for processor related code

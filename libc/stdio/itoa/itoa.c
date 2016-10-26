@@ -21,7 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <include/libc/i386/stdio/itoa/itoa.h>
+#include <include/libc/stdio/itoa/itoa.h>
 
 /*
  * @function __itoa:

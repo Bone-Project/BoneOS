@@ -21,7 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <include/libc/i386/stdio/putchar/putchar.h>
+#include <include/libc/stdio/putchar/putchar.h>
 
 
 extern size_t terminal_column;

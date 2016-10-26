@@ -1,8 +1,6 @@
 # Building BoneOS From Source on Windows OS
 
-Before coming here, make sure you have all the required dependancies in the README.MD Listed on the outermost dir (On the WindowsOS Section).
-
-If thats the case, well here is how you build it from Windows OS
+Here is how you build it from Windows OS. Before you do this remember to get the linux subsystem for windows New feature. [**Here**](http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) is a guide on how to install this awesome feature!
 
 
 First Clone this repository the Cross Compiler 
@@ -20,9 +18,10 @@ make cc_install
 After this , using your Ubuntu Bash (One of requirements listed) , if you dont have all the dependencies listed in the requirements(Microsoft Ubuntu Bash is a 100% Need) do: 
 
 ```sh
+cd cross
 . ./setenv.sh #To Set Enviorment Variables
-make compile
-make BoneOS.iso
+cd ../
+make q_c
 ```
 
 This will give you the .iso file on the outermost dir. You can then Hook up

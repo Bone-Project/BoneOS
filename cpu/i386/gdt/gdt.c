@@ -27,6 +27,7 @@
 #include <stdbool.h>
 
 #include <cpu/gdt/i386/gdt.h>
+#include <libc/string/string.h>
 
 /*
  * @struct SegmentDescriptor:
