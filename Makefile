@@ -14,7 +14,8 @@
 #    along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
 
 GCCPARAMS =  -O2 -g -Wall -Wextra -Werror -Wpedantic -g \
-			 -Wno-unused-parameter -Wno-unused-but-set-parameter
+			 -Wno-unused-parameter -Wno-unused-but-set-parameter \
+			 -nostdlib
 
 ARCH_FAMILY=x86
 ARCH=i386	
@@ -32,13 +33,13 @@ VBM=VBoxManage
 SCRIPT_CC = utils/cross_compiler/toolchain.py
 
 objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
-  		  ../../libc/stdio/printf/printf.o \
   		  ../../screen/i386/putch/putch.o \
-  		  ../../libc/stdio/itoa/itoa.o \
   		  ../../arch/i386/cpu/gdt/gdt_flush.o \
-  		  ../../cpu/i386/gdt/gdt.o \
   		  ../../io/i386/io_asm.o
 
+libraries = --start-group \
+ 			 ../../libc/stdio/stdio.a \
+ 			 --end-group  
   		  
 
 export GCCPARAMS
@@ -47,6 +48,7 @@ export objects
 export LDPARAMS
 export ARCH
 export ARCH_FAMILY
+export libraries
 
 q_c: 
 	make compile -B
