@@ -26,7 +26,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-#include <cpu/gdt/i386/gdt.h>
+#include <cpu/i386/gdt/gdt.h>
 #include <libc/string/string.h>
 
 /*
@@ -111,7 +111,7 @@ struct SegmentDescriptor gdt[] = {
 };
 
 /*
- * @function install_gdt:
+ * @function init_gdt:
  *     Function that installs
  *     the Global Descriptor Table
  *     into the CPU for use. Main
@@ -119,7 +119,7 @@ struct SegmentDescriptor gdt[] = {
  *
  */
 
-void install_gdt()
+void init_gdt()
 {
    gp.limit = (sizeof(struct SegmentDescriptor) * 3) - 1;
    gp.base = (uintptr_t)&gdt;

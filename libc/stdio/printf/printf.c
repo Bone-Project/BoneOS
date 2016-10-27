@@ -25,11 +25,7 @@
 #include <include/screen/i386/putch/putch.h>
 #include <include/libc/stdio/itoa/itoa.h>
 
-
-size_t terminal_column=0;
-size_t terminal_row=0;
-uint8_t FG = 0x7; // Foreground - White
-uint8_t BG = 0x0; // Background - BLACK  
+ 
 
 /*
  * @function printf:

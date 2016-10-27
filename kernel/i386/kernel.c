@@ -27,8 +27,10 @@
 #include <include/GlobalDefintions.h>
 #include <include/libc/stdio/stdio.h>
 #include <boot/i386/multiboot/multiboot.h>
-#include <include/cpu/gdt/i386/gdt.h>
+#include <include/cpu/i386/gdt/gdt.h>
+#include <include/cpu/i386/interrupts/idt.h>
 #include <include/libc/string/string.h>
+
 
 
 
@@ -69,7 +71,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    printf("%s\n", strchr(str,'e'));
 
 
-   install_gdt();	
+   init_gdt();
+   init_idt();
+
    __asm__ __volatile__ ("cli");
    __asm__ __volatile__ ("hlt");  
 }

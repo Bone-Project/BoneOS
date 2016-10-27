@@ -26,10 +26,12 @@
 #include <stdint.h>
 #include <stdarg.h>
 
-extern size_t terminal_column;
-extern size_t terminal_row;
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK
+size_t terminal_column=0;
+size_t terminal_row=0;
+uint8_t FG = 0x7; // Foreground - White
+uint8_t BG = 0x0; // Background - BLACK 
+const size_t VGA_WIDTH = 80;
+const size_t VGA_HEIGHT = 25; 
 
 /*
  * @inline make_color:
@@ -73,5 +75,4 @@ void putch(char c)
 
   VideoMemory[index]= (VideoMemory[index] & 0xFF00)|c;
   terminal_column++;
-
 }

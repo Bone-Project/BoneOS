@@ -79,3 +79,6 @@ gdb_q:
 
 qemu_compile:
 	qemu-system-i386 -kernel BoneOS.bin -display sdl
+
+bochs:
+	bochs -f bochsrc.txt -q	
