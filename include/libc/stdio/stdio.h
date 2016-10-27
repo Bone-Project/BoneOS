@@ -10,6 +10,5 @@
 
 	#include "itoa/itoa.h"
 	#include "printf/printf.h"
-	#include "putchar/putchar.h"
 
 #endif /*_LIBC_STDIO_H_*/

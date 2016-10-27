@@ -21,6 +21,30 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
+
+/*
+ * @function strchr:
+ *    searches for the first occurrence of the 
+ *    character c (an unsigned char) in the 
+ *    string pointed to by the argument str.
+ *
+ *        @param str (char*):
+ *           Specified Buffer to 
+ *           search through for 
+ *           occurence of char.
+ *
+ *        @param c (int):
+ *           Specified character
+ *           to look for.
+ *
+ *        @return (char*):
+ *           Returns the string
+ *           after the first 
+ *           occurence of the
+ *           character.   
+ *
+ */
+
 char *strchr(const char *str, int c) 
 {
     for (; *str; str++)

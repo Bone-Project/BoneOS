@@ -21,6 +21,21 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+/*
+ * @function strlen:
+ *    Gets the size of the 
+ *    buffer specified
+ *
+ *        @param str (char*):
+ *           Specified Buffer to
+ *           find the length
+ *           of
+ *
+ *        @return (char*):
+ *           Returns the length
+ *           of the specified buffer.
+ */
+
 #include <stddef.h>
 
 size_t strlen(char* str)

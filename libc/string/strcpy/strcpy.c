@@ -21,6 +21,26 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+/*
+ * @function strcpy:
+ *    Copies one buffer to
+ *    another
+ *
+ *        @param dest (char*):
+ *           Specified Buffer to
+ *           be copied to.
+ *
+ *        @param src (char*):
+ *           Specified Buffer to
+ *           be copied from.
+ *
+ *         @return (char*):
+ *            Returns the @param dest
+ *            to which the buffer was
+ *            copied to  
+ *
+ */
+
 char *strcpy(char *dest, char const *src)
 {
     char *result = dest;
