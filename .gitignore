@@ -15,3 +15,6 @@ cross/
 
 #Library Files
 *.a
+
+#Bochs Logs
+bochslog.txt
