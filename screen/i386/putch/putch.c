@@ -61,11 +61,6 @@ inline uint16_t make_vgaentry(char c, uint8_t color)
 
 void putch(char c)
 {
-  if(terminal_column==80&&terminal_row==25)
-  {
-    terminal_column=0;
-    terminal_row=0;
-  }  
   const size_t index =  (terminal_row * 80 +  terminal_column);
   uint16_t* VideoMemory = (uint16_t*)0xB8000;
   uint8_t terminal_color = make_color(FG,BG);

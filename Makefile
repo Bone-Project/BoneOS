@@ -32,16 +32,24 @@ VB=virtualbox
 VBM=VBoxManage
 SCRIPT_CC = utils/cross_compiler/toolchain.py
 
-objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
+linker_objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
   		  ../../screen/i386/putch/putch.o \
   		  ../../arch/i386/cpu/gdt/gdt_flush.o \
   		  ../../io/i386/io_asm.o
+objects = kernel/i386/kernel.o boot/i386/boot.o \
+  		  screen/i386/putch/putch.o \
+  		  arch/i386/cpu/gdt/gdt_flush.o \
+  		  io/i386/io_asm.o
 
 libraries = --start-group \
 			 ../../cpu/i386/cpu.a \
  			 ../../libc/stdio/stdio.a \
  			 ../../libc/string/string.a \
  			 --end-group  
+
+libraries_rm = cpu/i386/cpu.a \
+ 			 libc/stdio/stdio.a \
+ 			 libc/string/string.a 		 
   		  
 
 export GCCPARAMS
@@ -51,12 +59,9 @@ export LDPARAMS
 export ARCH
 export ARCH_FAMILY
 export libraries
+export linker_objects
 
-q_c: 
-	make compile -B
-	make BoneOS.bin -B
-	make BoneOS.iso -B
-	make qemu_compile -B
+q_c: compile BoneOS.bin BoneOS.iso qemu_compile
 
 compile:
 	cd boot;make
@@ -66,10 +71,17 @@ compile:
 	cd cpu;make
 	cd screen;make
 	cd kernel;make
+
 BoneOS.bin:
 	cd link;make	
+
 c_compiler:
 	python utils/cross_compiler/toolchain.py
+
+clean:
+	rm -f $(objects)
+	rm -f $(libraries_rm)
+
 BoneOS.iso:
 	cp BoneOS.bin boot/boot/BoneOS.bin	
 	grub-mkrescue --output=BoneOS.iso boot
@@ -82,3 +94,5 @@ qemu_compile:
 
 bochs:
 	bochs -f bochsrc.txt -q	
+
+.PHONY: all, q_c , compile, BoneOS.bin, BoneOS.iso, c_compiler,gdb_q,qemu_compile,bochs 	

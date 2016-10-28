@@ -41,7 +41,7 @@ void cls()
   char space = ' ';
   for(int i=0; i<=80; i++)
   {
-    for(int y=0; y<=125; y++)
+    for(int y=0; y<=25; y++)
     {
        const size_t index =  (terminal_row * VGA_WIDTH +  terminal_column);   
        terminal_column++;
@@ -52,7 +52,7 @@ void cls()
   }
   for(int i=0; i<=80; i++)
   {
-    for(int y=0; y<=125; y++)
+    for(int y=0; y<=25; y++)
     {
       const size_t index =  (terminal_row * VGA_WIDTH +  terminal_column);
       terminal_column--;

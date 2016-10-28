@@ -47,14 +47,14 @@ struct idt_ptr idp;
 
 void init_idt()
 {
-	idp.limit = (sizeof(idt))-1;
-	idp.base = (uint32_t) &idt;
+    idp.limit = (sizeof(idt))-1;
+    idp.base = (uint32_t) &idt;
 
-	memset(&idt,0,sizeof(idt));
+    memset(&idt,0,sizeof(idt));
 
-	__asm__ __volatile__(
-							"lidt %0"
-			 				:
-			 				:"m"(idp)
-		 				);
+    __asm__ __volatile__(
+                            "lidt %0"
+                            :
+                            :"m"(idp)
+                        );
 }

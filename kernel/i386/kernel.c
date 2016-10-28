@@ -49,7 +49,7 @@ extern void callConstructors()
         (*i)();
 }
 
-
+extern void cls();
 /*
  * @function kernelMain:
  *      Main function of the kernel,
@@ -59,6 +59,7 @@ extern void callConstructors()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
+    cls();
     char str[] = "Hello Woorrrlld"; // Works ;)
     memset(str,'$',7);
     printf("\n%s\n", (str));
