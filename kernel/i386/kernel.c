@@ -30,6 +30,7 @@
 #include <include/cpu/i386/gdt/gdt.h>
 #include <include/cpu/i386/interrupts/idt.h>
 #include <include/libc/string/string.h>
+#include <include/screen/i386/putch/putch.h>
 
 
 
@@ -49,7 +50,6 @@ extern void callConstructors()
         (*i)();
 }
 
-extern void cls();
 /*
  * @function kernelMain:
  *      Main function of the kernel,

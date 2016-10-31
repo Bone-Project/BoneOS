@@ -35,11 +35,14 @@ SCRIPT_CC = utils/cross_compiler/toolchain.py
 linker_objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
   		  ../../screen/i386/putch/putch.o \
   		  ../../arch/i386/cpu/gdt/gdt_flush.o \
-  		  ../../io/i386/io_asm.o
+  		  ../../io/i386/io_asm.o \
+  		  ../../screen/i386/putch/cls.o
+
 objects = kernel/i386/kernel.o boot/i386/boot.o \
   		  screen/i386/putch/putch.o \
   		  arch/i386/cpu/gdt/gdt_flush.o \
-  		  io/i386/io_asm.o
+  		  io/i386/io_asm.o \
+  		   screen/i386/putch/cls.o
 
 libraries = --start-group \
 			 ../../cpu/i386/cpu.a \

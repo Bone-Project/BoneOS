@@ -21,43 +21,22 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
-#include <stdarg.h>
-#include <stdint.h>
-#include <stddef.h>
 
+#include <include/libc/stdio/printf/printf.h>
+#include <include/libc/string/memset/memset.h>
 
-extern size_t terminal_column;
-extern size_t terminal_row;
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK
-extern const size_t VGA_WIDTH;
-extern const size_t VGA_HEIGHT;
+/*
+ * @function cls:
+ *    Function for clearing
+ *    the screen in normal text
+ *    mode 32bit VGA.
+ */
 
 void cls()    
 {
-  uint16_t* VideoMemory = (uint16_t*)0xB8000;
-  terminal_column=0;
-  terminal_row=0;
-  char space = ' ';
-  for(int i=0; i<=80; i++)
-  {
-    for(int y=0; y<=25; y++)
-    {
-       const size_t index =  (terminal_row * VGA_WIDTH +  terminal_column);   
-       terminal_column++;
-  
-       VideoMemory[index]= (VideoMemory[index] & 0xFF00)|space;
-    }
-  
-  }
-  for(int i=0; i<=80; i++)
-  {
-    for(int y=0; y<=25; y++)
-    {
-      const size_t index =  (terminal_row * VGA_WIDTH +  terminal_column);
-      terminal_column--;
-
-      VideoMemory[index]= (VideoMemory[index] & 0xFF00)|space;
-    }
-  }
+  printf("Hello This is from Fucntion cls(); YAY!!");
+  //char buf[80*25+1];
+  //memset(buf, ' ', 80*25);
+  //buf[80*25] = 0; 
+  //printf("%s", buf);
 }
