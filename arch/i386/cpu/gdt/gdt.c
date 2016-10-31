@@ -26,7 +26,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-#include <cpu/i386/gdt/gdt.h>
+#include <arch/cpu/i386/gdt/gdt.h>
 #include <libc/string/string.h>
 
 /*

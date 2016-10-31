@@ -32,12 +32,6 @@ VB=virtualbox
 VBM=VBoxManage
 SCRIPT_CC = utils/cross_compiler/toolchain.py
 
-linker_objects = ../../kernel/i386/kernel.o ../../boot/i386/boot.o \
-  		  ../../screen/i386/putch/putch.o \
-  		  ../../arch/i386/cpu/gdt/gdt_flush.o \
-  		  ../../io/i386/io_asm.o \
-  		  ../../screen/i386/putch/cls.o
-
 objects = kernel/i386/kernel.o boot/i386/boot.o \
   		  screen/i386/putch/putch.o \
   		  arch/i386/cpu/gdt/gdt_flush.o \
@@ -45,15 +39,10 @@ objects = kernel/i386/kernel.o boot/i386/boot.o \
   		  screen/i386/putch/cls.o
 
 libraries = --start-group \
- 			 ../../libc/stdio/stdio.a \
- 			 ../../libc/string/string.a \
- 			 ../../arch/i386/arch.a \
- 			 --end-group  
-
-libraries_rm = cpu/i386/cpu.a \
  			 libc/stdio/stdio.a \
  			 libc/string/string.a \
- 			 arch/i386/arch.a
+ 			 arch/i386/arch.a \
+ 			 --end-group  
 
   		  
 
@@ -82,7 +71,8 @@ compile:
 	cd kernel;make
 
 BoneOS.bin:
-	cd link;make	
+	i686-elf-ld $(LDPARAMS) -T link/i386/linker.ld -o BoneOS.bin $(objects)  $(libraries)  
+	
 
 c_compiler:
 	python utils/cross_compiler/toolchain.py

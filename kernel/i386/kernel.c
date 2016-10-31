@@ -27,8 +27,9 @@
 #include <include/GlobalDefintions.h>
 #include <include/libc/stdio/stdio.h>
 #include <boot/i386/multiboot/multiboot.h>
-#include <include/cpu/i386/gdt/gdt.h>
-#include <include/cpu/i386/interrupts/idt.h>
+#include <include/arch/cpu/i386/gdt/gdt.h>
+#include <include/arch/cpu/i386/interrupts/idt.h>
+#include <include/arch/cpu/i386/interrupts/isr.h>
 #include <include/libc/string/string.h>
 #include <include/screen/i386/putch/putch.h>
 
@@ -49,6 +50,17 @@ extern void callConstructors()
     for(constructor* i = &start_ctors;i != &end_ctors; i++)
         (*i)();
 }
+
+
+int volatile trick1 = 5;
+int volatile trick2 = 0;
+int volatile trick3 = 0;
+
+void crash_me()
+{
+    trick3 = trick1 / trick2;
+}
+
 
 /*
  * @function kernelMain:
@@ -74,6 +86,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    init_gdt();
    init_idt();
+   init_isr();
+
+   crash_me();
 
    __asm__ __volatile__ ("cli");
    __asm__ __volatile__ ("hlt");  
