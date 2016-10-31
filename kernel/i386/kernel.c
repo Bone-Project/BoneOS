@@ -62,7 +62,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     cls();
     char str[] = "Hello Woorrrlld"; // Works ;)
     memset(str,'$',7);
-    printf("\n%s\n", (str));
+    printf("%s YEP\n", (str));
      
    printf("\n%d\n", (int)strlen(str));
 

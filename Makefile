@@ -42,7 +42,7 @@ objects = kernel/i386/kernel.o boot/i386/boot.o \
   		  screen/i386/putch/putch.o \
   		  arch/i386/cpu/gdt/gdt_flush.o \
   		  io/i386/io_asm.o \
-  		   screen/i386/putch/cls.o
+  		  screen/i386/putch/cls.o
 
 libraries = --start-group \
 			 ../../cpu/i386/cpu.a \
@@ -52,7 +52,8 @@ libraries = --start-group \
 
 libraries_rm = cpu/i386/cpu.a \
  			 libc/stdio/stdio.a \
- 			 libc/string/string.a 		 
+ 			 libc/string/string.a \
+
   		  
 
 export GCCPARAMS
@@ -64,7 +65,12 @@ export ARCH_FAMILY
 export libraries
 export linker_objects
 
-q_c: compile BoneOS.bin BoneOS.iso qemu_compile
+q_c:
+	make clean -B
+	make compile -B 
+	make BoneOS.bin -B
+	make BoneOS.iso -B 
+	make qemu_compile -B 
 
 compile:
 	cd boot;make
@@ -82,8 +88,8 @@ c_compiler:
 	python utils/cross_compiler/toolchain.py
 
 clean:
-	rm -f $(objects)
-	rm -f $(libraries_rm)
+	find -name '*.a' -delete
+	find -name '*.o' -delete
 
 BoneOS.iso:
 	cp BoneOS.bin boot/boot/BoneOS.bin	
