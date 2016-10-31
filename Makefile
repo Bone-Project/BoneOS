@@ -45,14 +45,15 @@ objects = kernel/i386/kernel.o boot/i386/boot.o \
   		  screen/i386/putch/cls.o
 
 libraries = --start-group \
-			 ../../cpu/i386/cpu.a \
  			 ../../libc/stdio/stdio.a \
  			 ../../libc/string/string.a \
+ 			 ../../arch/i386/arch.a \
  			 --end-group  
 
 libraries_rm = cpu/i386/cpu.a \
  			 libc/stdio/stdio.a \
  			 libc/string/string.a \
+ 			 arch/i386/arch.a
 
   		  
 
@@ -77,7 +78,6 @@ compile:
 	cd io;make
 	cd libc;make
 	cd arch;make
-	cd cpu;make
 	cd screen;make
 	cd kernel;make
 
