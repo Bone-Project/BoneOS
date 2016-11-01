@@ -23,8 +23,14 @@ section .text
         push ecx
         push edx
         push ds
+        push esp
         call common_interrupt_exception_handler
-        add esp,24
+        pop eax
+        pop ds
+        pop edx
+        pop ecx
+        pop eax
+        add esp,8
         iret
 
     

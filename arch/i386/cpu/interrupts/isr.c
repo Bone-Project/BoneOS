@@ -28,7 +28,7 @@
 
 
 
-
+// Exception Messages for ISR Handler
 static const char *exception_messages[32] = {
     "Division by zero","Debug","Non-maskable interrupt",
     "Breakpoint","Detected overflow","Out-of-bounds",
@@ -41,14 +41,6 @@ static const char *exception_messages[32] = {
     "Reserved","Reserved","Reserved","Reserved","Reserved",
     "Reserved","Reserved","Reserved"
 };
-
-typedef struct 
-{
-    uint16_t ds; /*Segment the current routine is running in*/
-    uint32_t edx, ecx, eax;/*Regisers pushed*/
-    uint32_t int_no, err_code; /*Error Code and Number of exception*/
-}int_regs;
-
 
 
 
@@ -88,6 +80,14 @@ extern void isr30(void);
 extern void isr31(void);
 
 
+/*
+ * @function init_isr:
+ *      Initalizes ISR
+ *      and sets up
+ *      the interrupt gates
+ *      for the corresponding 
+ *      Interrupt Service Routines
+ */
 void init_isr()
 {
     idt_set_gate(0, isr0, 0x08, 0x8e);
@@ -121,16 +121,23 @@ void init_isr()
     idt_set_gate(28, isr28, 0x08, 0x8e);
     idt_set_gate(29, isr29, 0x08, 0x8e);
     idt_set_gate(30, isr30, 0x08, 0x8e);
-    idt_set_gate(31, isr31, 0x08, 0x8e);
-    printf("INITALIZED ISR");
+    idt_set_gate(31, isr31, 0x08, 0x8e); 
 }
 
+/*
+ * @extern @function common_interrupt_exception_handler:
+ *      The Interrupt Handler for all
+ *      types of exceptions listed
+ *      above on exception_messages.
+ */
 extern void common_interrupt_exception_handler(int_regs* regs)
 {
     if(regs->int_no < 32)
         printf("ERROR : %s" , exception_messages[regs->int_no]);
     else
-        printf("UNDOCUMENTED ERROR");
+    {
+        printf("\nUNDOCUMENTED ERROR %d", regs->int_no);
+    }
 
     for( ; ; ) __asm__ __volatile__ ("hlt");
 }

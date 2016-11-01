@@ -5,6 +5,31 @@
 #include <stdint.h>
 #include <stdarg.h>
 
+#define PIC_MASTER_CONTROL 0x20
+#define PIC_SLAVE_CONTROL 0xA0
+#define PIC_MASTER_MASK 0x21
+#define PIC_SLAVE_MASK 0xA1
+
+
+/*
+ * @struct int_regs:
+ *   Register getting pushed to 
+ *   stack while calling routine
+ *      @ds : Segment the current routine is running in
+ *      @edx,@ecx,@eax :  General Purpose Regisers pushed
+ *      @int_no @err_code : Error Code and ISR Number
+ */
+
+typedef struct 
+{
+    uint32_t ds; 
+    uint32_t edx, ecx, eax;
+    uint32_t int_no, err_code;
+}__attribute__((packed)) int_regs;
+
+
+typedef void(*regs_func)(int_regs *r);
+
 /*
  * @struct idt_desc:
  *   Descriptor For an Interupt
