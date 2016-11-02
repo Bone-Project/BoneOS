@@ -46,16 +46,26 @@ extern void int45(void);
 extern void int46(void);
 extern void int47(void);
 
+/*
+ * @arr irq_routines :
+ *    IRQ Routine Handlers
+ */
 int_routines irq_routines[16] = 
 {
-	0,0,0,0,0,0,0,0
+    0,0,0,0,0,0,0,0
    ,0,0,0,0,0,0,0,0
 };
 
+/*
+ * @function init_irq:
+ *    Initalizes IRQ 
+ *    by remapping the pic
+ *    and setting interrupt gates
+ */
 void init_irq()
 {
-	remap_pic_irq();
-	idt_set_gate(32, int32, 0x08, 0x8e);
+    remap_pic_irq();
+    idt_set_gate(32, int32, 0x08, 0x8e);
     idt_set_gate(33, int33, 0x08, 0x8e);
     idt_set_gate(34, int34, 0x08, 0x8e);
     idt_set_gate(35, int35, 0x08, 0x8e);

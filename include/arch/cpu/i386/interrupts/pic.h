@@ -10,13 +10,13 @@
 #define I386_MASTER_REG_COMMAND		0x20 // command register
 #define I386_MASTER_REG_STATUS		0x20 // status register
 #define I386_MASTER_REG_DATA		0x21 // data register
-#define I386_MASTER_REG_IMR			0x21 // interrupt mask register & data
+#define I386_MASTER_REG_IMR			0x21 // interrupt mask register
  
 //SLAVE PIC ADRESSES
 #define I386_SLAVE_REG_COMMAND		0xA0 //command register			
 #define I386_SLAVE_REG_STATUS		0xA0 //status register
 #define I386_SLAVE_REG_DATA			0xA1 //data register
-#define I386_SLAVE_REG_IMR			0xA1 //interrupt mask register & data
+#define I386_SLAVE_REG_IMR			0xA1 //interrupt mask register
 
 
 /*

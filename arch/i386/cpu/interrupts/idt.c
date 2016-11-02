@@ -48,6 +48,26 @@
  idt_desc idt[IDT_SiZE];
  idt_ptr idp;
 
+/*
+ * @function idt_set_gate :
+ *     Set an Interrupt Gate
+ *     in the Interrupt Descriptor
+ *     table.
+ *         @param num: Interrupt Number
+ *         @param handler : Interrupt Handler
+ *         @param sel : Segment Selector
+ *         @param flags : Flags like DPL.
+ */
+void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
+              uint8_t flags) 
+{
+    idt[num].base_lo = (uintptr_t)handler >> 0 & 0xFFFF;
+    idt[num].base_hi = (uintptr_t)handler >> 16 & 0xffff;
+    idt[num].reserved = 0;
+    idt[num].sel = sel;
+    idt[num].flags = flags;
+}
+
  /*
   * @function init_idt:
   *   Initalizes Interupt Descriptor Table.

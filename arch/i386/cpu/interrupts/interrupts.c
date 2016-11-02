@@ -25,20 +25,12 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
+#include <io/i386/io.h>
 #include <libc/stdio/printf/printf.h>
 #include <arch/cpu/i386/interrupts/interrupts.h>
 #include <arch/cpu/i386/interrupts/isr.h>
-
-
-void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
-              uint8_t flags) 
-{
-    idt[num].base_lo = (uintptr_t)handler >> 0 & 0xFFFF;
-    idt[num].base_hi = (uintptr_t)handler >> 16 & 0xffff;
-    idt[num].reserved = 0;
-    idt[num].sel = sel;
-    idt[num].flags = flags;
-}
+#include <arch/cpu/i386/interrupts/irq.h>
+#include <arch/cpu/i386/interrupts/pic.h>
 
 /*
  * @extern @function interupt_handler:
@@ -52,13 +44,20 @@ extern void interupt_handler(int_regs* regs)
 	if(regs->int_no < 32)
 	{
 		printf("ERROR : %s" , exception_messages[regs->int_no]);
+		for( ; ; ) __asm__ __volatile__ ("cli \n\t hlt");
 	}
 	else if(regs->int_no >= 32 && regs->int_no<48)
 	{
-		printf("IRQ");
+		int_routines handler = irq_routines[(regs->int_no)-32];
+		if(handler)
+			handler(regs);
 	}
 	else
 		printf("UNDOCUMENTED ERROR");
 
-    for( ; ; ) __asm__ __volatile__ ("hlt");
+	if(regs->int_no >= 8)
+		outb8(I386_MASTER_REG_COMMAND,PIC_EOI);
+
+	outb8(I386_SLAVE_REG_COMMAND,PIC_EOI);
+
 }
