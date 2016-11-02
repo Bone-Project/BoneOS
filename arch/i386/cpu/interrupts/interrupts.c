@@ -51,7 +51,16 @@ void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
 
 extern void interupt_handler(int_regs* regs)
 {
-	printf("INTERUPT");
+	if(regs->int_no < 32)
+	{
+		printf("ERROR : %s" , exception_messages[regs->int_no]);
+	}
+	else if(regs->int_no >= 32 && regs->int_no<48)
+	{
+		printf("IRQ");
+	}
+	else
+		printf("UNDOCUMENTED ERROR");
 
     for( ; ; ) __asm__ __volatile__ ("hlt");
 }

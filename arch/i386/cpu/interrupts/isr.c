@@ -28,38 +28,38 @@
 
 
 //Routine Handlers for Exceptions
-extern void isr0(void);
-extern void isr1(void);
-extern void isr2(void);
-extern void isr3(void);
-extern void isr4(void);
-extern void isr5(void);
-extern void isr6(void);
-extern void isr7(void);
-extern void isr8(void);
-extern void isr9(void);
-extern void isr10(void);
-extern void isr11(void);
-extern void isr12(void);
-extern void isr13(void);
-extern void isr14(void);
-extern void isr15(void);
-extern void isr16(void);
-extern void isr17(void);
-extern void isr18(void);
-extern void isr19(void);
-extern void isr20(void);
-extern void isr21(void);
-extern void isr22(void);
-extern void isr23(void);
-extern void isr24(void);
-extern void isr25(void);
-extern void isr26(void);
-extern void isr27(void);
-extern void isr28(void);
-extern void isr29(void);
-extern void isr30(void);
-extern void isr31(void);
+extern void int0(void);
+extern void int1(void);
+extern void int2(void);
+extern void int3(void);
+extern void int4(void);
+extern void int5(void);
+extern void int6(void);
+extern void int7(void);
+extern void int8(void);
+extern void int9(void);
+extern void int10(void);
+extern void int11(void);
+extern void int12(void);
+extern void int13(void);
+extern void int14(void);
+extern void int15(void);
+extern void int16(void);
+extern void int17(void);
+extern void int18(void);
+extern void int19(void);
+extern void int20(void);
+extern void int21(void);
+extern void int22(void);
+extern void int23(void);
+extern void int24(void);
+extern void int25(void);
+extern void int26(void);
+extern void int27(void);
+extern void int28(void);
+extern void int29(void);
+extern void int30(void);
+extern void int31(void);
 
 // Exception Messages for ISR Handler
 const char *exception_messages[32] = {
@@ -77,7 +77,7 @@ const char *exception_messages[32] = {
 
 /*
  * @function init_isr:
- *      Initalizes ISR
+ *      Initalizes isr
  *      and sets up
  *      the interrupt gates
  *      for the corresponding 
@@ -85,36 +85,36 @@ const char *exception_messages[32] = {
  */
 void init_isr()
 {
-    idt_set_gate(0, isr0, 0x08, 0x8e);
-    idt_set_gate(1, isr1, 0x08, 0x8e);
-    idt_set_gate(2, isr2, 0x08, 0x8e);
-    idt_set_gate(3, isr3, 0x08, 0x8e);
-    idt_set_gate(4, isr4, 0x08, 0x8e);
-    idt_set_gate(5, isr5, 0x08, 0x8e);
-    idt_set_gate(6, isr6, 0x08, 0x8e);
-    idt_set_gate(7, isr7, 0x08, 0x8e);
-    idt_set_gate(8, isr8, 0x08, 0x8e);
-    idt_set_gate(9, isr9, 0x08, 0x8e);
-    idt_set_gate(10, isr10, 0x08, 0x8e);
-    idt_set_gate(11, isr11, 0x08, 0x8e);
-    idt_set_gate(12, isr12, 0x08, 0x8e);
-    idt_set_gate(13, isr13, 0x08, 0x8e);
-    idt_set_gate(14, isr14, 0x08, 0x8e);
-    idt_set_gate(15, isr15, 0x08, 0x8e);
-    idt_set_gate(16, isr16, 0x08, 0x8e);
-    idt_set_gate(17, isr17, 0x08, 0x8e);
-    idt_set_gate(18, isr18, 0x08, 0x8e);
-    idt_set_gate(19, isr19, 0x08, 0x8e);
-    idt_set_gate(20, isr20, 0x08, 0x8e);
-    idt_set_gate(21, isr21, 0x08, 0x8e);
-    idt_set_gate(22, isr22, 0x08, 0x8e);
-    idt_set_gate(23, isr23, 0x08, 0x8e);
-    idt_set_gate(24, isr24, 0x08, 0x8e);
-    idt_set_gate(25, isr25, 0x08, 0x8e);
-    idt_set_gate(26, isr26, 0x08, 0x8e);
-    idt_set_gate(27, isr27, 0x08, 0x8e);
-    idt_set_gate(28, isr28, 0x08, 0x8e);
-    idt_set_gate(29, isr29, 0x08, 0x8e);
-    idt_set_gate(30, isr30, 0x08, 0x8e);
-    idt_set_gate(31, isr31, 0x08, 0x8e); 
+    idt_set_gate(0, int0, 0x08, 0x8e);
+    idt_set_gate(1, int1, 0x08, 0x8e);
+    idt_set_gate(2, int2, 0x08, 0x8e);
+    idt_set_gate(3, int3, 0x08, 0x8e);
+    idt_set_gate(4, int4, 0x08, 0x8e);
+    idt_set_gate(5, int5, 0x08, 0x8e);
+    idt_set_gate(6, int6, 0x08, 0x8e);
+    idt_set_gate(7, int7, 0x08, 0x8e);
+    idt_set_gate(8, int8, 0x08, 0x8e);
+    idt_set_gate(9, int9, 0x08, 0x8e);
+    idt_set_gate(10, int10, 0x08, 0x8e);
+    idt_set_gate(11, int11, 0x08, 0x8e);
+    idt_set_gate(12, int12, 0x08, 0x8e);
+    idt_set_gate(13, int13, 0x08, 0x8e);
+    idt_set_gate(14, int14, 0x08, 0x8e);
+    idt_set_gate(15, int15, 0x08, 0x8e);
+    idt_set_gate(16, int16, 0x08, 0x8e);
+    idt_set_gate(17, int17, 0x08, 0x8e);
+    idt_set_gate(18, int18, 0x08, 0x8e);
+    idt_set_gate(19, int19, 0x08, 0x8e);
+    idt_set_gate(20, int20, 0x08, 0x8e);
+    idt_set_gate(21, int21, 0x08, 0x8e);
+    idt_set_gate(22, int22, 0x08, 0x8e);
+    idt_set_gate(23, int23, 0x08, 0x8e);
+    idt_set_gate(24, int24, 0x08, 0x8e);
+    idt_set_gate(25, int25, 0x08, 0x8e);
+    idt_set_gate(26, int26, 0x08, 0x8e);
+    idt_set_gate(27, int27, 0x08, 0x8e);
+    idt_set_gate(28, int28, 0x08, 0x8e);
+    idt_set_gate(29, int29, 0x08, 0x8e);
+    idt_set_gate(30, int30, 0x08, 0x8e);
+    idt_set_gate(31, int31, 0x08, 0x8e); 
 }

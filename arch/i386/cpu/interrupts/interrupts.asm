@@ -3,16 +3,16 @@ section .text
     extern interupt_handler
 
     %macro  interupt_m_code 1
-        global isr%1
-        isr%1 :
+        global int%1
+        int%1 :
             cli
             push %1
             jmp int_service
     %endmacro
 
     %macro interupt_m_nocode 1
-        global isr%1
-        isr%1:
+        global int%1
+        int%1:
             cli
             push 0
             push %1
@@ -37,3 +37,4 @@ section .text
         iret
 
     %include "isr.asm"
+    %include "irq.asm"

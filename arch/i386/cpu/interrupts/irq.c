@@ -22,3 +22,20 @@
  **/ 
 
 
+/*All Interupt Request handlers*/
+extern "C" void int0(void);
+extern "C" void int1(void);
+extern "C" void int2(void);
+extern "C" void int3(void);
+extern "C" void int4(void);
+extern "C" void int5(void);
+extern "C" void int6(void);
+extern "C" void int7(void);
+extern "C" void int8(void);
+extern "C" void int9(void);
+extern "C" void int10(void);
+extern "C" void int11(void);
+extern "C" void int12(void);
+extern "C" void int13(void);
+extern "C" void int14(void);
+extern "C" void int15(void);

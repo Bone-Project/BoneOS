@@ -1,2 +1,16 @@
-section .text
-  
+interupt_m_nocode 32
+interupt_m_nocode 33
+interupt_m_nocode 34
+interupt_m_nocode 35
+interupt_m_nocode 36
+interupt_m_nocode 37
+interupt_m_nocode 38
+interupt_m_nocode 39
+interupt_m_nocode 40
+interupt_m_nocode 41
+interupt_m_nocode 42
+interupt_m_nocode 43
+interupt_m_nocode 44
+interupt_m_nocode 45
+interupt_m_nocode 46
+interupt_m_nocode 47
