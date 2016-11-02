@@ -5,16 +5,6 @@
 #include <stdint.h>
 #include <stdarg.h>
 
-/*
- * PIC UTILITIES
- */
-#define PIC_MASTER_CONTROL 0x20
-#define PIC_SLAVE_CONTROL 0xA0
-#define PIC_MASTER_MASK 0x21
-#define PIC_SLAVE_MASK 0xA1
-
-#define PIC_EOI 0x20
-
 #ifndef IDT_SIZE
 #define IDT_SIZE 256
 #endif    
@@ -37,7 +27,7 @@ typedef struct
 }__attribute__((packed)) int_regs;
 
 
-typedef void(*regs_func)(int_regs *r);
+typedef void(*int_routines)(int_regs *r);
 
 /*
  * @struct idt_desc:

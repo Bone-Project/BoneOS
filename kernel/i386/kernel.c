@@ -29,7 +29,7 @@
 #include <boot/i386/multiboot/multiboot.h>
 #include <include/arch/cpu/i386/gdt/gdt.h>
 #include <include/arch/cpu/i386/interrupts/idt.h>
-extern void init_isr();
+#include <include/arch/cpu/i386/interrupts/isr.h>
 #include <include/libc/string/string.h>
 #include <include/screen/i386/putch/putch.h>
 

@@ -25,22 +25,52 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <arch/cpu/i386/interrupts/interrupts.h>
+#include <arch/cpu/i386/interrupts/irq.h>
 
 
 /*All Interupt Request handlers*/
-extern void int0(void);
-extern void int1(void);
-extern void int2(void);
-extern void int3(void);
-extern void int4(void);
-extern void int5(void);
-extern void int6(void);
-extern void int7(void);
-extern void int8(void);
-extern void int9(void);
-extern void int10(void);
-extern void int11(void);
-extern void int12(void);
-extern void int13(void);
-extern void int14(void);
-extern void int15(void);
+extern void int32(void);
+extern void int33(void);
+extern void int34(void);
+extern void int35(void);
+extern void int36(void);
+extern void int37(void);
+extern void int38(void);
+extern void int39(void);
+extern void int40(void);
+extern void int41(void);
+extern void int42(void);
+extern void int43(void);
+extern void int44(void);
+extern void int45(void);
+extern void int46(void);
+extern void int47(void);
+
+int_routines irq_routines[16] = 
+{
+	0,0,0,0,0,0,0,0
+   ,0,0,0,0,0,0,0,0
+};
+
+void init_irq()
+{
+	remap_pic_irq();
+	idt_set_gate(32, int32, 0x08, 0x8e);
+    idt_set_gate(33, int33, 0x08, 0x8e);
+    idt_set_gate(34, int34, 0x08, 0x8e);
+    idt_set_gate(35, int35, 0x08, 0x8e);
+    idt_set_gate(36, int36, 0x08, 0x8e);
+    idt_set_gate(37, int37, 0x08, 0x8e);
+    idt_set_gate(38, int38, 0x08, 0x8e);
+    idt_set_gate(39, int39, 0x08, 0x8e);
+    idt_set_gate(40, int40, 0x08, 0x8e);
+    idt_set_gate(41, int41, 0x08, 0x8e);
+    idt_set_gate(42, int42, 0x08, 0x8e);
+    idt_set_gate(43, int43, 0x08, 0x8e);
+    idt_set_gate(44, int44, 0x08, 0x8e);
+    idt_set_gate(45, int45, 0x08, 0x8e);
+    idt_set_gate(46, int46, 0x08, 0x8e);
+    idt_set_gate(47, int47, 0x08, 0x8e);
+}
+
+

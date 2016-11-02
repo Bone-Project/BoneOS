@@ -71,7 +71,7 @@ compile:
 	cd kernel;make
 
 BoneOS.bin:
-	i686-elf-ld $(LDPARAMS) -T link/i386/linker.ld -o BoneOS.bin $(objects)  $(libraries)  
+	i686-elf-ld $(LDPARAMS) -T link/i386/linker.ld -o $@ $(objects)  $(libraries)  
 	
 
 c_compiler:
