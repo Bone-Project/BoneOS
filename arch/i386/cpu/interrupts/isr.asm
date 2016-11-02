@@ -1,68 +1,33 @@
-section .text 
-    extern common_interrupt_exception_handler
-    %macro  _isrm_code 1
-        global isr%1
-        isr%1 :
-            cli
-            push %1
-            jmp isr_service
-    %endmacro
 
-    %macro _isrm_nocode 1
-        global isr%1
-        isr%1:
-            cli
-            push 0
-            push %1
-            jmp isr_service
-    %endmacro
-
-
-    isr_service :
-        push eax
-        push ecx
-        push edx
-        push ds
-        push esp
-        call common_interrupt_exception_handler
-        pop eax
-        pop ds
-        pop edx
-        pop ecx
-        pop eax
-        add esp,8
-        iret
-
-    
-    _isrm_nocode 0
-    _isrm_nocode 1
-    _isrm_nocode 2
-    _isrm_nocode 3
-    _isrm_nocode 4
-    _isrm_nocode 5
-    _isrm_nocode 6
-    _isrm_nocode 7
-    _isrm_code 8
-    _isrm_nocode 9
-    _isrm_code 10
-    _isrm_code 11
-    _isrm_code 12
-    _isrm_code 13
-    _isrm_code 14
-    _isrm_nocode 15
-    _isrm_nocode 16
-    _isrm_nocode 17
-    _isrm_nocode 18
-    _isrm_nocode 19
-    _isrm_nocode 20
-    _isrm_nocode 21
-    _isrm_nocode 22
-    _isrm_nocode 23
-    _isrm_nocode 24
-    _isrm_nocode 25
-    _isrm_nocode 26
-    _isrm_nocode 27
-    _isrm_nocode 28
-    _isrm_nocode 29
-    _isrm_nocode 30
-    _isrm_nocode 31
+interupt_m_nocode 0
+interupt_m_nocode 1
+interupt_m_nocode 2
+interupt_m_nocode 3
+interupt_m_nocode 4
+interupt_m_nocode 5
+interupt_m_nocode 6
+interupt_m_nocode 7
+interupt_m_code 8
+interupt_m_nocode 9
+interupt_m_code 10
+interupt_m_code 11
+interupt_m_code 12
+interupt_m_code 13
+interupt_m_code 14
+interupt_m_nocode 15
+interupt_m_nocode 16
+interupt_m_nocode 17
+interupt_m_nocode 18
+interupt_m_nocode 19
+interupt_m_nocode 20
+interupt_m_nocode 21
+interupt_m_nocode 22
+interupt_m_nocode 23
+interupt_m_nocode 24
+interupt_m_nocode 25
+interupt_m_nocode 26
+interupt_m_nocode 27
+interupt_m_nocode 28
+interupt_m_nocode 29
+interupt_m_nocode 30
+interupt_m_nocode 31

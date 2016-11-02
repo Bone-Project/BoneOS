@@ -21,10 +21,13 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <arch/cpu/i386/interrupts/interrupts.h>
+
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
+#include <libc/stdio/printf/printf.h>
+#include <arch/cpu/i386/interrupts/interrupts.h>
+#include <arch/cpu/i386/interrupts/isr.h>
 
 extern idt_desc idt[256];
 
@@ -37,4 +40,18 @@ void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
     idt[num].reserved = 0;
     idt[num].sel = sel;
     idt[num].flags = flags;
+}
+
+/*
+ * @extern @function interupt_handler:
+ *      The Interrupt Handler for all
+ *      types of exceptions listed
+ *      above on exception_messages.
+ */
+
+extern void interupt_handler(int_regs* regs)
+{
+	printf("INTERUPT");
+
+    for( ; ; ) __asm__ __volatile__ ("hlt");
 }
