@@ -21,21 +21,26 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
+#include <stddef.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include <arch/cpu/i386/interrupts/interrupts.h>
+
 
 /*All Interupt Request handlers*/
-extern "C" void int0(void);
-extern "C" void int1(void);
-extern "C" void int2(void);
-extern "C" void int3(void);
-extern "C" void int4(void);
-extern "C" void int5(void);
-extern "C" void int6(void);
-extern "C" void int7(void);
-extern "C" void int8(void);
-extern "C" void int9(void);
-extern "C" void int10(void);
-extern "C" void int11(void);
-extern "C" void int12(void);
-extern "C" void int13(void);
-extern "C" void int14(void);
-extern "C" void int15(void);
+extern void int0(void);
+extern void int1(void);
+extern void int2(void);
+extern void int3(void);
+extern void int4(void);
+extern void int5(void);
+extern void int6(void);
+extern void int7(void);
+extern void int8(void);
+extern void int9(void);
+extern void int10(void);
+extern void int11(void);
+extern void int12(void);
+extern void int13(void);
+extern void int14(void);
+extern void int15(void);

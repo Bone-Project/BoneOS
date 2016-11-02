@@ -34,9 +34,12 @@
 /*Display Adapter Start*/
 
 #define DISPLAY_ADAPTER VGA
-
-
 #define DISPLAY_ADAPTER_S "VGA"
+
+#if DISPLAY_ADAPTER VGA
+#define DISPLAY_ADAPTER_MODE NORMAL_TEXT_MODE
+#define DISPLAY_ADAPTER_MODE_S "NORMAL_TEXT_MODE"
+#endif
  
 /*Display Adapter End*/
 

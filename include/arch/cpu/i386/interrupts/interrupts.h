@@ -5,10 +5,19 @@
 #include <stdint.h>
 #include <stdarg.h>
 
+/*
+ * PIC UTILITIES
+ */
 #define PIC_MASTER_CONTROL 0x20
 #define PIC_SLAVE_CONTROL 0xA0
 #define PIC_MASTER_MASK 0x21
 #define PIC_SLAVE_MASK 0xA1
+
+#define PIC_EOI 0x20
+
+#ifndef IDT_SIZE
+#define IDT_SIZE 256
+#endif    
 
 
 /*
@@ -51,5 +60,6 @@ typedef void(*regs_func)(int_regs *r);
     uint16_t base_hi;
  }__attribute__((packed)) idt_desc;
 
+ extern idt_desc idt[256];
  extern void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,uint8_t flags);
  #endif

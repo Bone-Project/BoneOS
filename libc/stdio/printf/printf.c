@@ -21,8 +21,13 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+#include <include/GlobalDefintions.h>
 #include <include/libc/stdio/printf/printf.h>
+#if DISPLAY_ADAPTER VGA
+#if DISPLAY_ADAPTER_MODE NORMAL_TEXT_MODE
 #include <include/screen/i386/putch/putch.h>
+#endif
+#endif
 #include <include/libc/stdio/itoa/itoa.h>
 
  

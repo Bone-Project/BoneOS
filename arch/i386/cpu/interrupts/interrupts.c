@@ -29,8 +29,6 @@
 #include <arch/cpu/i386/interrupts/interrupts.h>
 #include <arch/cpu/i386/interrupts/isr.h>
 
-extern idt_desc idt[256];
-
 
 void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
               uint8_t flags) 
