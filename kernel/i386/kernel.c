@@ -26,10 +26,14 @@
 #include <stddef.h>
 #include <include/GlobalDefintions.h>
 #include <include/libc/stdio/stdio.h>
+#include <include/misc/asm_util.h>
 #include <boot/i386/multiboot/multiboot.h>
 #include <include/arch/cpu/i386/gdt/gdt.h>
 #include <include/arch/cpu/i386/interrupts/idt.h>
 #include <include/arch/cpu/i386/interrupts/isr.h>
+#define KERNEL_CALL
+#include <include/arch/cpu/i386/interrupts/irq.h>
+#undef KERNEL_CALL
 #include <include/libc/string/string.h>
 #include <include/screen/i386/putch/putch.h>
 
@@ -72,25 +76,22 @@ void crash_me()
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
     cls();
-    char str[] = "Hello Woorrrlld"; // Works ;)
+   /* char str[] = "Hello Woorrrlld"; // Works ;)
     memset(str,'$',7);
-    printf("%s YEP\n", (str));
+    printf("%s\n", (str));
      
    printf("\n%d\n", (int)strlen(str));
 
    strcpy(str, "Bye, world!");
    printf("%s\n", str);
    
-   printf("%s\n", strchr(str,'e'));
-
-
+   printf("%s\n", strchr(str,'e'));*/
    init_gdt();
    init_idt();
    init_isr();
-
+   init_irq();
    crash_me();
 
-   __asm__ __volatile__ ("cli");
-   __asm__ __volatile__ ("hlt");  
+   hlt();
 }
 

@@ -19,10 +19,12 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Doug Gale <doug65536> : update to printk
  **/  
 
 #include <include/GlobalDefintions.h>
-#include <include/libc/stdio/printf/printf.h>
+#include <include/com/i386/com.h>
+#include <include/libc/stdio/printk/printk.h>
 #if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE
 #include <include/screen/i386/putch/putch.h>
 #endif
@@ -44,12 +46,16 @@
  *            utility.
  */
 
-void printf(const char* fmt, ...)
+void printk(const char* fmt, ...)
 {
-   va_list arg;
+  va_list arg;
+  va_start(arg, fmt);
+  vprintk(fmt, arg);
+  va_end(arg);
+}
 
-   va_start (arg, fmt);
-
+void vprintk(const char* fmt, va_list arg)
+{
    int integer_format; 
    char *result_pt=" ";
   
@@ -100,6 +106,4 @@ void printf(const char* fmt, ...)
           break;       
      }
    }  
-
-   va_end (arg);
 }

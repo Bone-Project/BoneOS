@@ -36,7 +36,8 @@ objects = kernel/i386/kernel.o boot/i386/boot.o \
   		  screen/i386/putch/putch.o \
   		  arch/i386/cpu/gdt/gdt_flush.o \
   		  io/i386/io_asm.o \
-  		  screen/i386/putch/cls.o
+  		  screen/i386/putch/cls.o \
+  		  misc/asm_util.o
 
 libraries = --start-group \
  			 libc/stdio/stdio.a \
@@ -68,6 +69,8 @@ compile:
 	cd libc;make
 	cd arch;make
 	cd screen;make
+	cd misc;make
+	cd com;make
 	cd kernel;make
 
 BoneOS.bin:

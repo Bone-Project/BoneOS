@@ -26,7 +26,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <io/i386/io.h>
-#include <libc/stdio/printf/printf.h>
+#include <libc/stdio/printk/printk.h>
 #include <arch/cpu/i386/interrupts/interrupts.h>
 #include <arch/cpu/i386/interrupts/isr.h>
 #include <arch/cpu/i386/interrupts/irq.h>
@@ -43,7 +43,7 @@ extern void interupt_handler(int_regs* regs)
 {
 	if(regs->int_no < 32)
 	{
-		printf("ERROR : %s" , exception_messages[regs->int_no]);
+		printk("ERROR : %s" , exception_messages[regs->int_no]);
 		for( ; ; ) __asm__ __volatile__ ("cli \n\t hlt");
 	}
 	else if(regs->int_no >= 32 && regs->int_no<48)
@@ -53,7 +53,7 @@ extern void interupt_handler(int_regs* regs)
 			handler(regs);
 	}
 	else
-		printf("UNDOCUMENTED ERROR");
+		printk("UNDOCUMENTED ERROR");
 
 	if(regs->int_no >= 8)
 		outb8(I386_MASTER_REG_COMMAND,PIC_EOI);

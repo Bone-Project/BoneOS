@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
-extern void printf(const char* fmt, ...);
+extern void printk(const char* fmt, ...);
+extern void vprintk(const char* fmt, va_list arg);
 
 #endif /*_LIBC_STDIO_PRINTF_H_*/

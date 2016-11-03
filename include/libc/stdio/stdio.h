@@ -9,6 +9,6 @@
  */
 
 	#include "itoa/itoa.h"
-	#include "printf/printf.h"
+	#include "printk/printk.h"
 
 #endif /*_LIBC_STDIO_H_*/

@@ -38,18 +38,20 @@ Directory Structure
 ----
 Our firectory structure currently is as follows:
 
-- ***arch*** : architecture dependant assembly files
-- ***Documentation*** : For More Documentation on BoneOS
-- ***io*** : I/O Software Code
-- ***cpu***: Directory for processor related code
+- ***arch*** : Archecture Dependant Codes
 - ***boot***: GRUB Bootloader information 
    - ***boot***: Grub Multiboot information
+- ***Documentation*** : For More Documentation on BoneOS
+- ***drv***  : Device Drivers are located here. 
+- ***io*** : I/O Software Code
 - ***link***: Where the linker is located.
 - ***kernel***: Main kernel function getting called by GRUB Bootloader
 - ***libc***: C Library constructed and used by BoneOS.
 - ***screen***: Directory for screen related code such as VGA.
 - ***utils***: Utilities for users.
    - ***cross_compiler***: Script for installing the cross compiler
+- ***misc*** : Non Categorized Code.
+- ***com*** : Code for General communication with User   
 
 License
 ---
