@@ -46,10 +46,14 @@
 
 void printf(const char* fmt, ...)
 {
-   va_list arg;
+	va_list arg;
+	va_start(arg, fmt);
+	vprintf(fmt, arg);
+	va_end(arg);
+}
 
-   va_start (arg, fmt);
-
+void vprintf(const char* fmt, va_list arg)
+{
    int integer_format; 
    char *result_pt=" ";
   
@@ -100,6 +104,4 @@ void printf(const char* fmt, ...)
           break;       
      }
    }  
-
-   va_end (arg);
 }
