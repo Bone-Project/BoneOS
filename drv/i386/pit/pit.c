@@ -42,22 +42,27 @@ void pit_phase(int htz)
 {
 	//IRQ 0 Hits every 10 milliseconds 
 	//or 100 hertz
-	int divisor = 1193180 / htz;
+	// int divisor = 1193180 / htz;
 
-	send_pit_command(COMMAND_FULL);
+	// send_pit_command(0x36);
 
-	send_msg_counter_0(divisor & 0xFF);
-	send_msg_counter_0(divisor >> 8);
+	// send_msg_counter_0(divisor & 0xFF);
+	// send_msg_counter_0(divisor >> 8);
+	int divisor = 1193180 / htz;       /* Calculate our divisor */
+    outb8(0x43,0x36);             /* Set our command byte 0x36 */
+    outb8(0x40,divisor & 0xFF);   /* Set low byte of divisor */
+    outb8(0x40,divisor >> 8);     /* Set high byte of divisor */
 }
 
-void pit_handler(int_routines *r)
+void pit_handler(int_regs *r)
 {
 	pit_ticks++;
-	printk("Spam");
+	if (pit_ticks % 19 == 0)
+		printk("Spam");
 }
 
 void init_pit()
 {
 	pit_phase(19);
-	install_irq_handler(0,(int_routines)pit_handler);
+	install_irq_handler(0,pit_handler);
 }
