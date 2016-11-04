@@ -18,14 +18,14 @@
  **		Amanuel Bogale <amanuel2> : start
  **/
 
-#include <libc/printf/printf.h> 
-#include <misc/asm_utils.h>
+#include <include/libc/stdio/printk/printk.h> 
+#include <include/misc/asm_util.h>
  
-void panic(const char *fmt, ...)
+void panik(const char *fmt, ...)
 {
-    //va_list args;
-    //va_start(args,fmt);
-    printf(*fmt);
+    va_list args;
+    va_start(args,fmt);
+    vprintk(fmt,args);
     
     cli();
     hlt();

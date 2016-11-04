@@ -41,6 +41,7 @@ objects = kernel/i386/kernel.o boot/i386/boot.o \
 
 libraries = --start-group \
  			 libc/stdio/stdio.a \
+ 			 libc/stdlib/stdlib.a \
  			 libc/string/string.a \
  			 arch/i386/arch.a \
  			 --end-group  

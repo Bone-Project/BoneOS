@@ -31,6 +31,7 @@
 #include <arch/cpu/i386/interrupts/isr.h>
 #include <arch/cpu/i386/interrupts/irq.h>
 #include <arch/cpu/i386/interrupts/pic.h>
+#include <libc/stdlib/panik/panik.h>
 
 /*
  * @extern @function interupt_handler:
@@ -43,8 +44,7 @@ extern void interupt_handler(int_regs* regs)
 {
 	if(regs->int_no < 32)
 	{
-		printk("ERROR : %s" , exception_messages[regs->int_no]);
-		for( ; ; ) __asm__ __volatile__ ("cli \n\t hlt");
+		panik("ERROR : %s" , exception_messages[regs->int_no]);
 	}
 	else if(regs->int_no >= 32 && regs->int_no<48)
 	{
