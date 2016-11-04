@@ -36,6 +36,7 @@
 #undef KERNEL_CALL
 #include <include/libc/string/string.h>
 #include <include/screen/i386/VGA/textmode/putch/putch.h>
+#include <include/drv/i386/pit/pit.h>
 
 
 
@@ -76,22 +77,14 @@ void crash_me()
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
     cls();
-   /* char str[] = "Hello Woorrrlld"; // Works ;)
-    memset(str,'$',7);
-    printf("%s\n", (str));
-     
-   printf("\n%d\n", (int)strlen(str));
-
-   strcpy(str, "Bye, world!");
-   printf("%s\n", str);
-   
-   printf("%s\n", strchr(str,'e'));*/
    init_gdt();
    init_idt();
    init_isr();
    init_irq();
-   crash_me();
 
+   sti();
+   init_pit();
+   printk("Hallo");
    hlt();
 }
 

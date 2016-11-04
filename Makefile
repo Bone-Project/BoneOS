@@ -44,6 +44,7 @@ libraries = --start-group \
  			 libc/stdlib/stdlib.a \
  			 libc/string/string.a \
  			 arch/i386/arch.a \
+ 			 drv/i386/drv.a \
  			 --end-group  
 
   		  
@@ -72,6 +73,7 @@ compile:
 	cd screen;make
 	cd misc;make
 	cd com;make
+	cd drv;make
 	cd kernel;make
 
 BoneOS.bin:

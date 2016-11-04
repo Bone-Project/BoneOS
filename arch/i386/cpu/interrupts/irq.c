@@ -83,4 +83,7 @@ void init_irq()
     idt_set_gate(47, int47, 0x08, 0x8e);
 }
 
-
+void install_irq_handler(int num,int_routines route)
+{
+    irq_routines[num] = route;
+}
