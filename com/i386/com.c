@@ -29,6 +29,6 @@ static bool DISPLAY = true;
 
 void check()
 {
-if(DISPLAY)
-	printk("DISPLAY SCREEN MODE");
+    if(DISPLAY)
+		printk("DISPLAY SCREEN MODE");
 }

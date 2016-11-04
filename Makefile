@@ -33,10 +33,10 @@ VBM=VBoxManage
 SCRIPT_CC = utils/cross_compiler/toolchain.py
 
 objects = kernel/i386/kernel.o boot/i386/boot.o \
-  		  screen/i386/putch/putch.o \
+  		  screen/i386/VGA/textmode/putch/putch.o \
   		  arch/i386/cpu/gdt/gdt_flush.o \
   		  io/i386/io_asm.o \
-  		  screen/i386/putch/cls.o \
+  		  screen/i386/VGA/textmode/putch/cls.o \
   		  misc/asm_util.o
 
 libraries = --start-group \

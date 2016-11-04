@@ -35,7 +35,7 @@
 #include <include/arch/cpu/i386/interrupts/irq.h>
 #undef KERNEL_CALL
 #include <include/libc/string/string.h>
-#include <include/screen/i386/putch/putch.h>
+#include <include/screen/i386/VGA/textmode/putch/putch.h>
 
 
 

@@ -25,8 +25,8 @@
 #include <include/GlobalDefintions.h>
 #include <include/com/i386/com.h>
 #include <include/libc/stdio/printk/printk.h>
-#if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE
-#include <include/screen/i386/putch/putch.h>
+#if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE && com_met == SCREEN_DISPLAY
+#include <include/screen/i386/VGA/textmode/putch/putch.h>
 #endif
 #include <include/libc/stdio/itoa/itoa.h>
 
