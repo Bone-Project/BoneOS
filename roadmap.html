@@ -28,7 +28,20 @@ https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.8/jquery.fullPage.css"/>
 	  <script src="https://cdn.rawgit.com/lukesnowden/FSVS/development/assets/js/bundle.js"></script>
 	  
 <style>
-	#outerspace{position:relative;height:400px;background:#0c0440;color:#fff;}div.rocket{position:absolute;bottom:10px;left:20px;-webkit-transition:3s ease-in;-moz-transition:3s ease-in;-o-transition:3s ease-in;transition:3s ease-in;}div.rocket div{width:92px;height:215px;background:url('http://www.the-art-of-web.com/images/rocket.gif') no-repeat;-webkit-transition:2s ease-in-out;-moz-transition:2s ease-in-out;-o-transition:2s ease-in-out;transition:2s ease-in-out;}#outerspace:hover div.rocket{-webkit-transform:translate(0px,-5400px);-moz-transform:translate(0px,-5400px);-o-transform:translate(0px,-5400px);-ms-transform:translate(0px,-5400px);transform:translate(0px,-5400px);}
+	#outerspace{
+		position:relative;
+		height:400px;
+		color:#fff;}
+	div.rocket{
+		position:absolute;
+		bottom:10px;
+		left:20px;
+		-webkit-transition:3s ease-in;
+		-webkit-animation:10s ease-in;
+		-moz-transition:3s ease-in;
+		-o-transition:3s ease-in;
+		transition:3s ease-in;}
+	div.rocket div{width:92px;height:215px;/*background:url('https://www.the-art-of-web.com/images/rocket.gif') no-repeat;*/-webkit-transition:2s ease-in-out;-moz-transition:2s ease-in-out;-o-transition:2s ease-in-out;transition:2s ease-in-out;}#outerspace:hover div.rocket{-webkit-transform:translate(0px,-5400px);-moz-transform:translate(0px,-5400px);-o-transform:translate(0px,-5400px);-ms-transform:translate(0px,-5400px);transform:translate(0px,-5400px);}
  
 </style>
 
@@ -56,19 +69,98 @@ https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.8/jquery.fullPage.css"/>
 	</div>
 	<div class="section" id="section2"><h1>Application</h1><p>Imagine a word processor application in BoneOS or a game in it! Yes we can do it</p> </div>
 	<div class="section" id="section3" >
-	<div class="col-md-6">
+	<div class="col-md-2">
+		<div class="rocket">
+<div></div>
+<svg id="rocket_launch" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="85.5px"
+	 height="204.464px" viewBox="0 0 85.5 204.464" xml:space="preserve">
+<g id="cloud">
+	<path class="cloud_fill" transform="scale(0)" fill="#D1D3D4" d="M57.931,164.945c-2.796-4.957-5.221-11.877-5.912-21.398H34.786c0,0,0.744,10.699-2.532,20.777
+		c-2.25-1.5-4.97-2.391-7.916-2.391c-7.676,0-13.894,5.959-13.894,13.312c0,4.365,2.221,8.205,5.603,10.631
+		c0.158,4.963,4.746,8.877,10.295,8.748c1.294-0.023,2.507-0.293,3.638-0.709c0.966,3.938,4.675,6.826,9.035,6.732
+		c2.783-0.064,5.209-1.354,6.827-3.293c1.6,1.061,3.55,1.693,5.665,1.646c3.639-0.082,6.716-2.104,8.239-4.969
+		c1.283,1.061,2.894,1.709,4.67,1.674c2.15-0.051,4.043-1.088,5.326-2.67c0.961,0.381,2.016,0.59,3.117,0.562
+		c4.236-0.094,7.589-3.41,7.488-7.424c-0.035-1.553-0.598-2.973-1.512-4.133c2.819-2.438,4.629-5.928,4.629-9.855
+		C83.466,171.238,76.781,151.058,57.931,164.945z"/>
+</g>
+<g id="rocket">
+	<g>
+		<polygon fill="#82151D" points="38.219,38.544 42.591,0 46.95,38.544"/>
+		<g>
+			<path fill="#68353D" d="M6.999,108.285c2.344-5.22,9.704-12.668,10.02-12.985c0.269-0.27,0.668-0.375,1.032-0.27
+				c0.374,0.106,0.656,0.398,0.749,0.779l9.786,42.366c0.082,0.334-0.011,0.686-0.247,0.943c-0.223,0.258-0.562,0.393-0.902,0.344
+				c0,0-0.503-0.051-1.312-0.051c-3.551,0-12.118,1.025-14.86,10.547c-0.118,0.422-0.481,0.727-0.926,0.762
+				c-0.024,0-0.059,0-0.083,0c-0.41,0-0.773-0.234-0.949-0.598C0.401,131.443,4.631,113.582,6.999,108.285"/>
+			<path fill="#82151D" d="M55.88,139.318c-0.234-0.193-0.552-0.281-0.867-0.217c-2.508,0.498-6.692,1.084-12.341,1.084
+				s-9.82-0.586-12.329-1.084c-0.316-0.064-0.632,0.018-0.879,0.217c-0.245,0.205-0.386,0.504-0.386,0.82v5.719
+				c0,0.521,0.375,0.961,0.89,1.043c0.282,0.047,7.032,1.113,12.704,1.113c5.684,0,12.423-1.066,12.716-1.113
+				c0.504-0.082,0.89-0.521,0.89-1.043v-5.719C56.277,139.822,56.125,139.523,55.88,139.318"/>
+			<g opacity="0.2">
+				<g>
+					<defs>
+						<rect id="SVGID_1_" x="29.078" y="138.767" width="27.199" height="4.266"/>
+					</defs>
+					<clipPath id="SVGID_2_">
+						<use xlink:href="#SVGID_1_"  overflow="visible"/>
+					</clipPath>
+					<path clip-path="url(#SVGID_2_)" fill="#231F20" d="M55.88,139.001c-0.234-0.201-0.552-0.277-0.867-0.211
+						c-2.508,0.492-6.692,1.078-12.341,1.078s-9.82-0.586-12.329-1.078c-0.316-0.07-0.632,0.01-0.879,0.211
+						c-0.245,0.205-0.386,0.504-0.386,0.82v3.164c0-0.311,0.141-0.609,0.386-0.809c0.247-0.205,0.563-0.287,0.879-0.223
+						c2.509,0.492,6.68,1.078,12.329,1.078s9.833-0.586,12.341-1.078c0.315-0.064,0.633,0.018,0.867,0.223
+						c0.245,0.199,0.397,0.498,0.397,0.809v-3.164C56.277,139.505,56.125,139.207,55.88,139.001"/>
+				</g>
+			</g>
+			<path fill="#C32126" d="M42.672,28.595c-5.169,0-26.415,27.141-26.415,59.134c0,31.021,9.376,50.909,9.458,51.12
+				c0.128,0.258,0.34,0.469,0.621,0.562c0.223,0.082,5.825,2.016,16.337,2.016c10.513,0,16.114-1.934,16.349-2.016
+				c0.27-0.094,0.492-0.305,0.609-0.562c0.093-0.211,9.469-20.1,9.469-51.12C69.099,55.736,47.853,28.595,42.672,28.595"/>
+			<path fill="#82151D" d="M58.153,46.748c-6.105-11.122-12.81-18.153-15.481-18.153s-9.363,7.031-15.47,18.153
+				c1.735,0.509,6.809,1.751,15.47,1.751C51.345,48.5,56.419,47.257,58.153,46.748"/>
+			<path fill="#FFFFFF" d="M42.672,87.032c-4.5,0-8.168-3.668-8.168-8.174c0-4.512,3.668-8.18,8.168-8.18
+				c4.512,0,8.181,3.668,8.181,8.18C50.853,83.364,47.184,87.032,42.672,87.032"/>
+			<path fill="#E47025" d="M42.672,71.235c4.207,0,7.617,3.41,7.617,7.624c0,4.207-3.41,7.617-7.617,7.617s-7.617-3.41-7.617-7.617
+				C35.055,74.645,38.465,71.235,42.672,71.235 M42.672,70.127c-4.805,0-8.731,3.914-8.731,8.731c0,4.811,3.926,8.725,8.731,8.725
+				c4.816,0,8.731-3.914,8.731-8.725C51.403,74.042,47.488,70.127,42.672,70.127"/>
+			<path fill="#E7E7E7" d="M36.531,80.335c0-4.207,3.41-7.618,7.629-7.618c1.724,0,3.306,0.575,4.582,1.547
+				c-1.382-1.84-3.585-3.029-6.07-3.029c-4.207,0-7.617,3.417-7.617,7.624c0,2.479,1.195,4.676,3.035,6.07
+				C37.117,83.651,36.531,82.058,36.531,80.335"/>
+			<path fill="#C32126" d="M78.146,108.285c-2.345-5.22-9.703-12.668-10.021-12.985c-0.27-0.27-0.656-0.375-1.031-0.27
+				c-0.375,0.106-0.655,0.398-0.739,0.779l-9.796,42.366c-0.07,0.334,0.022,0.686,0.245,0.943c0.224,0.258,0.574,0.393,0.914,0.344
+				c0,0,0.492-0.051,1.302-0.051c3.562,0,12.117,1.025,14.859,10.547c0.117,0.422,0.492,0.727,0.927,0.762c0.035,0,0.058,0,0.093,0
+				c0.399,0,0.774-0.234,0.949-0.598C84.755,131.443,80.525,113.582,78.146,108.285"/>
+			<path fill="#D6434B" d="M61.517,53.58c3.585,9.036,5.485,28.232,3.387,41.311c1.969,2.068,7.336,7.898,9.27,12.223
+				c2.298,5.121,6.317,21.949-1.43,39.928c0.445,0.885,0.844,1.852,1.161,2.941c0.128,0.422,0.492,0.727,0.925,0.762
+				c0.035,0.006,0.06,0.006,0.095,0.006c0.397,0,0.772-0.229,0.949-0.604c8.906-18.68,4.675-36.535,2.296-41.838
+				c-1.934-4.318-7.3-10.154-9.269-12.217c0.14-2.677,0.223-5.46,0.223-8.338C69.123,75.155,65.83,63.307,61.517,53.58"/>
+			<g opacity="0.2">
+				<g>
+					<defs>
+						<rect id="SVGID_3_" x="16.257" y="28.595" width="34.818" height="111.783"/>
+					</defs>
+					<clipPath id="SVGID_4_">
+						<use xlink:href="#SVGID_3_"  overflow="visible"/>
+					</clipPath>
+					<path clip-path="url(#SVGID_4_)" class="rocket_shadow" fill="#231F20" d="M22.796,94.281c0-31.994,21.247-59.141,26.427-59.141
+						c0.492,0,1.112,0.24,1.852,0.704c-3.598-4.612-6.785-7.248-8.403-7.248c-5.18,0-26.415,27.141-26.415,59.134
+						c0,31.021,9.365,50.909,9.458,51.12c0.128,0.258,0.34,0.469,0.621,0.562c0.106,0.033,1.441,0.498,3.938,0.967
+						C27.496,132.607,22.796,116.23,22.796,94.281"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
+</div>#outerspace
+</div>
+		</div>
+	<div class="col-md-5">
 	<h1>Drivers</h1>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-5">
 	<p>We will include many drivers such as Keyboard , Mouse , Timer Driver(PIT), ATA, etc...
 These drivers we will implement will be as abstract as possible for contribution to have seperate drivers. For example if you want to have your specific keyboard layout that wasnt implemented in BoneOS you will just give the scancode and the KBD Driver code will be well designed to recognize that scancode.
 Drivers will be implemented mostly under the drv/ folder.<p>
 					<div id="outerspace">
-<div class="rocket">
-<div></div>
-BoneOS
-</div>#outerspace
-</div>
+
 	</div>
 	</div>
 </div>
