@@ -19,48 +19,36 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Doug Gale <doug65536> : update to printk
  **/  
 
-
-#include <stddef.h>
-#include <stdint.h>
-#include <stdarg.h>
-#include <io/i386/io.h>
-#include <libc/stdio/printk/printk.h>
 #include <arch/cpu/i386/interrupts/interrupts.h>
-#include <arch/cpu/i386/interrupts/isr.h>
 #include <arch/cpu/i386/interrupts/irq.h>
-#include <arch/cpu/i386/interrupts/pic.h>
-#include <libc/stdlib/panik/panik.h>
+#include <io/i386/io.h>
+#include <libc/stdio/stdio.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <drv/i386/kbd/kbd.h>
 
-/*
- * @extern @function interupt_handler:
- *      The Interrupt Handler for all
- *      types of exceptions listed
- *      above on exception_messages.
- */
-
-extern void interupt_handler(int_regs* regs)
+inline static uint8_t kbd_ctrl_read_status()
 {
-	if(regs->int_no < 32)
-	{
-		panik("ERROR : %s" , exception_messages[regs->int_no]);
-	}
-	else if(regs->int_no >= 32 && regs->int_no<48)
-	{
-		int_routines handler = irq_routines[(regs->int_no)-32];
-		if(handler)
-			handler(regs);
-	}
-	else
-		printk("UNDOCUMENTED INTERRUPT");
+	return (inb8(I386_KBD_ONBOARD_PORT_READ));
+}
 
-	if(regs->int_no >= 32+8)
-	{
-		outb8(0xA0,0x20);
-	}
-	
-	if((regs->int_no-32)==1)
-		printk("INTERUPT %d : MASTER EOI", regs->int_no-32);	
-	outb8(0x20,0x20);
+void send_cmd_kbd_ctrl(uint8_t cmd)
+{
+	while(1)
+		if((kbd_ctrl_read_status() & INPUT_BUFFER_FULL) ==0) break;
+
+	outb8(I386_KBD_ONBOARD_PORT_WRITE,cmd);
+}
+
+void kbd_handler(int_regs *r)
+{
+ printk("KBD HIT");
+}
+
+void init_kbd()
+{
+ install_irq_handler(1,kbd_handler);	
 }

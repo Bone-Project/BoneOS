@@ -37,6 +37,7 @@
 #include <include/libc/string/string.h>
 #include <include/screen/i386/VGA/textmode/putch/putch.h>
 #include <include/drv/i386/pit/pit.h>
+#include <include/drv/i386/kbd/kbd.h>
 #include <include/libc/math/math.h>
 
 
@@ -84,6 +85,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_isr();
    init_irq();
    init_pit();
+   init_kbd(); 
    
    sprintk(str, "Value of Pi = %d" , 3);
    printk("\n%s" , str);
