@@ -30,8 +30,6 @@
 #endif
 #include <include/libc/stdio/itoa/itoa.h>
 
- 
-
 /*
  * @function printf:
  *     Prints a string on
@@ -57,6 +55,7 @@ void printk(const char* fmt, ...)
 void vprintk(const char* fmt, va_list arg)
 {
    int integer_format; 
+   //float float_format;
    char *result_pt=" ";
   
    for(int i=0; fmt[i]!='\0';i++)
@@ -69,8 +68,8 @@ void vprintk(const char* fmt, va_list arg)
             case 'd':
               integer_format = va_arg(arg,int);
               result_pt = itoa(integer_format);
-              for(int i=0;result_pt[i]!='\0';i++)
-                putch(result_pt[i]);
+              for(int x=0;result_pt[x]!='\0';x++)
+                putch(result_pt[x]);
               i+=1;
               break;
             case 'c':
@@ -79,17 +78,24 @@ void vprintk(const char* fmt, va_list arg)
               break; 
             case 's':
               result_pt = va_arg(arg,char*);
-              for(int i=0;result_pt[i]!='\0';i++)
-                putch(result_pt[i]);  
+              for(int x=0;result_pt[x]!='\0';x++)
+                putch(result_pt[x]);  
               i+=1;
               break;   
             case 'x':
               integer_format = va_arg(arg,int);
               __itoa(integer_format, 16, result_pt);
-              for(int i=0;result_pt[i]!='\0';i++)
-                putch(result_pt[i]);
+              for(int x=0;result_pt[x]!='\0';x++)
+                putch(result_pt[x]);
               i+=1;
               break;
+            // case 'f':
+            //   float_format = va_arg(arg,double);
+            //   result_pt = itoa(float_format);
+            //   for(int x=0;result_pt[x]!='\0';x++)
+            //     putch(result_pt[x]);
+            //   i+=1;
+            //   break;  
           }
           break;
         case '\n':

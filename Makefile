@@ -43,6 +43,7 @@ libraries = --start-group \
  			 libc/stdio/stdio.a \
  			 libc/stdlib/stdlib.a \
  			 libc/string/string.a \
+ 			 libc/math/math.a \
  			 arch/i386/arch.a \
  			 drv/i386/drv.a \
  			 --end-group  
