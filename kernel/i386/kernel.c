@@ -76,15 +76,18 @@ void crash_me()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-    cls();
+   cls();
    init_gdt();
    init_idt();
    init_isr();
    init_irq();
 
-   sti();
+  
    init_pit();
-   printk("Hallo");
-   hlt();
+
+   sti();
+   
+   while(1)
+    hlt();
 }
 

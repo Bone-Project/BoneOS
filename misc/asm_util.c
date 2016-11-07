@@ -30,6 +30,5 @@ void cli()
 
 void hlt()
 {
-    cli();
     __asm__ __volatile__ ("hlt");
 }

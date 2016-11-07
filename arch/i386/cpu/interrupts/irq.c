@@ -26,6 +26,7 @@
 #include <stdarg.h>
 #include <arch/cpu/i386/interrupts/interrupts.h>
 #include <arch/cpu/i386/interrupts/irq.h>
+#include <libc/stdio/stdio.h>
 
 
 /*All Interupt Request handlers*/
@@ -85,5 +86,6 @@ void init_irq()
 
 void install_irq_handler(int num,int_routines route)
 {
+    printk("Installing IRQ #%d",num);
     irq_routines[num] = route;
 }

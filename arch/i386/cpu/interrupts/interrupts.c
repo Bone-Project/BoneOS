@@ -53,11 +53,12 @@ extern void interupt_handler(int_regs* regs)
 			handler(regs);
 	}
 	else
-		printk("UNDOCUMENTED ERROR");
+		printk("UNDOCUMENTED INTERRUPT");
 
-	if(regs->int_no >= 8)
-		outb8(I386_MASTER_REG_COMMAND,PIC_EOI);
-
-	outb8(I386_SLAVE_REG_COMMAND,PIC_EOI);
-
+	if(regs->int_no >= 32+8)
+	{
+		outb8(0xA0,0x20);
+	}
+		
+	outb8(0x20,0x20);
 }
