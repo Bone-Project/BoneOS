@@ -15,12 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **     Doug Gale <doug65536> : update to printk
- **/  
+ **/
 
 #include <stddef.h>
 #include <stdint.h>
@@ -31,7 +30,7 @@
  *      With specified base
  *      and exponent, finds
  *      the power of both.
- *    
+ *
  *         @param x:
  *                specified base
  *         @param y:
@@ -50,5 +49,5 @@ int powk(int x, uint32_t y)
         return powk(x, y/2)*powk(x, y/2);
     else
         return x*powk(x, y/2)*powk(x, y/2);
- 
+
 }

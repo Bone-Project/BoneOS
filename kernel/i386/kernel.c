@@ -39,6 +39,7 @@
 #include <include/drv/i386/pit/pit.h>
 #include <include/drv/i386/kbd/kbd.h>
 #include <include/libc/math/math.h>
+#include <include/libc/stdio/printck/printck.h>
 
 
 
@@ -92,6 +93,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    //printk("\n%f" , 3.14);
    
    printk("%d" , powk(10,2));
+
+   printck(0x5,0x2,"Yea whassup");
+   printk("\n Back to Original");
 
    sti();
    while(1)

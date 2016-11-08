@@ -63,9 +63,9 @@ void pit_phase(int htz)
   int divisor = 1193180 / htz;
 
   send_pit_command(I386_PIT_OCW_BINCOUNT_BINARY    | 
-             I386_PIT_OCW_MODE_SQUAREWAVEGEN |
-             I386_PIT_OCW_RL_DATA      |
-             I386_PIT_OCW_SCO_COUNTER_0);
+                               I386_PIT_OCW_MODE_SQUAREWAVEGEN |
+                               I386_PIT_OCW_RL_DATA      |
+                               I386_PIT_OCW_SCO_COUNTER_0);
 
   send_msg_counter_0(divisor & 0xFF);
   send_msg_counter_0(divisor >> 8);

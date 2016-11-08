@@ -57,10 +57,8 @@ extern void interupt_handler(int_regs* regs)
 
 	if(regs->int_no >= 32+8)
 	{
-		outb8(0xA0,0x20);
+		outb8(I386_SLAVE_REG_COMMAND,PIC_EOI);
 	}
 	
-	if((regs->int_no-32)==1)
-		printk("INTERUPT %d : MASTER EOI", regs->int_no-32);	
-	outb8(0x20,0x20);
+	outb8(I386_MASTER_REG_COMMAND,PIC_EOI);
 }

@@ -11,5 +11,6 @@
     #include "itoa/itoa.h"
     #include "printk/printk.h"
     #include "sprintk/sprintk.h"
+    #include "printck/printck.h"
 
 #endif /*_LIBC_STDIO_H_*/

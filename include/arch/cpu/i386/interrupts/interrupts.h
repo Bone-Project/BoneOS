@@ -50,6 +50,7 @@ typedef void(*int_routines)(int_regs *r);
     uint16_t base_hi;
  }__attribute__((packed)) idt_desc;
 
+
  extern idt_desc idt[256];
  extern void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,uint8_t flags);
  #endif

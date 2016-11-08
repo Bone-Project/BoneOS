@@ -1,5 +1,5 @@
-#ifndef _LIBC_STDIO_PRINTF_H_
-#define _LIBC_STDIO_PRINTF_H_
+#ifndef  _LIBC_STDIO_PRINTK_H_
+#define _LIBC_STDIO_PRINTK_H_
 
 #include <stdarg.h>
 #include <stdint.h>
@@ -8,4 +8,4 @@
 extern void printk(const char* fmt, ...);
 extern void vprintk(const char* fmt, va_list arg);
 
-#endif /*_LIBC_STDIO_PRINTF_H_*/
+#endif /*_LIBC_STDIO_PRINTK_H_*/

@@ -22,6 +22,10 @@
  **     Doug Gale <doug65536> : update to printk
  **/  
 
+#include <stdarg.h>
+#include <stdint.h>
+#include <stddef.h>
+
 #include <include/GlobalDefintions.h>
 #include <include/com/i386/com.h>
 #include <include/libc/stdio/printk/printk.h>
@@ -29,6 +33,7 @@
 #include <include/screen/i386/VGA/textmode/putch/putch.h>
 #endif
 #include <include/libc/stdio/itoa/itoa.h>
+
 
 /*
  * @function printf:
