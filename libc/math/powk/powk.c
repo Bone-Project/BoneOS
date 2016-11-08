@@ -25,6 +25,23 @@
 #include <stddef.h>
 #include <stdint.h>
 
+
+/*
+ * @function powk:
+ *      With specified base
+ *      and exponent, finds
+ *      the power of both.
+ *    
+ *         @param x:
+ *                specified base
+ *         @param y:
+ *                 specified exponent
+ *
+ *          @return int:
+ *                  Returns the power of
+ *                  the base and exponent.
+ */
+
 int powk(int x, uint32_t y)
 {
     if( y == 0)

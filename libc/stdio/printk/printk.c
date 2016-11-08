@@ -52,6 +52,24 @@ void printk(const char* fmt, ...)
   va_end(arg);
 }
 
+/*
+ * @function vprintk:
+ *     Prints string with
+ *     a `va_list` instead
+ *     of a variadic argument
+ *     parameter. Used to supply
+ *     the printk, and call printk
+ *     with a va_list.
+ *    
+ *        @param fmt:
+ *            orignial string with
+ *            no formatting.
+ *        @va_list arg:
+ *           formatting conversion
+ *           utility in form of 
+ *           `va_list`
+ */
+
 void vprintk(const char* fmt, va_list arg)
 {
    int integer_format; 
