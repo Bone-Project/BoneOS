@@ -112,13 +112,13 @@ void vprintk(const char* fmt, va_list arg)
                 putch(result_pt[x]);
               i+=1;
               break;
-            // case 'f':
-            //   float_format = va_arg(arg,double);
-            //   result_pt = itoa(float_format);
-            //   for(int x=0;result_pt[x]!='\0';x++)
-            //     putch(result_pt[x]);
-            //   i+=1;
-            //   break;  
+             // case 'f':
+             //   float_format = va_arg(arg,double);
+             //   result_pt = itoa(float_format);
+             //   for(int x=0;result_pt[x]!='\0';x++)
+             //     putch(result_pt[x]);
+             //   i+=1;
+             //   break;  
           }
           break;
         case '\n':

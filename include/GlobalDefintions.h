@@ -31,13 +31,4 @@
 
 /*Architecture Information End*/
 
-/*Display Adapter Start*/
-
-#define DISPLAY_ADAPTER VGA
-
-
-#define DISPLAY_ADAPTER_S "VGA"
- 
-/*Display Adapter End*/
-
 #endif /*_GlobalDefintions_*/
