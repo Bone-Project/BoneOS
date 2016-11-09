@@ -40,6 +40,8 @@
 #include <include/drv/i386/kbd/kbd.h>
 #include <include/libc/math/math.h>
 #include <include/libc/stdio/printck/printck.h>
+#include <include/libc/unistd/unistd.h>
+#include <include/libc/assert.h>
 
 
 
@@ -98,6 +100,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    printk("\n Back to Original");
 
    sti();
+
+   // sleep(3);
+   assert(1==0);
    while(1)
     hlt();
 }

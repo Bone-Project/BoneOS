@@ -1,6 +1,7 @@
 #ifndef _DRV_PIT_H_
 #define _DRV_PIT_H_
 
+
 /*
  * Operation Control Words 
  * Commands Available for 
@@ -39,6 +40,8 @@
 
 
 #define IRQ_SEC_HIT 19
+
+extern volatile uint32_t pit_ticks;
 
 extern void init_pit();
 

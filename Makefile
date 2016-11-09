@@ -44,6 +44,7 @@ libraries = --start-group \
  			 libc/stdlib/stdlib.a \
  			 libc/string/string.a \
  			 libc/math/math.a \
+ 			  libc/unistd/unistd.a \
  			 arch/i386/arch.a \
  			 drv/i386/drv.a \
  			 --end-group  

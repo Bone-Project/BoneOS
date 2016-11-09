@@ -3,3 +3,4 @@ all:
 	cd stdlib;make
 	cd string;make
 	cd math;make
+	cd unistd;make

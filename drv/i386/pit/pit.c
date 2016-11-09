@@ -20,14 +20,16 @@
 
 #include <arch/cpu/i386/interrupts/interrupts.h>
 #include <arch/cpu/i386/interrupts/irq.h>
+#include <libc/unistd/sleep/sleep.h>
+#include <libc/stdlib/stdlib.h>
+#include <libc/stdio/stdio.h>
 #include <drv/i386/pit/pit.h>
 #include <io/i386/io.h>
-#include <libc/stdio/stdio.h>
-#include <libc/stdlib/stdlib.h>
 #include <stdint.h>
 #include <stddef.h>
 
-uint32_t pit_ticks = 0;
+
+volatile uint32_t pit_ticks = 0;
 
 /*
  * @function send_pit_command: 
@@ -82,8 +84,8 @@ void pit_phase(int htz)
  */
 int pit_handler_nest()
 {
-  //TODO : Something to do every sec :).
   //printk("%d SECONDS\n", (pit_ticks/IRQ_SEC_HIT));
+
   return 0;
 }
 
@@ -97,7 +99,8 @@ void pit_handler(int_regs *r)
 {
   pit_ticks++;
   if (pit_ticks % IRQ_SEC_HIT == 0)
-    if(pit_handler_nest()!=0) panik("PIT Handler Exception");
+       if(pit_handler_nest()!=0) 
+              panik("PIT Handler Nest Exception");
 }
 
 /*
