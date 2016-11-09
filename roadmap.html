@@ -118,7 +118,76 @@
         height: 40px;
     }
 
-	    #outerspace{position:relative;height:400px;background:#0c0440;color:#fff;}div.rocket{position:absolute;bottom:10px;left:20px;-webkit-transition:3s ease-in;-moz-transition:3s ease-in;-o-transition:3s ease-in;transition:3s ease-in;}div.rocket div{width:92px;height:215px;background:url('http://www.the-art-of-web.com/images/rocket.gif') no-repeat;-webkit-transition:2s ease-in-out;-moz-transition:2s ease-in-out;-o-transition:2s ease-in-out;transition:2s ease-in-out; -webkit-animation:bounceIn 2s;}#outerspace:hover div.rocket{-webkit-transform:translate(0px,-5400px);-moz-transform:translate(0px,-5400px);-o-transform:translate(0px,-5400px);-ms-transform:translate(0px,-5400px);transform:translate(0px,-5400px);}
+	  #outerspace {
+  position: relative;
+  height: 400px;
+  background: #fff;
+  color: #fff;
+}
+
+div.rocket {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  -webkit-transition: 3s ease-in;
+  -moz-transition: 3s ease-in;
+  -o-transition: 3s ease-in;
+  transition: 3s ease-in;
+  -webkit-animation-name: rocket;
+  -webkit-animation-duration: 3s;
+  animation-name: rocket;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+div.rocket div {
+  width: 92px;
+  height: 215px;
+  background: url('http://www.the-art-of-web.com/images/rocket.gif') no-repeat;
+}
+
+#outerspace:hover div.rocket {
+  -webkit-transform: translate(0px, -250px);
+  -moz-transform: translate(0px, -250px);
+  -o-transform: translate(0px, -250px);
+  -ms-transform: translate(0px, -250px);
+  transform: translate(0px, -250px);
+}
+
+@-webkit-keyframes rocket {
+  from {
+    -webkit-transform: translate(0px, 0);
+    -moz-transform: translate(0px, 0);
+    -o-transform: translate(0px, 0);
+    -ms-transform: translate(0px, 0);
+    transform: translate(0px, 0);
+  }
+  to {
+    -webkit-transform: translate(0px, -250px);
+    -moz-transform: translate(0px, -250px);
+    -o-transform: translate(0px, -250px);
+    -ms-transform: translate(0px, -250px);
+    transform: translate(0px, -250px);
+  }
+}
+
+@keyframes rocket {
+  from {
+    -webkit-transform: translate(0px, 0);
+    -moz-transform: translate(0px, 0);
+    -o-transform: translate(0px, 0);
+    -ms-transform: translate(0px, 0);
+    transform: translate(0px, 0);
+  }
+  to {
+    -webkit-transform: translate(0px, -250px);
+    -moz-transform: translate(0px, -250px);
+    -o-transform: translate(0px, -250px);
+    -ms-transform: translate(0px, -250px);
+    transform: translate(0px, -250px);
+  }
+}
 
 
     p {
