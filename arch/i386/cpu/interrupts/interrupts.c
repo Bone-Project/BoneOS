@@ -27,10 +27,10 @@
 #include <stdarg.h>
 #include <io/i386/io.h>
 #include <libc/stdio/printk/printk.h>
-#include <arch/cpu/i386/interrupts/interrupts.h>
-#include <arch/cpu/i386/interrupts/isr.h>
-#include <arch/cpu/i386/interrupts/irq.h>
-#include <arch/cpu/i386/interrupts/pic.h>
+#include <cpu/interrupts/interrupts.h>
+#include <cpu/interrupts/isr.h>
+#include <cpu/interrupts/irq.h>
+#include <cpu/interrupts/pic.h>
 #include <libc/stdlib/panik/panik.h>
 
 /*

@@ -22,8 +22,8 @@
  **/  
 
 #include <libc/string/string.h>
-#include <arch/cpu/i386/interrupts/idt.h>
-#include <arch/cpu/i386/interrupts/interrupts.h>
+#include <cpu/interrupts/idt.h>
+#include <cpu/interrupts/interrupts.h>
 
 /*
  * @IDT_SIZE : 256 Interrupt Descriptor tables

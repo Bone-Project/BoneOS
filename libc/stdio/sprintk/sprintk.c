@@ -21,8 +21,8 @@
  **   Amanuel Bogale <amanuel2> : start
  **/   
 
-#include <include/libc/stdio/itoa/itoa.h>
-#include <include/libc/stdio/sprintk/sprintk.h>
+#include <libc/stdio/itoa/itoa.h>
+#include <libc/stdio/sprintk/sprintk.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>

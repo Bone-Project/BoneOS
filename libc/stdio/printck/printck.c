@@ -21,14 +21,13 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <include/GlobalDefintions.h>
-#include <include/com/i386/com.h>
-#include <include/libc/stdio/printk/printk.h>
-#include <include/libc/stdio/printck/printck.h>
+#include <GlobalDefintions.h>
+#include <libc/stdio/printk/printk.h>
+#include <libc/stdio/printck/printck.h>
 #if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE && com_met == SCREEN_DISPLAY
-#include <include/screen/i386/VGA/textmode/putch/putch.h>
+#include <screen/i386/VGA/textmode/putch/putch.h>
 #endif
-#include <include/libc/stdio/itoa/itoa.h>
+#include <libc/stdio/itoa/itoa.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>

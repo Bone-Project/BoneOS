@@ -1,2 +1,6 @@
 all:
-	cd $(ARCH);make
+	(cd $(ARCH) && $(MAKE))
+
+clean:
+	(cd $(ARCH) && $(MAKE))
+

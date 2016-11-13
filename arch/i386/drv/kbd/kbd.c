@@ -22,8 +22,8 @@
  **     Doug Gale <doug65536> : update to printk
  **/  
 
-#include <arch/cpu/i386/interrupts/interrupts.h>
-#include <arch/cpu/i386/interrupts/irq.h>
+#include <cpu/interrupts/interrupts.h>
+#include <cpu/interrupts/irq.h>
 #include <io/i386/io.h>
 #include <libc/stdio/stdio.h>
 #include <stdint.h>

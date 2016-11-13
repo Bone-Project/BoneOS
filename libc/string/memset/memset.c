@@ -20,7 +20,7 @@
 
  **     Amanuel Bogale <amanuel2> : start
  **/  
-#include <include/libc/string/memset/memset.h>
+#include <libc/string/memset/memset.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
