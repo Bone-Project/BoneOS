@@ -24,24 +24,24 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <include/GlobalDefintions.h>
-#include <include/libc/stdio/stdio.h>
-#include <include/misc/asm_util.h>
-#include <boot/i386/multiboot/multiboot.h>
-#include <include/arch/cpu/i386/gdt/gdt.h>
-#include <include/arch/cpu/i386/interrupts/idt.h>
-#include <include/arch/cpu/i386/interrupts/isr.h>
+#include <GlobalDefintions.h>
+#include <libc/stdio/stdio.h>
+#include <misc/asm_util.h>
+#include <boot/multiboot/multiboot.h>
+#include <cpu/gdt/gdt.h>
+#include <cpu/interrupts/idt.h>
+#include <cpu/interrupts/isr.h>
 #define KERNEL_CALL
-#include <include/arch/cpu/i386/interrupts/irq.h>
+#include <cpu/interrupts/irq.h>
 #undef KERNEL_CALL
-#include <include/libc/string/string.h>
-#include <include/screen/i386/VGA/textmode/putch/putch.h>
-#include <include/drv/i386/pit/pit.h>
-#include <include/drv/i386/kbd/kbd.h>
-#include <include/libc/math/math.h>
-#include <include/libc/stdio/printck/printck.h>
-#include <include/libc/unistd/unistd.h>
-#include <include/libc/assert.h>
+#include <libc/string/string.h>
+#include <screen/i386/VGA/textmode/putch/putch.h>
+#include <drv/i386/pit/pit.h>
+#include <drv/i386/kbd/kbd.h>
+#include <libc/math/math.h>
+#include <libc/stdio/printck/printck.h>
+#include <libc/unistd/unistd.h>
+#include <libc/assert.h>
 
 
 

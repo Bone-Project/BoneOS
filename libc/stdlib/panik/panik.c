@@ -18,8 +18,8 @@
  **		Amanuel Bogale <amanuel2> : start
  **/
 
-#include <include/libc/stdio/printk/printk.h> 
-#include <include/misc/asm_util.h>
+#include <libc/stdio/printk/printk.h> 
+#include <misc/asm_util.h>
  
  
  /*

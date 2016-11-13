@@ -21,8 +21,8 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
-#include <include/com/i386/com.h>
-#include <include/libc/stdio/printk/printk.h>
+#include <com/i386/com.h>
+#include <libc/stdio/printk/printk.h>
 #include <stdbool.h>
 
 static bool DISPLAY = true;

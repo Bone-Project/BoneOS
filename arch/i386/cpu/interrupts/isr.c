@@ -23,7 +23,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <arch/cpu/i386/interrupts/interrupts.h>
+#include <cpu/interrupts/interrupts.h>
 
 
 

@@ -13,93 +13,153 @@
 #    You should have received a copy of the GNU General Public License
 #    along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
 
-GCCPARAMS =  -O2 -g -Wall -Wextra -Werror -Wpedantic -g \
-			 -Wno-unused-parameter -Wno-unused-but-set-parameter \
-			 -nostdlib
+# Subdirectory makes need to know this directory
+BUILDROOT := $(realpath .)
+export BUILDROOT
 
-ARCH_FAMILY=x86
-ARCH=i386	
+# Remember this the first time it is used
+# so you don't have to keep specifying it
+ifdef CROSSROOT
+ $(shell echo $(CROSSROOT) > Makefile.cached.CROSSROOT)
+else
+ ifneq (,$(wildcard Makefile.cached.CROSSROOT))
+  CROSSROOT := $(shell cat Makefile.cached.CROSSROOT)
+ endif
+endif
 
-ARCH_FAMILY_S = "x86"
-ARCH_S="i386"	    
-		    
-NASM_PARAMS = -f elf32		    
-LDPARAMS =  -melf_i386
+# Allow user to override cross-compiler directory
+CROSSROOT ?= $(BUILDROOT)/cross
+CC := $(CROSSROOT)/cross/i686/bin/i686-elf-gcc
+LD := $(CROSSROOT)/cross/i686/bin/i686-elf-ld
+AR := $(CROSSROOT)/cross/i686/bin/i686-elf-ar
+export CC
+export LD
+export AR
 
-
-i686 = i686-elf-	
-VB=virtualbox
-VBM=VBoxManage
-SCRIPT_CC = utils/cross_compiler/toolchain.py
-
-objects = kernel/i386/kernel.o boot/i386/boot.o \
-  		  screen/i386/VGA/textmode/putch/putch.o \
-  		  arch/i386/cpu/gdt/gdt_flush.o \
-  		  io/i386/io_asm.o \
-  		  screen/i386/VGA/textmode/putch/cls.o \
-  		  misc/asm_util.o
-
-libraries = --start-group \
- 			 libc/stdio/stdio.a \
- 			 libc/stdlib/stdlib.a \
- 			 libc/string/string.a \
- 			 libc/math/math.a \
- 			  libc/unistd/unistd.a \
- 			 arch/i386/arch.a \
- 			 drv/i386/drv.a \
- 			 --end-group  
-
-  		  
-
-export GCCPARAMS
-export NASM_PARAMS
-export objects
-export LDPARAMS
+ARCH_FAMILY := x86
+ARCH := i386
 export ARCH
 export ARCH_FAMILY
+
+# Programs
+BOCHS := bochs
+QEMU := qemu-system-i386
+PYTHON := python
+VB=virtualbox
+VBM=VBoxManage
+
+# Architecture
+ARCH_FAMILY_S = "x86"
+ARCH_S="i386"
+
+INCDIRS := $(BUILDROOT)/include $(BUILDROOT)/arch/$(ARCH) $(BUILDROOT)/include/arch/$(ARCH)
+
+# Parameters
+LDPARAMS :=  -melf_i386
+CFLAGS := \
+	-O2 -g -Wall -Wextra -Wpedantic -g \
+	-Wno-unused-parameter -Wno-unused-but-set-parameter \
+	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
+
+NASM ?= nasm
+NASMFLAGS := -f elf32
+
+export CFLAGS
+export LDFLAGS
+export CFLAGS
+export NASM
+export NASMFLAGS
+
+# Paths
+BONEOS_ISO := BoneOS.iso
+BONEOS_BIN := BoneOS.bin
+BONEOS_BOOT_ISO := boot/boot/$(BONEOS_ISO)
+LINKER_SCRIPT := link/i386/linker.ld
+
+SCRIPT_CC = utils/cross_compiler/toolchain.py
+
+#objects = \
+#	kernel/i386/kernel.o \
+#	boot/i386/boot.o \
+#	screen/i386/VGA/textmode/putch/putch.o \
+#	arch/i386/cpu/gdt/gdt_flush.o \
+#	io/i386/io_asm.o \
+#	screen/i386/VGA/textmode/putch/cls.o \
+#	misc/asm_util.o
+#export objects
+
+libraries = \
+	libc/libc.a \
+	arch/$(ARCH)/libarch.a
 export libraries
-export linker_objects
 
-q_c:
-	make clean -B
-	make compile -B 
-	make BoneOS.bin -B
-	make BoneOS.iso -B 
-	make qemu_compile -B 
+# -----------------------------------------------
+# Targets
+# -----------------------------------------------
 
-compile:
-	cd boot;make
-	cd io;make
-	cd libc;make
-	cd arch;make
-	cd screen;make
-	cd misc;make
-	cd com;make
-	cd drv;make
-	cd kernel;make
+#
+# Standard targets
 
-BoneOS.bin:
-	i686-elf-ld $(LDPARAMS) -T link/i386/linker.ld -o $@ $(objects)  $(libraries)  
-	
+all: iso
 
-c_compiler:
-	python utils/cross_compiler/toolchain.py
+clean: clean-subdirs
+	rm -f $(BONEOS_ISO)
 
-clean:
-	find -name '*.a' -delete
-	find -name '*.o' -delete
+.PHONY: all clean
 
-BoneOS.iso:
-	cp BoneOS.bin boot/boot/BoneOS.bin	
-	grub-mkrescue --output=BoneOS.iso boot
+#
+# Build and clean subdirectories
 
-gdb_q:
-	qemu-system-i386  -kernel  BoneOS.bin -display sdl -s -S	
+subdirs $(libraries):
+	(cd libc && $(MAKE))
+	(cd arch && $(MAKE))
 
-qemu_compile:
-	qemu-system-i386 -kernel BoneOS.bin -display sdl
+clean-subdirs:
+	(cd libc && $(MAKE) clean)
+	(cd arch && $(MAKE) clean)
 
-bochs:
-	bochs -f bochsrc.txt -q	
+.PHONY: subdirs clean-subdirs
 
-.PHONY: all, q_c , compile, BoneOS.bin, BoneOS.iso, c_compiler,gdb_q,qemu_compile,bochs 	
+#
+# Link
+
+$(BONEOS_BIN): subdirs $(libraries) $(LINKER_SCRIPT)
+	$(LD) $(LDPARAMS) \
+	-T $(LINKER_SCRIPT) \
+	-o $@ \
+	--start-group $(libraries) --end-group
+
+#
+# Build ISO
+
+$(BONEOS_BOOT_BIN):
+	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
+
+$(BONEOS_ISO): $(BONEOS_BIN)
+	grub-mkrescue --output=$(BONEOS_ISO) boot
+
+iso: $(BONEOS_ISO)
+
+#
+# Get toolchain
+
+$(COMPILER): get-toolchain
+
+get-toolchain:
+	$(PYTHON) utils/cross_compiler/toolchain.py
+
+.PHONY: iso
+
+#
+# Launch and debug
+
+gdb_q: $(BONEOS_BIN)
+	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -s -S
+
+qemu_compile: $(BONEOS_BIN)
+	$(QEMU) -kernel $(BONEOS_BIN) -display sdl
+
+bochs: $(BONEOS_ISO)
+	$(BOCHS) -f bochsrc.bxrc -q
+
+.PHONY: gdb_q qemu_compile bochs

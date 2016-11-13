@@ -24,10 +24,10 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <include/misc/asm_util.h>
-#include <include/libc/stdio/stdio.h>
-#include <include/drv/i386/pit/pit.h>
-#include <include/libc/unistd/sleep/sleep.h>
+#include <misc/asm_util.h>
+#include <libc/stdio/stdio.h>
+#include <drv/i386/pit/pit.h>
+#include <libc/unistd/sleep/sleep.h>
 
 
 

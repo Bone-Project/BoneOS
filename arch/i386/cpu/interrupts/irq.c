@@ -24,8 +24,8 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
-#include <arch/cpu/i386/interrupts/interrupts.h>
-#include <arch/cpu/i386/interrupts/irq.h>
+#include <cpu/interrupts/interrupts.h>
+#include <cpu/interrupts/irq.h>
 #include <libc/stdio/stdio.h>
 
 

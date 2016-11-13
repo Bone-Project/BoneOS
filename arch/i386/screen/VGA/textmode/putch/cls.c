@@ -22,8 +22,8 @@
  **/ 
 
 
-#include <include/libc/stdio/printk/printk.h>
-#include <include/libc/string/memset/memset.h>
+#include <libc/stdio/printk/printk.h>
+#include <libc/string/memset/memset.h>
 
 extern size_t terminal_column;
 extern size_t terminal_row;

@@ -18,8 +18,8 @@
  **   Amanuel Bogale <amanuel2> : start
  **/
 
-#include <arch/cpu/i386/interrupts/interrupts.h>
-#include <arch/cpu/i386/interrupts/irq.h>
+#include <cpu/interrupts/interrupts.h>
+#include <cpu/interrupts/irq.h>
 #include <libc/unistd/sleep/sleep.h>
 #include <libc/stdlib/stdlib.h>
 #include <libc/stdio/stdio.h>

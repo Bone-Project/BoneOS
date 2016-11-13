@@ -28,8 +28,8 @@
  */
 
 #include <io/i386/io.h>
-#include <arch/cpu/i386/interrupts/interrupts.h>
-#include <arch/cpu/i386/interrupts/pic.h>
+#include <cpu/interrupts/interrupts.h>
+#include <cpu/interrupts/pic.h>
 
 void remap_pic_irq()
 {
