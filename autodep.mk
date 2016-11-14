@@ -33,6 +33,11 @@ OUTPUT_OPTION = -o $@
 .asm.o:
 	$(COMPILE.asm) $(OUTPUT_OPTION) $(DEPFLAGS.nasm) $<
 
+.c.o:
+#.o : .c $(dirname %)/$(DEPDIR)/$(basename %).d
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+#	$(POSTCOMPILE)
+
 .SUFFIXES: .asm
 
 ## Compile assembly

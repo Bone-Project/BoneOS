@@ -2,5 +2,5 @@ all:
 	(cd $(ARCH) && $(MAKE))
 
 clean:
-	(cd $(ARCH) && $(MAKE))
+	(cd $(ARCH) && $(MAKE) clean)
 
