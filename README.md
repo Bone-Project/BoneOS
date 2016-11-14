@@ -50,8 +50,6 @@ Our firectory structure currently is as follows:
 - ***screen***: Directory for screen related code such as VGA.
 - ***utils***: Utilities for users.
    - ***cross_compiler***: Script for installing the cross compiler
-- ***misc*** : Non Categorized Code.
-- ***com*** : Code for General communication with User   
 
 License
 ---
