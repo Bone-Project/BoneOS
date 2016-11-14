@@ -18,25 +18,23 @@ DEPFLAGS = -MMD -MP -MF $(DEPDIR)/$(notdir $*).Td
 
 DEPFLAGS.nasm = -MD $(DEPDIR)/$(notdir $*).Td
 
+OUTPUT_OPTION = -o $@
+
 # Compile commands for C and C++
-COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
-COMPILE.cc = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
-COMPILE.s = $(AS) $(ASFLAGS) $(TARGET_ARCH_AS) -c
-COMPILE.asm = $(NASM) $(NASMFLAGS) $(TARGET_ARCH_NASM)
+COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) $(OUTPUT_OPTION) -c
+COMPILE.cc = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) $(OUTPUT_OPTION) -c
+COMPILE.s = $(AS) $(ASFLAGS) $(TARGET_ARCH_AS) $(OUTPUT_OPTION) -c
+COMPILE.asm = $(NASM) $(OUTPUT_OPTION) $(NASMFLAGS) $(TARGET_ARCH_NASM)
 
 # Command to move generated dependency files into separate directory
 POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
-
-OUTPUT_OPTION = -o $@
 
 
 .asm.o:
 	$(COMPILE.asm) $(OUTPUT_OPTION) $(DEPFLAGS.nasm) $<
 
 .c.o:
-#.o : .c $(dirname %)/$(DEPDIR)/$(basename %).d
-	$(COMPILE.c) $(OUTPUT_OPTION) $<
-#	$(POSTCOMPILE)
+	$(COMPILE.c) $<
 
 .SUFFIXES: .asm
 
