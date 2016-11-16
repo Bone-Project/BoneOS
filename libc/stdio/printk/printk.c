@@ -29,7 +29,7 @@
 #include <GlobalDefintions.h>
 #include <libc/stdio/printk/printk.h>
 #if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE && com_met == SCREEN_DISPLAY
-#include <screen/i386/VGA/textmode/putch/putch.h>
+#include <drv/i386/video/VGA/textmode/putch/putch.h>
 #endif
 #include <libc/stdio/itoa/itoa.h>
 #include <libc/math/powk/powk.h>
@@ -154,6 +154,12 @@ void vprintk(const char* fmt, va_list arg)
           break;
         case '\t':
           for(int32_t t=0;t<=3;t++)terminal_column++;    
+         case '\\':
+          putch('\\');
+          break; 
+         case '\e':
+          terminal_row++;
+          break; 
         default:
           putch(fmt[i]);
           break;       

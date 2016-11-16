@@ -17,17 +17,13 @@ There are two ways to install BoneOS: one for the normal user to get it into his
 
 #### Normal Installation (For user)
   First download the ISO from this repository by either downloading the zip and extracting it, or by cloning it using git. Next, plug it into your Virtual Machine. [**here**](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be) is a video showing how to do this using VirtualBox as the Virtual Machine Emulator. You can download Virtual Box [**here**](https://www.virtualbox.org/). [Here](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be) is a video showing how to get it in VMWare. VMWare is paid , there if a free trial though. You can get more Information at our Offical Download Page [here](https://boneos.org/download.html). 
-  
-
-#### Using Floobits (For developer)
- Register to Floobits [**here**](https://floobits.com) and join our workspace [**here**](https://floobits.com/aboga/BoneOS). **Note** : There are editor packages for Floobits so you can work using your favorite editor! I normally use the Sublime Floobits Package.
  
 #### Building From Source (For developer)
 
  First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `sh setup.sh`. Then install the cross compiler using `make c_compiler`. Next, set the cross compiler in your environment variables `cd cross` and then `. ./setenv.sh`. Finally, run the following commands:
  ```
  cd ../ # Get Back to Root Directory
- make q_c
+ make
  ```
  That should set you up with the development environment.
  

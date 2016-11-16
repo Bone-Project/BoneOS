@@ -1,7 +1,7 @@
 #ifndef  _LIBC_ASSERT_H_
 #define _LIBC_ASSERT_H_
 
-#include "../misc/asm_util.h"
+#include "../arch/i386/misc/asm_util.h"
 #include "stdio/printk/printk.h"
 
   #define assertk(EXPRESSION)  \
