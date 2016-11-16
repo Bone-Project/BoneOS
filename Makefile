@@ -74,7 +74,7 @@ export NASMFLAGS
 # Paths
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
-BONEOS_BOOT_ISO := boot/boot/$(BONEOS_ISO)
+BONEOS_BOOT_ISO := arch/i386/boot/$(BONEOS_ISO)
 LINKER_SCRIPT := arch/i386/link/linker.ld
 
 SCRIPT_CC = utils/cross_compiler/toolchain.py
