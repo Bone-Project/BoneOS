@@ -151,14 +151,14 @@ void vprintk(const char* fmt, va_list arg)
           break; 
         case '\b':
           terminal_column--;
+          putch(' ');
+          terminal_column--;
           break;
         case '\t':
-          for(int32_t t=0;t<=3;t++)terminal_column++;    
+          for(int32_t t=0;t<=3;t++)terminal_column++;   
+          break;
          case '\\':
           putch('\\');
-          break; 
-         case '\e':
-          terminal_row++;
           break; 
         default:
           putch(fmt[i]);

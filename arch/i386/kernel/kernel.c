@@ -103,7 +103,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    printk("{>>> %.2f <<<}", 2.33);
 
    // sleep(3);
-   assertk(1==0);
+   //assertk(1==0);
    while(1)
     hlt();
 }

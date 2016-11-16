@@ -31,6 +31,8 @@
 #include <stdbool.h>
 #include <libc/assertk.h>
 
+char key;
+
 //Structure of Keyboard
 //Information
 struct 
@@ -70,14 +72,89 @@ struct
     }FUNCS;
     
     uint8_t KBD_ENC_IN_BUF;
+    bool is_shift;
+    bool is_caps;
     
 }KBD_INFO;
 
-const char QWERTY_EN[] = 
+const char QWERTY_EN_NOSHIFT[] = 
 {
-  0, 0,'1', '2','3','4','5','6','7','8','9','0',
-  '-','+','\b','\t','q','w','e','r','t','y','u','i','o',
-  'p','[',']','P'
+    0,  27, '1', '2', '3', '4', '5', '6', '7', '8', /* 9 */
+  '9', '0', '-', '=', '\b', /* Backspace */
+  '\t',     /* Tab */
+  'q', 'w', 'e', 'r', /* 19 */
+  't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n', /* Enter key */
+    0,      /* 29   - Control */
+  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', /* 39 */
+ '\'', '`',   0x2F,    /* Left shift */
+ '\\', 'z', 'x', 'c', 'v', 'b', 'n',      /* 49 */
+  'm', ',', '.', '/',   0x2F,        /* Right shift */
+  '*',
+    0,  /* Alt */
+  ' ',  /* Space bar */
+    0,  /* Caps lock */
+    0,  /* 59 - F1 key ... > */
+    0,   0,   0,   0,   0,   0,   0,   0,
+    0,  /* < ... F10 */
+    0,  /* 69 - Num lock*/
+    0,  /* Scroll Lock */
+    0,  /* Home key */
+    0,  /* Up Arrow */
+    0,  /* Page Up */
+  '-',
+    0,  /* Left Arrow */
+    0,
+    0,  /* Right Arrow */
+  '+',
+    0,  /* 79 - End key*/
+    0,  /* Down Arrow */
+    0,  /* Page Down */
+    0,  /* Insert Key */
+    0,  /* Delete Key */
+    0,   0,   0,
+    0,  /* F11 Key */
+    0,  /* F12 Key */
+    0,  /* All other keys are undefined */
+};
+
+const char QWERTY_EN_SHIFT[] = 
+{
+    0,  27, '!', '@', '#', '$', '%', '^', '&', '*', /* 9 */
+  '(', ')', '_', '+', '\b', /* Backspace */
+  '\t',     /* Tab */
+  'q', 'w', 'e', 'r', /* 19 */
+  't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n', /* Enter key */
+    0,      /* 29   - Control */
+  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', /* 39 */
+ '\'', '`',   0x2F,    /* Left shift */
+ '\\', 'z', 'x', 'c', 'v', 'b', 'n',      /* 49 */
+  'm', ',', '.', '/',   0x2F,        /* Right shift */
+  '*',
+    0,  /* Alt */
+  ' ',  /* Space bar */
+    0,  /* Caps lock */
+    0,  /* 59 - F1 key ... > */
+    0,   0,   0,   0,   0,   0,   0,   0,
+    0,  /* < ... F10 */
+    0,  /* 69 - Num lock*/
+    0,  /* Scroll Lock */
+    0,  /* Home key */
+    0,  /* Up Arrow */
+    0,  /* Page Up */
+  '-',
+    0,  /* Left Arrow */
+    0,
+    0,  /* Right Arrow */
+  '+',
+    0,  /* 79 - End key*/
+    0,  /* Down Arrow */
+    0,  /* Page Down */
+    0,  /* Insert Key */
+    0,  /* Delete Key */
+    0,   0,   0,
+    0,  /* F11 Key */
+    0,  /* F12 Key */
+    0,  /* All other keys are undefined */
 };
 
 /*
@@ -114,13 +191,17 @@ void kbd_enc_send_cmd(uint8_t cmd)
 
 char key_press(uint8_t scancode)
 {
-    printk("%d " ,QWERTY_EN[scancode] );
-    return (QWERTY_EN[scancode]);
+    if(KBD_INFO.is_shift == true)
+       return (QWERTY_EN_SHIFT[scancode]);
+    else  
+      return (QWERTY_EN_NOSHIFT[scancode]);
 }
 
 void key_release(uint8_t scancode)
 {
     //printk("RELEASE %d" , KBD_INFO.KBD_ENC_IN_BUF );
+   if(KBD_INFO.KBD_ENC_IN_BUF == 182 ||  KBD_INFO.KBD_ENC_IN_BUF == 170)
+          KBD_INFO.is_shift = false;
 }
 
 bool bat_test(void)
@@ -132,6 +213,18 @@ bool bat_test(void)
     return (kbd_enc_read_input_buf () == 0x55) ? true : false;
 }
 
+bool led_light(bool scroll, bool num, bool caps)
+{
+  uint8_t data_final = 0x0;
+  if(scroll) data_final |= KBD_SCROLL_LED_ON;
+  if(num) data_final |= KBD_NUM_LED_ON;
+  if(caps) data_final |= KBD_CAPS_LOCK_ON;
+
+  kbd_enc_send_cmd(KBD_ENCODER_CMD_SET_LED);
+  kbd_enc_send_cmd(data_final);
+  return true;
+}
+
 void kbd_init_pointers()
 {
     /*Initalize Function Pointers*/
@@ -140,9 +233,35 @@ void kbd_init_pointers()
     assertk(KBD_INFO.TESTS.BAT_TEST);
     KBD_INFO.FUNCS.KEY_EV.KEY_PRESS = &key_press;
     KBD_INFO.FUNCS.KEY_EV.KEY_RELEASE = &key_release;
-    
+
+    led_light(true,true,true);
+    KBD_INFO.is_shift = false;
+    KBD_INFO.is_caps = false;
 }
 
+void key_handler()
+{
+   switch(key)
+   {
+    case 0x2F:
+      printk("SHIFT");
+      KBD_INFO.is_shift = true;
+      break;
+    case '\t':
+         printk("\t");
+         break;
+     case '\b':
+         printk("\b");
+         break;
+      case '\n' :
+         printk("\n");
+         break;
+       default:
+         printk("%c", key);
+         break;
+   }
+   
+}
 
 void kbd_handler(int_regs *r)
 {
@@ -151,8 +270,8 @@ void kbd_handler(int_regs *r)
         (*KBD_INFO.FUNCS.KEY_EV.KEY_RELEASE)(KBD_INFO.KBD_ENC_IN_BUF);
     else
     {
-        char key = (*KBD_INFO.FUNCS.KEY_EV.KEY_PRESS)(KBD_INFO.KBD_ENC_IN_BUF);
-        printk("KEY : %c", key);
+        key = (*KBD_INFO.FUNCS.KEY_EV.KEY_PRESS)(KBD_INFO.KBD_ENC_IN_BUF);
+        key_handler();
     }
 }
 

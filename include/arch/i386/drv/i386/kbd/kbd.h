@@ -47,6 +47,10 @@
 /*RETURN CODES*/
 #define KBD_ENC_FAIL_BAT_TEST       0xFC
 
+/*LED LIGHT*/
+#define KBD_SCROLL_LED_ON 0x1
+#define KBD_NUM_LED_ON        0x2
+#define KBD_CAPS_LOCK_ON   0x4
 
 
 extern void init_kbd();
