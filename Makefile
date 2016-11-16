@@ -27,11 +27,12 @@ else
  endif
 endif
 
+HOST_ENV = $(shell uname -p)
 # Allow user to override cross-compiler directory
 CROSSROOT ?= $(BUILDROOT)/cross
-CC := $(CROSSROOT)/cross/i686/bin/i686-elf-gcc
-LD := $(CROSSROOT)/cross/i686/bin/i686-elf-ld
-AR := $(CROSSROOT)/cross/i686/bin/i686-elf-ar
+CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
+LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
+AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
 export CC
 export LD
 export AR
@@ -74,7 +75,7 @@ export NASMFLAGS
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
 BONEOS_BOOT_ISO := boot/boot/$(BONEOS_ISO)
-LINKER_SCRIPT := link/i386/linker.ld
+LINKER_SCRIPT := arch/i386/link/linker.ld
 
 SCRIPT_CC = utils/cross_compiler/toolchain.py
 
@@ -136,7 +137,7 @@ $(BONEOS_BOOT_BIN):
 	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
 
 $(BONEOS_ISO): $(BONEOS_BIN)
-	grub-mkrescue --output=$(BONEOS_ISO) boot
+	grub-mkrescue --output=$(BONEOS_ISO) arch/i386
 
 iso: $(BONEOS_ISO)
 

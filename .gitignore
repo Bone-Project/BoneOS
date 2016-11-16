@@ -18,3 +18,9 @@ cross/
 
 #Bochs Logs
 bochslog.txt
+
+#Generated Folders
+.d/
+
+#Makefile Custom Caches
+Makefile.cached.CROSSROOT

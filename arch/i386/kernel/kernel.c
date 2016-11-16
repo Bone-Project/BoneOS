@@ -41,7 +41,7 @@
 #include <libc/math/math.h>
 #include <libc/stdio/printck/printck.h>
 #include <libc/unistd/unistd.h>
-#include <libc/assert.h>
+#include <libc/assertk.h>
 
 
 
@@ -102,7 +102,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    sti();
 
    // sleep(3);
-   assert(1==0);
+   assertk(1==0);
    while(1)
     hlt();
 }

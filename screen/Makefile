@@ -1,2 +1,0 @@
-all:
-	cd $(ARCH);make
