@@ -89,8 +89,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_irq();
    init_pit();
    init_kbd(); 
-   
-   sprintk(str, "Value of Pi = %d" , 3);
+   sti();
+
+    sprintk(str, "Value of Pi = %d" , 3);
    printk("\n%s" , str);
    //printk("\n%f" , 3.14);
    
@@ -99,7 +100,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    printck(0x5,0x2,"Yea whassup");
    printk("\n Back to Original");
 
-   sti();
+   printk("{>>> %.2f <<<}", 2.33);
 
    // sleep(3);
    assertk(1==0);

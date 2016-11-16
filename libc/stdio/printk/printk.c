@@ -32,10 +32,11 @@
 #include <screen/i386/VGA/textmode/putch/putch.h>
 #endif
 #include <libc/stdio/itoa/itoa.h>
+#include <libc/math/powk/powk.h>
 
 
 /*
- * @function printf:
+ * @function printk:
  *     Prints a string on
  *     on the string with
  *     format specifiers.
@@ -76,9 +77,15 @@ void printk(const char* fmt, ...)
 
 void vprintk(const char* fmt, va_list arg)
 {
-   int integer_format; 
-   //float float_format;
+   int integer_format;
+   int after_decimal; 
+   float float_format;
    char *result_pt=" ";
+
+    int int_part;
+     int multiplier;
+     int float_part;
+     int digit;
   
    for(int i=0; fmt[i]!='\0';i++)
    {
@@ -111,13 +118,31 @@ void vprintk(const char* fmt, va_list arg)
                 putch(result_pt[x]);
               i+=1;
               break;
-             // case 'f':
-             //   float_format = va_arg(arg,double);
-             //   result_pt = itoa(float_format);
-             //   for(int x=0;result_pt[x]!='\0';x++)
-             //     putch(result_pt[x]);
-             //   i+=1;
-             //   break;  
+             case '.':
+                after_decimal = fmt[i+2] - '0';
+                switch(fmt[i+3])
+                 {
+                    case 'f':
+                         float_format = va_arg(arg,double);
+                         int_part = (int)float_format;
+                         printk("%d", int_part);
+
+                         if (after_decimal) {
+                             printk(".");
+
+                             multiplier = powk(10, after_decimal - 1);
+                             float_part = float_format * (multiplier * 10);
+
+                             while (multiplier) {
+                                 digit = float_part / multiplier % 10;
+                                 printk("%d", digit);
+                                 multiplier /= 10;
+                             }
+                        }
+                        break;
+                 }
+                 i+=3;
+               break;
           }
           break;
         case '\n':

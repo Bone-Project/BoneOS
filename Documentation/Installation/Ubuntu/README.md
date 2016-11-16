@@ -12,16 +12,13 @@ git clone <REPO_URL>
 After you did this `cd` into the cloned directory and then
 
 ```sh
-make cc_install 
+make get-toolchain 
 ```
 
 After this , if you dont have all the dependencies listed in the requirements do: 
 
 ```sh
-cd cross
-. ./setenv.sh #To Set Enviorment Variables
-cd ../
-make q_c
+make
 ```
 
 This will give you the .iso file on the outermost dir. You can then Hook up
