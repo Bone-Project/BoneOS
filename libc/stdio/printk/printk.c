@@ -29,7 +29,7 @@
 #include <GlobalDefintions.h>
 #include <libc/stdio/printk/printk.h>
 #if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE && com_met == SCREEN_DISPLAY
-#include <drv/i386/video/VGA/textmode/putch/putch.h>
+#include <drv/video/VGA/textmode/putch/putch.h>
 #endif
 #include <libc/stdio/itoa/itoa.h>
 #include <libc/math/powk/powk.h>

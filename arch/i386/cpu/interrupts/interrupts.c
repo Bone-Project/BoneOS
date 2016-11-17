@@ -25,7 +25,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
-#include <io/i386/io.h>
+#include <io/io.h>
 #include <libc/stdio/printk/printk.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/isr.h>

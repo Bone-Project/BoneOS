@@ -23,11 +23,11 @@
 
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
-#include <io/i386/io.h>
+#include <io/io.h>
 #include <libc/stdio/stdio.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <drv/i386/kbd/kbd.h>
+#include <drv/kbd/kbd.h>
 #include <stdbool.h>
 #include <libc/assertk.h>
 

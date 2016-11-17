@@ -27,7 +27,7 @@
  *   to IRQ's 32-47
  */
 
-#include <io/i386/io.h>
+#include <io/io.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/pic.h>
 

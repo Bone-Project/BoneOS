@@ -35,9 +35,9 @@
 #include <cpu/interrupts/irq.h>
 #undef KERNEL_CALL
 #include <libc/string/string.h>
-#include <drv/i386/video/VGA/textmode/putch/putch.h>
-#include <drv/i386/pit/pit.h>
-#include <drv/i386/kbd/kbd.h>
+#include <drv/video/VGA/textmode/putch/putch.h>
+#include <drv/pit/pit.h>
+#include <drv/kbd/kbd.h>
 #include <libc/math/math.h>
 #include <libc/stdio/printck/printck.h>
 #include <libc/unistd/unistd.h>

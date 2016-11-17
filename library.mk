@@ -20,6 +20,7 @@ all: $(LIBFILENAME)
 clean:
 	@rm -f $(OBJS)
 	@rm -f $(LIBFILENAME)
+	@rm -r .d
 
 $(LIBFILENAME): $(OBJS)
 	ar -rcs $@ $^
