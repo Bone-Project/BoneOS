@@ -29,9 +29,10 @@ endif
 
 # Allow user to override cross-compiler directory
 CROSSROOT ?= $(BUILDROOT)/cross
-CC := $(CROSSROOT)/cross/i686/bin/i686-elf-gcc
-LD := $(CROSSROOT)/cross/i686/bin/i686-elf-ld
-AR := $(CROSSROOT)/cross/i686/bin/i686-elf-ar
+HOSTARCH := $(shell uname -m)
+CC := $(CROSSROOT)/cross/$(HOSTARCH)/bin/i686-elf-gcc
+LD := $(CROSSROOT)/cross/$(HOSTARCH)/bin/i686-elf-ld
+AR := $(CROSSROOT)/cross/$(HOSTARCH)/bin/i686-elf-ar
 export CC
 export LD
 export AR
@@ -45,8 +46,8 @@ export ARCH_FAMILY
 BOCHS := bochs
 QEMU := qemu-system-i386
 PYTHON := python
-VB=virtualbox
-VBM=VBoxManage
+VB := virtualbox
+VBM := VBoxManage
 
 # Architecture
 ARCH_FAMILY_S = "x86"
@@ -55,7 +56,7 @@ ARCH_S="i386"
 INCDIRS := $(BUILDROOT)/include $(BUILDROOT)/arch/$(ARCH) $(BUILDROOT)/include/arch/$(ARCH)
 
 # Parameters
-LDPARAMS :=  -melf_i386
+LDPARAMS := -melf_i386
 CFLAGS := \
 	-O2 -g -Wall -Wextra -Wpedantic -g \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
@@ -73,20 +74,10 @@ export NASMFLAGS
 # Paths
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
-BONEOS_BOOT_ISO := boot/boot/$(BONEOS_ISO)
+BONEOS_BOOT_BIN := boot/boot/$(BONEOS_BIN)
 LINKER_SCRIPT := link/i386/linker.ld
 
-SCRIPT_CC = utils/cross_compiler/toolchain.py
-
-#objects = \
-#	kernel/i386/kernel.o \
-#	boot/i386/boot.o \
-#	screen/i386/VGA/textmode/putch/putch.o \
-#	arch/i386/cpu/gdt/gdt_flush.o \
-#	io/i386/io_asm.o \
-#	screen/i386/VGA/textmode/putch/cls.o \
-#	misc/asm_util.o
-#export objects
+SCRIPT_CC := utils/cross_compiler/toolchain.py
 
 libraries = \
 	libc/libc.a \
@@ -110,7 +101,9 @@ clean: clean-subdirs
 #
 # Build and clean subdirectories
 
-subdirs $(libraries):
+$(libraries): subdirs
+
+subdirs:
 	(cd libc && $(MAKE))
 	(cd arch && $(MAKE))
 
@@ -123,7 +116,7 @@ clean-subdirs:
 #
 # Link
 
-$(BONEOS_BIN): subdirs $(libraries) $(LINKER_SCRIPT)
+$(BONEOS_BIN): $(libraries) $(LINKER_SCRIPT)
 	$(LD) $(LDPARAMS) \
 	-T $(LINKER_SCRIPT) \
 	-o $@ \
@@ -132,10 +125,10 @@ $(BONEOS_BIN): subdirs $(libraries) $(LINKER_SCRIPT)
 #
 # Build ISO
 
-$(BONEOS_BOOT_BIN):
+$(BONEOS_BOOT_BIN): $(BONEOS_BIN)
 	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
 
-$(BONEOS_ISO): $(BONEOS_BIN)
+$(BONEOS_ISO): $(BONEOS_BOOT_BIN)
 	grub-mkrescue --output=$(BONEOS_ISO) boot
 
 iso: $(BONEOS_ISO)

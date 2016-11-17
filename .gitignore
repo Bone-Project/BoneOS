@@ -18,3 +18,9 @@ cross/
 
 #Bochs Logs
 bochslog.txt
+
+# Makefile config
+Makefile.cached.CROSSROOT
+
+**/.d
+
