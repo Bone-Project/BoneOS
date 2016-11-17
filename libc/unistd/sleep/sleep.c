@@ -26,7 +26,7 @@
 #include <stdbool.h>
 #include <misc/asm_util.h>
 #include <libc/stdio/stdio.h>
-#include <drv/i386/pit/pit.h>
+#include <drv/pit/pit.h>
 #include <libc/unistd/sleep/sleep.h>
 
 

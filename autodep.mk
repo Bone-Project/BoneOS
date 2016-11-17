@@ -27,14 +27,16 @@ COMPILE.s = $(AS) $(ASFLAGS) $(TARGET_ARCH_AS) $(OUTPUT_OPTION) -c
 COMPILE.asm = $(NASM) $(OUTPUT_OPTION) $(NASMFLAGS) $(TARGET_ARCH_NASM)
 
 # Command to move generated dependency files into separate directory
-POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
+POSTCOMPILE = mv -f $(DEPDIR)/$(notdir $*).Td $(DEPDIR)/$(notdir $*).d
 
 
 .asm.o:
 	$(COMPILE.asm) $(OUTPUT_OPTION) $(DEPFLAGS.nasm) $<
+	$(POSTCOMPILE)
 
 .c.o:
 	$(COMPILE.c) $<
+	$(POSTCOMPILE)
 
 .SUFFIXES: .asm
 

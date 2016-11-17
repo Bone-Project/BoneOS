@@ -3,4 +3,3 @@ all:
 
 clean:
 	(cd $(ARCH) && $(MAKE) clean)
-

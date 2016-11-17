@@ -21,7 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <screen/i386/VGA/textmode/putch/putch.h>
+#include <drv/video/VGA/textmode/putch/putch.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>

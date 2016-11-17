@@ -23,8 +23,8 @@
 #include <libc/unistd/sleep/sleep.h>
 #include <libc/stdlib/stdlib.h>
 #include <libc/stdio/stdio.h>
-#include <drv/i386/pit/pit.h>
-#include <io/i386/io.h>
+#include <drv/pit/pit.h>
+#include <io/io.h>
 #include <stdint.h>
 #include <stddef.h>
 
