@@ -74,7 +74,7 @@ export NASMFLAGS
 # Paths
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
-BONEOS_BOOT_BIN := boot/boot/$(BONEOS_BIN)
+BONEOS_BOOT_BIN := arch/i386/boot/$(BONEOS_BIN)
 LINKER_SCRIPT := arch/i386/link/linker.ld
 
 SCRIPT_CC := utils/cross_compiler/toolchain.py
@@ -129,7 +129,7 @@ $(BONEOS_BOOT_BIN): $(BONEOS_BIN)
 	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
 
 $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
-	grub-mkrescue --output=$(BONEOS_ISO) boot
+	grub-mkrescue --output=$(BONEOS_ISO) arch/i386/boot
 
 iso: $(BONEOS_ISO)
 

@@ -160,6 +160,9 @@ void vprintk(const char* fmt, va_list arg)
          case '\\':
           putch('\\');
           break; 
+         case '\"' :
+           putch('\"');
+           break; 
         default:
           putch(fmt[i]);
           break;       

@@ -21,7 +21,9 @@ CSRCS = \
 	drv/video/VGA/textmode/putch/cls.c \
 	misc/asm_util.c \
 	drv/pit/pit.c \
-	drv/kbd/kbd.c
+	drv/kbd/kbd.c \
+	drv/kbd/scancodes.c \
+	drv/kbd/utils.c 
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
 

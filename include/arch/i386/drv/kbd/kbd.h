@@ -2,6 +2,10 @@
 #define _DRV_KBD_H_
 
 
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
 /*PORTS*/
 #define KBD_ENC_INPUT_BUF_REG 0x60
 #define KBD_ENC_CMD_REG       0x60
@@ -54,5 +58,59 @@
 
 
 extern void init_kbd();
+
+#ifdef KBD_PRE
+extern const char QWERTY_EN_NOSHIFT[] ;
+extern const char QWERTY_EN_SHIFT[];
+extern uint8_t kbd_ctrl_read_status_reg();
+extern void kbd_ctrl_send_cmd(uint8_t cmd);
+extern uint8_t kbd_enc_read_input_buf();
+extern void kbd_enc_send_cmd(uint8_t cmd);
+extern bool bat_test(void);
+extern bool led_light(bool scroll, bool num, bool caps);
+#endif
+
+struct
+_kbd_info
+{
+    struct 
+    {
+        bool num_lock;
+        bool caps_lock;
+        bool scroll_lock;
+    }led;
+    
+    struct
+    {
+        bool shift;
+        bool alt;
+        bool ctrl;
+    }spec_keys;
+    
+    struct
+    {
+        bool bat_test;
+    }tests;
+    
+    struct
+    {
+        struct
+        {
+            bool (*bat_test)(void);
+        }tests;
+        
+        struct
+        {
+            char (*key_press)(uint8_t scancode);
+            void (*key_release)(uint8_t scancode);
+        }key_ev;
+        
+    }routines;
+    
+    uint8_t kbd_enc_info;
+    bool is_shift;
+    bool is_caps;
+    
+};
 
 #endif
