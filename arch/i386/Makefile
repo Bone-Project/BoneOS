@@ -17,8 +17,8 @@ CSRCS = \
 	cpu/interrupts/pic.c \
 	cpu/interrupts/idt.c \
 	cpu/interrupts/irq.c \
-	screen/VGA/textmode/putch/putch.c \
-	screen/VGA/textmode/putch/cls.c \
+	drv/video/VGA/textmode/putch/putch.c \
+	drv/video/VGA/textmode/putch/cls.c \
 	misc/asm_util.c \
 	drv/pit/pit.c \
 	drv/kbd/kbd.c
