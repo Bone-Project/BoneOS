@@ -32,6 +32,7 @@
 #undef KBD_PRE
 #include <stdbool.h>
 #include <libc/assertk.h>
+#include <cpu/interrupts/irq.h>
 
 
 struct _kbd_info kbd_info;
@@ -85,7 +86,6 @@ void key_handler()
          printk("%c", key);
          break;
    }
-   
 }
 
 void kbd_handler(int_regs *r)
@@ -96,6 +96,7 @@ void kbd_handler(int_regs *r)
     else
     {
         key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
+        //printk(">> %c" , key);
         key_handler();
     }
 }
@@ -103,5 +104,10 @@ void kbd_handler(int_regs *r)
 void init_kbd()
 {
   kbd_init_pointers();
-  install_irq_handler(1,kbd_handler);	
+  install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
+}
+
+void uninit_kbd()
+{
+  uninstall_irq_handler(IRQ_NUM_KBD);
 }

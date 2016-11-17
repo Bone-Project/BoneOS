@@ -4,6 +4,7 @@
 #ifndef KERNEL_CALL
 extern int_routines irq_routines[16];
 extern void install_irq_handler(int num,int_routines route);
+extern void uninstall_irq_handler(int num);
 #endif
 
 extern void remap_pic_irq();

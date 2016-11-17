@@ -44,5 +44,6 @@
 extern volatile uint32_t pit_ticks;
 
 extern void init_pit();
+extern void uninit_pit();
 
 #endif /*_DRV_PIT_H_*/

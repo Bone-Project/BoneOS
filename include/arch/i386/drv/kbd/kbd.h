@@ -57,7 +57,9 @@
 #define KBD_CAPS_LOCK_ON   0x4
 
 
+
 extern void init_kbd();
+extern void uninit_kbd();
 
 #ifdef KBD_PRE
 extern const char QWERTY_EN_NOSHIFT[] ;

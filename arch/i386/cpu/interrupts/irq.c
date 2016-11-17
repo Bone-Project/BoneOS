@@ -86,6 +86,11 @@ void init_irq()
 
 void install_irq_handler(int num,int_routines route)
 {
-    printk("Installing IRQ #%d",num);
+//    printk("Installing IRQ #%d",num);
     irq_routines[num] = route;
+}
+
+void uninstall_irq_handler(int num)
+{
+ irq_routines[num] = 0;
 }

@@ -104,8 +104,6 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    printk("\n >> / <<");
 
-   // sleep(3);
-   //assertk(1==0);
    while(1)
     hlt();
 }

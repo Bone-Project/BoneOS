@@ -114,3 +114,8 @@ void init_pit()
   pit_phase(IRQ_SEC_HIT);
   install_irq_handler(IRQ_NUM_PIT,pit_handler);
 }
+
+void uninit_pit()
+{
+  uninstall_irq_handler(IRQ_NUM_PIT);
+}
