@@ -50,6 +50,20 @@ typedef void(*int_routines)(int_regs *r);
     uint16_t base_hi;
  }__attribute__((packed)) idt_desc;
 
+#define CS_SEGMENT 0x8
+
+/*IDT_FLAGS*/
+ #define SEGMENT_PRESENT 0x8
+ #define SEGMENT_RING_LEVEL_0 0x0
+ #define SEGMENT_STORAGE 0x0
+ #define SEGMENT_32_BIT_INTERUPT_GATE 0xE
+ #define SEGMENT_PRESENT_DPL_STORAGE 0x8
+
+ #define SEGMENT_FLAG SEGMENT_PRESENT | \
+                                                  SEGMENT_RING_LEVEL_0 | \
+                                                  SEGMENT_STORAGE | \
+                                                  SEGMENT_32_BIT_INTERUPT_GATE | \
+                                                  SEGMENT_PRESENT_DPL_STORAGE
 
  extern idt_desc idt[256];
  extern void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,uint8_t flags);

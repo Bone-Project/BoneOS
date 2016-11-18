@@ -56,7 +56,11 @@
 #define KBD_NUM_LED_ON        0x2
 #define KBD_CAPS_LOCK_ON   0x4
 
-
+/*KEYS*/
+#define KBD_QWERTY_LEFT_SHIFT_PRESS 0x2A
+#define KBD_QWERTY_RIGHT_SHIFT_PRESS 0x36
+#define KBD_QWERTY_LEFT_SHIFT_RELEASE 170
+#define KBD_QWERTY_RIGHT_SHIFT_RELEASE 182
 
 extern void init_kbd();
 extern void uninit_kbd();

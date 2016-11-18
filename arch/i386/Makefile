@@ -21,13 +21,13 @@ CSRCS = \
 	drv/video/VGA/textmode/putch/cls.c \
 	misc/asm_util.c \
 	drv/pit/pit.c \
-	drv/kbd/kbd.c \
-	drv/kbd/scancodes.c \
-	drv/kbd/utils.c 
+	drv/ps2/kbd/kbd.c \
+	cpu/interrupts/isr.c \
+	drv/ps2/kbd/scancodes.c \
+	drv/ps2/kbd/utils.c 
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
 
-#cpu/interrupts/isr.c \
 
 LIBNAME := arch
 

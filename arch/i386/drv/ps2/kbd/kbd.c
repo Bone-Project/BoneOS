@@ -33,6 +33,7 @@
 #include <stdbool.h>
 #include <libc/assertk.h>
 #include <cpu/interrupts/irq.h>
+#include <drv/kbd/scancodes.h>
 
 
 struct _kbd_info kbd_info;
@@ -41,14 +42,15 @@ char key;
 char key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift == true)
-       return (QWERTY_EN_SHIFT[scancode]);
+       return (kbd_layouts[QWERTY_EN_INDEX]->scancode_shift[scancode]);
     else
-      return (QWERTY_EN_NOSHIFT[scancode]);
+       return (kbd_layouts[QWERTY_EN_INDEX]->scancode_no_shift[scancode]);
 }
 
 void key_release(uint8_t scancode)
 {
-   if(kbd_info.kbd_enc_info == 182 ||  kbd_info.kbd_enc_info == 170)
+   if(kbd_info.kbd_enc_info == KBD_QWERTY_LEFT_SHIFT_RELEASE ||
+      kbd_info.kbd_enc_info == KBD_QWERTY_RIGHT_SHIFT_RELEASE)
           kbd_info.is_shift = false;
 }
 
@@ -70,7 +72,8 @@ void key_handler()
 {
    switch(key)
    {
-    case 0x2F:
+    case KBD_QWERTY_LEFT_SHIFT_PRESS:
+    case KBD_QWERTY_RIGHT_SHIFT_PRESS:
       kbd_info.is_shift = true;
       break;
     case '\t':
@@ -96,7 +99,6 @@ void kbd_handler(int_regs *r)
     else
     {
         key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
-        //printk(">> %c" , key);
         key_handler();
     }
 }

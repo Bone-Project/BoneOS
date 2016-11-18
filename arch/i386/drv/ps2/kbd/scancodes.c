@@ -21,7 +21,9 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-const char QWERTY_EN_NOSHIFT[] = 
+#include <drv/kbd/scancodes.h>
+
+char const QWERTY_EN_NOSHIFT_VAL[]  = 
 {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8', /* 9 */
   '9', '0', '-', '=', '\b', /* Backspace */
@@ -30,9 +32,9 @@ const char QWERTY_EN_NOSHIFT[] =
   't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n', /* Enter key */
     0,      /* 29   - Control */
   'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', /* 39 */
- '\'', '`',   0x2F,    /* Left shift */
+ '\'', '`',   0x2A,    /* Left shift */
  '\\', 'z', 'x', 'c', 'v', 'b', 'n',      /* 49 */
-  'm', ',', '.','/',  0x2F,        /* Right shift */
+  'm', ',', '.','/',  0x36,        /* Right shift */
   '*',
     0,  /* Alt */
   ' ',  /* Space bar */
@@ -61,7 +63,7 @@ const char QWERTY_EN_NOSHIFT[] =
     0,  /* All other keys are undefined */
 };
 
-const char QWERTY_EN_SHIFT[] = 
+ char const QWERTY_EN_SHIFT_VAL[] = 
 {
     0,  27, '!', '@', '#', '$', '%', '^', '&', '*', /* 9 */
   '(', ')', '_', '+', '\b', /* Backspace */
@@ -99,4 +101,19 @@ const char QWERTY_EN_SHIFT[] =
     0,  /* F11 Key */
     0,  /* F12 Key */
     0,  /* All other keys are undefined */
+};
+
+
+struct scancode_layout QWERTY_EN = 
+{
+  .scancode_shift = QWERTY_EN_SHIFT_VAL,
+  .scancode_no_shift = QWERTY_EN_NOSHIFT_VAL,
+  .name = "QWERTY English"
+};
+
+
+struct scancode_layout *kbd_layouts[] = 
+{
+    &QWERTY_EN,
+    0
 };
