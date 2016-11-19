@@ -62,6 +62,12 @@
 #define KBD_QWERTY_LEFT_SHIFT_RELEASE 170
 #define KBD_QWERTY_RIGHT_SHIFT_RELEASE 182
 
+#define KBD_QWERTY_CAPS_PRESS 0x3A
+#define KBD_QWERTY_CAPS_RELEASE 186
+
+#define KBD_QWERTY_ENTER_PRESS 0x1C
+#define KBD_QWERTY_ENTER_RELEASE 156
+
 extern void init_kbd();
 extern void uninit_kbd();
 
@@ -115,7 +121,9 @@ _kbd_info
     
     uint8_t kbd_enc_info;
     bool is_shift;
+    bool is_enter;
     bool is_caps;
+    char key;
     
 };
 

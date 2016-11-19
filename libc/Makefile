@@ -12,7 +12,8 @@ CSRCS = \
 	unistd/sleep/sleep.c \
 	stdlib/panik/panik.c \
 	math/powk/powk.c \
-	math/sqrtk/sqrtk.c
+	math/sqrtk/sqrtk.c \
+	ctype/toupper/toupper.c
 
 LIBNAME := c
 

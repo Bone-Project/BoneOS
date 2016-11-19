@@ -129,7 +129,7 @@ $(BONEOS_BOOT_BIN): $(BONEOS_BIN)
 	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
 
 $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
-	grub-mkrescue --output=$(BONEOS_ISO) arch/i386/boot
+	grub-mkrescue --output=$(BONEOS_ISO) boot
 
 iso: $(BONEOS_ISO)
 
@@ -152,7 +152,10 @@ gdb_q: $(BONEOS_BIN)
 qemu_compile: $(BONEOS_BIN)
 	$(QEMU) -kernel $(BONEOS_BIN) -display sdl
 
+qemu_iso : $(BONEOS_BIN) $(BONEOS_ISO)
+	$(QEMU) -cdrom $(BONEOS_ISO)
+
 bochs: $(BONEOS_ISO)
 	$(BOCHS) -f bochsrc.bxrc -q
 
-.PHONY: gdb_q qemu_compile bochs
+.PHONY: gdb_q qemu_compile bochs qemu_iso
