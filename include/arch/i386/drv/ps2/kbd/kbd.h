@@ -119,12 +119,6 @@ _kbd_info
         
     }routines;
 
-    struct
-    {
-        uint32_t index;
-        bool active;
-        char buffer[];
-    }until_enter;
     
     uint8_t kbd_enc_info;
     bool is_shift;

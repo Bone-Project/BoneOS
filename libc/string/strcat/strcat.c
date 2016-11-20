@@ -19,45 +19,35 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/ 
+
+
+/*
+ * @function strcat:
+ *    Concatonates a specified src string, 
+ *     to another specified dest string.
+ *
+ *        @param dest (char*):
+ *           Specified string to 
+ *           concatonate to.
+ *
+ *        @param src (char*):
+ *           Specified string that
+ *           will be concatonated to dest.
+ *
+ *        @return (char*):
+ *           Returns the final 
+ *           concatonated string (@dest)
+ *
+ */
 
 #include <stddef.h>
 #include <stdint.h>
-#include <stdarg.h>
-#include <drv/ps2/kbd/kbd.h>
-#include <libc/stdio/scank/scank.h>
+#include <libc/string/strlen/strlen.h>
+#include <libc/string/strcpy/strcpy.h>
 
-int scank(const char *fmt, ...)
+char* strcat(char *dest, const char *src)
 {
-    va_list arg;
-    va_start(arg, fmt);
-    int integer_format;
-
-    for(int i=0;fmt[i]!='\0';i++)
-    {
-      if(!(fmt[i] == '%')) continue;
-      else
-      {
-        switch(fmt[i+1])
-        {
-          case 'd':
-            integer_format = va_arg(arg,int);
-            active_scank = true;
-            printk("START\n");
-            while(active_scank == true);
-            printk("END\n");
-            printk(">>> %s <<<" , buffer_scank);
-            break;
-           case 's':
-            break;
-           case 'c':
-             break;
-            case 'x':
-              break;   
-        }
-      }  
-    }
-   
-
-    va_end(arg);
+    strcpy(dest + strlen(dest), src);
+    return dest;
 }
