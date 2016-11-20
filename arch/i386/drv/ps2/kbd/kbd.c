@@ -28,13 +28,13 @@
 #include <stdint.h>
 #include <stddef.h>
 #define KBD_PRE
-#include <drv/kbd/kbd.h>
+#include <drv/ps2/kbd/kbd.h>
 #undef KBD_PRE
 #include <stdbool.h>
 #include <libc/assertk.h>
 #include <libc/ctype/toupper/toupper.h>
 #include <cpu/interrupts/irq.h>
-#include <drv/kbd/scancodes.h>
+#include <drv/ps2/kbd/scancodes.h>
 
 
 struct _kbd_info kbd_info;
@@ -68,6 +68,16 @@ void kbd_init_pointers()
     led_light(false,false,false);
     kbd_info.is_shift = false;
     kbd_info.is_caps = false;
+
+    kbd_info.until_enter.active = false;
+}
+
+void wait_until_enter(char key)
+{
+  if(kbd_info.until_enter.active==true)
+  {
+    kbd_info.until_enter.buffer[kbd_info.until_enter.index++] = key;
+  }
 }
 
 void key_handler()
@@ -88,6 +98,8 @@ void key_handler()
       break;  
       case KBD_QWERTY_ENTER_PRESS:
         kbd_info.is_enter = true;
+        kbd_info.until_enter.active = false;
+        /*CLEAR STRING TODO*/
         printk("\n");
         break;
     case '\t':
@@ -104,6 +116,9 @@ void key_handler()
             printk("%c", kbd_info.key);
          else
             printk("%c", toupper(kbd_info.key)); 
+
+          if(kbd_info.until_enter.active == true)
+              wait_until_enter(kbd_info.key);
          break;
    }
 }

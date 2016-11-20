@@ -25,8 +25,8 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <io/io.h>
-#include <drv/kbd/kbd.h>
-#include <drv/kbd/utils.h>
+#include <drv/ps2/kbd/kbd.h>
+#include <drv/ps2/kbd/utils.h>
 
 /*
  *  Keyboard Ctrl :    

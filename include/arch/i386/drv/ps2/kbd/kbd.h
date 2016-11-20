@@ -118,6 +118,13 @@ _kbd_info
         }key_ev;
         
     }routines;
+
+    struct
+    {
+        uint32_t index;
+        bool active;
+        char buffer[];
+    }until_enter;
     
     uint8_t kbd_enc_info;
     bool is_shift;
@@ -126,5 +133,7 @@ _kbd_info
     char key;
     
 };
+
+extern struct _kbd_info kbd_info;
 
 #endif

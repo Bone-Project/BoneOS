@@ -37,11 +37,12 @@
 #include <libc/string/string.h>
 #include <drv/video/VGA/textmode/putch/putch.h>
 #include <drv/pit/pit.h>
-#include <drv/kbd/kbd.h>
+#include <drv/ps2/kbd/kbd.h>
 #include <libc/math/math.h>
 #include <libc/stdio/printck/printck.h>
 #include <libc/unistd/unistd.h>
 #include <libc/assertk.h>
+#include <libc/stdio/scank/scank.h>
 
 
 
@@ -91,7 +92,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_kbd(); 
    sti();
 
-    sprintk(str, "Value of Pi = %d" , 3);
+   sprintk(str, "Value of Pi = %d" , 3);
    printk("\n%s" , str);
    //printk("\n%f" , 3.14);
    
@@ -102,7 +103,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    printk("{>>> %.2f <<<}", 2.33);
 
-   printk("\n >> / <<");
+   int int1;
+   scank("%d" , int1);
 
    while(1)
     hlt();

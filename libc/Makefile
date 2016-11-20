@@ -9,6 +9,7 @@ CSRCS = \
 	stdio/itoa/itoa.c \
 	stdio/sprintk/sprintk.c \
 	stdio/printk/printk.c \
+	stdio/scank/scank.c \
 	unistd/sleep/sleep.c \
 	stdlib/panik/panik.c \
 	math/powk/powk.c \

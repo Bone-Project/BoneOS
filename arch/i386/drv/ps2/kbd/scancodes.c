@@ -21,8 +21,8 @@
  **     Amanuel Bogale <amanuel2> : start_
  **/  
 
-#include <drv/kbd/scancodes.h>
-#include <drv/kbd/kbd.h>
+#include <drv/ps2/kbd/scancodes.h>
+#include <drv/ps2/kbd/kbd.h>
 
 char const QWERTY_EN_NOSHIFT_VAL[]  = 
 {
