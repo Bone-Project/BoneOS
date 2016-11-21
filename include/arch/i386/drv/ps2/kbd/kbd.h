@@ -124,6 +124,7 @@ _kbd_info
     bool is_shift;
     bool is_enter;
     bool is_caps;
+    uint32_t current_kbd_layout;
     char key;
     
 };

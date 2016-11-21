@@ -43,9 +43,9 @@ struct _kbd_info kbd_info;
 char key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift == true)
-       return (kbd_layouts[QWERTY_EN_INDEX]->scancode_shift[scancode]);
+       return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_shift[scancode]);
     else
-       return (kbd_layouts[QWERTY_EN_INDEX]->scancode_no_shift[scancode]);
+       return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
 }
 
 void key_release(uint8_t scancode)
@@ -71,6 +71,8 @@ void kbd_init_pointers()
     kbd_info.is_caps = false;
 
     active_scank = false;
+
+   kbd_info.current_kbd_layout = QWERTY_EN_INDEX;
 }
 
 void wait_until_enter(char key)

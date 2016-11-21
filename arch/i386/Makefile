@@ -23,6 +23,7 @@ CSRCS = \
 	drv/pit/pit.c \
 	drv/ps2/kbd/kbd.c \
 	cpu/interrupts/isr.c \
+	drv/driver.c \
 	drv/ps2/kbd/scancodes.c \
 	drv/ps2/kbd/utils.c 
 

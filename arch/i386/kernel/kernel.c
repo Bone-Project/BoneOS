@@ -43,6 +43,7 @@
 #include <libc/unistd/unistd.h>
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
+#include <drv/driver.h>
 
 
 
@@ -88,8 +89,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_idt();
    init_isr();
    init_irq();
-   init_pit();
-   init_kbd(); 
+  init_all_drivers();
    sti();
 
    sprintk(str, "Value of Pi = %d" , 3);
@@ -105,6 +105,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    int int1;
    scank("%d" , int1);
+
+   uninit_kbd();
 
    while(1)
     hlt();
