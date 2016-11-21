@@ -80,6 +80,7 @@ void wait_until_enter(char key)
   if(active_scank==true)
   {
     buffer_scank[index_scank++] = key;
+    buffer_scank[index_scank] = 0;
   }
 }
 
@@ -101,9 +102,7 @@ void key_handler()
       case KBD_QWERTY_ENTER_PRESS:
         kbd_info.is_enter = true;
         active_scank = false;
-//        printk("ENTER");
-      
-        /*CLEAR STRING TODO*/
+        buffer_scank[index_scank] = 0;
         printk("\n");
         break;
     case '\t':

@@ -17,5 +17,7 @@ struct  device_driver
 
 extern int init_device_driver(uint32_t index);
 extern int uninit_device_driver(uint32_t index);
+extern int uninit_all_drivers();
+extern int init_all_drivers();
 
 #endif /*_ARCH_DRV_DRIVER_H_*/

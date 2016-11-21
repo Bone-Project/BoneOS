@@ -7,7 +7,8 @@ CSRCS = \
 	string/memset/memset.c \
 	string/strcat/strcat.c \
 	stdio/printck/printck.c \
-	stdio/itoa/itoa.c \
+	stdlib/itoa/itoa.c \
+	stdlib/atoi/atoi.c \
 	stdio/sprintk/sprintk.c \
 	stdio/printk/printk.c \
 	stdio/scank/scank.c \

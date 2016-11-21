@@ -69,3 +69,9 @@ int init_all_drivers()
   return 0;
 }
 
+int uninit_all_drivers()
+{
+  for(uint32_t i=0; drivers[i]; i++)
+    drivers[i]->uninit();
+  return 0;
+}

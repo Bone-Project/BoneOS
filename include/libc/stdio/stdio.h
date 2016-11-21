@@ -8,7 +8,6 @@
  *   the stdio directory.
  */
 
-    #include "itoa/itoa.h"
     #include "printk/printk.h"
     #include "sprintk/sprintk.h"
     #include "printck/printck.h"

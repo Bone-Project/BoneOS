@@ -6,8 +6,8 @@
 
 extern int scank(const char *fmt, ...);
 
-volatile uint32_t index_scank;
-volatile bool active_scank;
-volatile char buffer_scank[];
+extern volatile uint32_t index_scank;
+extern volatile bool active_scank;
+extern volatile char buffer_scank[];
 
 #endif /*_LIBC_STDIO_SCANK_H_*/

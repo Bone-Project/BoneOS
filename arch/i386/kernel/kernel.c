@@ -32,7 +32,7 @@
 #include <cpu/interrupts/idt.h>
 #include <cpu/interrupts/isr.h>
 #define KERNEL_CALL
-#include <cpu/interrupts/irq.h>
+  #include <cpu/interrupts/irq.h>
 #undef KERNEL_CALL
 #include <libc/string/string.h>
 #include <drv/video/VGA/textmode/putch/putch.h>
@@ -44,8 +44,6 @@
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
 #include <drv/driver.h>
-
-
 
 
 /*
@@ -89,7 +87,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_idt();
    init_isr();
    init_irq();
-  init_all_drivers();
+   init_all_drivers();
    sti();
 
    sprintk(str, "Value of Pi = %d" , 3);
@@ -103,12 +101,18 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    printk("{>>> %.2f <<<}", 2.33);
 
-   int int1;
-   scank("%d" , int1);
+   int* int1;
+   char* str1;
+   scank("%s" , &str1);
+   scank("%d" , &int1);
+   printk("int1 : %d , str1 : %s", int1, str1);
 
-   uninit_kbd();
+   // int X;
+   // int Y;
+   // scank("%d%d" , &X, &Y);
+   // printk("X : %d , Y : %d" , X, Y);
 
    while(1)
-    hlt();
+      hlt();
 }
 

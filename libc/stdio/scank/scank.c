@@ -26,12 +26,20 @@
 #include <stdarg.h>
 #include <drv/ps2/kbd/kbd.h>
 #include <libc/stdio/scank/scank.h>
+#include <libc/stdlib/atoi/atoi.h>
+#include <misc/asm_util.h>
+
+volatile uint32_t index_scank;
+volatile bool active_scank;
+volatile char buffer_scank[];
 
 int scank(const char *fmt, ...)
 {
     va_list arg;
     va_start(arg, fmt);
-    int integer_format;
+    int* integer_format;
+    char** string_format;
+    char* char_format;
 
     for(int i=0;fmt[i]!='\0';i++)
     {
@@ -41,23 +49,35 @@ int scank(const char *fmt, ...)
         switch(fmt[i+1])
         {
           case 'd':
-            integer_format = va_arg(arg,int);
+           for(int i=0; i<index_scank; i++)
+                buffer_scank[i] = 0;
+            integer_format = va_arg(arg,int*);
             active_scank = true;
-            printk("START\n");
-            while(active_scank == true);
-            printk("END\n");
-            printk(">>> %s <<<" , buffer_scank);
+            index_scank=0 ;
+            while(active_scank == true) hlt();
+            *integer_format = atoi(buffer_scank);
             break;
            case 's':
+             for(int i=0; i<index_scank; i++)
+                buffer_scank[i] = 0;
+             string_format = va_arg(arg,char**);
+             active_scank = true;
+             index_scank=0 ;
+             while(active_scank == true) hlt();
+             *string_format = buffer_scank;
             break;
            case 'c':
+             char_format = va_arg(arg,char*);
+             active_scank = true;
+             index_scank=0 ;
+             while(active_scank == true) hlt();
+             *char_format = buffer_scank;
              break;
             case 'x':
               break;   
         }
       }  
     }
-   
-
     va_end(arg);
+    return 0;
 }
