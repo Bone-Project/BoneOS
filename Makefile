@@ -53,7 +53,11 @@ VBM := VBoxManage
 ARCH_FAMILY_S = "x86"
 ARCH_S="i386"
 
-INCDIRS := $(BUILDROOT)/include $(BUILDROOT)/arch/$(ARCH) $(BUILDROOT)/include/arch/$(ARCH)
+
+INCDIRS := $(BUILDROOT)/include \
+    $(BUILDROOT)/arch/$(ARCH)  \
+    $(BUILDROOT)/include/arch/$(ARCH) \
+    $(BUILDROOT)/include/apps
 
 # Parameters
 LDPARAMS := -melf_i386
@@ -82,7 +86,8 @@ SCRIPT_CC := utils/cross_compiler/toolchain.py
 
 libraries = \
 	libc/libc.a \
-	arch/$(ARCH)/libarch.a
+	arch/$(ARCH)/libarch.a \
+	apps/libapps.a
 export libraries
 
 # -----------------------------------------------
@@ -107,6 +112,7 @@ $(libraries): subdirs
 subdirs:
 	(cd libc && $(MAKE))
 	(cd arch && $(MAKE))
+	(cd apps && $(MAKE))
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)

@@ -28,6 +28,7 @@
 #include <libc/stdio/scank/scank.h>
 #include <libc/stdlib/atoi/atoi.h>
 #include <misc/asm_util.h>
+#include <libc/stdlib/strtoi/strtoi.h>
 #include <libc/string/strcpy/strcpy.h>
 
 volatile uint32_t index_scank;
@@ -112,7 +113,7 @@ void vscank(const char *fmt, va_list arg)
              active_scank = true;
              index_scank = 0;
              while(active_scank == true) hlt();
-             *hex_format = atoi((char*)buffer_scank);
+             *hex_format = strtoi((char*)buffer_scank, 0, 16);
               break;   
         }
       }  
