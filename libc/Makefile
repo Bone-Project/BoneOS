@@ -9,6 +9,7 @@ CSRCS = \
 	stdio/printck/printck.c \
 	stdlib/itoa/itoa.c \
 	stdlib/atoi/atoi.c \
+	stdlib/strtoi/strtoi.c \
 	stdio/sprintk/sprintk.c \
 	stdio/printk/printk.c \
 	stdio/scank/scank.c \
