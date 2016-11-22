@@ -77,7 +77,7 @@ int scank(const char *fmt, ...)
 void vscank(const char *fmt, va_list arg)
 {
     int* integer_format;
-    char** string_format;
+    char* string_format;
     char* char_format;
     int* hex_format;
 
@@ -95,11 +95,12 @@ void vscank(const char *fmt, va_list arg)
             *integer_format = atoi((char*)buffer_scank);
             break;
            case 's':
-             string_format = va_arg(arg,char**);
+             string_format = va_arg(arg,char*);
              active_scank = true;
              index_scank=0 ;
+             buffer_scank[0] = 0;
              while(active_scank == true) hlt();
-             strcpy(*string_format,(char*)buffer_scank);
+             strcpy(string_format,(char*)buffer_scank);
             break;
            case 'c':
              char_format = va_arg(arg,char*);

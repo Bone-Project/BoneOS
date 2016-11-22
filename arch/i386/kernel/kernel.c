@@ -116,9 +116,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    char chr_1;
    char* str_1;
 
-   scank("%c%x%d" , &chr_1 , &hex_1, &int_1);
+   scank("%s%c%x%d" , &str_1, &chr_1 , &hex_1, &int_1);
 
-   printk("chr_1 : %c  hex_1 : %d int_1 %d " , chr_1,  hex_1 , int_1 );
+   printk("chr_1 : %c  hex_1 : %d str_1 : %s int_1 %d  " , chr_1,  hex_1 , str_1, int_1 );
 
    // char* str1;
 

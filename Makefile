@@ -62,7 +62,7 @@ INCDIRS := $(BUILDROOT)/include \
 # Parameters
 LDPARAMS := -melf_i386
 CFLAGS := \
-	-O2 -g -Wall -Wextra -Wpedantic -g \
+	-O2 -g -Wall -Wextra -Wpedantic -Werror -g \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
