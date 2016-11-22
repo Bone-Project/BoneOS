@@ -130,5 +130,6 @@ _kbd_info
 };
 
 extern struct _kbd_info kbd_info;
+extern volatile bool initalized_ps2_kbd;
 
 #endif

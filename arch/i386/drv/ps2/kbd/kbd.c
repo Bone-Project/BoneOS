@@ -39,6 +39,7 @@
 
 
 struct _kbd_info kbd_info;
+volatile bool initalized_ps2_kbd = false;
 
 char key_press(uint8_t scancode)
 {
@@ -77,11 +78,8 @@ void kbd_init_pointers()
 
 void wait_until_enter(char key)
 {
-  if(active_scank==true)
-  {
     buffer_scank[index_scank++] = key;
     buffer_scank[index_scank] = 0;
-  }
 }
 
 void key_handler()
@@ -90,6 +88,8 @@ void key_handler()
    {
     case KBD_QWERTY_LEFT_SHIFT_PRESS:
     case KBD_QWERTY_RIGHT_SHIFT_PRESS:
+      if( (((char)kbd_info.key) == '6') || (((char)kbd_info.key) == '8') )
+            goto def;
       kbd_info.is_shift = true;
       break; 
     case KBD_QWERTY_CAPS_PRESS:
@@ -115,6 +115,7 @@ void key_handler()
          printk("\n");
          break;
     default:
+         def:;
          if(kbd_info.is_caps == false)
             printk("%c", kbd_info.key);
          else
@@ -140,11 +141,13 @@ void kbd_handler(int_regs *r)
 
 void init_kbd()
 {
+  initalized_ps2_kbd = true;
   kbd_init_pointers();
   install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
 }
 
 void uninit_kbd()
 {
+  initalized_ps2_kbd = false;
   uninstall_irq_handler(IRQ_NUM_KBD);
 }

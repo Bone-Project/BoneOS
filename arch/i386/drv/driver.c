@@ -32,14 +32,16 @@ struct device_driver PIT_DRIVER =
 {
    .name = "8253 Programmable Interval Timer",
    .init = &init_pit,
-   .uninit = &uninit_pit
+   .uninit = &uninit_pit,
+   .initalized = &initalized_pit
 };
 
 struct device_driver KBD_DRIVER = 
 {
    .name = "8042 Keyboard PS/2 Driver",
    .init = &init_kbd,
-   .uninit = &uninit_kbd
+   .uninit = &uninit_kbd,
+   .initalized = &initalized_ps2_kbd
 };
 
 struct device_driver *drivers[] = 
@@ -49,6 +51,10 @@ struct device_driver *drivers[] =
     0
 };
 
+bool device_initalized(int index)
+{
+  return (drivers[index]->initalized);
+}
 
 int init_device_driver(uint32_t index)
 {

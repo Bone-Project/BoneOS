@@ -46,6 +46,7 @@ Our firectory structure currently is as follows:
 - ***libc***: C Library constructed and used by BoneOS.
 - ***utils***: Utilities for users.
    - ***cross_compiler***: Script for installing the cross compiler
+   
 License
 ---
 

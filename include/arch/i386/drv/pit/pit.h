@@ -1,6 +1,7 @@
 #ifndef _DRV_PIT_H_
 #define _DRV_PIT_H_
 
+#include <stdbool.h>
 
 /*
  * Operation Control Words 
@@ -42,6 +43,7 @@
 #define IRQ_SEC_HIT 19
 
 extern volatile uint32_t pit_ticks;
+extern volatile bool initalized_pit;
 
 extern void init_pit();
 extern void uninit_pit();

@@ -28,12 +28,15 @@
 #include <libc/stdio/stdio.h>
 #include <drv/pit/pit.h>
 #include <libc/unistd/sleep/sleep.h>
-
+#include <drv/driver.h>
+#include <cpu/interrupts/interrupts.h>
+#include <cpu/interrupts/irq.h>
 
 
 
 void sleep(uint32_t seconds)
 {
+  assertkm(device_initalized(IRQ_NUM_PIT) , "PIT NOT INITALIZED FOR SLEEP()");
   int64_t expiry = pit_ticks + seconds * IRQ_SEC_HIT;
   while (pit_ticks < expiry)
      hlt();

@@ -101,16 +101,13 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    printk("{>>> %.2f <<<}", 2.33);
 
-   int* int1;
+   int* int1, int2;
    char* str1;
-   scank("%s" , &str1);
-   scank("%d" , &int1);
-   printk("int1 : %d , str1 : %s", int1, str1);
 
-   // int X;
-   // int Y;
-   // scank("%d%d" , &X, &Y);
-   // printk("X : %d , Y : %d" , X, Y);
+   scank("%d" , &int1);
+   scank("%s" , &str1);
+   scank("%d" , &int2);
+   printk("int1 : %d , str1 : %s , int2 : %d", int1, str1, int2);
 
    while(1)
       hlt();

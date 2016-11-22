@@ -30,6 +30,7 @@
 
 
 volatile uint32_t pit_ticks = 0;
+volatile bool initalized_pit = false;
 
 /*
  * @function send_pit_command: 
@@ -111,11 +112,13 @@ void pit_handler(int_regs *r)
  */
 void init_pit()
 {
+  initalized_pit = true;
   pit_phase(IRQ_SEC_HIT);
   install_irq_handler(IRQ_NUM_PIT,pit_handler);
 }
 
 void uninit_pit()
 {
+  initalized_pit = false;
   uninstall_irq_handler(IRQ_NUM_PIT);
 }
