@@ -3,6 +3,7 @@
 
     #include "panik/panik.h"
     #include "itoa/itoa.h"
-    #include "atoi/atoi.h"
+	#include "atoi/atoi.h"
+	#include "strtoi/strtoi.h"
 
 #endif /*_LIBC_STDLIB_H_*/
