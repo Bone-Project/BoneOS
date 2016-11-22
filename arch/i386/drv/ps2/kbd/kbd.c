@@ -84,12 +84,21 @@ void wait_until_enter(char key)
 
 void key_handler()
 {
+   if( (((char)kbd_info.key) == '6') || (((char)kbd_info.key) == '8') )
+    {
+        if(kbd_info.is_caps == false)
+            printk("%c", kbd_info.key);
+         else
+            printk("%c", toupper(kbd_info.key)); 
+
+          if(active_scank == true)
+              wait_until_enter(kbd_info.key);
+           return; 
+    }
    switch(kbd_info.key)
    {
     case KBD_QWERTY_LEFT_SHIFT_PRESS:
     case KBD_QWERTY_RIGHT_SHIFT_PRESS:
-      if( (((char)kbd_info.key) == '6') || (((char)kbd_info.key) == '8') )
-            goto def;
       kbd_info.is_shift = true;
       break; 
     case KBD_QWERTY_CAPS_PRESS:
@@ -115,7 +124,6 @@ void key_handler()
          printk("\n");
          break;
     default:
-         def:;
          if(kbd_info.is_caps == false)
             printk("%c", kbd_info.key);
          else

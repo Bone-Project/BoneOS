@@ -32,7 +32,7 @@
 
 volatile uint32_t index_scank;
 volatile bool active_scank;
-volatile char buffer_scank[];
+volatile char buffer_scank[4096];
 
 /*
  * @function scank:
@@ -78,7 +78,7 @@ void vscank(const char *fmt, va_list arg)
     int* integer_format;
     char* string_format;
     char* char_format;
-    uint16_t* hex_format;
+    int* hex_format;
 
 
     for(int i=0;fmt[i]!='\0';i++)
@@ -87,22 +87,18 @@ void vscank(const char *fmt, va_list arg)
       switch(fmt[i+1])
       {
           case 'd':
-/*           for(int i=0; i<index_scank; i++)
-                buffer_scank[i] = 0;*/
             integer_format = va_arg(arg,int*);
             active_scank = true;
             index_scank=0 ;
             while(active_scank == true) hlt();
-            *integer_format = v_atoi(buffer_scank);
+            *integer_format = atoi((char*)buffer_scank);
             break;
            case 's':
-  /*           for(int i=0; i<index_scank; i++)
-                buffer_scank[i] = 0;*/
              string_format = va_arg(arg,char*);
              active_scank = true;
              index_scank=0 ;
              while(active_scank == true) hlt();
-             strcpy(string_format, buffer_scank);
+             strcpy(string_format,(char*)buffer_scank);
             break;
            case 'c':
              char_format = va_arg(arg,char*);
@@ -112,7 +108,11 @@ void vscank(const char *fmt, va_list arg)
              *char_format = buffer_scank[0];
              break;
            case 'x':
-             hex_format = va_arg(arg,uint16_t*);
+             hex_format = va_arg(arg,int*);
+             active_scank = true;
+             index_scank = 0;
+             while(active_scank == true) hlt();
+             *hex_format = atoi((char*)buffer_scank);
               break;   
         }
       }  
