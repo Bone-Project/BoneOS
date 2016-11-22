@@ -28,56 +28,92 @@
 #include <libc/stdio/scank/scank.h>
 #include <libc/stdlib/atoi/atoi.h>
 #include <misc/asm_util.h>
+#include <libc/string/strcpy/strcpy.h>
 
 volatile uint32_t index_scank;
 volatile bool active_scank;
 volatile char buffer_scank[];
 
+/*
+ * @function scank:
+ *     Asks for user input
+ *     for each of the format
+ *     specifiers  
+ *    
+ *        @param fmt:
+ *            orignial string with
+ *            no formatting.
+ *        @var_arg ...:
+ *            formatting conversion
+ *            utility.
+ */
+
 int scank(const char *fmt, ...)
 {
     va_list arg;
     va_start(arg, fmt);
+    vscank(fmt,arg);
+    va_end(arg);
+    return 0;
+}
+
+/*
+ * @function vscank:
+ *     Asks for user input
+ *     with `va_list` instead,
+ *     also supplied to scank.
+ *    
+ *        @param fmt:
+ *            orignial string with
+ *            no formatting.
+ *        @va_list arg:
+ *            formatting conversion
+ *            utility in form of 
+ *            `va_list`
+ */
+
+
+void vscank(const char *fmt, va_list arg)
+{
     int* integer_format;
-    char** string_format;
+    char* string_format;
     char* char_format;
+    uint16_t* hex_format;
+
 
     for(int i=0;fmt[i]!='\0';i++)
     {
       if(!(fmt[i] == '%')) continue;
-      else
+      switch(fmt[i+1])
       {
-        switch(fmt[i+1])
-        {
           case 'd':
-           for(int i=0; i<index_scank; i++)
-                buffer_scank[i] = 0;
+/*           for(int i=0; i<index_scank; i++)
+                buffer_scank[i] = 0;*/
             integer_format = va_arg(arg,int*);
             active_scank = true;
             index_scank=0 ;
             while(active_scank == true) hlt();
-            *integer_format = atoi(buffer_scank);
+            *integer_format = v_atoi(buffer_scank);
             break;
            case 's':
-             for(int i=0; i<index_scank; i++)
-                buffer_scank[i] = 0;
-             string_format = va_arg(arg,char**);
+  /*           for(int i=0; i<index_scank; i++)
+                buffer_scank[i] = 0;*/
+             string_format = va_arg(arg,char*);
              active_scank = true;
              index_scank=0 ;
              while(active_scank == true) hlt();
-             *string_format = buffer_scank;
+             strcpy(string_format, buffer_scank);
             break;
            case 'c':
              char_format = va_arg(arg,char*);
              active_scank = true;
              index_scank=0 ;
              while(active_scank == true) hlt();
-             *char_format = buffer_scank;
+             *char_format = buffer_scank[0];
              break;
-            case 'x':
+           case 'x':
+             hex_format = va_arg(arg,uint16_t*);
               break;   
         }
       }  
-    }
-    va_end(arg);
-    return 0;
 }

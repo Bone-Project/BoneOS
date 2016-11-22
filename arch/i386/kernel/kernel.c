@@ -103,11 +103,13 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    int* int1, int2;
    char* str1;
+   char chr1;
 
    scank("%d" , &int1);
    scank("%s" , &str1);
    scank("%d" , &int2);
-   printk("int1 : %d , str1 : %s , int2 : %d", int1, str1, int2);
+   scank("%c", &chr1);
+   printk("int1 : %d , str1 : %s , int2 : %d char %c", int1, str1, int2,chr1);
 
    while(1)
       hlt();
