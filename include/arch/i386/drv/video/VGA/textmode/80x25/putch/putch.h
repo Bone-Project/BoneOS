@@ -3,10 +3,8 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <stdarg.h>
 
-extern void putch(char c);
-extern void cls();
+extern void putch_vga_80_x_25(char c);
 
 extern size_t terminal_column;
 extern size_t terminal_row;

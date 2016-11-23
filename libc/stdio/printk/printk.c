@@ -28,9 +28,7 @@
 
 #include <GlobalDefintions.h>
 #include <libc/stdio/printk/printk.h>
-#if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE && com_met == SCREEN_DISPLAY
-#include <drv/video/VGA/textmode/putch/putch.h>
-#endif
+#include <drv/video/video.h>
 #include <libc/stdlib/itoa/itoa.h>
 #include <libc/math/powk/powk.h>
 
@@ -98,24 +96,24 @@ void vprintk(const char* fmt, va_list arg)
               integer_format = va_arg(arg,int);
               result_pt = itoa(integer_format);
               for(int x=0;result_pt[x]!='\0';x++)
-                putch(result_pt[x]);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);
               i+=1;
               break;
             case 'c':
-              putch(va_arg(arg,int));
+              video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(va_arg(arg,int));
               i+=1;
               break; 
             case 's':
               result_pt = va_arg(arg,char*);
               for(int x=0;result_pt[x]!='\0';x++)
-                putch(result_pt[x]);  
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);  
               i+=1;
               break;   
             case 'x':
               integer_format = va_arg(arg,int);
               __itoa(integer_format, 16, result_pt);
               for(int x=0;result_pt[x]!='\0';x++)
-                putch(result_pt[x]);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);
               i+=1;
               break;
              case '.':
@@ -151,20 +149,20 @@ void vprintk(const char* fmt, va_list arg)
           break; 
         case '\b':
           terminal_column--;
-          putch(' ');
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(' ');
           terminal_column--;
           break;
         case '\t':
           for(int32_t t=0;t<=3;t++)terminal_column++;   
           break;
          case '\\':
-          putch('\\');
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch('\\');
           break; 
          case '\"' :
-           putch('\"');
+           video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch('\"');
            break; 
         default:
-          putch(fmt[i]);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(fmt[i]);
           break;       
      }
    }  

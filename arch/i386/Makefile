@@ -17,8 +17,12 @@ CSRCS = \
 	cpu/interrupts/pic.c \
 	cpu/interrupts/idt.c \
 	cpu/interrupts/irq.c \
-	drv/video/VGA/textmode/putch/putch.c \
-	drv/video/VGA/textmode/putch/cls.c \
+	drv/video/video.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_LOW).c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/utils.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/putch/putch.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/cls.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
 	misc/asm_util.c \
 	drv/pit/pit.c \
 	drv/ps2/kbd/kbd.c \

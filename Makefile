@@ -42,6 +42,20 @@ ARCH := i386
 export ARCH
 export ARCH_FAMILY
 
+
+VIDEO_DRIVER := VGA
+VIDEO_DRIVER_LOW := vga
+VIDEO_DRIVER_MODE := textmode
+VIDEO_DRIVER_RES_W := 80
+VIDEO_DRIVER_RES_H := 25
+VIDEO_DRIVER_RES := $(VIDEO_DRIVER_RES_W)x$(VIDEO_DRIVER_RES_H)
+export VIDEO_DRIVER
+export VIDEO_DRIVER_LOW
+export VIDEO_DRIVER_RES_W
+export VIDEO_DRIVER_RES_H
+export VIDEO_DRIVER_RES
+export VIDEO_DRIVER_MODE
+
 # Programs
 BOCHS := bochs
 QEMU := qemu-system-i386
@@ -63,7 +77,7 @@ INCDIRS := $(BUILDROOT)/include \
 # Parameters
 LDPARAMS := -melf_i386
 CFLAGS := \
-	-O2 -g -Wall -Wextra -Wpedantic  -g \
+	-O2 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 

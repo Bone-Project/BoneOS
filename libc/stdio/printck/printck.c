@@ -24,9 +24,7 @@
 #include <GlobalDefintions.h>
 #include <libc/stdio/printk/printk.h>
 #include <libc/stdio/printck/printck.h>
-#if DISPLAY_ADAPTER == VGA && DISPLAY_ADAPTER_MODE == NORMAL_TEXT_MODE && com_met == SCREEN_DISPLAY
-#include <drv/video/VGA/textmode/putch/putch.h>
-#endif
+#include <drv/video/video.h>
 #include <libc/stdlib/itoa/itoa.h>
 #include <stdarg.h>
 #include <stddef.h>

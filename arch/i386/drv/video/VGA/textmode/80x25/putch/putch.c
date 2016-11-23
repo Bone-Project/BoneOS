@@ -21,7 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <drv/video/VGA/textmode/putch/putch.h>
+#include <drv/video/VGA/textmode/80x25/utils.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
@@ -33,24 +33,9 @@ uint8_t BG = 0x0; // Background - BLACK
 const size_t VGA_WIDTH = 80;
 const size_t VGA_HEIGHT = 25; 
 
-/*
- * @inline make_color:
- *      converts FG And BG
- *      to a 8bit integer
- *      color.
- */
-inline uint8_t make_color(uint8_t fg, uint8_t bg) 
-{
-    return fg | bg << 4;
-}
-
-inline uint16_t make_vgaentry(char c, uint8_t color) 
-{
-    return ((uint16_t)c | (uint16_t)color << 8);
-} 
 
 /*
- * @function putch:
+ * @function putch_vga_80_x_25:
  *    Puts a single character
  *    on the screen.
  *
@@ -59,7 +44,7 @@ inline uint16_t make_vgaentry(char c, uint8_t color)
  *          the screen
  */
 
-void putch(char c)
+void putch_vga_80_x_25(char c)
 {
   const size_t index =  (terminal_row * 80 +  terminal_column);
   uint16_t* VideoMemory = (uint16_t*)0xB8000;

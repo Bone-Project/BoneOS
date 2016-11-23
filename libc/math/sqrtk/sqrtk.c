@@ -48,7 +48,7 @@ int sqrtk(int n)
 
    x2 = n * 0.5F;
    y  = n;
-   #pragma GCC diagnostic ignored "--Wstrict-aliasing"
+   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
       i = *(long*)&y;
       i  = 0x5f3759df - ( i >> 1 );
       y  = * ( float * ) &i;

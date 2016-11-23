@@ -19,38 +19,12 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
+ **/  
 
+#include <misc/status_codes.h>
 
-#include <libc/stdio/printk/printk.h>
-#include <libc/string/memset/memset.h>
-
-extern size_t terminal_column;
-extern size_t terminal_row;
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
-extern const size_t VGA_WIDTH;
-extern const size_t VGA_HEIGHT; 
-
-void term_zero()
+int init_vga_textmode()
 {
-  terminal_row=0;
-  terminal_column=0;
-}
-
-/*
- * @function cls:
- *    Function for clearing
- *    the screen in normal text
- *    mode 32bit VGA.
- */
-
-void cls()    
-{
-  term_zero();
-  char buf[80*25+1];
-  memset(buf, ' ', 80*25);
-  buf[80*25] = 0; 
-  printk("%s", buf);
-  term_zero();
+  /*VGA_TESTS*/
+  return STATUS_OK;
 }

@@ -35,7 +35,7 @@
   #include <cpu/interrupts/irq.h>
 #undef KERNEL_CALL
 #include <libc/string/string.h>
-#include <drv/video/VGA/textmode/putch/putch.h>
+#include <drv/video/VGA/textmode/80x25/cls.h>
 #include <drv/pit/pit.h>
 #include <drv/ps2/kbd/kbd.h>
 #include <libc/math/math.h>
@@ -82,44 +82,15 @@ void crash_me()
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
    cls();
-   char str[80];
    init_gdt();
    init_idt();
    init_isr();
    init_irq();
+   setup_driver_handler();
    init_all_drivers();
    sti();
 
-   sprintk(str, "Value of Pi = %d" , 3);
-   printk("\n%s" , str);
-   //printk("\n%f" , 3.14);
-   
-   printk("%d" , powk(10,2));
-
-   printck(0x5,0x2,"Yea whassup");
-   printk("\n Back to Original");
-
-   printk("{>>> %.2f <<<}", 2.33);
-
-   // int* int1, int2;
-   // char* str1;
-   // char chr1;
-
-   // scank("%d" , &int1);
-   // scank("%s" , &str1);
-   // scank("%d" , &int2);
-   // scank("%c", &chr1);
-   // printk("int1 : %d , str1 : %s , int2 : %d char %c", int1, str1, int2,chr1);
-
-   int hex_1;
-   int int_1;
-   char chr_1;
-   char str_1[256];
-
-   scank("%s%c%x%d" , &str_1, &chr_1 , &hex_1, &int_1);
-
-   printk("chr_1 : %c  hex_1 : %d str_1 : %s int_1 %d  " , chr_1,  hex_1 , str_1, int_1 );
-
+   //drivers[VIDEO_DRIVER_INDEX]->uninit();
 
    while(1)
       hlt();
