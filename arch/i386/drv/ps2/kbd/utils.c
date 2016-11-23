@@ -54,12 +54,14 @@ uint8_t kbd_enc_read_input_buf()
     return (inb8(KBD_ENC_INPUT_BUF_REG));    
 }
 
+//Send command to encoder
 void kbd_enc_send_cmd(uint8_t cmd)
 {
     while( (kbd_ctrl_read_status_reg() & KBD_CTRL_STATS_MASK_IN_BUF) != 0);
     outb8(KBD_ENC_CMD_REG,cmd);
 }
 
+//Basic Assurance Test(Self Test)
 bool bat_test(void)
 {
     kbd_ctrl_send_cmd(KBD_CTRL_CMD_SELF_TEST);
@@ -69,6 +71,7 @@ bool bat_test(void)
     return (kbd_enc_read_input_buf () == 0x55) ? true : false;
 }
 
+//Set the LED Lights if true
 bool led_light(bool scroll, bool num, bool caps)
 {
   uint8_t data_final = 0x0;

@@ -27,7 +27,7 @@
 #include <drv/pit/pit.h>
 #include <drv/ps2/kbd/kbd.h>
 
-
+//Timer Driver Handler
 struct device_driver PIT_DRIVER = 
 {
    .name = "8253 Programmable Interval Timer",
@@ -36,6 +36,7 @@ struct device_driver PIT_DRIVER =
    .initalized = &initalized_pit
 };
 
+//Keyboard Driver Handler
 struct device_driver KBD_DRIVER = 
 {
    .name = "8042 Keyboard PS/2 Driver",
@@ -44,6 +45,7 @@ struct device_driver KBD_DRIVER =
    .initalized = &initalized_ps2_kbd
 };
 
+//All Drivers 
 struct device_driver *drivers[] = 
 {
     &PIT_DRIVER,
@@ -51,23 +53,27 @@ struct device_driver *drivers[] =
     0
 };
 
+//check if device is initalized
 bool device_initalized(int index)
 {
   return (drivers[index]->initalized);
 }
 
+//Initalize device driver
 int init_device_driver(uint32_t index)
 {
   drivers[index]->init();
   return 0;
 }
 
+//uninitalize device driver
 int uninit_device_driver(uint32_t index)
 {
   drivers[index]->uninit();
   return 0;
 }
 
+//inialize all device drivers
 int init_all_drivers()
 {
   for(uint32_t i=0; drivers[i]; i++)
@@ -75,6 +81,7 @@ int init_all_drivers()
   return 0;
 }
 
+//unintalize all device drivers
 int uninit_all_drivers()
 {
   for(uint32_t i=0; drivers[i]; i++)

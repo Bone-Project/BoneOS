@@ -25,6 +25,7 @@ CSRCS = \
 	cpu/interrupts/isr.c \
 	drv/driver.c \
 	drv/ps2/kbd/scancodes.c \
+	drv/ps2/kbd/scancodes_usa.c \
 	drv/ps2/kbd/utils.c 
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/

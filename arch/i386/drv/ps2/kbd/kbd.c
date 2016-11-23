@@ -41,6 +41,7 @@
 struct _kbd_info kbd_info;
 volatile bool initalized_ps2_kbd = false;
 
+//On KeyPress Handler
 char key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift == true)
@@ -49,6 +50,7 @@ char key_press(uint8_t scancode)
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
 }
 
+//On Key Release Handler
 void key_release(uint8_t scancode)
 {
    if(kbd_info.kbd_enc_info == KBD_QWERTY_LEFT_SHIFT_RELEASE ||
@@ -56,6 +58,7 @@ void key_release(uint8_t scancode)
           kbd_info.is_shift = false;
 }
 
+//Initalize stuff before initalizing the keyboard
 void kbd_init_pointers()
 {
     /*Initalize Function Pointers*/
@@ -73,15 +76,19 @@ void kbd_init_pointers()
 
     active_scank = false;
 
-   kbd_info.current_kbd_layout = QWERTY_EN_INDEX;
+   kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
 }
 
+//Wait until enter utility
+//for stuff like scank
 void wait_until_enter(char key)
 {
     buffer_scank[index_scank++] = key;
     buffer_scank[index_scank] = 0;
 }
 
+//Second Generic key handler called when
+//key pressed
 void key_handler()
 {
    if( (((char)kbd_info.key) == '6') || (((char)kbd_info.key) == '8') )
@@ -137,6 +144,7 @@ void key_handler()
    }
 }
 
+//Keyboard Primary Handler
 void kbd_handler(int_regs *r)
 {
   kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
@@ -149,6 +157,7 @@ void kbd_handler(int_regs *r)
     }
 }
 
+//Initalize Keyboard
 void init_kbd()
 {
   initalized_ps2_kbd = true;
@@ -156,6 +165,7 @@ void init_kbd()
   install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
 }
 
+//Uninstall Keyboard
 void uninit_kbd()
 {
   initalized_ps2_kbd = false;
