@@ -6,6 +6,9 @@ branches:
   only:
   - travisci
 
+env:
+  - CC=gcc-5
+
 addons:
   apt:
     sources:
