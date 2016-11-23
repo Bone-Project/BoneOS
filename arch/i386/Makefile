@@ -11,7 +11,7 @@ NSRCS = \
 	boot/boot.asm
 
 CSRCS = \
-	kernel/kernel.c \
+	init/main.c \
 	cpu/gdt/gdt.c \
 	cpu/interrupts/interrupts.c \
 	cpu/interrupts/pic.c \

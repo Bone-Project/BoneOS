@@ -120,11 +120,6 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    printk("chr_1 : %c  hex_1 : %d str_1 : %s int_1 %d  " , chr_1,  hex_1 , str_1, int_1 );
 
-   // char* str1;
-
-   // scank("%s" , &str1);
-
-   // printk("%s"  , str1);
 
    while(1)
       hlt();

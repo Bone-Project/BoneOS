@@ -118,6 +118,8 @@ void key_handler()
          printk("\t");
          break;
      case '\b':
+         if(active_scank)
+          buffer_scank[index_scank--] = 0;
          printk("\b");
          break;
     case '\n' :
