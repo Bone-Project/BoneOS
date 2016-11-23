@@ -18,3 +18,4 @@ addons:
     - g++-5
     - nasm
     - grub-common
+    - xorriso
