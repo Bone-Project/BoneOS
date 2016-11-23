@@ -4,7 +4,8 @@ script: CC=gcc-5 make
 # safelist
 branches:
   only:
-  - travisci
+  - master
+  - amanuel_progress_kbd
 
 env:
   - CC=gcc-5
