@@ -39,14 +39,14 @@ void loop_terminal()
   while(1)
   {
         printk("%s %s $ " , VAR_USER, VAR_PWD);
-        scank("%s" , cmd_active.value,true);
+        scank("%s" , true, cmd_active.value);
         printk("TYPED : %s \n" , cmd_active.value);
   }
 }
 
 void init_terminal()
 {
-  printk("BoneOS Terminal\n");
+  printck(0x5,0x3,"BoneOS Terminal\n");
   loop_terminal();
 }
 

@@ -52,12 +52,12 @@ volatile char buffer_scank[4096];
 
 int scank(const char *fmt, bool print ,...)
 {
-    //print_scank = print;
+    print_scank = print;
     va_list arg;
     va_start(arg, fmt);
     vscank(fmt,print,arg);
     va_end(arg);
-    //print_scank = false;
+    print_scank = false;
     return 0;
 }
 

@@ -76,7 +76,7 @@ void kbd_init_pointers()
     kbd_info.is_caps = false;
 
     active_scank = false;
-    print_scank = true;
+    print_scank = false;
 
    kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
 }

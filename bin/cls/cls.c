@@ -23,22 +23,39 @@
 
 #include <term/terminal.h>
 
-// struct cmd_opt * cmd_cls_opts[] = 
-// {
+struct cmd_opt cmd_cls_opt_fg_bg_help = 
+{
+    .help = "cls 1) \t BoneOS Terminal Manual \n "
+                "NAME : \n"
+                "\tcls --color --help\n"
+                "SYNOPSIS : \n "
+                "\tcls [--help]  [--color <fg-color> <bg-color>] [--color <--help>] "
+                "DESCRIPTION : \n "
+                "\tClears the terminal with accordance to the "
+                "\tspecified foregroud and background colors. " ,      
 
-// }
+        .cmd_opt_name = "cls <fg,bg> --help"  
+};
+
+struct cmd_opt * cmd_cls_opts[] = 
+{
+  &cmd_cls_opt_fg_bg_help,
+  0
+};
 
 struct cmd cmd_cls = 
 {
   .command_name = "cls",
-  .usage = "cls [--help]  [--color <fg-color> <bg-color>] ",
-  .help = "cls(1) \t BoneOS Terminal Manuel \n "
+  .usage = "cls [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
+  .help = "cls(1) \t BoneOS Terminal Manual \n "
                 "NAME : \n"
                 "\tcls\n"
                 "SYNOPSIS : \n "
-                "\tcls [--help]  [--color <fg-color> <bg-color>] "
+                "\tcls [--help]  [--color <fg-color> <bg-color>] [--color <--help>] "
                 "DESCRIPTION : \n "
                 "\tClears the terminal. Possible to specifiy the"
-                "color with the --color command and providing it "
-                "\ta Foreground as well as a Background Color"                 
+                "\tcolor with the --color command and providing it "
+                "\ta Foreground as well as a Background Color",
+  .cmd_opts = cmd_cls_opts                       
 };
+
