@@ -1,7 +1,8 @@
 # [BoneOS](https://BoneOS.org)
 
-Master: ![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master)
-Dev: ![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_progress_kbd)
+Master: [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master)](https://travis-ci.org/Bone-Project/BoneOS)
+
+Dev: [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_progress_kbd)](https://travis-ci.org/Bone-Project/BoneOS/branches)
 
 ### [BoneOS Meta](https://meta.boneos.org/)
 
