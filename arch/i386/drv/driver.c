@@ -25,33 +25,48 @@
 #include <stddef.h>
 #include <drv/driver.h>
 #include <drv/pit/pit.h>
+#include <drv/video/video.h>
 #include <drv/ps2/kbd/kbd.h>
 
 //Timer Driver Handler
-struct device_driver PIT_DRIVER = 
+struct device_driver pit_driver = 
 {
    .name = "8253 Programmable Interval Timer",
    .init = &init_pit,
-   .uninit = &uninit_pit,
-   .initalized = &initalized_pit
+   .uninit = &uninit_pit
 };
 
 //Keyboard Driver Handler
-struct device_driver KBD_DRIVER = 
+struct device_driver kbd_driver = 
 {
    .name = "8042 Keyboard PS/2 Driver",
    .init = &init_kbd,
    .uninit = &uninit_kbd,
-   .initalized = &initalized_ps2_kbd
+};
+
+//Video Driver Handler
+struct device_driver video_driver = 
+{
+  .name = "Video Driver",
 };
 
 //All Drivers 
 struct device_driver *drivers[] = 
 {
-    &PIT_DRIVER,
-    &KBD_DRIVER,
+    &pit_driver,
+    &kbd_driver,
+    &video_driver,
     0
 };
+
+//Sets Up Device Driver Handler
+void setup_driver_handler()
+{
+  pit_driver.initalized = initalized_pit;
+  kbd_driver.initalized = initalized_ps2_kbd;
+  video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
+  video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
+}
 
 //check if device is initalized
 bool device_initalized(int index)

@@ -19,6 +19,7 @@
  **/
 
 #include <cpu/interrupts/interrupts.h>
+#include <misc/status_codes.h>
 #include <cpu/interrupts/irq.h>
 #include <libc/unistd/sleep/sleep.h>
 #include <libc/stdlib/stdlib.h>
@@ -110,15 +111,17 @@ void pit_handler(int_regs *r)
  *    interrupt controller, and installs
  *    the IRQ For PIT.
  */
-void init_pit()
+int init_pit()
 {
   initalized_pit = true;
   pit_phase(IRQ_SEC_HIT);
   install_irq_handler(IRQ_NUM_PIT,pit_handler);
+  return STATUS_OK;
 }
 
-void uninit_pit()
+int uninit_pit()
 {
   initalized_pit = false;
   uninstall_irq_handler(IRQ_NUM_PIT);
+  return STATUS_OK;
 }

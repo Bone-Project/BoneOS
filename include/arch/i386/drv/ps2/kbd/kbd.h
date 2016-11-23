@@ -68,8 +68,8 @@
 #define KBD_QWERTY_ENTER_PRESS 0x1C
 #define KBD_QWERTY_ENTER_RELEASE 156
 
-extern void init_kbd();
-extern void uninit_kbd();
+extern int init_kbd();
+extern int uninit_kbd();
 
 #ifdef KBD_PRE
 extern const char QWERTY_EN_NOSHIFT[] ;

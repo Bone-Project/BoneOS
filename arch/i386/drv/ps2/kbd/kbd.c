@@ -21,6 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+#include <misc/status_codes.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
 #include <io/io.h>
@@ -158,16 +159,18 @@ void kbd_handler(int_regs *r)
 }
 
 //Initalize Keyboard
-void init_kbd()
+int init_kbd()
 {
   initalized_ps2_kbd = true;
   kbd_init_pointers();
   install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
+  return STATUS_OK;
 }
 
 //Uninstall Keyboard
-void uninit_kbd()
+int uninit_kbd()
 {
   initalized_ps2_kbd = false;
   uninstall_irq_handler(IRQ_NUM_KBD);
+  return STATUS_OK;
 }
