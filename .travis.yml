@@ -1,5 +1,5 @@
 language: c
-script: make
+script: CC=gcc-5 make
 
 # safelist
 branches:
