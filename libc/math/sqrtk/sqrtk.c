@@ -40,7 +40,7 @@
  *               of specified float (@n)
  */
 
-float sqrtk(float n)
+int sqrtk(int n)
 {
    long i;
    float x2, y;
@@ -48,9 +48,11 @@ float sqrtk(float n)
 
    x2 = n * 0.5F;
    y  = n;
-   i = *(long*)&y;
-   i  = 0x5f3759df - ( i >> 1 );
-   y  = * ( float * ) &i;
+   #pragma GCC diagnostic ignored "--Wstrict-aliasing"
+      i = *(long*)&y;
+      i  = 0x5f3759df - ( i >> 1 );
+      y  = * ( float * ) &i;
+   #pragma GCC diagnostic pop
    y  = y * ( threehalfs - ( x2 * y * y ) );
    y  = y * ( threehalfs - ( x2 * y * y ) );
    y  = y * ( threehalfs - ( x2 * y * y ) );
