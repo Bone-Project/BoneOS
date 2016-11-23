@@ -1,5 +1,10 @@
 # [BoneOS](https://BoneOS.org)
 
+| Branch | Status                                                                                                                                               |
+| ------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Master | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master)](https://travis-ci.org/Bone-Project/BoneOS)                        |
+|    Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_progress_kbd)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
+
 ### [BoneOS Meta](https://meta.boneos.org/)
 
 <img src="https://i.imgur.com/H6ixAr4.png" width="300" height="300" />

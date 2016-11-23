@@ -27,16 +27,17 @@ else
  endif
 endif
 
-HOST_ENV = $(shell uname -p)
-# Allow user to override cross-compiler directory
-CROSSROOT ?= $(BUILDROOT)/cross
-CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
-LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
-AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
-export CC
-export LD
-export AR
-
+ifdef CROSSROOT
+  HOST_ENV = $(shell uname -p)
+  # Allow user to override cross-compiler directory
+  CROSSROOT ?= $(BUILDROOT)/cross
+  CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
+  LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
+  AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
+  export CC
+  export LD
+  export AR
+endif
 ARCH_FAMILY := x86
 ARCH := i386
 export ARCH
@@ -77,6 +78,7 @@ INCDIRS := $(BUILDROOT)/include \
 # Parameters
 LDPARAMS := -melf_i386
 CFLAGS := \
+	-m32 \
 	-O2 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))

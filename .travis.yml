@@ -1,0 +1,22 @@
+language: c
+script: CC=gcc-5 make
+
+# safelist
+branches:
+  only:
+  - master
+  - amanuel_progress_kbd
+
+env:
+  - CC=gcc-5
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-5
+    - g++-5
+    - nasm
+    - grub-common
+    - xorriso
