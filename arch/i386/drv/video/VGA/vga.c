@@ -34,13 +34,8 @@ struct video_driver vga_driver =
     .putch = &putch_vga_80_x_25,
     .put_pixel = 0,
   #endif
-   #if ACTIVE_RES_W == 80
-     .res.w = 80,
-   #endif
-
-   #if ACTIVE_RES_H == 25
-     .res.h = 25,
-    #endif
+     .res.w = ACTIVE_RES_W,
+     .res.h = ACTIVE_RES_H,
      .init =  &init_vga_driver,
      .uninit = &uninit_vga_driver,
      .name = "VGA_TEXTMODE_80_x_25"

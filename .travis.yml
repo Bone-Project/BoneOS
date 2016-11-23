@@ -20,3 +20,8 @@ addons:
     - nasm
     - grub-common
     - xorriso
+
+notifications:
+  slack:
+    rooms:
+      - boneos:mo6es1CK4x5OpDJzWvCR9p21#github
