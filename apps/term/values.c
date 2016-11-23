@@ -18,35 +18,10 @@
  **  
  **  @contributors:
 
- **     Amanuel Bogale <amanuel2> : start
- **/  
+ **   Amanuel Bogale <amanuel2> : start
+ **/   
+ 
+#include <term/values.h>  
 
-#include <term/terminal.h>
-#include <term/values.h>
-#include <cls/cls.h>
-#include <stdio/stdio.h>
-
-struct cmd *commands[] = 
-{
-  &cmd_cls
-  ,0
-};
-
-struct typed_cmd cmd_active;
-
-void loop_terminal()
-{
-  while(1)
-  {
-        printk("%s %s $ " , VAR_USER, VAR_PWD);
-        scank("%s" , cmd_active.value,true);
-        printk("TYPED : %s \n" , cmd_active.value);
-  }
-}
-
-void init_terminal()
-{
-  printk("BoneOS Terminal\n");
-  loop_terminal();
-}
-
+char* VAR_USER = "root";
+char* VAR_PWD = "/";

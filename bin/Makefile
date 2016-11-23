@@ -1,9 +1,8 @@
 BUILDROOT ?= ..
 
 CSRCS = \
-	term/terminal.c \
-	term/values.c
+	cls/cls.c
 
-LIBNAME := apps
+LIBNAME := bin
 
 include $(BUILDROOT)/library.mk

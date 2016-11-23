@@ -22,31 +22,23 @@
  **/  
 
 #include <term/terminal.h>
-#include <term/values.h>
-#include <cls/cls.h>
-#include <stdio/stdio.h>
 
-struct cmd *commands[] = 
+// struct cmd_opt * cmd_cls_opts[] = 
+// {
+
+// }
+
+struct cmd cmd_cls = 
 {
-  &cmd_cls
-  ,0
+  .command_name = "cls",
+  .usage = "cls [--help]  [--color <fg-color> <bg-color>] ",
+  .help = "cls(1) \t BoneOS Terminal Manuel \n "
+                "NAME : \n"
+                "\tcls\n"
+                "SYNOPSIS : \n "
+                "\tcls [--help]  [--color <fg-color> <bg-color>] "
+                "DESCRIPTION : \n "
+                "\tClears the terminal. Possible to specifiy the"
+                "color with the --color command and providing it "
+                "\ta Foreground as well as a Background Color"                 
 };
-
-struct typed_cmd cmd_active;
-
-void loop_terminal()
-{
-  while(1)
-  {
-        printk("%s %s $ " , VAR_USER, VAR_PWD);
-        scank("%s" , cmd_active.value,true);
-        printk("TYPED : %s \n" , cmd_active.value);
-  }
-}
-
-void init_terminal()
-{
-  printk("BoneOS Terminal\n");
-  loop_terminal();
-}
-

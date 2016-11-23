@@ -15,4 +15,11 @@ struct cmd
   struct cmd_opt* cmd_opts[];
 };
 
+struct typed_cmd
+{
+  char* value;
+};
+
+extern void init_terminal();
+
 #endif /*_APPS_TERM_TERMINAL_H_*/

@@ -44,6 +44,7 @@
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
 #include <drv/driver.h>
+#include <term/terminal.h>
 
 
 /*
@@ -91,6 +92,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    sti();
 
    //drivers[VIDEO_DRIVER_INDEX]->uninit();
+   init_terminal();
 
    while(1)
       hlt();

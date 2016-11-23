@@ -33,6 +33,7 @@
 
 volatile uint32_t index_scank;
 volatile bool active_scank;
+volatile bool print_scank;
 volatile char buffer_scank[4096];
 
 /*
@@ -49,12 +50,14 @@ volatile char buffer_scank[4096];
  *            utility.
  */
 
-int scank(const char *fmt, ...)
+int scank(const char *fmt, bool print ,...)
 {
+    //print_scank = print;
     va_list arg;
     va_start(arg, fmt);
-    vscank(fmt,arg);
+    vscank(fmt,print,arg);
     va_end(arg);
+    //print_scank = false;
     return 0;
 }
 
@@ -74,7 +77,7 @@ int scank(const char *fmt, ...)
  */
 
 
-void vscank(const char *fmt, va_list arg)
+void vscank(const char *fmt, bool print , va_list arg)
 {
     int* integer_format;
     char* string_format;

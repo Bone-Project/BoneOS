@@ -76,6 +76,7 @@ void kbd_init_pointers()
     kbd_info.is_caps = false;
 
     active_scank = false;
+    print_scank = true;
 
    kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
 }
@@ -94,9 +95,9 @@ void key_handler()
 {
    if( (((char)kbd_info.key) == '6') || (((char)kbd_info.key) == '8') )
     {
-        if(kbd_info.is_caps == false)
+        if(kbd_info.is_caps == false && print_scank == true)
             printk("%c", kbd_info.key);
-         else
+         else if(kbd_info.is_caps == true && print_scank == true)
             printk("%c", toupper(kbd_info.key)); 
 
           if(active_scank == true)
@@ -120,26 +121,26 @@ void key_handler()
         kbd_info.is_enter = true;
         active_scank = false;
         buffer_scank[index_scank] = 0;
-        printk("\n");
+        if(print_scank == true) printk("\n");
         break;
     case '\t':
-         printk("\t");
+         if(print_scank == true)  printk("\t");
          break;
      case '\b':
          if(active_scank)
           buffer_scank[index_scank--] = 0;
-         printk("\b");
+         if(print_scank == true) printk("\b");
          break;
     case '\n' :
-         printk("\n");
+         if(print_scank == true) printk("\n");
          break;
     default:
-         if(kbd_info.is_caps == false)
+         if(kbd_info.is_caps == false && print_scank == true)
             printk("%c", kbd_info.key);
-         else
+         else if(kbd_info.is_caps == true && print_scank == true)
             printk("%c", toupper(kbd_info.key)); 
 
-          if(active_scank == true)
+          if(active_scank == true && print_scank == true)
               wait_until_enter(kbd_info.key);
          break;
    }

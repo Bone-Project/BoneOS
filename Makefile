@@ -73,14 +73,16 @@ ARCH_S="i386"
 INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/arch/$(ARCH)  \
     $(BUILDROOT)/include/arch/$(ARCH) \
-    $(BUILDROOT)/include/apps
+    $(BUILDROOT)/include/apps \
+    $(BUILDROOT)/include/bin \
+    $(BUILDROOT)/include/libc
 
 # Parameters
 LDPARAMS := -melf_i386
 CFLAGS := \
 	-m32 -std=c11 \
 	-O2 -g -Wall -Wextra -Wpedantic -Werror  -g \
-	-Wno-error=missing-field-initializers \
+	-Wno-error=missing-field-initializers -Wno-varargs \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
@@ -105,7 +107,8 @@ SCRIPT_CC := utils/cross_compiler/toolchain.py
 libraries = \
 	libc/libc.a \
 	arch/$(ARCH)/libarch.a \
-	apps/libapps.a
+	apps/libapps.a \
+	bin/libbin.a 
 export libraries
 
 # -----------------------------------------------
@@ -131,6 +134,7 @@ subdirs:
 	(cd libc && $(MAKE))
 	(cd arch && $(MAKE))
 	(cd apps && $(MAKE))
+	(cd bin && $(MAKE))
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)

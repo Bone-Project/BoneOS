@@ -11,5 +11,6 @@
     #include "printk/printk.h"
     #include "sprintk/sprintk.h"
     #include "printck/printck.h"
+    #include "scank/scank.h"
 
 #endif /*_LIBC_STDIO_H_*/
