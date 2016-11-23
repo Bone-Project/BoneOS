@@ -48,6 +48,7 @@ QEMU := qemu-system-i386
 PYTHON := python
 VB := virtualbox
 VBM := VBoxManage
+GDB := gdb
 
 # Architecture
 ARCH_FAMILY_S = "x86"
@@ -62,7 +63,7 @@ INCDIRS := $(BUILDROOT)/include \
 # Parameters
 LDPARAMS := -melf_i386
 CFLAGS := \
-	-O2 -g -Wall -Wextra -Wpedantic -Werror -g \
+	-O2 -g -Wall -Wextra -Wpedantic -g \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
@@ -158,6 +159,13 @@ get-toolchain:
 
 gdb_q: $(BONEOS_BIN)
 	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -s -S
+
+debug_q:
+	$(GDB) --symbols=$(BONEOS_BIN) --tui \
+		-iex 'set architecture i386:x86-64' \
+		-ex 'target remote localhost:1234' \
+		-ex 'layout regs' \
+		-ex 'set radix 16' \
 
 qemu_compile: $(BONEOS_BIN)
 	$(QEMU) -kernel $(BONEOS_BIN) -display sdl

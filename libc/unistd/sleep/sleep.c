@@ -31,7 +31,7 @@
 #include <drv/driver.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
-
+#include <libc/assertk.h>
 
 
 void sleep(uint32_t seconds)

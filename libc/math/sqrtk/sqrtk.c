@@ -22,6 +22,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <libc/string/string.h>
 
 /*
  * @function sqrtk:
@@ -47,7 +48,7 @@ float sqrtk(float n)
 
    x2 = n * 0.5F;
    y  = n;
-   i  = * ( long * ) &y;                     
+   i = *(long*)&y;
    i  = 0x5f3759df - ( i >> 1 );
    y  = * ( float * ) &i;
    y  = y * ( threehalfs - ( x2 * y * y ) );
