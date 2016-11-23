@@ -1,0 +1,8 @@
+language: c
+script: make
+
+# safelist
+branches:
+  only:
+  - travisci
+
