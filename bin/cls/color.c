@@ -23,36 +23,23 @@
 
 #include <misc/status_codes.h>
 #include <term/terminal.h>
-#include <cls/color.h>
 
-struct cmd_opt* cmd_cls_opts[] = 
+int cmd_cls_color_handler()
 {
-  &cmd_cls_opt_color,
-  0
-};
-
-int cmd_cls_default_handler()
-{
-    return STATUS_OK;
+  return STATUS_OK;
 }
 
-struct cmd cmd_cls = 
+struct cmd_opt cmd_cls_opt_color = 
 {
-  .command_name = "cls",
-  .usage = "cls [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
-  .help = "cls(1) \t BoneOS Terminal Manual \n "
+    .help = "cls 1) \t BoneOS Terminal Manual \n "
                 "NAME : \n"
-                "\tcls\n"
+                "\tcls --color\n"
                 "SYNOPSIS : \n "
-                "\tcls [--help]  [--color <fg-color> <bg-color>] [--color <--help>] "
-                "DESCRIPTION : \n "
-                "\tClears the terminal. Possible to specifiy the"
-                "\tcolor with the --color command and providing it "
-                "\ta Foreground as well as a Background Color" ,   
-  .cmd_opts =  cmd_cls_opts,
-  .handler = &cmd_cls_default_handler                     
-};
+                "\tcls  [--color <fg-color> <bg-color>] [--color <--help>] "
+                "DESCRIPTON : \n "
+                "\tClears the terminal with accordance to the "
+                "\tspecified foregroud and background colors. " ,      
 
-void cls_init()
-{
-}
+        .cmd_opt_name = "--color" ,
+        .handler = &cmd_cls_color_handler
+};

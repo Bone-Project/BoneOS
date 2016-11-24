@@ -1,7 +1,8 @@
 BUILDROOT ?= ..
 
 CSRCS = \
-	cls/cls.c
+	cls/cls.c \
+	cls/color.c
 
 LIBNAME := bin
 

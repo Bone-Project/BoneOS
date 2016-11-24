@@ -5,6 +5,7 @@ struct cmd_opt
 {
   char* help;
   char* cmd_opt_name;
+  int(*handler)(void);
 };
 
 struct cmd
@@ -12,7 +13,8 @@ struct cmd
   char* command_name;
   char*  usage;
   char*  help;
-  struct cmd_opt* cmd_opts[];
+  struct cmd_opt** cmd_opts;
+  int(*handler)(void);
 };
 
 struct typed_cmd
