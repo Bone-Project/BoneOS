@@ -4,8 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-extern int scank(const char *fmt, bool print, ...);
-extern void vscank(const char *fmt, bool print , va_list arg);
+extern int scank(bool print, const char *fmt, ...);
+extern void vscank(bool print ,const char *fmt, va_list arg);
 
 extern volatile uint32_t index_scank;
 extern volatile bool active_scank;

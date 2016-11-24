@@ -53,7 +53,7 @@ void loop_terminal()
   while(1)
   {
         printk("%s %s $ " , VAR_USER, VAR_PWD);
-        scank("%s" , true, cmd_active.value);
+        scank(true, "%s" , cmd_active.value);
         printk("TYPED : %s \n" , cmd_active.value);
   }
 }

@@ -43,7 +43,7 @@ void term_zero()
  * @function cls:
  *    Function for clearing
  *    the screen in normal text
- *    mode 32bit VGA.
+ *    mode 80x25 VGA.
  */
 
 void cls()    
