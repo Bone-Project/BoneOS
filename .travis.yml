@@ -5,7 +5,7 @@ script: CC=gcc-5 make
 branches:
   only:
   - master
-  - amanuel_progress_kbd
+  - terminal
 
 env:
   - CC=gcc-5
