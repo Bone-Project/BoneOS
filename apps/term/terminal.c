@@ -25,14 +25,28 @@
 #include <term/values.h>
 #include <cls/cls.h>
 #include <stdio/stdio.h>
+#include <drv/video/VGA/textmode/80x25/cls.h>
 
-struct cmd *commands[] = 
-{
-  &cmd_cls
-  ,0
-};
+// struct cmd *commands[] = 
+// {
+//   &cmd_cls
+//   ,0
+// };
 
 struct typed_cmd cmd_active;
+
+void logo()
+{
+    cls();
+    printk("*********** ********** *      * *******      **********  *********\n");
+    printk("*         * *        * * *    * *            *        *  *\n");
+    printk("*         * *        * *  *   * *            *        *  *\n");
+    printk("*   ******* *        * *   *  * *******      *        *  *********\n");
+    printk("*         * *        * *    * * *            *        *          *\n");
+    printk("*         * *        * *     ** *            *        *          *\n");
+    printk("*********** ********** *      * *******      **********  *********\n");
+}
+
 
 void loop_terminal()
 {
@@ -46,6 +60,7 @@ void loop_terminal()
 
 void init_terminal()
 {
+  logo();
   printck(0x5,0x3,"BoneOS Terminal\n");
   loop_terminal();
 }
