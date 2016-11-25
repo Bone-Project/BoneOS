@@ -25,8 +25,5 @@ bochslog.txt
 #Makefile Custom Caches
 Makefile.cached.CROSSROOT
 
-# Staging area for building bootable iso
-boot/
-
 #Travis Log Files
 travis.log
