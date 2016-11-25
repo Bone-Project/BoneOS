@@ -3,7 +3,8 @@
 | Branch | Status                                                                                                                                               |
 | ------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Master | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master)](https://travis-ci.org/Bone-Project/BoneOS)                        |
-|    Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_progress_kbd)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
+|  Amanuel Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
+|  Doug Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=doug_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
 
 ### [BoneOS Meta](https://meta.boneos.org/)
 

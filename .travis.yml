@@ -5,7 +5,8 @@ script: CC=gcc-5 make
 branches:
   only:
   - master
-  - terminal
+  - amanuel_dev
+  - doug_dev
 
 env:
   - CC=gcc-5
