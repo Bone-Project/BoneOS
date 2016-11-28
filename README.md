@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Bone-Project/BoneOS.png?label=ready&title=Ready)](https://waffle.io/Bone-Project/BoneOS)
 # [BoneOS](https://BoneOS.org)
 
 | Branch | Status                                                                                                                                               |
