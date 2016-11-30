@@ -2,5 +2,6 @@
 #define _MISC_STATUSCODES_H_
 
 #define STATUS_OK 0
+#define STATUS_VERSION_NA 0x2F
 
 #endif /*_MISC_STATUSCODES_H_*/

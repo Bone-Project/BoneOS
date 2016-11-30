@@ -27,13 +27,15 @@
 #include <drv/pit/pit.h>
 #include <drv/video/video.h>
 #include <drv/ps2/kbd/kbd.h>
+#include <misc/status_codes.h>
 
 //Timer Driver Handler
 struct device_driver pit_driver = 
 {
    .name = "8253 Programmable Interval Timer",
    .init = &init_pit,
-   .uninit = &uninit_pit
+   .uninit = &uninit_pit,
+   .version = "8253"
 };
 
 //Keyboard Driver Handler
@@ -42,12 +44,14 @@ struct device_driver kbd_driver =
    .name = "8042 Keyboard PS/2 Driver",
    .init = &init_kbd,
    .uninit = &uninit_kbd,
+   .version = "8042"
 };
 
 //Video Driver Handler
 struct device_driver video_driver = 
 {
   .name = "Video Driver",
+  .version = "STATUS_VERSION_NA"
 };
 
 //All Drivers 
