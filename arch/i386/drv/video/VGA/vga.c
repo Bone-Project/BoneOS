@@ -31,14 +31,12 @@ struct video_driver vga_driver =
 {
    #if VIDEO_MODE == TEXTMODE
     .mode = TEXT_MODE,
-    .putch = &putch_vga_80_x_25,
     .put_pixel = 0,
   #endif
      .res.w = ACTIVE_RES_W,
      .res.h = ACTIVE_RES_H,
      .init =  &init_vga_driver,
      .uninit = &uninit_vga_driver,
-     .name = "VGA_TEXTMODE_80_x_25"
 };
 
 void set_mode_util(putch_t putch_v, put_pixel_t put_pixel_v)
@@ -55,8 +53,11 @@ int uninit_vga_driver()
 
 int init_vga_driver()
 {
-     #if VIDEO_MODE == TEXTMODE
-        set_mode_util(putch_vga_80_x_25,0);
+     #if VIDEO_MODE == TEXTMODE && ACTIVE_RES_W == 80 && ACTIVE_RES_H == 25
+     
+        set_mode_util(vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->putch,0);
+        vga_driver.name = vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->name;
+        
      #endif
      return STATUS_OK;   
 }

@@ -37,7 +37,7 @@ struct typed_cmd cmd_active;
 
 void logo()
 {
-    cls();
+    cls_vga_80_x_25();
     printk("*********** ********** *      * *******      **********  *********\n");
     printk("*         * *        * * *    * *            *        *  *\n");
     printk("*         * *        * *  *   * *            *        *  *\n");

@@ -64,6 +64,8 @@ void setup_driver_handler()
 {
   pit_driver.initalized = initalized_pit;
   kbd_driver.initalized = initalized_ps2_kbd;
+  
+  /*Initalize and Uninitalize functions for Video Driver*/
   video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
   video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
 }

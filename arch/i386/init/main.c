@@ -82,7 +82,7 @@ void crash_me()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-   cls();
+   cls_vga_80_x_25();
    init_gdt();
    init_idt();
    init_isr();

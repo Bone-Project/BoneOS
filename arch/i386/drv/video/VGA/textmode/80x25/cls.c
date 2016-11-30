@@ -46,7 +46,8 @@ void term_zero()
  *    mode 80x25 VGA.
  */
 
-void cls()    
+
+void cls_vga_80_x_25()    
 {
   term_zero();
   char buf[80*25+1];
