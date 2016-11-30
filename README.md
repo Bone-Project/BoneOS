@@ -70,7 +70,23 @@ Our firectory structure currently is as follows:
 - ***utils***: Utilities for users.
    - ***cross_compiler***: Script for installing the cross compiler
 - ***include***: All Include Files(.h).
-   
+
+FAQ
+---
+
+1) What is BoneOS Goal?
+ Our goal is to make an Operating System for 'Everyone'. Ranging from Programmers
+ to Normal Users. We dont believe the "OS Problem" is solved by either Popular
+ Operating Systems such as Windows, Mac OSX or even kernels such as Linux.
+
+2) Any new features?
+ We have some ideas in mind. But it will be a long way until we start adding
+ new feautres, as we are just starting in the osdev world :).
+
+3) Need Help?
+ Absolutely! Any help would be appreciated! To get to us, either request an
+ issue or check ask a question in meta : https://meta.boneos.org
+
 License
 ---
 
