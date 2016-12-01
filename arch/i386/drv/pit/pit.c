@@ -32,6 +32,7 @@
 
 volatile uint32_t pit_ticks = 0;
 volatile bool initalized_pit = false;
+volatile bool status_pit = STATUS_DRIVER_OK;
 
 /*
  * @function send_pit_command: 

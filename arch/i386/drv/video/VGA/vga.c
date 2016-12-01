@@ -37,6 +37,7 @@ struct video_driver vga_driver =
      .res.h = ACTIVE_RES_H,
      .init =  &init_vga_driver,
      .uninit = &uninit_vga_driver,
+     .status = STATUS_DRIVER_OK
 };
 
 void set_mode_util(putch_t putch_v, put_pixel_t put_pixel_v)

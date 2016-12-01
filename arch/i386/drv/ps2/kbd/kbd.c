@@ -37,10 +37,12 @@
 #include <cpu/interrupts/irq.h>
 #include <drv/ps2/kbd/scancodes.h>
 #include <libc/stdio/scank/scank.h>
+#include <misc/status_codes.h>
 
 
 struct _kbd_info kbd_info;
 volatile bool initalized_ps2_kbd = false;
+volatile bool status_ps2_kbd;
 
 //On KeyPress Handler
 char key_press(uint8_t scancode)
@@ -66,8 +68,15 @@ void kbd_init_pointers()
     kbd_info.routines.tests.bat_test = &bat_test;
     kbd_info.tests.bat_test = (*kbd_info.routines.tests.bat_test)();
     //assertk(kbd_info.tests.bat_test);
+    
     if(!kbd_info.tests.bat_test)
-         printck(0x3,0x1,"BAT TEST FAILED");
+    {
+        status_ps2_kbd = STATUS_DRIVER_MALFUNCTION;
+        printck(0x3,0x1,"BAT TEST FAILED");
+    }
+    else
+        status_ps2_kbd = STATUS_DRIVER_OK;
+        
     kbd_info.routines.key_ev.key_press = &key_press;
     kbd_info.routines.key_ev.key_release = &key_release;
 

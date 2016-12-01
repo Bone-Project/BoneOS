@@ -44,6 +44,7 @@
 
 extern volatile uint32_t pit_ticks;
 extern volatile bool initalized_pit;
+extern volatile bool status_pit;
 
 extern int init_pit();
 extern int uninit_pit();

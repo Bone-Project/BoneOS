@@ -26,23 +26,23 @@
 #define KBD_CTRL_STATS_MASK_PARITY          0x80    //10000000
 
 /*ENCODER COMMANDS*/
-#define KBD_ENCODER_CMD_SET_LED                                                            0xED
-#define KBD_ENCODER_CMD_ECHO                                                                   0xEE
-#define KBD_ENCODER_CMD_SET_SCANCODE                                              0xF0
-#define KBD_ENCODER_CMD_SEND_ID                                                             0xF2
-#define KBD_ENCODER_CMD_SET_REPEAT_RATE                                        0xF3
-#define KBD_ENCODER_CMD_ENABLE_KBD                                                    0xF4
-#define KBD_ENCODER_CMD_RESET_WAIT_ENABLE                                   0xF5
-#define KBD_ENCODER_CMD_RESET_SCAN_KBD                                         0xF6
-#define KBD_ENCODER_PS2_CMD_SET_KEYS_AUTOREPEAT                   0xF7
-#define KBD_ENCODER_PS2_CMD_SEND_MAKE_BREAK_CODE              0xF8
-#define KBD_ENCODER_CMD_GEN_MAKE_CODES                                        0xF9
-#define KBD_ENCODER_CMD_SET_AUTOREPEAT_MAKE                             0xFA
-#define KBD_ENCODER_CMD_SINGLE_KEY_AUTOREPEAT                         0xFB
+#define KBD_ENCODER_CMD_SET_LED                       0xED
+#define KBD_ENCODER_CMD_ECHO                          0xEE
+#define KBD_ENCODER_CMD_SET_SCANCODE                  0xF0
+#define KBD_ENCODER_CMD_SEND_ID                       0xF2
+#define KBD_ENCODER_CMD_SET_REPEAT_RATE               0xF3
+#define KBD_ENCODER_CMD_ENABLE_KBD                    0xF4
+#define KBD_ENCODER_CMD_RESET_WAIT_ENABLE             0xF5
+#define KBD_ENCODER_CMD_RESET_SCAN_KBD                0xF6
+#define KBD_ENCODER_PS2_CMD_SET_KEYS_AUTOREPEAT       0xF7
+#define KBD_ENCODER_PS2_CMD_SEND_MAKE_BREAK_CODE      0xF8
+#define KBD_ENCODER_CMD_GEN_MAKE_CODES                0xF9
+#define KBD_ENCODER_CMD_SET_AUTOREPEAT_MAKE           0xFA
+#define KBD_ENCODER_CMD_SINGLE_KEY_AUTOREPEAT          0xFB
 #define KBD_ENCODER_CMD_SINGLE_KEY_GEN_MAKE_BREAK_CODE 0xFC
-#define KBD_ENCODER_CMD_SINGLE_KEY_GEN_BREAKCODE               0xFD
-#define KBD_ENCODER_CMD_SEND_LAST_RESULT                                    0xFE
-#define KBD_ENCODER_CMD_RESET_KBD_SST                                            0xFF
+#define KBD_ENCODER_CMD_SINGLE_KEY_GEN_BREAKCODE       0xFD
+#define KBD_ENCODER_CMD_SEND_LAST_RESULT               0xFE
+#define KBD_ENCODER_CMD_RESET_KBD_SST                  0xFF
 
 
 /*CTRL COMMANDS*/
@@ -131,5 +131,6 @@ _kbd_info
 
 extern struct _kbd_info kbd_info;
 extern volatile bool initalized_ps2_kbd;
+extern volatile bool status_ps2_kbd;
 
 #endif

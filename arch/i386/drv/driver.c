@@ -28,6 +28,7 @@
 #include <drv/video/video.h>
 #include <drv/ps2/kbd/kbd.h>
 #include <misc/status_codes.h>
+#include <assertk.h>
 
 //Timer Driver Handler
 struct device_driver pit_driver = 
@@ -66,12 +67,18 @@ struct device_driver *drivers[] =
 //Sets Up Device Driver Handler
 void setup_driver_handler()
 {
+  assertdokm(status_pit,"PIT MALFUNCTION");
+  assertdokm(status_ps2_kbd,"PS2/KBD MALFUNCTION");
+  assertdokm(video_drivers[VGA_VIDEO_DRIVER_INDEX]->status,"Video Driver MALFUNCTION");
   pit_driver.initalized = initalized_pit;
+  pit_driver.status = status_pit;
   kbd_driver.initalized = initalized_ps2_kbd;
+  kbd_driver.status = status_ps2_kbd;
   
   /*Initalize and Uninitalize functions for Video Driver*/
   video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
   video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
+  video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
 }
 
 //check if device is initalized
