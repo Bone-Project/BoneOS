@@ -83,7 +83,7 @@ extern bool led_light(bool scroll, bool num, bool caps);
 #endif
 
 struct
-_kbd_info
+kbd_info_t
 {
     struct 
     {
@@ -129,7 +129,7 @@ _kbd_info
     
 };
 
-extern struct _kbd_info kbd_info;
+extern struct kbd_info_t kbd_info;
 extern volatile bool initalized_ps2_kbd;
 extern volatile bool status_ps2_kbd;
 

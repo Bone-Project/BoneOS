@@ -27,7 +27,7 @@
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/80x25/putch/putch.h>
 
-struct video_driver vga_driver = 
+struct video_driver_t vga_driver = 
 {
    #if VIDEO_MODE == TEXTMODE
     .mode = TEXT_MODE,

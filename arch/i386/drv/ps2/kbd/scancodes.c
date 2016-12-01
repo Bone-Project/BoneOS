@@ -25,7 +25,7 @@
 #include <drv/ps2/kbd/kbd.h>
 
 //QWERTY_USA LAYOUT
-struct kbd_layout QWERTY_USA = 
+struct kbd_layout_t QWERTY_USA = 
 {
   .scancode_shift = QWERTY_USA_SHIFT_VAL,
   .scancode_no_shift = QWERTY_USA_NOSHIFT_VAL,
@@ -35,7 +35,7 @@ struct kbd_layout QWERTY_USA =
 
 
 //All Keyboard Layouts
-struct kbd_layout *kbd_layouts[] = 
+struct kbd_layout_t *kbd_layouts[] = 
 {
     &QWERTY_USA,
     0

@@ -27,7 +27,7 @@ typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
  *      running
  */
 
-struct video_driver
+struct video_driver_t
 {
   enum
   {
@@ -49,6 +49,6 @@ struct video_driver
   const char* name;
 };
 
-extern struct video_driver *video_drivers[];
+extern struct video_driver_t *video_drivers[];
 
 #endif /*ARCH_DRV_VIDEO_H_*/

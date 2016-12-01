@@ -64,7 +64,12 @@ struct device_driver *drivers[] =
     0
 };
 
-//Sets Up Device Driver Handler
+/*
+ * @function setup_driver_handler:
+ *    First called (initalizer) before
+ *    using device driver handler.
+ *    Initalizes values for drivers.
+ */
 void setup_driver_handler()
 {
   assertdokm(status_pit,"PIT MALFUNCTION");
@@ -87,7 +92,7 @@ bool device_initalized(int index)
   return (drivers[index]->initalized);
 }
 
-//Initalize device driver
+//initalize device driver
 int init_device_driver(uint32_t index)
 {
   drivers[index]->init();
@@ -101,7 +106,7 @@ int uninit_device_driver(uint32_t index)
   return 0;
 }
 
-//inialize all device drivers
+//initalize all device drivers
 int init_all_drivers()
 {
   for(uint32_t i=0; drivers[i]; i++)

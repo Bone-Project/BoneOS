@@ -40,11 +40,22 @@
 #include <misc/status_codes.h>
 
 
-struct _kbd_info kbd_info;
+struct kbd_info_t kbd_info;
 volatile bool initalized_ps2_kbd = false;
 volatile bool status_ps2_kbd;
 
-//On KeyPress Handler
+/*
+ * @function key_press:
+ *     Nested Function under
+ *     @kbd_handler , and called
+ *     if Key is pressed.
+ *
+ *     @param scancode:
+ *          Scancode in HEX Format.
+ *     @return char:
+ *          Returns character from that
+ *          scancode in HEX Format.
+ */
 char key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift == true)
@@ -53,7 +64,15 @@ char key_press(uint8_t scancode)
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
 }
 
-//On Key Release Handler
+/*
+ * @function key_release:
+ *     Nested Function under
+ *     @kbd_handler , and called
+ *     if Key is released.
+ *
+ *     @param scancode:
+ *          Scancode in HEX Format.
+ */
 void key_release(uint8_t scancode)
 {
    if(kbd_info.kbd_enc_info == KBD_QWERTY_LEFT_SHIFT_RELEASE ||
@@ -61,13 +80,16 @@ void key_release(uint8_t scancode)
           kbd_info.is_shift = false;
 }
 
-//Initalize stuff before initalizing the keyboard
+/*
+ * @function kbd_init_pointers:
+ *      Stuff to initalize
+ *      before installing
+ *      the PS/2 Keyboard
+ */
 void kbd_init_pointers()
 {
-    /*Initalize Function Pointers*/
     kbd_info.routines.tests.bat_test = &bat_test;
     kbd_info.tests.bat_test = (*kbd_info.routines.tests.bat_test)();
-    //assertk(kbd_info.tests.bat_test);
     
     if(!kbd_info.tests.bat_test)
     {
@@ -87,52 +109,64 @@ void kbd_init_pointers()
     active_scank = false;
     print_scank = false;
 
-   kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
+    kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
 }
 
-//Wait until enter utility
-//for stuff like scank
+/*
+ * @utility wait_until_enter
+ *      Utility for Scank , to
+ *      wait and store string 
+ *      until enter is pressed
+ */
 void wait_until_enter(char key)
 {
     buffer_scank[index_scank++] = key;
     buffer_scank[index_scank] = 0;
 }
 
-//Second Generic key handler called when
-//key pressed
+/*
+ * @function key_handler:
+ *      Handles key events. 
+ *      called by primary
+ *      keyborad handler 
+ *      @kbd_handler.
+ *      
+ */
 void key_handler()
 {
-   if( (((char)kbd_info.key) == '6') || (((char)kbd_info.key) == '8') )
-    {
+   if((((char)kbd_info.key) == '6') || 
+   (((char)kbd_info.key) == '8'))
+   {
         if(kbd_info.is_caps == false && print_scank == true)
-            printk("%c", kbd_info.key);
-         else if(kbd_info.is_caps == true && print_scank == true)
-            printk("%c", toupper(kbd_info.key)); 
+         printk("%c", kbd_info.key);
+        else if(kbd_info.is_caps == true && print_scank == true)
+         printk("%c", toupper(kbd_info.key)); 
 
-          if(active_scank == true)
-              wait_until_enter(kbd_info.key);
-           return; 
-    }
+         if(active_scank == true)
+             wait_until_enter(kbd_info.key);
+          return; 
+   }
+   
    switch(kbd_info.key)
    {
-    case KBD_QWERTY_LEFT_SHIFT_PRESS:
-    case KBD_QWERTY_RIGHT_SHIFT_PRESS:
-      kbd_info.is_shift = true;
-      break; 
-    case KBD_QWERTY_CAPS_PRESS:
-       led_light(false,false,true);
+     case KBD_QWERTY_LEFT_SHIFT_PRESS:
+     case KBD_QWERTY_RIGHT_SHIFT_PRESS:
+       kbd_info.is_shift = true;
+       break; 
+     case KBD_QWERTY_CAPS_PRESS:
+        led_light(false,false,true);
         if(kbd_info.is_caps == true)
           kbd_info.is_caps = false;
         else
            kbd_info.is_caps = true;
-      break;  
-      case KBD_QWERTY_ENTER_PRESS:
+        break;  
+     case KBD_QWERTY_ENTER_PRESS:
         kbd_info.is_enter = true;
         active_scank = false;
         buffer_scank[index_scank] = 0;
         if(print_scank == true) printk("\n");
         break;
-    case '\t':
+     case '\t':
          if(print_scank == true)  printk("\t");
          break;
      case '\b':
@@ -140,10 +174,10 @@ void key_handler()
           buffer_scank[index_scank--] = 0;
          if(print_scank == true) printk("\b");
          break;
-    case '\n' :
+     case '\n' :
          if(print_scank == true) printk("\n");
          break;
-    default:
+     default:
          if(kbd_info.is_caps == false && print_scank == true)
             printk("%c", kbd_info.key);
          else if(kbd_info.is_caps == true && print_scank == true)
@@ -155,7 +189,16 @@ void key_handler()
    }
 }
 
-//Keyboard Primary Handler
+
+/*
+ * @function kbd_handler:
+ *      Primary Keyboard Handler
+ *      called by the IRQ Handler.
+ *      
+ *      @param int_regs *r:
+ *          Info about Registers
+ *          during IRQ Request
+ */
 void kbd_handler(int_regs *r)
 {
   kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
@@ -168,7 +211,15 @@ void kbd_handler(int_regs *r)
     }
 }
 
-//Initalize Keyboard
+/*
+ * @function init_kbd:
+ *      Initalize the Keyboard
+ *      PS/2 Driver
+ *            
+ *      @return {STATUS}:
+ *          returns STATUS_OK 
+ *          if sucessfully exited.
+ */
 int init_kbd()
 {
   initalized_ps2_kbd = true;
@@ -177,7 +228,15 @@ int init_kbd()
   return STATUS_OK;
 }
 
-//Uninstall Keyboard
+/*
+ * @function uninit_kbd:
+ *      Uninitalize the Keyboard
+ *      PS/2 Driver
+ *            
+ *      @return {STATUS}:
+ *          returns STATUS_OK 
+ *          if sucessfully exited.
+ */
 int uninit_kbd()
 {
   initalized_ps2_kbd = false;
