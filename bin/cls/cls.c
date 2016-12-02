@@ -24,21 +24,25 @@
 #include <misc/status_codes.h>
 #include <term/terminal.h>
 #include <cls/color.h>
+#include <drv/video/VGA/vga.h>
+#include <stdio/stdio.h>
+#include <drv/video/video.h>
 
-struct cmd_opt* cmd_cls_opts[] = 
+struct cmd_opt_t* cmd_cls_opts[] = 
 {
   &cmd_cls_opt_color,
   0
 };
 
-int cmd_cls_default_handler()
+int cmd_cls_handler(char* cmd)
 {
-    return STATUS_OK;
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->cls();
+   return STATUS_OK;
 }
 
-struct cmd cmd_cls = 
+struct cmd_t cmd_cls = 
 {
-  .command_name = "cls",
+  .name = "cls",
   .usage = "cls [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
   .help = "cls(1) \t BoneOS Terminal Manual \n "
                 "NAME : \n"
@@ -50,9 +54,5 @@ struct cmd cmd_cls =
                 "\tcolor with the --color command and providing it "
                 "\ta Foreground as well as a Background Color" ,   
   .cmd_opts =  cmd_cls_opts,
-  .handler = &cmd_cls_default_handler                     
+  .handler = &cmd_cls_handler                     
 };
-
-void cls_init()
-{
-}

@@ -6,6 +6,7 @@ CSRCS = \
 	string/strcpy/strcpy.c \
 	string/memset/memset.c \
 	string/strcat/strcat.c \
+	string/strcmp/strcmp.c \
 	stdio/printck/printck.c \
 	stdlib/itoa/itoa.c \
 	stdlib/atoi/atoi.c \

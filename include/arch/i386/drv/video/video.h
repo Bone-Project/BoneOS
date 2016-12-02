@@ -5,8 +5,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-typedef void(*putch_t)(char c);
-typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
 
 #define VIDEO_DRIVER_ACTIVE VGA
 #define VIDEO_DRIVER_RES_W_ACTIVE 80
@@ -16,6 +14,12 @@ typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
 #if VIDEO_DRIVER_ACTIVE == VGA
   #include <drv/video/VGA/vga.h>
 #endif
+
+
+
+typedef void(*cls_t)(void);
+typedef void(*putch_t)(char c);
+typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
 
 
 /*
@@ -37,6 +41,7 @@ struct video_driver_t
 
   int(*init)(void);
   int(*uninit)(void);
+  void(*cls)(void);
   void(*putch)(char c);
   void(*put_pixel)(int32_t x, int32_t y,  rgb_t rgb);
 

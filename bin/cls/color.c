@@ -29,7 +29,7 @@ int cmd_cls_color_handler()
   return STATUS_OK;
 }
 
-struct cmd_opt cmd_cls_opt_color = 
+struct cmd_opt_t cmd_cls_opt_color = 
 {
     .help = "cls 1) \t BoneOS Terminal Manual \n "
                 "NAME : \n"

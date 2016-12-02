@@ -75,7 +75,8 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/arch/$(ARCH) \
     $(BUILDROOT)/include/apps \
     $(BUILDROOT)/include/bin \
-    $(BUILDROOT)/include/libc
+    $(BUILDROOT)/include/libc \
+    $(BUILDROOT)/include/libc/string
 
 # Parameters
 LDPARAMS := -melf_i386
