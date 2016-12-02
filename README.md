@@ -38,6 +38,11 @@ There are two ways to install BoneOS: one for the normal user to get it into his
 
  First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `sh setup.sh`. Then compile BoneOS using `make`. Now that you have qemu after you executed `setup.sh` , you can go ahead and run on qemu using `make qemu_compile` for running the binary or `make qemu_iso` to run the actual Image File(.ISO).
  
+#### Cloud9 Collaboration (For Developer) 
+ 
+ You can collaborate with the Main BoneOS Developer in Cloud9. Cloud9 Is an Online IDE , with an Ubuntu Terminal. We use Cloud9IDE Terminal + NoVNC to make this possible.
+ the workspace is located [here](https://ide.c9.io/amanuel2/javaliu) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
+ 
 #### Extra Options (For Developer)
 
  There are extra options when building(`make`ing) , this OS. You can set the compiler instead of the default

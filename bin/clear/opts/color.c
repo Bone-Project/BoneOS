@@ -26,6 +26,7 @@
 
 int cmd_clear_color_handler()
 {
+  
   return STATUS_OK;
 }
 
