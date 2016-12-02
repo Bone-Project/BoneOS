@@ -23,36 +23,23 @@
 
 #include <misc/status_codes.h>
 #include <term/terminal.h>
-#include <cls/color.h>
-#include <drv/video/VGA/vga.h>
-#include <stdio/stdio.h>
-#include <drv/video/video.h>
 
-struct cmd_opt_t* cmd_cls_opts[] = 
+int cmd_clear_color_handler()
 {
-  &cmd_cls_opt_color,
-  0
-};
-
-int cmd_cls_handler(char* cmd)
-{
-   video_drivers[VGA_VIDEO_DRIVER_INDEX]->cls();
-   return STATUS_OK;
+  return STATUS_OK;
 }
 
-struct cmd_t cmd_cls = 
+struct cmd_opt_t cmd_clear_opt_color = 
 {
-  .name = "cls",
-  .usage = "cls [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
-  .help = "cls(1) \t BoneOS Terminal Manual \n "
+    .help = "clear 1) \t BoneOS Terminal Manual \n "
                 "NAME : \n"
-                "\tcls\n"
+                "\tclear --color\n"
                 "SYNOPSIS : \n "
-                "\tcls [--help]  [--color <fg-color> <bg-color>] [--color <--help>] "
-                "DESCRIPTION : \n "
-                "\tClears the terminal. Possible to specifiy the"
-                "\tcolor with the --color command and providing it "
-                "\ta Foreground as well as a Background Color" ,   
-  .cmd_opts =  cmd_cls_opts,
-  .handler = &cmd_cls_handler                     
+                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] "
+                "DESCRIPTON : \n "
+                "\tClears the terminal with accordance to the "
+                "\tspecified foregroud and background colors. " ,      
+
+        .cmd_opt_name = "--color" ,
+        .handler = &cmd_clear_color_handler
 };

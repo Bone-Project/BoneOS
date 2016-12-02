@@ -35,7 +35,6 @@
   #include <cpu/interrupts/irq.h>
 #undef KERNEL_CALL
 #include <libc/string/string.h>
-#include <drv/video/VGA/textmode/80x25/cls.h>
 #include <drv/pit/pit.h>
 #include <drv/ps2/kbd/kbd.h>
 #include <libc/math/math.h>
@@ -45,6 +44,7 @@
 #include <libc/stdio/scank/scank.h>
 #include <drv/driver.h>
 #include <term/terminal.h>
+#include <drv/video/video.h>
 
 
 /*
@@ -82,7 +82,6 @@ void crash_me()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-   cls_vga_80_x_25();
    init_gdt();
    init_idt();
    init_isr();
@@ -91,7 +90,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_all_drivers();
    sti();
 
-   //drivers[VIDEO_DRIVER_INDEX]->uninit();
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
    init_terminal();
 
    while(1)

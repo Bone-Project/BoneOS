@@ -22,6 +22,9 @@ struct typed_cmd
   char* value;
 };
 
+#define CMD_CLEAR_INDEX 0
+#define CMD_BONEOS_LOGO_INDEX 1
+
 extern void init_terminal();
 
 #endif /*_APPS_TERM_TERMINAL_H_*/

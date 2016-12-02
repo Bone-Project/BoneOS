@@ -8,7 +8,7 @@ struct
 {
   int w;
   int h;
-  void(*cls)(void);
+  void(*clear)(void);
   void(*putch)(char c);
   char* name;
 }vga_textmode_t;

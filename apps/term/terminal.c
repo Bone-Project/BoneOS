@@ -23,10 +23,9 @@
 
 #include <term/terminal.h>
 #include <term/values.h>
-#include <cls/cls.h>
+#include <clear/clear.h>
 #include <boneos_logo/boneos_logo.h>
 #include <stdio/stdio.h>
-#include <drv/video/VGA/textmode/80x25/cls.h>
 #include <drv/video/VGA/vga.h>
 #include <strcmp/strcmp.h>
 #include <drv/video/video.h>
@@ -48,7 +47,7 @@ void logo()
 
 struct cmd_t *cmds[] = 
 {
-  &cmd_cls,
+  &cmd_clear,
   &cmd_boneos_logo
   ,0
 };
@@ -77,7 +76,7 @@ void loop_terminal()
 
 void init_terminal()
 {
-  logo();
+  cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   printck(0x5,0x3,"BoneOS Terminal\n");
   loop_terminal();
 }

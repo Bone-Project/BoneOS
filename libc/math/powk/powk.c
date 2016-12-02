@@ -43,11 +43,9 @@
 
 int powk(int x, uint32_t y)
 {
-    if( y == 0)
-        return 1;
-    else if (y%2 == 0)
-        return powk(x, y/2)*powk(x, y/2);
-    else
-        return x*powk(x, y/2)*powk(x, y/2);
-
+  if(y==0) return 1;
+  int answer=1;
+    for(uint32_t i=0; i<y; i++)
+      answer = answer * x;
+  return answer;    
 }
