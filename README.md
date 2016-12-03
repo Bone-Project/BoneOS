@@ -9,7 +9,7 @@
 
 [![Stories in Ready](https://badge.waffle.io/Bone-Project/BoneOS.png?label=ready&title=Ready)](https://waffle.io/Bone-Project/BoneOS) 
 [![Join the chat at https://gitter.im/amanuel2/BoneOS](https://badges.gitter.im/amanuel2/BoneOS.svg)](https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-![Badge](https://slack.boneos.org/badge.svg)
+[![Badge](https://slack.boneos.org/badge.svg)](https://slack.boneos.org)
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 
