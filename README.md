@@ -8,8 +8,8 @@
 |  Doug Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=doug_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
 
 [![Stories in Ready](https://badge.waffle.io/Bone-Project/BoneOS.png?label=ready&title=Ready)](https://waffle.io/Bone-Project/BoneOS) 
-[![Join the chat at https://gitter.im/amanuel2/BoneOS](https://badges.gitter.im/amanuel2/BoneOS.svg)](https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Join The chat](https://cldup.com/jWUT4QFLnq.png)](https://BoneOS.slack.com)
+[![Join the chat at https://gitter.im/amanuel2/BoneOS](https://badges.gitter.im/amanuel2/BoneOS.svg)](https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+![Badge](https://slack.boneos.org/badge.svg)
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 
