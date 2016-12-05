@@ -1,8 +1,9 @@
 BUILDROOT ?= ..
 
 CSRCS = \
-	cls/cls.c \
-	cls/color.c
+	clear/clear.c \
+	clear/opts/color.c \
+	boneos_logo/boneos_logo.c
 
 LIBNAME := bin
 

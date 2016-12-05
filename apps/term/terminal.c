@@ -23,21 +23,19 @@
 
 #include <term/terminal.h>
 #include <term/values.h>
-#include <cls/cls.h>
+#include <clear/clear.h>
+#include <boneos_logo/boneos_logo.h>
 #include <stdio/stdio.h>
-#include <drv/video/VGA/textmode/80x25/cls.h>
+#include <drv/video/VGA/vga.h>
+#include <strcmp/strcmp.h>
+#include <drv/video/video.h>
 
-// struct cmd *commands[] = 
-// {
-//   &cmd_cls
-//   ,0
-// };
 
 struct typed_cmd cmd_active;
 
+
 void logo()
 {
-    cls();
     printk("*********** ********** *      * *******      **********  *********\n");
     printk("*         * *        * * *    * *            *        *  *\n");
     printk("*         * *        * *  *   * *            *        *  *\n");
@@ -47,20 +45,38 @@ void logo()
     printk("*********** ********** *      * *******      **********  *********\n");
 }
 
+struct cmd_t *cmds[] = 
+{
+  &cmd_clear,
+  &cmd_boneos_logo
+  ,0
+};
+
+int termcmp(const char* cmd, const char* value)
+{
+  for(int i=0; value[i]; i++)
+    if(value[i] != cmd[i])
+      return 1;
+  return 0;    
+}
+
 
 void loop_terminal()
 {
   while(1)
   {
-        printk("%s %s $ " , VAR_USER, VAR_PWD);
-        scank(true, "%s" , cmd_active.value);
-        printk("TYPED : %s \n" , cmd_active.value);
+    printk("%s %s $ " , VAR_USER, VAR_PWD);
+    scank(true, "%s" , cmd_active.value);
+        
+    for(int i=0; cmds[i]; i++)
+      if(termcmp(cmds[i]->name, cmd_active.value)==0)
+        cmds[i]->handler(cmd_active.value);    
   }
 }
 
 void init_terminal()
 {
-  logo();
+  cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   printck(0x5,0x3,"BoneOS Terminal\n");
   loop_terminal();
 }

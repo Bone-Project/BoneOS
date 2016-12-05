@@ -6,6 +6,9 @@
 #include "strcpy/strcpy.h"
 #include "strlen/strlen.h"
 #include "strcat/strcat.h"
+#include "strcmp/strcmp.h"
+#include "eat_front_whitespace/eat_front_whitespace.h"
+#include "validate_char/validate_char.h"
 
 
 #endif /*_LIBC_STRING_H_*/

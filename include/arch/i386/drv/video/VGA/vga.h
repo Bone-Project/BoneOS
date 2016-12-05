@@ -14,6 +14,6 @@ extern uint8_t BG; // Background - BLACK
 
 extern int uninit_vga_driver();
 extern int init_vga_driver();
-extern struct video_driver vga_driver;
+extern struct video_driver_t vga_driver;
 
 #endif /*VIDEO_DRIVER_MODE*/

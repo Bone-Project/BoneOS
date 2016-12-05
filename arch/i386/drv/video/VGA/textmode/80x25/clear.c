@@ -19,27 +19,40 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/ 
 
-#include <misc/status_codes.h>
-#include <term/terminal.h>
 
-int cmd_cls_color_handler()
+#include <drv/video/VGA/textmode/80x25/putch/putch.h>
+#include <libc/string/memset/memset.h>
+
+
+extern size_t terminal_column;
+extern size_t terminal_row;
+extern uint8_t FG; // Foreground - White
+extern uint8_t BG; // Background - BLACK 
+extern const size_t VGA_WIDTH;
+extern const size_t VGA_HEIGHT; 
+
+void term_zero()
 {
-  return STATUS_OK;
+  terminal_row=0;
+  terminal_column=0;
 }
 
-struct cmd_opt cmd_cls_opt_color = 
-{
-    .help = "cls 1) \t BoneOS Terminal Manual \n "
-                "NAME : \n"
-                "\tcls --color\n"
-                "SYNOPSIS : \n "
-                "\tcls  [--color <fg-color> <bg-color>] [--color <--help>] "
-                "DESCRIPTON : \n "
-                "\tClears the terminal with accordance to the "
-                "\tspecified foregroud and background colors. " ,      
+/*
+ * @function cls:
+ *    Function for clearing
+ *    the screen in normal text
+ *    mode 80x25 VGA.
+ */
 
-        .cmd_opt_name = "--color" ,
-        .handler = &cmd_cls_color_handler
-};
+
+void clear_vga_80_x_25()    
+{
+  term_zero();
+  char buf[80*25+1];
+  memset(buf, ' ', 80*25);
+  buf[80*25] = 0;
+  for(int i=0;buf[i];i++) putch_vga_80_x_25(buf[i]);
+  term_zero();
+}

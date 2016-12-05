@@ -2,6 +2,6 @@
 #define _ARCH_CPU_DRV_KBD_UTILS_H_
 #include <drv/ps2/kbd/kbd.h>
 
-extern struct _kbd_info kbd_info;
+extern struct kbd_info_t kbd_info;
 
 #endif  /*_ARCH_CPU_DRV_KBD_UTILS_H_*/

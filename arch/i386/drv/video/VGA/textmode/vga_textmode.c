@@ -22,6 +22,25 @@
  **/  
 
 #include <misc/status_codes.h>
+#include <drv/video/VGA/textmode/80x25/clear.h>
+#include <drv/video/VGA/textmode/80x25/putch/putch.h>
+#include <drv/video/VGA/textmode/vga_textmode.h>
+
+
+vga_textmode_t eightyXtwentyfive_v = 
+{
+  .w = 80,
+  .h = 25,
+  .clear = &clear_vga_80_x_25,
+  .putch = &putch_vga_80_x_25,
+  .name = "VGA_TEXTMODE_80_x_25"
+};
+
+vga_textmode_t *vga_textmodes_arr[] = 
+{
+  &eightyXtwentyfive_v,
+  0
+};
 
 int init_vga_textmode()
 {

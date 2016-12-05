@@ -19,39 +19,28 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
+ **/  
 
+#include <misc/status_codes.h>
+#include <term/terminal.h>
 
-#include <drv/video/VGA/textmode/80x25/putch/putch.h>
-#include <libc/string/memset/memset.h>
-
-
-extern size_t terminal_column;
-extern size_t terminal_row;
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
-extern const size_t VGA_WIDTH;
-extern const size_t VGA_HEIGHT; 
-
-void term_zero()
+int cmd_clear_color_handler()
 {
-  terminal_row=0;
-  terminal_column=0;
+  
+  return STATUS_OK;
 }
 
-/*
- * @function cls:
- *    Function for clearing
- *    the screen in normal text
- *    mode 80x25 VGA.
- */
-
-void cls()    
+struct cmd_opt_t cmd_clear_opt_color = 
 {
-  term_zero();
-  char buf[80*25+1];
-  memset(buf, ' ', 80*25);
-  buf[80*25] = 0;
-  for(int i=0;buf[i];i++) putch_vga_80_x_25(buf[i]);
-  term_zero();
-}
+    .help = "clear 1) \t BoneOS Terminal Manual \n "
+                "NAME : \n"
+                "\tclear --color\n"
+                "SYNOPSIS : \n "
+                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] "
+                "DESCRIPTON : \n "
+                "\tClears the terminal with accordance to the "
+                "\tspecified foregroud and background colors. " ,      
+
+        .cmd_opt_name = "--color" ,
+        .handler = &cmd_clear_color_handler
+};

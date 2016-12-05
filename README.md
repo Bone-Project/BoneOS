@@ -10,7 +10,12 @@
 [![Stories in Ready](https://badge.waffle.io/Bone-Project/BoneOS.png?label=ready&title=Ready)](https://waffle.io/Bone-Project/BoneOS) 
 [![Join the chat at https://gitter.im/amanuel2/BoneOS](https://badges.gitter.im/amanuel2/BoneOS.svg)](https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Join The chat](https://slack.boneos.org/badge.svg)](https://BoneOS.slack.com)
+[![ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.com)
 
+[![badge_donation_bountysource](https://api.bountysource.com/badge/team?team_id=184475)](https://www.bountysource.com/teams/boneos)
+
+
+[![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
 
 
 
@@ -36,6 +41,11 @@ There are two ways to install BoneOS: one for the normal user to get it into his
 #### Building From Source (For developer)
 
  First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `sh setup.sh`. Then compile BoneOS using `make`. Now that you have qemu after you executed `setup.sh` , you can go ahead and run on qemu using `make qemu_compile` for running the binary or `make qemu_iso` to run the actual Image File(.ISO).
+ 
+#### Cloud9 Collaboration (For Developer) 
+ 
+ You can collaborate with the Main BoneOS Developer in Cloud9. Cloud9 Is an Online IDE , with an Ubuntu Terminal. We use Cloud9IDE Terminal + NoVNC to make this possible.
+ the workspace is located [here](https://ide.c9.io/amanuel2/javaliu) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
  
 #### Extra Options (For Developer)
 

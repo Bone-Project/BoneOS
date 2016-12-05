@@ -24,7 +24,7 @@
 #include <drv/video/video.h>
 #include <drv/video/VGA/vga.h>
 
-struct video_driver *video_drivers[] = 
+struct video_driver_t *video_drivers[] = 
 {
   &vga_driver,
   0

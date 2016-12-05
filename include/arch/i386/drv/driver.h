@@ -16,6 +16,8 @@ struct  device_driver
   int(*init) (void);
   int(*uninit)(void);
   volatile bool initalized;
+  uint16_t status;
+  char* version;
 };
 
 #define PIT_DRIVER_INDEX 0

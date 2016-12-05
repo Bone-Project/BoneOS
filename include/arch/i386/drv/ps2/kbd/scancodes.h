@@ -2,7 +2,7 @@
 #define _ARCH_CPU_DRV_KBD_SCANCODES_H_
 
 struct
-kbd_layout
+kbd_layout_t
 {
     char* name;
     char* country;
@@ -12,7 +12,7 @@ kbd_layout
 
 #define QWERTY_USA_INDEX 0
 
-extern struct kbd_layout *kbd_layouts[];
+extern struct kbd_layout_t *kbd_layouts[];
 extern char const QWERTY_USA_NOSHIFT_VAL[];
 extern char const QWERTY_USA_SHIFT_VAL[];
 
