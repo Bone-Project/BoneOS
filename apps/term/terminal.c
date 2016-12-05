@@ -42,7 +42,7 @@ struct cmd_t *cmds[] =
 
 int termcmp(const char* cmd, const char* value)
 {
-  for(int i=0; value[i]; i++)
+  for(int i=0; cmd[i]; i++)
     if(value[i] != cmd[i])
       return 1;
   return 0;    
@@ -55,6 +55,7 @@ void loop_terminal()
   {
     printk("%s %s $ " , VAR_USER, VAR_PWD);
     scank(true, "%s" , cmd_active.value);
+    
         
     for(int i=0; cmds[i]; i++)
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
