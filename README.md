@@ -12,6 +12,8 @@
 [![Badge](https://slack.boneos.org/badge.svg)](https://slack.boneos.org)
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
+[![badge_donation_bountysource](https://api.bountysource.com/badge/team?team_id=184475)](https://www.bountysource.com/teams/boneos)
+
 
 [![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
 
