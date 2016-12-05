@@ -47,6 +47,11 @@ There are two ways to install BoneOS: one for the normal user to get it into his
  You can collaborate with the Main BoneOS Developer in Cloud9. Cloud9 Is an Online IDE , with an Ubuntu Terminal. We use Cloud9IDE Terminal + NoVNC to make this possible.
  the workspace is located [here](https://ide.c9.io/amanuel2/javaliu) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
  
+ If you want to setup NoVNC And you are in an Cloud9IDE You can use the command 
+ ```sh
+ make no_vnc
+ ```
+ 
 #### Extra Options (For Developer)
 
  There are extra options when building(`make`ing) , this OS. You can set the compiler instead of the default

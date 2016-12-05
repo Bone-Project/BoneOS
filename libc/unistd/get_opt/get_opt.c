@@ -34,10 +34,10 @@
  *  Get options from command
  *      
  *      @param s:
- *         Specified Command in
- *		   string format.
+ *        Specified Command in
+ *		  string format.
  *		@param str_p:
- *		   options are stored here.
+ *		  options are stored here.
  */
 
 void get_opt(const char* s, str_t str_p[]) 

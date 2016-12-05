@@ -30,7 +30,7 @@
  * @function sqrtk:
  *      Square root implementation
  *      using the Newton–Raphson method.
- *         @param n:
+ *         @param x:
  *            specified float
  *            to be square rooted.
  *         @param iter:
@@ -40,7 +40,7 @@
  *
  *         @return float:
  *            Returns square root
- *            of specified float (@n)
+ *            of specified float (@x)
  * 
  * @alternative {x86}: FSQRT x86 Instruction
  */

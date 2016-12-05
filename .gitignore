@@ -28,5 +28,6 @@ Makefile.cached.CROSSROOT
 #Travis Log Files
 travis.log
 
-#Supervisord Log Files
+#Supervisord Unneccsary Files
 supervisord.log
+supervisord.pid
