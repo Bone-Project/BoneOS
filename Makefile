@@ -162,8 +162,19 @@ $(BONEOS_BOOT_BIN): $(BONEOS_BIN)
 	cp $(BONEOS_BIN) boot/boot
 
 $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
-	grub-mkrescue --output=$(BONEOS_ISO) boot
-
+	mkdir iso
+	mkdir iso/boot
+	mkdir iso/boot/grub
+	cp BoneOS.bin iso/boot/BoneOS.bin
+	echo 'set timeout=0'                      > iso/boot/grub/grub.cfg
+	echo 'set default=0'                     >> iso/boot/grub/grub.cfg
+	echo ''                                  >> iso/boot/grub/grub.cfg
+	echo 'menuentry "BoneOS x86 " {' >> iso/boot/grub/grub.cfg
+	echo '  multiboot /boot/BoneOS.bin'    >> iso/boot/grub/grub.cfg
+	echo '  boot'                            >> iso/boot/grub/grub.cfg
+	echo '}'                                 >> iso/boot/grub/grub.cfg
+	grub-mkrescue --output=BoneOS.iso iso
+#	rm -rf iso
 iso: $(BONEOS_ISO)
 
 #

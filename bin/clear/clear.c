@@ -27,6 +27,7 @@
 #include <drv/video/VGA/vga.h>
 #include <stdio/stdio.h>
 #include <drv/video/video.h>
+#include <unistd/unistd.h>
 
 struct cmd_opt_t* cmd_clear_opts[] = 
 {
@@ -37,6 +38,8 @@ struct cmd_opt_t* cmd_clear_opts[] =
 int cmd_clear_handler(char* cmd)
 {
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
+   str_t temp[get_opt_count(cmd)];
+   get_opt(cmd,temp);
    return STATUS_OK;
 }
 
