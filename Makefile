@@ -174,7 +174,8 @@ $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
 	echo '  boot'                            >> iso/boot/grub/grub.cfg
 	echo '}'                                 >> iso/boot/grub/grub.cfg
 	grub-mkrescue --output=BoneOS.iso iso
-#	rm -rf iso
+	rm -rf iso
+	
 iso: $(BONEOS_ISO)
 
 #
