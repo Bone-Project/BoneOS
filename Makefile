@@ -61,6 +61,7 @@ export VIDEO_DRIVER_MODE
 BOCHS := bochs
 QEMU := qemu-system-i386
 PYTHON := python
+SH := sh
 VB := virtualbox
 VBM := VBoxManage
 GDB := gdb
@@ -174,6 +175,12 @@ get-toolchain:
 	$(PYTHON) utils/cross_compiler/toolchain.py
 
 .PHONY: iso
+
+no_vnc:
+	$(SH) utils/novnc/install.sh
+	$(SH) utils/novnc/run.sh
+
+.PHONY: no_vnc	
 
 #
 # Launch and debug
