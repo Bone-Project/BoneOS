@@ -5,7 +5,7 @@ struct cmd_opt_t
 {
   char* help;
   char* cmd_opt_name;
-  int(*handler)(void);
+  int(*handler)(char* cmd);
 };
 
 struct cmd_t

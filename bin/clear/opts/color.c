@@ -23,12 +23,23 @@
 
 #include <misc/status_codes.h>
 #include <term/terminal.h>
+#include <unistd/unistd.h>
+#include <stdlib/stdlib.h>
+#include <stdio/stdio.h>
 
 
-int cmd_clear_color_handler()
+int cmd_clear_color_handler(char* cmd)
 {
-  
-  return STATUS_OK;
+   size_t num_opts = get_opt_count(cmd);
+   str_t opts[num_opts];
+   get_opt(cmd,opts);
+   
+   int FG_ = atoi(opts[2].str);
+   int BG_ = atoi(opts[3].str);
+   
+   printk("FG : %d \nBG %d \n" , FG_, BG_);
+        
+   return STATUS_OK;
 }
 
 struct cmd_opt_t cmd_clear_opt_color = 

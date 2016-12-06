@@ -38,20 +38,18 @@ int main_clear_opt_handler(char *cmd)
    
    if(strcmp(opts[1].str, "--color")==0)
    {
-     if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
+     if(strcmp(opts[2].str, "--help")==0)
+     {
+        printk(cmd_clear_opt_color.help);
+     }
+     else if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
      {
        printk("Invalid Use of --color option. Use command clear --color --help for instructions\n");
        printk("on how to use the clear command\n");
      }
-     else if(strcmp(opts[3].str, "--help"))
-     {
-        printk(cmd_clear_opt_color.help);
-     }
      else 
      {
-        int FG_ = atoi(opts[3].str);
-        int BG_ = atoi(opts[4].str);
-        printk("FG : %d , BG %d" , FG_, BG_);
+        cmd_clear_opt_color.handler(cmd);
      }
    }
     
