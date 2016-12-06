@@ -26,7 +26,6 @@
 #include <clear/clear.h>
 #include <boneos_logo/boneos_logo.h>
 #include <stdio/stdio.h>
-#include <drv/video/VGA/vga.h>
 #include <strcmp/strcmp.h>
 #include <drv/video/video.h>
 

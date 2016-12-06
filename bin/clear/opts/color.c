@@ -21,12 +21,20 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+#include <stddef.h>
+#include <stdint.h>
 #include <misc/status_codes.h>
 #include <term/terminal.h>
 #include <unistd/unistd.h>
 #include <stdlib/stdlib.h>
 #include <stdio/stdio.h>
+#include <drv/video/video.h>
+#include <string/string.h>
 
+
+
+extern uint8_t FG; // Foreground - White
+extern uint8_t BG; // Background - BLACK 
 
 int cmd_clear_color_handler(char* cmd)
 {
@@ -34,10 +42,13 @@ int cmd_clear_color_handler(char* cmd)
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
-   int FG_ = atoi(opts[2].str);
-   int BG_ = atoi(opts[3].str);
+   int _FG = atoi(opts[2].str);
+   int _BG = atoi(opts[3].str);
    
-   printk("FG : %d \nBG %d \n" , FG_, BG_);
+   FG = _FG;
+   BG = _BG;
+   
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
         
    return STATUS_OK;
 }
@@ -48,15 +59,43 @@ struct cmd_opt_t cmd_clear_opt_color =
                 "NAME : \n"
                 "\tclear --color\n"
                 "SYNOPSIS : \n "
-                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] \n"
+                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] [--color <--def>] \n"
                 "DESCRIPTION : \n"
                 "\tClears the terminal with accordance to th\n"
                 "\tcolor with the --color command and providing it\n"
-                "\tspecified foregroud and background colors.\n"
+                "\tspecified foreground and background colors.\n"
                 "OPTIONS : \n"
                 "\t Option Summary \n"
-                "<fg-color> : \n"
-                "<bg-color> : \n", 
+                "\t\t[--color <fg-color> <bg-color>] : Clears terminal according to colors\n"
+                "\t\t0=Black,1=Blue,2=Green,3=Aqua,4=Red,5=Purple,6=Yellow,7=White\n"
+                "\t\t8=Gray,9=LightBlue,A=LightGreen,B=LightAqua,C=LightRed,D=LightPurple\n"
+                "\t\tE=LightYellow,F=BrightWhite\n"
+                "\t\t--def : Clears to default (BG : 0x7 , FG : 0x0)\n", 
         .cmd_opt_name = "--color" ,
         .handler = &cmd_clear_color_handler
 };
+/*
+0 = Black 
+8 = Gray 
+
+1 = Blue 
+9 = Light Blue 
+
+2 = Green 
+A = Light Green 
+
+3 = Aqua 
+B = Light Aqua 
+
+4 = Red 
+C = Light Red 
+
+5 = Purple 
+D = Light Purple 
+
+6 = Yellow 
+E = Light Yellow 
+
+7 = White 
+F = Bright White 
+*/

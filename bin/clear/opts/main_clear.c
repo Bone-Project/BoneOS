@@ -29,6 +29,10 @@
 #include <clear/opts/color.h>
 #include <term/terminal.h>
 #include <stdlib/stdlib.h>
+#include <drv/video/video.h>
+
+extern uint8_t FG; // Foreground - White
+extern uint8_t BG; // Background - BLACK 
 
 int main_clear_opt_handler(char *cmd)
 {
@@ -42,6 +46,12 @@ int main_clear_opt_handler(char *cmd)
      {
         printk(cmd_clear_opt_color.help);
      }
+     else if(strcmp(opts[2].str, "--def")==0)
+     {
+        FG = 0x7;
+        BG = 0x0;
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
+     }
      else if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
      {
        printk("Invalid Use of --color option. Use command clear --color --help for instructions\n");
@@ -52,6 +62,5 @@ int main_clear_opt_handler(char *cmd)
         cmd_clear_opt_color.handler(cmd);
      }
    }
-    
-     return STATUS_OK;
+  return STATUS_OK;
 }
