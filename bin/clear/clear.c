@@ -46,12 +46,8 @@ int cmd_clear_handler(char* cmd)
       video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
       return STATUS_OK;
    }
-   str_t temp[num_opts];
-   get_opt(cmd,temp);
-   main_clear_opt_handler(temp); 
-//   printk("SIZE : %d \n", num_opts );
-//   for(size_t i=0; i<num_opts; i++)
-// 	  printk("%d : %s\n" , i, temp[i].str);
+   
+   main_clear_opt_handler(cmd); 
    return STATUS_OK;
 }
 
@@ -59,15 +55,15 @@ struct cmd_t cmd_clear =
 {
   .name = "clear",
   .usage = "clear [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
-  .help = "clear(1) \t BoneOS Terminal Manual \n "
+  .help = "clear(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\tclear\n"
                 "SYNOPSIS : \n "
-                "\tclear [--help]  [--color <fg-color> <bg-color>] [--color <--help>] "
-                "DESCRIPTION : \n "
-                "\tClears the terminal. Possible to specifiy the"
-                "\tcolor with the --color command and providing it "
-                "\ta Foreground as well as a Background Color" ,   
+                "\tclear [--help]  [--color <fg-color> <bg-color>] [--color <--help>]\n"
+                "DESCRIPTION : \n"
+                "\tClears the terminal. Possible to specifiy the\n"
+                "\tcolor with the --color command and providing it\n"
+                "\ta Foreground as well as a Background Color \n" ,   
   .cmd_opts =  cmd_clear_opts,
   .handler = &cmd_clear_handler                     
 };

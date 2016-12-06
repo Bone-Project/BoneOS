@@ -21,21 +21,39 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
  
- #include <misc/status_codes.h>
- #include <unistd/unistd.h>
- #include <stdio/stdio.h>
- #include <string/string.h>
- 
- int main_clear_opt_handler(str_t opts[])
- {
-     if(strcmp(opts[2].str,"--color")==0)
+#include <misc/status_codes.h>
+#include <string/string.h>
+#include <unistd/unistd.h>
+#include <stdio/stdio.h>
+#include <clear/clear.h>
+#include <clear/opts/color.h>
+#include <term/terminal.h>
+#include <stdlib/stdlib.h>
+
+int main_clear_opt_handler(char *cmd)
+{
+   size_t num_opts = get_opt_count(cmd);
+   str_t opts[num_opts];
+   get_opt(cmd,opts);
+   
+   if(strcmp(opts[1].str, "--color")==0)
+   {
+     if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
      {
-         if(opts[3].str == 0 || opts[4].str == 0)
-                printk("INVALID USE OF --color Option\n");
-         else
-         {
-             printk("EXECUTING\n");
-         }
+       printk("Invalid Use of --color option. Use command clear --color --help for instructions\n");
+       printk("on how to use the clear command\n");
      }
+     else if(strcmp(opts[3].str, "--help"))
+     {
+        printk(cmd_clear_opt_color.help);
+     }
+     else 
+     {
+        int FG_ = atoi(opts[3].str);
+        int BG_ = atoi(opts[4].str);
+        printk("FG : %d , BG %d" , FG_, BG_);
+     }
+   }
+    
      return STATUS_OK;
- }
+}

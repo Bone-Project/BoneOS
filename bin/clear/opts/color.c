@@ -24,6 +24,7 @@
 #include <misc/status_codes.h>
 #include <term/terminal.h>
 
+
 int cmd_clear_color_handler()
 {
   
@@ -32,15 +33,19 @@ int cmd_clear_color_handler()
 
 struct cmd_opt_t cmd_clear_opt_color = 
 {
-    .help = "clear 1) \t BoneOS Terminal Manual \n "
+    .help =  "clear(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\tclear --color\n"
                 "SYNOPSIS : \n "
-                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] "
-                "DESCRIPTON : \n "
-                "\tClears the terminal with accordance to the "
-                "\tspecified foregroud and background colors. " ,      
-
+                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] \n"
+                "DESCRIPTION : \n"
+                "\tClears the terminal with accordance to th\n"
+                "\tcolor with the --color command and providing it\n"
+                "\tspecified foregroud and background colors.\n"
+                "OPTIONS : \n"
+                "\t Option Summary \n"
+                "<fg-color> : \n"
+                "<bg-color> : \n", 
         .cmd_opt_name = "--color" ,
         .handler = &cmd_clear_color_handler
 };
