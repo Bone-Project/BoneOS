@@ -42,8 +42,8 @@ int cmd_clear_color_handler(char* cmd)
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
-   int _FG = atoi(opts[2].str);
-   int _BG = atoi(opts[3].str);
+   int _FG = strtoi((char*)opts[2].str, 0, 16);
+   int _BG = strtoi((char*)opts[3].str, 0, 16);
    
    FG = _FG;
    BG = _BG;

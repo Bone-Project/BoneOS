@@ -35,6 +35,8 @@ volatile uint32_t index_scank;
 volatile bool active_scank;
 volatile bool print_scank;
 volatile char buffer_scank[4096];
+volatile int __backspace_count=0;
+volatile bool __backspace_count_active=false;
 
 /*
  * @function scank:
@@ -50,11 +52,11 @@ volatile char buffer_scank[4096];
  *            utility.
  */
 
-int scank(bool print , const char *fmt, ...)
+int scank(bool backspace_count,bool print , const char *fmt, ...)
 {
     va_list arg;
     va_start(arg, fmt);
-    vscank(print,fmt,arg);
+    vscank(backspace_count,print,fmt,arg);
     va_end(arg);
     return 0;
 }
@@ -75,8 +77,9 @@ int scank(bool print , const char *fmt, ...)
  */
 
 
-void vscank(bool print ,const char *fmt , va_list arg)
+void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
 {
+    __backspace_count_active = backspace_count;
     print_scank = print;
     int* integer_format;
     char* string_format;

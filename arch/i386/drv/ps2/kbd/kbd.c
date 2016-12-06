@@ -170,9 +170,15 @@ void key_handler()
          if(print_scank == true)  printk("\t");
          break;
      case '\b':
-         if(active_scank)
-          buffer_scank[index_scank--] = 0;
-         if(print_scank == true) printk("\b");
+         if((__backspace_count-1) < 0)
+         {
+             if(!(__backspace_count_active == true))
+             {
+                if(active_scank)
+                buffer_scank[index_scank--] = 0;
+                if(print_scank == true) printk("\b");   
+             }
+         }
          break;
      case '\n' :
          if(print_scank == true) printk("\n");
