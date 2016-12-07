@@ -100,7 +100,7 @@ export NASMFLAGS
 # Paths
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
-BONEOS_BOOT_DIR := iso/boot
+BONEOS_BOOT_DIR := boot/boot
 BONEOS_BOOT_BIN := $(BONEOS_BOOT_DIR)/$(BONEOS_BIN)
 BONEOS_GRUB_CFG := $(BONEOS_BOOT_DIR)/grub/grub.cfg
 LINKER_SCRIPT := arch/i386/link/linker.ld
@@ -159,21 +159,12 @@ $(BONEOS_BIN): $(libraries) $(LINKER_SCRIPT)
 # Build ISO
 
 $(BONEOS_BOOT_BIN): $(BONEOS_BIN)
-	rm -rf iso
 	mkdir -p $(dir $(BONEOS_BOOT_BIN))
 	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
 
 $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
-	mkdir -p iso/boot/grub
-	cp BoneOS.bin $(BONEOS_BOOT_DIR)/BoneOS.bin
-	echo 'set timeout=0'                      > iso/boot/grub/grub.cfg
-	echo 'set default=0'                     >> iso/boot/grub/grub.cfg
-	echo ''                                  >> iso/boot/grub/grub.cfg
-	echo 'menuentry "BoneOS x86 " {' >> iso/boot/grub/grub.cfg
-	echo '  multiboot /boot/BoneOS.bin'    >> iso/boot/grub/grub.cfg
-	echo '  boot'                            >> iso/boot/grub/grub.cfg
-	echo '}'                                 >> iso/boot/grub/grub.cfg
-	grub-mkrescue --output=BoneOS.iso iso
+	cp BoneOS.bin boot/boot/BoneOS.bin
+	grub-mkrescue --output=BoneOS.iso boot
 
 iso: $(BONEOS_ISO)
 

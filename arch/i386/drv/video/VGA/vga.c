@@ -46,7 +46,7 @@ void set_mode_util(putch_t putch_v, put_pixel_t put_pixel_v, clear_t clear_v, up
   vga_driver.putch = putch_v;
   vga_driver.put_pixel = put_pixel_v;
   vga_driver.clear = clear_v;
-  vga_driver.update_cursor = update_cursor_v;
+  vga_driver.update_cursor = update_cursor_v; 
 }
 
 int uninit_vga_driver()

@@ -7,3 +7,4 @@ sudo apt-get install gcc
 sudo apt-get install qemu
 sudo apt-get install grub-common
 sudo apt-get install xorriso
+sudo apt-get install grub-pc-bin
