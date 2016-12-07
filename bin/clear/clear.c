@@ -54,12 +54,12 @@ int cmd_clear_handler(char* cmd)
 struct cmd_t cmd_clear = 
 {
   .name = "clear",
-  .usage = "clear [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
+  .usage = "clear [--help]  [--color <fg-color> <bg-color>] [--color --def]  [--color <--help>] ",
   .help = "clear(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\tclear\n"
                 "SYNOPSIS : \n "
-                "\tclear [--help]  [--color <fg-color> <bg-color>] [--color <--help>]\n"
+                "\tclear [--help]  [--color <fg-color> <bg-color>] [--color --def] [--color <--help>]\n"
                 "DESCRIPTION : \n"
                 "\tClears the terminal. Possible to specifiy the\n"
                 "\tcolor with the --color command and providing it\n"

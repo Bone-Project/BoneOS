@@ -30,6 +30,9 @@
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 
+extern uint8_t FG; // Foreground - White
+extern uint8_t BG; // Background - BLACK 
+
 
 struct typed_cmd cmd_active;
 
@@ -63,9 +66,24 @@ void loop_terminal()
 {
   while(1)
   {
-    printck(2,0,"%s@boneos:",VAR_USER);
-    printck(1,0,"%s",VAR_PWD);
-    printk(" $ ");
+    int FG__ = FG;
+    int BG__ = BG;
+    if(FG==0x7 && BG==0x0)
+    {
+      printck(2,0,"%s@boneos:",VAR_USER);
+      printck(1,0,"%s",VAR_PWD);
+      printck(0x0,0x7,"");
+      printck(0x7,0x0," $ ");
+    }
+    else
+    {
+      printk("%s@boneos:",VAR_USER);
+      printk("%s",VAR_PWD);
+      printk(" $ ");
+    }
+    FG = FG__;
+    BG = BG__;
+    
     scank(true,true, "%s" , cmd_active.value);
     
     for(int i=0; cmds[i]; i++)

@@ -56,12 +56,12 @@ int boneos_logo_handler(char* cmd)
 struct cmd_t cmd_boneos_logo = 
 {
   .name = "boneos_logo",
-  .usage = "boneos_logo [--help]  [--color <fg-color> <bg-color>] [--color <--help>] ",
+  .usage = "boneos_logo [--help]  [--color <fg-color> <bg-color>] [--color --def] [--color <--help>] ",
   .help = "boneos_logo(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\tboneos_logo\n"
                 "SYNOPSIS : \n "
-                "\tboneos_logo [--help]  [--color <fg-color> <bg-color>] [--color <--help>]\n"
+                "\tboneos_logo [--help]  [--color <fg-color> <bg-color>] [--color --def] [--color <--help>]\n"
                 "DESCRIPTION : \n"
                 "\tCommand that draws the BoneOS logo\n"
                 "\tonto terminal. use the --color command\n"

@@ -80,6 +80,6 @@ void vprintck(uint8_t fg, uint8_t bg, const char* fmt,  va_list arg)
     FG = fg;
     BG = bg;
     vprintk(fmt, arg);
-    FG = 0x7;
-    BG = 0x0;
+    // FG = 0x7;
+    // BG = 0x0;
 }
