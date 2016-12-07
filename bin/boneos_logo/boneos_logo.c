@@ -24,6 +24,8 @@
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
 #include <term/terminal.h>
+#include <unistd/unistd.h>
+#include <boneos_logo/opts/main_boneos_logo.h>
 
 struct cmd_opt_t* cmd_boneos_logo_opts[] = 
 {
@@ -32,13 +34,21 @@ struct cmd_opt_t* cmd_boneos_logo_opts[] =
 
 int boneos_logo_handler(char* cmd)
 {
-    printk("*********** ********** *      * *******      **********  *********\n");
-    printk("*         * *        * * *    * *            *        *  *\n");
-    printk("*         * *        * *  *   * *            *        *  *\n");
-    printk("*   ******* *        * *   *  * *******      *        *  *********\n");
-    printk("*         * *        * *    * * *            *        *          *\n");
-    printk("*         * *        * *     ** *            *        *          *\n");
-    printk("*********** ********** *      * *******      **********  *********\n");
+    size_t num_opts = get_opt_count(cmd);
+    if(num_opts == 1)
+    {
+      printk("*********** ********** *      * *******      **********  *********\n");
+      printk("*         * *        * * *    * *            *        *  *\n");
+      printk("*         * *        * *  *   * *            *        *  *\n");
+      printk("*   ******* *        * *   *  * *******      *        *  *********\n");
+      printk("*         * *        * *    * * *            *        *          *\n");
+      printk("*         * *        * *     ** *            *        *          *\n");
+      printk("*********** ********** *      * *******      **********  *********\n"); 
+      return STATUS_OK;
+    }
+    
+    
+    main_boneos_opt_handler(cmd);
     
     return STATUS_OK;
 }
@@ -46,16 +56,18 @@ int boneos_logo_handler(char* cmd)
 struct cmd_t cmd_boneos_logo = 
 {
   .name = "boneos_logo",
-  .usage = "boneos_logo [--help]  [--color <fg-color> <bg-color>]   [--color <--help>] ",
-  .help = "boneos_logo(1) \t BoneOS Terminal Manual \n "
+  .usage = "boneos_logo [--help]  [--color <fg-color> <bg-color>] [--color <--help>] ",
+  .help = "boneos_logo(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
-                "\boneos_logo\n"
+                "\tboneos_logo\n"
                 "SYNOPSIS : \n "
-                "\boneos_logo [--help]  [--color <fg-color> <bg-color>] [--color <--help>] "
-                "DESCRIPTION : \n "
-                "\tCommand that draws the BoneOS logo "
-                "\tonto terminal. use the --color command "
-                "\tto have a specific Foreground and Background Color" ,   
+                "\tboneos_logo [--help]  [--color <fg-color> <bg-color>] [--color <--help>]\n"
+                "DESCRIPTION : \n"
+                "\tCommand that draws the BoneOS logo\n"
+                "\tonto terminal. use the --color command\n"
+                "\tto have a specific Foreground and Background Color\n"
+                "MORE HELP : \n"
+                "\t[boneos_logo --color--help] for help on --color option\n",   
   .cmd_opts =  cmd_boneos_logo_opts,
   .handler = &boneos_logo_handler                     
 };

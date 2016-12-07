@@ -28,6 +28,7 @@
 #include <stdio/stdio.h>
 #include <strcmp/strcmp.h>
 #include <drv/video/video.h>
+#include <unistd/unistd.h>
 
 
 struct typed_cmd cmd_active;
@@ -41,10 +42,12 @@ struct cmd_t *cmds[] =
 
 int termcmp(const char* cmd, const char* value)
 {
-  for(int i=0; cmd[i]; i++)
-    if(value[i] != cmd[i])
-      return 1;
-  return 0;    
+  size_t num_opts_cmp = get_opt_count(value);
+  str_t opts_cmp[num_opts_cmp];
+  get_opt(value,opts_cmp);   
+  if(strcmp(opts_cmp[0].str,cmd)==0)
+    return 0;
+  return 1;  
 }
 
 void terminal_scroll(int offset)
@@ -65,8 +68,6 @@ void loop_terminal()
     printk(" $ ");
     scank(true,true, "%s" , cmd_active.value);
     
-    
-        
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
