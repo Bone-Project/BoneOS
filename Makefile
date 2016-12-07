@@ -100,9 +100,9 @@ export NASMFLAGS
 # Paths
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
-BONEOS_BOOT_DIR := boot/boot
+BONEOS_BOOT_DIR := iso/boot
 BONEOS_BOOT_BIN := $(BONEOS_BOOT_DIR)/$(BONEOS_BIN)
-BONEOS_GRUB_CFG := boot/boot/grub/grub.cfg
+BONEOS_GRUB_CFG := $(BONEOS_BOOT_DIR)/grub/grub.cfg
 LINKER_SCRIPT := arch/i386/link/linker.ld
 
 SCRIPT_CC := utils/cross_compiler/toolchain.py
@@ -158,14 +158,13 @@ $(BONEOS_BIN): $(libraries) $(LINKER_SCRIPT)
 # Build ISO
 
 $(BONEOS_BOOT_BIN): $(BONEOS_BIN)
-#	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
-	cp $(BONEOS_BIN) boot/boot
+	rm -rf iso
+	mkdir -p $(dir $(BONEOS_BOOT_BIN))
+	cp $(BONEOS_BIN) $(BONEOS_BOOT_BIN)
 
 $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
-	mkdir iso
-	mkdir iso/boot
-	mkdir iso/boot/grub
-	cp BoneOS.bin iso/boot/BoneOS.bin
+	mkdir -p iso/boot/grub
+	cp BoneOS.bin $(BONEOS_BOOT_DIR)/BoneOS.bin
 	echo 'set timeout=0'                      > iso/boot/grub/grub.cfg
 	echo 'set default=0'                     >> iso/boot/grub/grub.cfg
 	echo ''                                  >> iso/boot/grub/grub.cfg
@@ -174,7 +173,6 @@ $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
 	echo '  boot'                            >> iso/boot/grub/grub.cfg
 	echo '}'                                 >> iso/boot/grub/grub.cfg
 	grub-mkrescue --output=BoneOS.iso iso
-	rm -rf iso
 
 iso: $(BONEOS_ISO)
 

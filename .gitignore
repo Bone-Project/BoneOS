@@ -29,7 +29,7 @@ Makefile.cached.CROSSROOT
 travis.log
 
 # ISO staging area
-boot/boot
+iso
 
 #Supervisord Unneccsary Files
 supervisord.log
