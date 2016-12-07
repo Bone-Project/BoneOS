@@ -47,6 +47,12 @@ int termcmp(const char* cmd, const char* value)
   return 0;    
 }
 
+void terminal_scroll(int offset)
+{
+
+}
+
+int __found = 0;
 
 void loop_terminal()
 {
@@ -57,10 +63,21 @@ void loop_terminal()
     printk(" $ ");
     scank(true,true, "%s" , cmd_active.value);
     
+    
         
     for(int i=0; cmds[i]; i++)
+    {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
-        cmds[i]->handler(cmd_active.value);    
+      {
+        cmds[i]->handler(cmd_active.value);
+        __found = 1;
+      }
+    }
+    
+    if(__found == 0)
+      printk("Invalid Command\n");
+      
+    __found = 0;  
   }
 }
 
