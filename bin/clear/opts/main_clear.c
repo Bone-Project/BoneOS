@@ -54,13 +54,20 @@ int main_clear_opt_handler(char *cmd)
      }
      else if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
      {
-       printk("Invalid Use of --color option. Use command clear --color --help for instructions\n");
-       printk("on how to use the clear command\n");
+       printk(cmd_clear_opt_color.invalid_use_msg);
      }
      else 
      {
         cmd_clear_opt_color.handler(cmd);
      }
+   }
+   else if(strcmp(opts[1].str, "--help")==0)
+   {
+       printk(cmd_clear.help);
+   }
+   else
+   {
+     printk(cmd_clear.invalid_use_msg);
    }
   return STATUS_OK;
 }

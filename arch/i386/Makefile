@@ -23,6 +23,7 @@ CSRCS = \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/putch/putch.c \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/clear.c \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/update_cursor.c \
 	misc/asm_util.c \
 	drv/pit/pit.c \
 	drv/ps2/kbd/kbd.c \

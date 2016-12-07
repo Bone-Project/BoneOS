@@ -124,4 +124,7 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
         }
       }  
   print_scank = false;
+  __backspace_count=0;
+  __backspace_count_active=false;
+  
 }

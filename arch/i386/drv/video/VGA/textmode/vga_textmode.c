@@ -25,6 +25,7 @@
 #include <drv/video/VGA/textmode/80x25/clear.h>
 #include <drv/video/VGA/textmode/80x25/putch/putch.h>
 #include <drv/video/VGA/textmode/vga_textmode.h>
+#include <drv/video/VGA/textmode/update_cursor.h>
 
 
 vga_textmode_t eightyXtwentyfive_v = 
@@ -33,7 +34,8 @@ vga_textmode_t eightyXtwentyfive_v =
   .h = 25,
   .clear = &clear_vga_80_x_25,
   .putch = &putch_vga_80_x_25,
-  .name = "VGA_TEXTMODE_80_x_25"
+  .name = "VGA_TEXTMODE_80_x_25",
+  .update_cursor = &update_cursor_textmode
 };
 
 vga_textmode_t *vga_textmodes_arr[] = 

@@ -52,8 +52,10 @@ void loop_terminal()
 {
   while(1)
   {
-    printk("%s %s $ " , VAR_USER, VAR_PWD);
-    scank(true, "%s" , cmd_active.value);
+    printck(2,0,"%s@boneos:",VAR_USER);
+    printck(1,0,"%s",VAR_PWD);
+    printk(" $ ");
+    scank(true,true, "%s" , cmd_active.value);
     
         
     for(int i=0; cmds[i]; i++)
@@ -65,7 +67,6 @@ void loop_terminal()
 void init_terminal()
 {
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
-  printck(0x5,0x3,"BoneOS Terminal\n");
   loop_terminal();
 }
 

@@ -5,14 +5,16 @@ struct cmd_opt_t
 {
   char* help;
   char* cmd_opt_name;
+  char* invalid_use_msg;
   int(*handler)(char* cmd);
 };
 
 struct cmd_t
 {
-  char* name;
+  char*  name;
   char*  usage;
   char*  help;
+  char*  invalid_use_msg;
   struct cmd_opt_t** cmd_opts;
   int(*handler)(char* cmd);
 };

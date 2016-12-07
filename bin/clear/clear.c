@@ -63,7 +63,11 @@ struct cmd_t cmd_clear =
                 "DESCRIPTION : \n"
                 "\tClears the terminal. Possible to specifiy the\n"
                 "\tcolor with the --color command and providing it\n"
-                "\ta Foreground as well as a Background Color \n" ,   
+                "\ta Foreground as well as a Background Color \n"
+                "MORE HELP : \n"
+                "\t[clear --color --help] for help on --color option\n",   
   .cmd_opts =  cmd_clear_opts,
-  .handler = &cmd_clear_handler                     
+  .handler = &cmd_clear_handler,    
+  .invalid_use_msg = "Invalid use of clear command.\n"
+                     "Type in clear --help for more help.\n"
 };

@@ -1,4 +1,4 @@
-#ifndef  _DRV_VIDEO_VGA_TEXTMODE_VGATEXTMODE_H_
+#ifndef _DRV_VIDEO_VGA_TEXTMODE_VGATEXTMODE_H_
 #define _DRV_VIDEO_VGA_TEXTMODE_VGATEXTMODE_H_
 
 #define eighty_twentyfive_TEXTMODE_INDEX 0
@@ -10,6 +10,7 @@ struct
   int h;
   void(*clear)(void);
   void(*putch)(char c);
+  int(*update_cursor)(int row,int col);
   char* name;
 }vga_textmode_t;
 

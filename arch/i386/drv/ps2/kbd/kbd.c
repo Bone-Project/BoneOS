@@ -138,9 +138,15 @@ void key_handler()
    (((char)kbd_info.key) == '8'))
    {
         if(kbd_info.is_caps == false && print_scank == true)
+        {
+          __backspace_count++;
          printk("%c", kbd_info.key);
+        }
         else if(kbd_info.is_caps == true && print_scank == true)
+        {
+            __backspace_count++;
          printk("%c", toupper(kbd_info.key)); 
+        }
 
          if(active_scank == true)
              wait_until_enter(kbd_info.key);
@@ -168,16 +174,24 @@ void key_handler()
         break;
      case '\t':
          if(print_scank == true)  printk("\t");
+          __backspace_count+=4;
          break;
      case '\b':
-         if((__backspace_count-1) < 0)
-         {
-             if(!(__backspace_count_active == true))
-             {
-                if(active_scank)
-                buffer_scank[index_scank--] = 0;
-                if(print_scank == true) printk("\b");   
-             }
+          if((__backspace_count-1) < 0)
+          {
+              if(!(__backspace_count_active == true))
+              {
+                 if(active_scank)
+                 buffer_scank[index_scank--] = 0;
+                 if(print_scank == true) printk("\b");   
+              }
+          }
+          else
+          {
+            if(active_scank)
+              buffer_scank[index_scank--] = 0;
+            if(print_scank == true) printk("\b");   
+            __backspace_count-=1;
          }
          break;
      case '\n' :
@@ -185,9 +199,15 @@ void key_handler()
          break;
      default:
          if(kbd_info.is_caps == false && print_scank == true)
-            printk("%c", kbd_info.key);
+         {
+            __backspace_count++;
+            printk("%c", kbd_info.key,__backspace_count);
+         }
          else if(kbd_info.is_caps == true && print_scank == true)
+         {
+            __backspace_count++;
             printk("%c", toupper(kbd_info.key)); 
+         }
 
           if(active_scank == true && print_scank == true)
               wait_until_enter(kbd_info.key);

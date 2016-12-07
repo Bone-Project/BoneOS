@@ -72,30 +72,7 @@ struct cmd_opt_t cmd_clear_opt_color =
                 "\t\tE=LightYellow,F=BrightWhite\n"
                 "\t\t--def : Clears to default (BG : 0x7 , FG : 0x0)\n", 
         .cmd_opt_name = "--color" ,
-        .handler = &cmd_clear_color_handler
+        .handler = &cmd_clear_color_handler,
+        .invalid_use_msg = "Invalid Use of --color option. Use command clear --color --help for instructions\n"
+                           "on how to use the clear command\n"
 };
-/*
-0 = Black 
-8 = Gray 
-
-1 = Blue 
-9 = Light Blue 
-
-2 = Green 
-A = Light Green 
-
-3 = Aqua 
-B = Light Aqua 
-
-4 = Red 
-C = Light Red 
-
-5 = Purple 
-D = Light Purple 
-
-6 = Yellow 
-E = Light Yellow 
-
-7 = White 
-F = Bright White 
-*/
