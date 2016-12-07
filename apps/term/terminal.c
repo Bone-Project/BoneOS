@@ -57,7 +57,9 @@ void terminal_scroll(int offset)
 {
   /*Terminal Offset*/
   // ****
+  // ****
   // Remove first row
+  
 }
 
 int __found = 0;

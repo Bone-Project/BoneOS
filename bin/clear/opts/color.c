@@ -57,22 +57,22 @@ struct cmd_opt_t cmd_clear_opt_color =
 {
     .help =  "clear(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
-                "\tclear --color\n"
+                "\tclear -color\n"
                 "SYNOPSIS : \n "
-                "\tclear  [--color <fg-color> <bg-color>] [--color <--help>] [--color --def] [--color <--def>] \n"
+                "\tclear  [-color <fg-color> <bg-color>] [-color <--help>] [-color --def] [-color <--def>] \n"
                 "DESCRIPTION : \n"
                 "\tClears the terminal with accordance to th\n"
-                "\tcolor with the --color command and providing it\n"
+                "\tcolor with the -color command and providing it\n"
                 "\tspecified foreground and background colors.\n"
                 "OPTIONS : \n"
                 "\t Option Summary \n"
-                "\t\t[--color <fg-color> <bg-color>] : Clears terminal according to colors\n"
+                "\t\t[-color <fg-color> <bg-color>] : Clears terminal according to colors\n"
                 "\t\t0=Black,1=Blue,2=Green,3=Aqua,4=Red,5=Purple,6=Yellow,7=White\n"
                 "\t\t8=Gray,9=LightBlue,A=LightGreen,B=LightAqua,C=LightRed,D=LightPurple\n"
                 "\t\tE=LightYellow,F=BrightWhite\n"
                 "\t\t--def : Clears to default (BG : 0x7 , FG : 0x0)\n", 
-        .cmd_opt_name = "--color" ,
+        .cmd_opt_name = "-color" ,
         .handler = &cmd_clear_color_handler,
-        .invalid_use_msg = "Invalid Use of --color option. Use command clear --color --help for instructions\n"
+        .invalid_use_msg = "Invalid Use of -color option. Use command clear -color --help for instructions\n"
                            "on how to use the clear command\n"
 };

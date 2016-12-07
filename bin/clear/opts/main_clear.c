@@ -40,7 +40,7 @@ int main_clear_opt_handler(char *cmd)
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
-   if(strcmp(opts[1].str, "--color")==0)
+   if(strcmp(opts[1].str, "-color")==0)
    {
      if(strcmp(opts[2].str, "--help")==0)
      {
