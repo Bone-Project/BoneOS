@@ -100,7 +100,7 @@ export NASMFLAGS
 # Paths
 BONEOS_ISO := BoneOS.iso
 BONEOS_BIN := BoneOS.bin
-BONEOS_BOOT_DIR := boot/
+BONEOS_BOOT_DIR := boot/boot
 BONEOS_BOOT_BIN := $(BONEOS_BOOT_DIR)/$(BONEOS_BIN)
 BONEOS_GRUB_CFG := boot/boot/grub/grub.cfg
 LINKER_SCRIPT := arch/i386/link/linker.ld
@@ -175,7 +175,7 @@ $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
 	echo '}'                                 >> iso/boot/grub/grub.cfg
 	grub-mkrescue --output=BoneOS.iso iso
 	rm -rf iso
-	
+
 iso: $(BONEOS_ISO)
 
 #
@@ -192,7 +192,7 @@ no_vnc:
 	$(SH) utils/novnc/install.sh
 	$(SH) utils/novnc/run.sh
 
-.PHONY: no_vnc	
+.PHONY: no_vnc
 
 #
 # Launch and debug
@@ -210,7 +210,7 @@ debug_q:
 qemu_compile: $(BONEOS_BIN)
 	$(QEMU) -kernel $(BONEOS_BIN) -display sdl
 
-qemu_iso : $(BONEOS_BIN) $(BONEOS_ISO)
+qemu_iso: $(BONEOS_BIN) $(BONEOS_ISO)
 	$(QEMU) -cdrom $(BONEOS_ISO)
 
 bochs: $(BONEOS_ISO)
