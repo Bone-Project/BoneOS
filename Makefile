@@ -125,6 +125,7 @@ all: iso
 
 clean: clean-subdirs
 	rm -f $(BONEOS_ISO)
+	rm -rf iso
 
 .PHONY: all clean
 
