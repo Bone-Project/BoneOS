@@ -23,7 +23,7 @@
 #include <cpu/interrupts/irq.h>
 #include <libc/unistd/sleep/sleep.h>
 #include <libc/stdlib/stdlib.h>
-#include <libc/stdio/stdio.h>
+#include <stdio/stdio.h>
 #include <drv/pit/pit.h>
 #include <io/io.h>
 #include <stdint.h>

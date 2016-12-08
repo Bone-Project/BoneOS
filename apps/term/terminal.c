@@ -30,6 +30,7 @@
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <help/help.h>
+#include <sleep/sleep.h>
 
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
@@ -41,7 +42,8 @@ struct cmd_t *cmds[] =
 {
   &cmd_clear,
   &cmd_boneos_logo,
-  &cmd_help
+  &cmd_help,
+  &cmd_sleep
   ,0
 };
 

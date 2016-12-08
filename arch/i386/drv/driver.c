@@ -75,6 +75,8 @@ void setup_driver_handler()
   assertdokm(status_pit,"PIT MALFUNCTION");
   assertdokm(status_ps2_kbd,"PS2/KBD MALFUNCTION");
   assertdokm(video_drivers[VGA_VIDEO_DRIVER_INDEX]->status,"Video Driver MALFUNCTION");
+  
+  
   pit_driver.initalized = initalized_pit;
   pit_driver.status = status_pit;
   kbd_driver.initalized = initalized_ps2_kbd;

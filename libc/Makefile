@@ -25,6 +25,7 @@ CSRCS = \
 	math/powk/powk.c \
 	math/sqrtk/sqrtk.c \
 	ctype/toupper/toupper.c\
+	ctype/isdigit/isdigit.c
 
 LIBNAME := c
 

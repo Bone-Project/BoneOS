@@ -9,7 +9,9 @@ CSRCS = \
 	boneos_logo/opts/boneos_logo_color.c \
 	help/help.c \
 	help/opts/help_cmd_opt.c \
-	help/opts/main_help.c
+	help/opts/main_help.c \
+	sleep/sleep.c \
+	sleep/opts/main_sleep.c 
 
 LIBNAME := bin
 
