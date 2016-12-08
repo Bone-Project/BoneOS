@@ -61,7 +61,7 @@ struct cmd_opt_t cmd_clear_opt_color =
                 "SYNOPSIS : \n "
                 "\tclear  [-color <fg-color> <bg-color>] [-color <--help>] [-color --def] [-color <--def>] \n"
                 "DESCRIPTION : \n"
-                "\tClears the terminal with accordance to th\n"
+                "\tClears the terminal with accordance to the\n"
                 "\tcolor with the -color command and providing it\n"
                 "\tspecified foreground and background colors.\n"
                 "OPTIONS : \n"

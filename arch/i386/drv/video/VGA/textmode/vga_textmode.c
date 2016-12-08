@@ -36,7 +36,7 @@ vga_textmode_t eightyXtwentyfive_v =
   .putch = &putch_vga_80_x_25,
   .name = "VGA_TEXTMODE_80_x_25",
   .update_cursor = &update_cursor_textmode,
-  .scroll = &term_scroll
+  .scroll = &term_scroll_vga_80_x_25
 };
 
 vga_textmode_t *vga_textmodes_arr[] = 

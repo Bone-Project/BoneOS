@@ -1,5 +1,5 @@
 #ifndef  _DRV_VIDEO_VGA_TEXTMODE_80x25_UTILS_H_
-#define _DRV_VIDEO_VGA_TEXTMODE_80x25_UTILS_H_
+#define  _DRV_VIDEO_VGA_TEXTMODE_80x25_UTILS_H_
 
 #include <stddef.h>
 #include <stdint.h>

@@ -29,6 +29,7 @@
 #include <strcmp/strcmp.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
+#include <help/help.h>
 
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
@@ -39,7 +40,8 @@ struct typed_cmd cmd_active;
 struct cmd_t *cmds[] = 
 {
   &cmd_clear,
-  &cmd_boneos_logo
+  &cmd_boneos_logo,
+  &cmd_help
   ,0
 };
 
@@ -51,15 +53,6 @@ int termcmp(const char* cmd, const char* value)
   if(strcmp(opts_cmp[0].str,cmd)==0)
     return 0;
   return 1;  
-}
-
-void terminal_scroll(int offset)
-{
-  /*Terminal Offset*/
-  // ****
-  // ****
-  // Remove first row
-  
 }
 
 int __found = 0;

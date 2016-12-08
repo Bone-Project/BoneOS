@@ -26,10 +26,12 @@
 #include <term/terminal.h>
 #include <unistd/unistd.h>
 #include <boneos_logo/opts/main_boneos_logo.h>
+#include <boneos_logo/opts/boneos_logo_color.h>
 
 struct cmd_opt_t* cmd_boneos_logo_opts[] = 
 {
-  0
+  &cmd_boneos_logo_opt_color
+  ,0
 };
 
 int boneos_logo_handler(char* cmd)

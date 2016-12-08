@@ -1,4 +1,4 @@
-#ifndef  _APPS_TERM_TERMINAL_H_
+#ifndef _APPS_TERM_TERMINAL_H_
 #define _APPS_TERM_TERMINAL_H_
 
 struct cmd_opt_t
@@ -28,5 +28,6 @@ struct typed_cmd
 #define CMD_BONEOS_LOGO_INDEX 1
 
 extern void init_terminal();
+extern struct cmd_t *cmds[];
 
 #endif /*_APPS_TERM_TERMINAL_H_*/

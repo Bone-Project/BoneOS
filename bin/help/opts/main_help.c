@@ -19,23 +19,40 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
-
-#include <memmove/memmove.h>
-#include <memset/memset.h>
+ **/  
+ 
+#include <misc/status_codes.h>
+#include <string/string.h>
+#include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <stddef.h>
+#include <term/terminal.h>
+#include <stdlib/stdlib.h>
+#include <stdio/stdio.h>
+#include <help/help.h>
+#include <help/opts/help_cmd_opt.h>
+//#include <>
 
-extern size_t terminal_column;
-extern size_t terminal_row;
-
-void term_scroll_vga_80_x_25(int offset)
+int main_help_opt_handler(char *cmd)
 {
-    uint16_t *screen = (uint16_t*)0xB8000;
-    for(int i = 0; i < 25; i++){
-        for (int m = 0; m < 80; m++){
-            screen[i * 80 + m] = screen[(i + offset) * 80 + m];
-        }
-    }
-  terminal_row -=offset;    
+   size_t num_opts = get_opt_count(cmd);
+   str_t opts[num_opts];
+   get_opt(cmd,opts);
+   
+   if(strcmp(opts[1].str,"-cmd")==0)
+   {
+      if(strcmp(opts[2].str,"--help")==0)
+         printk(cmd_help_opt_cmd.help);
+      else   
+         cmd_help_opt_cmd.handler(cmd);
+   }
+   else if(strcmp(opts[1].str , "--help")==0)
+   {
+      printk(cmd_help.help);
+   }
+   else
+   {
+      printk(cmd_help.invalid_use_msg);
+   }
+   
+   return STATUS_OK;
 }
