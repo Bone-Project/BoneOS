@@ -56,8 +56,6 @@ void putch_vga_80_x_25(char c)
 
   VideoMemory[index]= (VideoMemory[index] & 0xFF00)|c;
   terminal_column++;
-  if(terminal_row>25)
-  {
-    term_scroll_vga_80_x_25(4);
-  }
+  if(terminal_column>=80) terminal_row++,terminal_column=0;
+  if(terminal_row>=25) term_scroll_vga_80_x_25(1);
 }
