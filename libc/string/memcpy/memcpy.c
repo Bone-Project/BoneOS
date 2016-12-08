@@ -21,10 +21,11 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
-#include <memcpy/memcpy.h>
+#include <stddef.h>
+
 
 /*
- * @function memmove:
+ * @function memcpy:
  *   Copies n characters from __src
  *   to __dest , starting index 0.
  *
@@ -41,18 +42,14 @@
  *
  */
 
-void *memmove(void *__dest, const void *__src, size_t n)
+void *memcpy(void * __dest, const void * __src, size_t n)
 {
-    char *d = __dest;
-    char const *s = __src;
-
-    if (d < s || s + n <= d)
-        return memcpy(d, s, n);
-
-    if (d > s) {
-        for (size_t i = n; i; --i)
-            d[i-1] = s[i-1];
-    }
-
-    return __dest;
+   char* ___dest = __dest;
+   const char* ___src = __src;
+   while(n)
+   {
+       *___dest++=*___src++;
+       n--;
+   }
+  return __dest;
 }

@@ -9,6 +9,8 @@
 #include "strcmp/strcmp.h"
 #include "eat_front_whitespace/eat_front_whitespace.h"
 #include "validate_char/validate_char.h"
+#include "memmove/memmove.h"
+#include "memcpy/memcpy.h"
 
 
 #endif /*_LIBC_STRING_H_*/

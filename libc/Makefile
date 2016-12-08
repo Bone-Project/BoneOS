@@ -7,6 +7,8 @@ CSRCS = \
 	string/memset/memset.c \
 	string/strcat/strcat.c \
 	string/strcmp/strcmp.c \
+	string/memcpy/memcpy.c \
+	string/memmove/memmove.c \
 	string/eat_front_whitespace/eat_front_whitespace.c \
 	string/validate_char/validate_char.c \
 	stdio/printck/printck.c \

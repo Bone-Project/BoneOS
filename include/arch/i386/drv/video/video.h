@@ -19,6 +19,7 @@
 
 typedef void(*clear_t)(void);
 typedef void(*putch_t)(char c);
+typedef void(*scroll_t)(int offset);
 typedef int(*update_cursor_t)(int row,int col);
 typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
 
@@ -46,6 +47,7 @@ struct video_driver_t
   void(*clear)(void);
   void(*putch)(char c);
   void(*put_pixel)(int32_t x, int32_t y,  rgb_t rgb);
+  void(*scroll)(int offset);
 
   struct
   {

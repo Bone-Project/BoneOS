@@ -32,6 +32,7 @@ uint8_t FG = 0x7; // Foreground - White
 uint8_t BG = 0x0; // Background - BLACK 
 const size_t VGA_WIDTH = 80;
 const size_t VGA_HEIGHT = 25; 
+extern void term_scroll(int offset);
 
 
 /*
@@ -55,4 +56,8 @@ void putch_vga_80_x_25(char c)
 
   VideoMemory[index]= (VideoMemory[index] & 0xFF00)|c;
   terminal_column++;
+  if(terminal_row>25)
+  {
+    term_scroll(2);
+  }
 }

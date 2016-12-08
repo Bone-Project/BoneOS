@@ -21,38 +21,21 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
-#include <memcpy/memcpy.h>
+#include <memmove/memmove.h>
+#include <memset/memset.h>
+#include <stdio/stdio.h>
+#include <stddef.h>
 
-/*
- * @function memmove:
- *   Copies n characters from __src
- *   to __dest , starting index 0.
- *
- *        @param __src (void*):
- *           Specified Memory Area
- *           to copy from
- *
- *        @param __dest (void*):
- *           Specified Memory area
- *           to copy to.
- *
- *        @return (void*):
- *          Returns original __dest.
- *
- */
+extern size_t terminal_column;
+extern size_t terminal_row;
 
-void *memmove(void *__dest, const void *__src, size_t n)
+void term_scroll(int offset)
 {
-    char *d = __dest;
-    char const *s = __src;
-
-    if (d < s || s + n <= d)
-        return memcpy(d, s, n);
-
-    if (d > s) {
-        for (size_t i = n; i; --i)
-            d[i-1] = s[i-1];
+    uint16_t *screen = (uint16_t*)0xB8000;
+    for(int i = 0; i < 25; i++){
+        for (int m = 0; m < 80; m++){
+            screen[i * 80 + m] = screen[(i + offset) * 80 + m];
+        }
     }
-
-    return __dest;
+  terminal_row -=offset;    
 }
