@@ -11,6 +11,7 @@ CSRCS = \
 	string/memmove/memmove.c \
 	string/eat_front_whitespace/eat_front_whitespace.c \
 	string/validate_char/validate_char.c \
+	string/strstr/strstr.c \
 	stdio/printck/printck.c \
 	stdlib/itoa/itoa.c \
 	stdlib/atoi/atoi.c \

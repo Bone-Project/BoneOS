@@ -1,11 +1,7 @@
 #ifndef _LIBC_UNISTD_GETOPT_H_
 #define _LIBC_UNISTD_GETOPT_H_
 
-typedef 
-struct
-{
-	char str[200];
-}str_t;
+#include <str_t.h>
 
 
 extern void get_opt(const char* s, str_t str_p[]);
