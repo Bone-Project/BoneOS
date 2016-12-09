@@ -75,8 +75,7 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
-   if(kbd_info.kbd_enc_info == KBD_QWERTY_LEFT_SHIFT_RELEASE ||
-      kbd_info.kbd_enc_info == KBD_QWERTY_RIGHT_SHIFT_RELEASE)
+   if(kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_LEFT_SHIFT_RELEASE || kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_RIGHT_SHIFT_RELEASE)
           kbd_info.is_shift = false;
 }
 
@@ -136,9 +135,9 @@ void key_handler()
 {
    //printk("IN KEY HANDLER");
    if( 
-       (((char)kbd_info.key) == '6') 
+       ((kbd_info.key) == '6') 
                   || 
-       (((char)kbd_info.key) == '8')
+       ((kbd_info.key) == '8')
      )
    {
         if(kbd_info.is_caps == false && print_scank == true)
