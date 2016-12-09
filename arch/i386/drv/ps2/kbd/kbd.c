@@ -77,7 +77,10 @@ void key_release(uint8_t scancode)
 {
   if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_LEFT_SHIFT_PRESS || 
     kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_RIGHT_SHIFT_PRESS)  
+    {
+        printk("SHIFT RELEASE");
         kbd_info.is_shift = false;
+    }
 }
 
 /*
@@ -160,7 +163,7 @@ void key_handler()
    {
      case KBD_QWERTY_LEFT_SHIFT_PRESS:
      case KBD_QWERTY_RIGHT_SHIFT_PRESS:
-       printk("SHIFT");
+       printk("SHIFT PRESS");
        kbd_info.is_shift = true;
        break; 
      case KBD_QWERTY_CAPS_PRESS:
