@@ -75,8 +75,9 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
-   if(kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_LEFT_SHIFT_RELEASE || kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_RIGHT_SHIFT_RELEASE)
-          kbd_info.is_shift = false;
+  if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_LEFT_SHIFT_PRESS || 
+    kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_RIGHT_SHIFT_PRESS)  
+        kbd_info.is_shift = false;
 }
 
 /*
@@ -133,7 +134,6 @@ void wait_until_enter(char key)
  */
 void key_handler()
 {
-   //printk("IN KEY HANDLER");
    if( 
        ((kbd_info.key) == '6') 
                   || 
@@ -233,7 +233,7 @@ void kbd_handler(int_regs *r)
 {
   kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
   if(kbd_info.kbd_enc_info & 0x80)
-        (*kbd_info.routines.key_ev.key_release)(kbd_info.kbd_enc_info);
+        (*kbd_info.routines.key_ev.key_release)(kbd_info.kbd_enc_info & ~0x80);
     else
     {
         kbd_info.key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
