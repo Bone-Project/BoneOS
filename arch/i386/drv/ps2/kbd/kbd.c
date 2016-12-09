@@ -134,9 +134,14 @@ void wait_until_enter(char key)
  */
 void key_handler()
 {
-   if((((char)kbd_info.key) == '6') || 
-   (((char)kbd_info.key) == '8'))
+   //printk("IN KEY HANDLER");
+   if( 
+       (((char)kbd_info.key) == '6') 
+                  || 
+       (((char)kbd_info.key) == '8')
+     )
    {
+       printk("HERE");
         if(kbd_info.is_caps == false && print_scank == true)
         {
           __backspace_count++;
@@ -157,6 +162,7 @@ void key_handler()
    {
      case KBD_QWERTY_LEFT_SHIFT_PRESS:
      case KBD_QWERTY_RIGHT_SHIFT_PRESS:
+       printk("SHIFT");
        kbd_info.is_shift = true;
        break; 
      case KBD_QWERTY_CAPS_PRESS:
