@@ -56,7 +56,7 @@ volatile bool status_ps2_kbd;
  *          Returns character from that
  *          scancode in HEX Format.
  */
-char key_press(uint8_t scancode)
+int key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift == true)
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_shift[scancode]);
@@ -141,7 +141,6 @@ void key_handler()
        (((char)kbd_info.key) == '8')
      )
    {
-       printk("HERE");
         if(kbd_info.is_caps == false && print_scank == true)
         {
           __backspace_count++;

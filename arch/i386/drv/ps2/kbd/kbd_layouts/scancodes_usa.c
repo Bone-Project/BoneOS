@@ -24,7 +24,7 @@
 #include <drv/ps2/kbd/kbd.h>
 
 //USA Scancode No Shift Pressed
-char const QWERTY_USA_NOSHIFT_VAL[]  = 
+int const QWERTY_USA_NOSHIFT_VAL[]  = 
 {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8', /* 9 */
   '9', '0', '-', '=', '\b', /* Backspace */
@@ -65,7 +65,7 @@ char const QWERTY_USA_NOSHIFT_VAL[]  =
 };
 
 //USA Scancode Shift Pressed
- char const QWERTY_USA_SHIFT_VAL[] = 
+ int const QWERTY_USA_SHIFT_VAL[] = 
 {
     0,  27, '!', '@', '#', '$', '%', '^', '&', '*', /* 9 */
   '(', ')', '_', '+', '\b', /* Backspace */

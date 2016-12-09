@@ -17,13 +17,13 @@
 /*STATUS*/
 
 #define KBD_CTRL_STATS_MASK_OUT_BUF     0x1   //00000001
-#define KBD_CTRL_STATS_MASK_IN_BUF         0x2   //00000010
-#define KBD_CTRL_STATS_MASK_SYSTEM        0x4   //00000100
-#define KBD_CTRL_STATS_MASK_CMD_DATA  0x8   //00001000
-#define KBD_CTRL_STATS_MASK_LOCKED       0x10    //00010000
-#define KBD_CTRL_STATS_MASK_AUX_BUF      0x20    //00100000
-#define KBD_CTRL_STATS_MASK_TIMEOUT      0x40    //01000000
-#define KBD_CTRL_STATS_MASK_PARITY          0x80    //10000000
+#define KBD_CTRL_STATS_MASK_IN_BUF      0x2   //00000010
+#define KBD_CTRL_STATS_MASK_SYSTEM      0x4   //00000100
+#define KBD_CTRL_STATS_MASK_CMD_DATA    0x8   //00001000
+#define KBD_CTRL_STATS_MASK_LOCKED      0x10    //00010000
+#define KBD_CTRL_STATS_MASK_AUX_BUF     0x20    //00100000
+#define KBD_CTRL_STATS_MASK_TIMEOUT     0x40    //01000000
+#define KBD_CTRL_STATS_MASK_PARITY      0x80    //10000000
 
 /*ENCODER COMMANDS*/
 #define KBD_ENCODER_CMD_SET_LED                       0xED
@@ -49,16 +49,16 @@
 #define KBD_CTRL_CMD_SELF_TEST  0xAA
 
 /*RETURN CODES*/
-#define KBD_ENC_FAIL_BAT_TEST       0xFC
+#define KBD_ENC_FAIL_BAT_TEST   0xFC
 
 /*LED LIGHT*/
 #define KBD_SCROLL_LED_ON 0x1
-#define KBD_NUM_LED_ON        0x2
-#define KBD_CAPS_LOCK_ON   0x4
+#define KBD_NUM_LED_ON    0x2
+#define KBD_CAPS_LOCK_ON  0x4
 
 /*KEYS*/
-#define KBD_QWERTY_LEFT_SHIFT_PRESS 0x2A
-#define KBD_QWERTY_RIGHT_SHIFT_PRESS 0x36
+#define KBD_QWERTY_LEFT_SHIFT_PRESS  0x101000
+#define KBD_QWERTY_RIGHT_SHIFT_PRESS 0x101001
 #define KBD_QWERTY_LEFT_SHIFT_RELEASE 170
 #define KBD_QWERTY_RIGHT_SHIFT_RELEASE 182
 
@@ -113,7 +113,7 @@ kbd_info_t
         
         struct
         {
-            char (*key_press)(uint8_t scancode);
+            int (*key_press)(uint8_t scancode);
             void (*key_release)(uint8_t scancode);
         }key_ev;
         
@@ -125,7 +125,7 @@ kbd_info_t
     bool is_enter;
     bool is_caps;
     uint32_t current_kbd_layout;
-    char key;
+    int key;
     
 };
 
