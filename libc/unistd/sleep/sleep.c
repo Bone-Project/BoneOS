@@ -24,7 +24,6 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <misc/asm_util.h>
 #include <libc/stdio/stdio.h>
 #include <drv/pit/pit.h>
 #include <libc/unistd/sleep/sleep.h>
@@ -37,6 +36,5 @@
 void sleep(uint32_t seconds)
 {
   int64_t expiry = pit_ticks + seconds * IRQ_SEC_HIT;
-  while (pit_ticks < expiry)
-     hlt();
+  while (pit_ticks < expiry);
 }

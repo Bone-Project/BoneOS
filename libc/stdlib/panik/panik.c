@@ -19,7 +19,6 @@
  **/
 
 #include <libc/stdio/printk/printk.h> 
-#include <misc/asm_util.h>
  
  
  /*
@@ -41,6 +40,5 @@ void panik(const char *fmt, ...)
     va_start(args,fmt);
     vprintk(fmt,args);
     
-    cli();
-    hlt();
+    __asm__ __volatile__("hlt");
 }

@@ -6,8 +6,6 @@
 
 LIBFILENAME := lib$(LIBNAME).a
 
-$(info Building library $(LIBFILENAME))
-
 # Determine object file filenames
 AOBJS := $(ASRCS:.s=.o)
 NOBJS := $(NSRCS:.asm=.o)
@@ -18,9 +16,9 @@ OBJS := $(AOBJS) $(COBJS) $(NOBJS)
 all: $(LIBFILENAME)
 
 clean:
-	@rm -f $(OBJS)
-	@rm -f $(LIBFILENAME)
-	@rm -r .d
+	rm -f $(OBJS)
+	rm -f $(LIBFILENAME)
+	rm -r .d
 
 $(LIBFILENAME): $(OBJS)
 	ar -rcs $@ $^

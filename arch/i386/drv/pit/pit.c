@@ -39,7 +39,7 @@ volatile bool status_pit = STATUS_DRIVER_OK;
  *    Sends Operation Command Word
  *    to PIT.
  */
-inline void send_pit_command(uint8_t cmd)
+static void send_pit_command(uint8_t cmd)
 {
   outb8(I386_PIT_CONTROL_WORD_REG, cmd);
 }
@@ -49,7 +49,7 @@ inline void send_pit_command(uint8_t cmd)
  *    Sends Messages to Counter
  *    0 of PIT's Internal Registers.
  */
-inline void send_msg_counter_0(uint8_t cmd)
+static void send_msg_counter_0(uint8_t cmd)
 {
   outb8(I386_PIT_COUNTER_0_REG,cmd);
 }
@@ -60,7 +60,7 @@ inline void send_msg_counter_0(uint8_t cmd)
  *    with the number of IRQ's per
  *    second specified.
  */
-void pit_phase(int htz)
+static void pit_phase(int htz)
 {
   //1.19MHz / htz
   //dictates how any times
@@ -85,7 +85,7 @@ void pit_phase(int htz)
  *      @if 0 == RETURN_OK
  *      @if !0 == RETURN_ERROR
  */
-int pit_handler_nest()
+static int pit_handler_nest()
 {
   //printk("%d SECONDS\n", (pit_ticks/IRQ_SEC_HIT));
 
@@ -98,7 +98,7 @@ int pit_handler_nest()
  *    that calls the nested handler
  *    if second pass.
  */
-void pit_handler(int_regs *r)
+static void pit_handler(int_regs *r)
 {
   pit_ticks++;
   if (pit_ticks % IRQ_SEC_HIT == 0)

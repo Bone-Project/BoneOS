@@ -40,7 +40,7 @@
 #include <misc/status_codes.h>
 
 
-struct kbd_info_t kbd_info;
+volatile struct kbd_info_t kbd_info;
 volatile bool initalized_ps2_kbd = false;
 volatile bool status_ps2_kbd;
 
@@ -58,7 +58,7 @@ volatile bool status_ps2_kbd;
  */
 int key_press(uint8_t scancode)
 {
-    if(kbd_info.is_shift == true)
+    if(kbd_info.is_shift)
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_shift[scancode]);
     else
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
@@ -75,10 +75,11 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
+ // printk("SCANCODE : %d" , scancode);
   if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_LEFT_SHIFT_PRESS || 
     kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_RIGHT_SHIFT_PRESS)  
     {
-        printk("SHIFT RELEASE");
+        //printk("SHIFT RELEASE");
         kbd_info.is_shift = false;
     }
 }
@@ -163,9 +164,8 @@ void key_handler()
    {
      case KBD_QWERTY_LEFT_SHIFT_PRESS:
      case KBD_QWERTY_RIGHT_SHIFT_PRESS:
-       printk("SHIFT PRESS");
-       kbd_info.is_shift = true;
-       break; 
+      kbd_info.is_shift = true;
+      break; 
      case KBD_QWERTY_CAPS_PRESS:
         led_light(false,false,true);
         if(kbd_info.is_caps == true)

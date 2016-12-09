@@ -77,14 +77,15 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/apps \
     $(BUILDROOT)/include/bin \
     $(BUILDROOT)/include/libc \
-    $(BUILDROOT)/include/libc/string
+    $(BUILDROOT)/include/libc/string \
+        $(BUILDROOT)/arch/shared/x86 
 
 # Parameters
 LDPARAMS := -melf_i386
 CFLAGS := \
 	-m32 -std=c11 \
-	-O2 -g -Wall -Wextra -Wpedantic -Werror  -g \
-	-Wno-error=missing-field-initializers -Wno-varargs \
+	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
+	-Wno-error=missing-field-initializers \
 	-Wno-unused-parameter -Wno-unused-but-set-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
@@ -111,7 +112,8 @@ libraries = \
 	libc/libc.a \
 	arch/$(ARCH)/libarch.a \
 	apps/libapps.a \
-	bin/libbin.a 
+	bin/libbin.a \
+	arch/shared/$(ARCH_FAMILY)/libshared_arch.a
 export libraries
 
 # -----------------------------------------------
@@ -143,6 +145,8 @@ subdirs:
 clean-subdirs:
 	(cd libc && $(MAKE) clean)
 	(cd arch && $(MAKE) clean)
+	(cd apps && $(MAKE) clean)
+	(cd bin && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs
 
@@ -198,10 +202,10 @@ debug_q:
 		-ex 'set radix 16' \
 
 qemu_compile: $(BONEOS_BIN)
-	$(QEMU) -kernel $(BONEOS_BIN) -display sdl
+	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -k en-us
 
 qemu_iso: $(BONEOS_BIN) $(BONEOS_ISO)
-	$(QEMU) -cdrom $(BONEOS_ISO)
+	$(QEMU) -cdrom $(BONEOS_ISO) -k en-us
 
 bochs: $(BONEOS_ISO)
 	$(BOCHS) -f bochsrc.bxrc -q

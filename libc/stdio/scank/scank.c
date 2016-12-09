@@ -27,7 +27,6 @@
 #include <drv/ps2/kbd/kbd.h>
 #include <libc/stdio/scank/scank.h>
 #include <libc/stdlib/atoi/atoi.h>
-#include <misc/asm_util.h>
 #include <libc/stdlib/strtoi/strtoi.h>
 #include <libc/string/strcpy/strcpy.h>
 
@@ -96,7 +95,7 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
             integer_format = va_arg(arg,int*);
             active_scank = true;
             index_scank=0 ;
-            while(active_scank == true) hlt();
+            while(active_scank == true);
             *integer_format = atoi((char*)buffer_scank);
             break;
            case 's':
@@ -104,21 +103,21 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
              active_scank = true;
              index_scank=0 ;
              buffer_scank[0] = 0;
-             while(active_scank == true) hlt();
+             while(active_scank == true);
              strcpy(string_format,(char*)buffer_scank);
             break;
            case 'c':
              char_format = va_arg(arg,char*);
              active_scank = true;
              index_scank=0 ;
-             while(active_scank == true) hlt();
+             while(active_scank == true);
              *char_format = buffer_scank[0];
              break;
            case 'x':
              hex_format = va_arg(arg,int*);
              active_scank = true;
              index_scank = 0;
-             while(active_scank == true) hlt();
+             while(active_scank == true);
              *hex_format = strtoi((char*)buffer_scank, 0, 16);
               break;   
         }

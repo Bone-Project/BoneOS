@@ -1,7 +1,6 @@
 #ifndef  _LIBC_ASSERT_H_
 #define _LIBC_ASSERT_H_
 
-#include <misc/asm_util.h>
 #include "stdio/printk/printk.h"
 
 /* 
@@ -13,8 +12,7 @@
               if(!EXPRESSION)  \
               {  \
                   printk("ERROR : {FILE : %s , LINE : %d}", __FILE__ , __LINE__); \
-                  while(1)  \
-                     hlt(); \
+                  while(1);  \
               } 
 
 /* 
@@ -28,8 +26,7 @@
               if(!EXPRESSION)  \
               {  \
                    printk("ERROR : {FILE : %s , LINE : %d} ERROR MSG : %s" , __FILE__ , __LINE__, MSG); \
-                   while(1)  \
-                      hlt(); \
+                   while(1);  \
               }   
 
 
@@ -43,8 +40,7 @@
              if(EXPRESSION != STATUS_OK)  \
              {  \
                 printk("STATUS_OK_ERROR : {FILE : %s , LINE : %d}" , __FILE__ , __LINE__); \
-                while(1)  \
-                   hlt(); \
+                while(1);  \
              }   
 
 /* 
@@ -58,8 +54,7 @@
             if(EXPRESSION != STATUS_OK)  \
             {  \
                 printk("STATUS_OK_ERROR : {FILE : %s , LINE : %d} ERROR MSG : %s" , __FILE__ , __LINE__, MSG); \
-                while(1)  \
-                   hlt(); \
+                while(1);  \
             }       
 /* 
  * @function assertsv:
@@ -70,8 +65,7 @@
           if(EXPRESSION != STATUS_VALID)  \
           {  \
               printk("STATUS_VALID_ERROR : {FILE : %s , LINE : %d}" , __FILE__ , __LINE__); \
-              while(1)  \
-                 hlt(); \
+              while(1);  \
           }   
 /* 
  * @function assertsvm:
@@ -83,8 +77,7 @@
             if(EXPRESSION != STATUS_VALID)  \
             {  \
                 printk("STATUS_VALID_ERROR : {FILE : %s , LINE : %d} ERROR MSG : %s" , __FILE__ , __LINE__, MSG); \
-                while(1)  \
-                   hlt(); \
+                while(1);  \
             }
 
 /* 
@@ -97,8 +90,7 @@
             if(EXPRESSION != STATUS_DRIVER_OK)  \
             {  \
                 printk("STATUS_DRIVER_OK : {FILE : %s , LINE : %d}" , __FILE__ , __LINE__); \
-                while(1)  \
-                   hlt(); \
+                while(1);  \
             }
             
 /* 
@@ -112,8 +104,7 @@
             if(EXPRESSION != STATUS_DRIVER_OK)  \
             {  \
                 printk("STATUS_DRIVER_OK : {FILE : %s , LINE : %d} ERROR MSG : %s" , __FILE__ , __LINE__, MSG); \
-                while(1)  \
-                   hlt(); \
+                while(1);  \
             }
             
 

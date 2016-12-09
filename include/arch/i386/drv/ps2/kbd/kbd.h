@@ -59,8 +59,8 @@
 /*KEYS*/
 #define KBD_QWERTY_LEFT_SHIFT_PRESS  0x101000
 #define KBD_QWERTY_RIGHT_SHIFT_PRESS 0x101001
-#define KBD_QWERTY_LEFT_SHIFT_RELEASE 0x101002
-#define KBD_QWERTY_RIGHT_SHIFT_RELEASE 0x101003
+//#define KBD_QWERTY_LEFT_SHIFT_RELEASE 0x101002
+//#define KBD_QWERTY_RIGHT_SHIFT_RELEASE 0x101003
 
 #define KBD_QWERTY_CAPS_PRESS 0x3A
 #define KBD_QWERTY_CAPS_RELEASE 186
@@ -129,7 +129,7 @@ kbd_info_t
     
 };
 
-extern struct kbd_info_t kbd_info;
+extern volatile struct kbd_info_t kbd_info;
 extern volatile bool initalized_ps2_kbd;
 extern volatile bool status_ps2_kbd;
 

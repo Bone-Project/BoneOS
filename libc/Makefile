@@ -30,10 +30,3 @@ CSRCS = \
 LIBNAME := c
 
 include $(BUILDROOT)/library.mk
-
-#all:
-#	cd stdio;make
-#	cd stdlib;make
-#	cd string;make
-#	cd math;make
-#	cd unistd;make

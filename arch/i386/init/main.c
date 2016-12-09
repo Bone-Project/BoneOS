@@ -26,14 +26,9 @@
 #include <stddef.h>
 #include <GlobalDefintions.h>
 #include <libc/stdio/stdio.h>
-#include <misc/asm_util.h>
+#include <arch/shared/x86/misc/asm_util.h>
 #include <boot/multiboot/multiboot.h>
-#include <cpu/gdt/gdt.h>
-#include <cpu/interrupts/idt.h>
-#include <cpu/interrupts/isr.h>
-#define KERNEL_CALL
-  #include <cpu/interrupts/irq.h>
-#undef KERNEL_CALL
+#include <cpu/cpu.h>
 #include <libc/string/string.h>
 #include <drv/pit/pit.h>
 #include <drv/ps2/kbd/kbd.h>
@@ -82,10 +77,7 @@ void crash_me()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-   init_gdt();
-   init_idt();
-   init_isr();
-   init_irq();
+   init_cpu();
    setup_driver_handler();
    init_all_drivers();
    sti();
