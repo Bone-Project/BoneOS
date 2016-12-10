@@ -4,3 +4,5 @@
 extern void term_scroll_vga_80_x_25(int offset);
 
 #endif /*_DRV_VIDEO_VGA_TEXTMODE_80x25_TERM_SCROLL_H_*/ 
+
+

@@ -29,6 +29,7 @@
 extern size_t terminal_column;
 extern size_t terminal_row;
 
+
 void term_scroll_vga_80_x_25(int offset)
 {
     uint16_t *screen = (uint16_t*)0xB8000;
@@ -37,5 +38,6 @@ void term_scroll_vga_80_x_25(int offset)
             screen[i * 80 + m] = screen[(i + offset) * 80 + m];
         }
     }
+
   terminal_row -=offset;    
 }

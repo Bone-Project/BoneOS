@@ -12,3 +12,4 @@ extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK  
 
 #endif /*_SCREEN_PUTCH_H_*/
+

@@ -218,8 +218,10 @@ qemu_iso: $(BONEOS_BIN) $(BONEOS_ISO)
 bochs: $(BONEOS_ISO)
 	$(BOCHS) -f bochsrc.bxrc -q
 
+new_line:
+	find . \( -name "*.asm" -o -name "*.h" -o -name "*.c" \) -print0 | xargs -0 -iFILE sh -c 'echo >> FILE'
 custom:
 	xterm -fg white -bg black
 	unset TMUX
 
-.PHONY: gdb_q qemu_compile bochs qemu_iso custom
+.PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line

@@ -9,3 +9,4 @@
 #define STATUS_DRIVER_MALFUNCTION 0x1
 
 #endif /*_MISC_STATUSCODES_H_*/
+

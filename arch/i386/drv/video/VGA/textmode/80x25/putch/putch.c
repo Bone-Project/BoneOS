@@ -59,3 +59,4 @@ void putch_vga_80_x_25(char c)
   if(terminal_column>=80) terminal_row++,terminal_column=0;
   if(terminal_row>=25) term_scroll_vga_80_x_25(1);
 }
+

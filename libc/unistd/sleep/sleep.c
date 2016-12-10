@@ -38,3 +38,4 @@ void sleep(uint32_t seconds)
   int64_t expiry = pit_ticks + seconds * IRQ_SEC_HIT;
   while (pit_ticks < expiry);
 }
+

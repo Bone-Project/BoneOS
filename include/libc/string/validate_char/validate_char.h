@@ -6,3 +6,4 @@
 extern bool validate_char(char c);
 
 #endif /*_STRING_VALIDATE_CHAR_H_*/
+

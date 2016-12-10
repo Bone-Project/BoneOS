@@ -62,3 +62,4 @@ extern void interupt_handler(int_regs* regs)
 	
 	outb8(I386_MASTER_REG_COMMAND,PIC_EOI);
 }
+

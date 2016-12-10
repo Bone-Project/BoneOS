@@ -6,3 +6,4 @@
 extern int main_boneos_opt_handler(char* cmd);
 
 #endif /*_BIN_CLEAR_MAINOPT_H_*/
+

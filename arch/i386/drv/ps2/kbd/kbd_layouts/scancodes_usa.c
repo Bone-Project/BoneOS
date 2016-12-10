@@ -104,3 +104,4 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     0,  /* F12 Key */
     0,  /* All other keys are undefined */
 };
+

@@ -34,3 +34,4 @@ extern bool device_initalized(int index);
 extern struct device_driver *drivers[];
 
 #endif /*_ARCH_DRV_DRIVER_H_*/
+

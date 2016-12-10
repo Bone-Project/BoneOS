@@ -8,3 +8,4 @@
 extern void *memcpy(void * __dest, const void * __src, size_t n);
 
 #endif /*_LIBC_STDIO_STRING_MEMCPY_H_*/
+

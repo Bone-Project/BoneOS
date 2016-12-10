@@ -74,3 +74,4 @@ struct cmd_t cmd_help =
   .invalid_use_msg = "Invalid use of help command.\n"
                      "Type in help --help for more help.\n"
 };
+

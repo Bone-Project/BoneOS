@@ -8,3 +8,4 @@ struct
 }str_t;
 
 #endif /*_STRING_STR_T_*/
+

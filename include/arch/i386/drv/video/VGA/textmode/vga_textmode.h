@@ -22,3 +22,4 @@ extern int init_vga_textmode();
 extern vga_textmode_t *vga_textmodes_arr[];
 
 #endif /*_DRV_VIDEO_VGA_TEXTMODE_VGATEXTMODE_H_*/
+

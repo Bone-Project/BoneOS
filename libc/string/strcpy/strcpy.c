@@ -47,3 +47,4 @@ char *strcpy(char *dest, char const *src)
     while ((*dest++ = *src++));
     return result;
 }
+

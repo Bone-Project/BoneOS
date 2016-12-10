@@ -84,3 +84,4 @@ struct cmd_t cmd_sleep =
   .invalid_use_msg = "Invalid use of sleep command.\n"
                      "Type in sleep --help for more help.\n"
 };
+

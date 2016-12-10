@@ -5,3 +5,4 @@
 #define INFINITY (__builtin_inf())
 
 #endif /*_MATH_COMMON_H_*/
+

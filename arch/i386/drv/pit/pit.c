@@ -126,3 +126,4 @@ int uninit_pit()
   uninstall_irq_handler(IRQ_NUM_PIT);
   return STATUS_OK;
 }
+

@@ -49,3 +49,4 @@ void remap_pic_irq()
 	outb8(I386_MASTER_REG_DATA,PIC_NULL);
 	outb8(I386_SLAVE_REG_IMR ,PIC_NULL);
 }
+

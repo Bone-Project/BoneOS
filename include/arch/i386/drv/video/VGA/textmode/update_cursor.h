@@ -16,3 +16,4 @@
 extern int update_cursor_textmode(int row, int col);
 
 #endif /*_DRV_VIDEO_VGA_TEXTMODE_UPDATE_CURSOR_H_*/
+

@@ -31,3 +31,4 @@ extern void init_terminal();
 extern struct cmd_t *cmds[];
 
 #endif /*_APPS_TERM_TERMINAL_H_*/
+

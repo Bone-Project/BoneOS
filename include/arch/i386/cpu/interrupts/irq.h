@@ -29,3 +29,4 @@ extern void init_irq();
 #define IRQ_NUM_SECONDARY_ATA 15
 
 #endif /*_ARCH_CPU_INTERRUPTS_IRQ_H*/
+

@@ -61,3 +61,4 @@ struct video_driver_t
 extern struct video_driver_t *video_drivers[];
 
 #endif /*ARCH_DRV_VIDEO_H_*/
+

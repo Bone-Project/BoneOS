@@ -125,3 +125,4 @@ void init_gdt()
    gp.base = (uintptr_t)&gdt;
    gdt_load(gp);
 }
+

@@ -18,3 +18,4 @@ typedef union
 }rgb_t;
 
 #endif /*_ARCH_DRV_VIDEO_RGB_H_*/
+

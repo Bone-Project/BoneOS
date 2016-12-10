@@ -56,3 +56,4 @@ void *memset(void *dst, int c, size_t n)
     *d++=(char)c;
    return dst;    
 }
+

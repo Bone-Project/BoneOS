@@ -40,3 +40,4 @@ struct kbd_layout_t *kbd_layouts[] =
     &QWERTY_USA,
     0
 };
+

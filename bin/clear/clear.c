@@ -71,3 +71,4 @@ struct cmd_t cmd_clear =
   .invalid_use_msg = "Invalid use of clear command.\n"
                      "Type in clear --help for more help.\n"
 };
+
