@@ -24,6 +24,7 @@
 
 #include <drv/video/VGA/textmode/80x25/putch/putch.h>
 #include <libc/string/memset/memset.h>
+#include <drv/video/VGA/textmode/80x25/utils.h>
 
 
 extern size_t terminal_column;
@@ -50,9 +51,20 @@ void term_zero()
 void clear_vga_80_x_25()    
 {
   term_zero();
-  char buf[80*25+1];
-  memset(buf, ' ', 80*25);
-  buf[80*25] = 0;
-  for(int i=0;buf[i];i++) putch_vga_80_x_25(buf[i]);
+  for(int i=0; i<80; i++)
+  {
+    for(int j=0; j<25; j++)
+    {
+        const size_t index =  (terminal_row * 80 +  terminal_column);
+        uint16_t* VideoMemory = (uint16_t*)0xB8000;
+        uint8_t terminal_color = make_color(FG,BG);
+        
+        VideoMemory[index] = make_vgaentry(' ', terminal_color);
+        VideoMemory[index+1] = make_vgaentry(' ', terminal_color);
+
+        VideoMemory[index]= (VideoMemory[index] & 0xFF00)|(char)0;
+        terminal_column++;
+    }
+  }
   term_zero();
 }

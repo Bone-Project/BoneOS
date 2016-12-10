@@ -21,6 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
+#include <drv/video/VGA/textmode/80x25/utils.h>
 #include <memmove/memmove.h>
 #include <memset/memset.h>
 #include <stdio/stdio.h>
@@ -28,16 +29,16 @@
 
 extern size_t terminal_column;
 extern size_t terminal_row;
+extern uint8_t FG; // Foreground - White
+extern uint8_t BG; // Background - BLACK 
 
 
 void term_scroll_vga_80_x_25(int offset)
 {
     uint16_t *screen = (uint16_t*)0xB8000;
-    for(int i = 0; i < 25; i++){
-        for (int m = 0; m < 80; m++){
+    for(int i = 0; i < 25; i++)
+        for (int m = 0; m < 80; m++)
             screen[i * 80 + m] = screen[(i + offset) * 80 + m];
-        }
-    }
 
   terminal_row -=offset;    
 }
