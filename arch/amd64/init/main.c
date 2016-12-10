@@ -23,7 +23,7 @@
   
 #include <stdint.h>
 #include <stddef.h>
-#include <arch/shared/x86/misc/asm_util.h>
+#include <misc/asm_util.h>
 
 
 /*

@@ -86,7 +86,7 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/bin \
     $(BUILDROOT)/include/libc \
     $(BUILDROOT)/include/libc/string \
-    $(BUILDROOT)/arch/shared/x86 
+    $(BUILDROOT)/include/arch/shared/x86 
 
 # Parameters
 LDPARAMS := -melf_$(ARCH_QEMU)

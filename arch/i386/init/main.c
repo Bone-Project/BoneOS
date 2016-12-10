@@ -28,7 +28,7 @@
 #include <stddef.h>
 #include <GlobalDefintions.h>
 #include <libc/stdio/stdio.h>
-#include <arch/shared/x86/misc/asm_util.h>
+#include <misc/asm_util.h>
 #include <boot/multiboot/multiboot.h>
 #include <cpu/cpu.h>
 #include <libc/string/string.h>
