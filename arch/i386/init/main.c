@@ -20,6 +20,8 @@
 
  **		Amanuel Bogale <amanuel2> : start
  **/   
+ 
+#define DEBUG 1 /*DEBUG_MODE*/
   
 #include <stdarg.h>
 #include <stdint.h>
@@ -83,9 +85,6 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    sti();
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
-    char *s = "kkekerkernkernelernelrnelnelell";
-    str_t ss = strstr(s, "kernel");
-    printk("HERE:%s",ss.str);
    init_terminal();
 
    while(1)

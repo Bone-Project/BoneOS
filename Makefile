@@ -210,4 +210,8 @@ qemu_iso: $(BONEOS_BIN) $(BONEOS_ISO)
 bochs: $(BONEOS_ISO)
 	$(BOCHS) -f bochsrc.bxrc -q
 
-.PHONY: gdb_q qemu_compile bochs qemu_iso
+custom:
+	xterm -fg white -bg black
+	unset TMUX
+
+.PHONY: gdb_q qemu_compile bochs qemu_iso custom

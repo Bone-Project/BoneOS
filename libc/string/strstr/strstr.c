@@ -45,6 +45,9 @@
 #include <strstr/strstr.h>
 #include <strlen/strlen.h>
 #include <strcmp/strcmp.h>
+#include <memmove/memmove.h>
+
+#include <stdio/stdio.h>
 
 str_t strstr(char* __str, char* __substr)
 {
@@ -63,18 +66,19 @@ str_t strstr(char* __str, char* __substr)
             int i=0;
             for(; __substr[i]; i++)
                 __temp[i] = __str[i+index];
+            __temp[i] = '\0';
             
             if(strcmp(__temp,__substr)==0)
             {
                 __start_index = (i+index)-strlen__substr;
                 __found=true;
-                for(uint32_t i=__start_index,j=0; i<strlen__str;i++,j++)
-                    __return_str.str[j]=__str[i];
+                for(int i=0; i<200;i++) __return_str.str[i]=0;
+                 for(uint32_t i=__start_index,j=0; i<strlen__str;i++,j++)
+                     __return_str.str[j]=__str[i];
             }
             index++;
         }
-        else
-            index++;
+        else index++;
     }
     
     if(__found==false)
