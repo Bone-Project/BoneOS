@@ -38,11 +38,14 @@
 #include <drv/ps2/kbd/scancodes.h>
 #include <libc/stdio/scank/scank.h>
 #include <misc/status_codes.h>
+#include <term/terminal.h>
 
 
 volatile struct kbd_info_t kbd_info;
 volatile bool initalized_ps2_kbd = false;
 volatile bool status_ps2_kbd;
+
+extern volatile bool TERMINAL_MODE;
 
 /*
  * @function key_press:
@@ -75,9 +78,8 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
- // printk("SCANCODE : %d" , scancode);
-  if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_LEFT_SHIFT_PRESS || 
-    kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_RIGHT_SHIFT_PRESS)  
+  if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_USA_LEFT_SHIFT_PRESS || 
+    kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_USA_RIGHT_SHIFT_PRESS)  
     {
         //printk("SHIFT RELEASE");
         kbd_info.is_shift = false;
@@ -162,18 +164,32 @@ void key_handler()
    
    switch(kbd_info.key)
    {
-     case KBD_QWERTY_LEFT_SHIFT_PRESS:
-     case KBD_QWERTY_RIGHT_SHIFT_PRESS:
+     case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
+     case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
       kbd_info.is_shift = true;
       break; 
-     case KBD_QWERTY_CAPS_PRESS:
+     case KBD_QWERTY_USA_UP_KEY:
+        if(TERMINAL_MODE == true)
+        {
+           for(int i=0; cmd_active.value[i]; i++)
+           {
+             if(active_scank == true && print_scank == true)
+             {
+                    wait_until_enter(cmd_active.value[i]);
+                       __backspace_count++;
+             }
+           }
+            printk("%s" , cmd_active.value); 
+        }
+        break;
+     case KBD_QWERTY_USA_CAPS_PRESS:
         led_light(false,false,true);
         if(kbd_info.is_caps == true)
           kbd_info.is_caps = false;
         else
            kbd_info.is_caps = true;
         break;  
-     case KBD_QWERTY_ENTER_PRESS:
+     case KBD_QWERTY_USA_ENTER_PRESS:
         kbd_info.is_enter = true;
         active_scank = false;
         buffer_scank[index_scank] = 0;

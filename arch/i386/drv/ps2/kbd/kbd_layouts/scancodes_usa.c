@@ -30,23 +30,23 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
   '9', '0', '-', '=', '\b', /* Backspace */
   '\t',     /* Tab */
   'q', 'w', 'e', 'r', /* 19 */
-  't', 'y', 'u', 'i', 'o', 'p', '[', ']', KBD_QWERTY_ENTER_PRESS, /* Enter key */
+  't', 'y', 'u', 'i', 'o', 'p', '[', ']', KBD_QWERTY_USA_ENTER_PRESS, /* Enter key */
     0,      /* 29   - Control */
   'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', /* 39 */
- '\'', '`',   KBD_QWERTY_LEFT_SHIFT_PRESS,    /* Left shift */
+ '\'', '`',   KBD_QWERTY_USA_LEFT_SHIFT_PRESS,    /* Left shift */
  '\\', 'z', 'x', 'c', 'v', 'b', 'n',      /* 49 */
-  'm', ',', '.','/',  KBD_QWERTY_RIGHT_SHIFT_PRESS,        /* Right shift */
+  'm', ',', '.','/',  KBD_QWERTY_USA_RIGHT_SHIFT_PRESS,        /* Right shift */
   '*',
     0,  /* Alt */
   ' ',  /* Space bar */
-    KBD_QWERTY_CAPS_PRESS,  /* Caps lock */
+    KBD_QWERTY_USA_CAPS_PRESS,  /* Caps lock */
     0,  /* 59 - F1 key ... > */
     0,   0,   0,   0,   0,   0,   0,   0,
     0,  /* < ... F10 */
     0,  /* 69 - Num lock*/
     0,  /* Scroll Lock */
     0,  /* Home key */
-    0,  /* Up Arrow */
+    KBD_QWERTY_USA_UP_KEY,  /* Up Arrow */
     0,  /* Page Up */
   '-',
     0,  /* Left Arrow */
@@ -71,23 +71,23 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
   '(', ')', '_', '+', '\b', /* Backspace */
   '\t',     /* Tab */ 
   'Q', 'W', 'E', 'R', /* 19 */
-  'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', KBD_QWERTY_ENTER_PRESS, /* Enter key */
+  'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', KBD_QWERTY_USA_ENTER_PRESS, /* Enter key */
     0,      /* 29   - Control */
   'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K' ,'L', ':', /* 39 */
-  '\"' , '~',   KBD_QWERTY_LEFT_SHIFT_PRESS,    /* Left shift */
+  '\"' , '~',   KBD_QWERTY_USA_LEFT_SHIFT_PRESS,    /* Left shift */
  '|', 'Z', 'X', 'C', 'V', 'B', 'N',      /* 49 */
-  'M', '<', '>', '?',   KBD_QWERTY_RIGHT_SHIFT_PRESS,        /* Right shift */
+  'M', '<', '>', '?',   KBD_QWERTY_USA_RIGHT_SHIFT_PRESS,        /* Right shift */
   '*',
     0,  /* Alt */
   ' ',  /* Space bar */
-    KBD_QWERTY_CAPS_PRESS,  /* Caps lock */
+    KBD_QWERTY_USA_CAPS_PRESS,  /* Caps lock */
     0,  /* 59 - F1 key ... > */
     0,   0,   0,   0,   0,   0,   0,   0,
     0,  /* < ... F10 */
     0,  /* 69 - Num lock*/
     0,  /* Scroll Lock */
     0,  /* Home key */
-    0,  /* Up Arrow */
+    KBD_QWERTY_USA_UP_KEY,  /* Up Arrow */
     0,  /* Page Up */
   '-',
     0,  /* Left Arrow */

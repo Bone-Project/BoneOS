@@ -30,5 +30,7 @@ struct typed_cmd
 extern void init_terminal();
 extern struct cmd_t *cmds[];
 
+extern volatile struct typed_cmd cmd_active;
+
 #endif /*_APPS_TERM_TERMINAL_H_*/
 

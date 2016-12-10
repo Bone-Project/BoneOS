@@ -31,12 +31,14 @@
 #include <unistd/unistd.h>
 #include <help/help.h>
 #include <sleep/sleep.h>
+#include <stdbool.h>
 
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
 
+volatile bool TERMINAL_MODE = false;
 
-struct typed_cmd cmd_active;
+volatile struct typed_cmd cmd_active;
 
 struct cmd_t *cmds[] = 
 {
@@ -93,7 +95,10 @@ void loop_terminal()
     }
     
     if(__found == 0)
-      printk("Invalid Command\n");
+    {
+      printk("Invalid Command '%s' \n", cmd_active.value);
+       printk("Try 'help' for more information.\n");
+    }
       
     __found = 0;  
   }
@@ -101,6 +106,7 @@ void loop_terminal()
 
 void init_terminal()
 {
+  TERMINAL_MODE=true;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   loop_terminal();
 }

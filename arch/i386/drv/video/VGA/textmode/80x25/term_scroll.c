@@ -37,8 +37,20 @@ void term_scroll_vga_80_x_25(int offset)
 {
     uint16_t *screen = (uint16_t*)0xB8000;
     for(int i = 0; i < 25; i++)
+    {
         for (int m = 0; m < 80; m++)
-            screen[i * 80 + m] = screen[(i + offset) * 80 + m];
+        {
+           const size_t index =  (i * 80 +  m);
+           uint8_t terminal_color = make_color(0x2,0x3);
+
+             screen[index] = make_vgaentry(' ', terminal_color);
+             screen[index+1] = make_vgaentry(' ', terminal_color);
+
+              screen[index]=  screen[(i + offset) * 80 + m];
+
+            //screen[index] = screen[(i + offset) * 80 + m]; 
+        }
+      }
 
   terminal_row -=offset;    
 }
