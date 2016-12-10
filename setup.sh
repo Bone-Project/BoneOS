@@ -2,14 +2,16 @@
 
 echo "SETTING UP DEPENDENCIES"
 if [ "$(uname)" == "Darwin" ]; then
+  echo "RUNNING UNDER Max OSX"
    sleep 2
-   brew nasm
-   brew gcc
-   brew qemu
-   brew grub-common
-   brew xorriso
-   brew grub-pc-bin      
+   brew install nasm
+   brew install gcc
+   brew install qemu
+   brew install grub-common
+   brew install xorriso
+   brew install grub-pc-bin      
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+   echo "RUNNING UNDER a linux distro"
     sleep 2
     sudo apt-get update
     sudo apt-get install nasm
