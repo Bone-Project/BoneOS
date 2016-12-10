@@ -38,10 +38,7 @@ ifdef CROSSROOT
   export LD
   export AR
 endif
-ARCH_FAMILY := x86
-ARCH := i386
-export ARCH
-export ARCH_FAMILY
+
 
 
 VIDEO_DRIVER := VGA
@@ -57,18 +54,29 @@ export VIDEO_DRIVER_RES_H
 export VIDEO_DRIVER_RES
 export VIDEO_DRIVER_MODE
 
+
+
+# Architecture
+ARCH_FAMILY := x86
+ARCH := i386
+ARCH_FAMILY_S = "x86"
+ARCH_S="i386"
+ARCH_QEMU := i386
+
 # Programs
 BOCHS := bochs
-QEMU := qemu-system-i386
+QEMU := qemu-system-$(ARCH_QEMU)
 PYTHON := python
 SH := sh
 VB := virtualbox
 VBM := VBoxManage
-GDB := gdb
+GDB := gdb_q
 
-# Architecture
-ARCH_FAMILY_S = "x86"
-ARCH_S="i386"
+
+export ARCH
+export ARCH_S
+export ARCH_FAMILY
+export ARCH_FAMILY_S
 
 
 INCDIRS := $(BUILDROOT)/include \
@@ -78,10 +86,10 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/bin \
     $(BUILDROOT)/include/libc \
     $(BUILDROOT)/include/libc/string \
-        $(BUILDROOT)/arch/shared/x86 
+    $(BUILDROOT)/arch/shared/x86 
 
 # Parameters
-LDPARAMS := -melf_i386
+LDPARAMS := -melf_$(ARCH_QEMU)
 CFLAGS := \
 	-m32 -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
@@ -104,7 +112,7 @@ BONEOS_BIN := BoneOS.bin
 BONEOS_BOOT_DIR := boot/boot
 BONEOS_BOOT_BIN := $(BONEOS_BOOT_DIR)/$(BONEOS_BIN)
 BONEOS_GRUB_CFG := $(BONEOS_BOOT_DIR)/grub/grub.cfg
-LINKER_SCRIPT := arch/i386/link/linker.ld
+LINKER_SCRIPT := arch/$(ARCH)/link/linker.ld
 
 SCRIPT_CC := utils/cross_compiler/toolchain.py
 

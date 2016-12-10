@@ -7,8 +7,7 @@ NSRCS = \
 	cpu/interrupts/irq.asm \
 	cpu/interrupts/isr.asm \
 	cpu/interrupts/interrupts-asm.asm \
-	io/io.asm \
-	boot/boot.asm
+	io/io.asm
 
 CSRCS = \
 	init/main.c \

@@ -48,9 +48,8 @@ extern void callConstructors()
  *      calls when Loading the kernel.
  *
  */
-void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
+void kernelMain(uint32_t multiboot,uint32_t magicnumber)
 {
-    while(1)
-        
+    while(1);
 }
 

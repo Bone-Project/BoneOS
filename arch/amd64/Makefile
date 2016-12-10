@@ -1,5 +1,7 @@
 BUILDROOT ?= ../..
 
+NSRCS = \
+	boot/boot.asm
 
 CSRCS = \
 	init/main.c
