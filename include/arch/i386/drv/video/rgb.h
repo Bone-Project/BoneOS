@@ -1,5 +1,4 @@
-#ifndef  _ARCH_DRV_VIDEO_RGB_H_
-#define _ARCH_DRV_VIDEO_RGB_H_
+#pragma once
 
 #include <stddef.h>
 #include <stdint.h>
@@ -16,6 +15,4 @@ typedef union
     uint8_t a;
   }rgb;
 }rgb_t;
-
-#endif /*_ARCH_DRV_VIDEO_RGB_H_*/
 

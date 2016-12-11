@@ -3,6 +3,7 @@
 
     #include "toupper/toupper.h"
     #include "isdigit/isdigit.h"
+    #include "isalpha/isalpha.h"
 
 #endif /*_LIBC_CTYPE_H_*/
 

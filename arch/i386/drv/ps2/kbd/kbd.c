@@ -39,6 +39,7 @@
 #include <libc/stdio/scank/scank.h>
 #include <misc/status_codes.h>
 #include <term/terminal.h>
+#include <ctype/ctype.h>
 
 
 volatile struct kbd_info_t kbd_info;
@@ -183,7 +184,7 @@ void key_handler()
         }
         break;
      case KBD_QWERTY_USA_CAPS_PRESS:
-        led_light(false,false,true);
+        //led_light(false,false,true);
         if(kbd_info.is_caps == true)
           kbd_info.is_caps = false;
         else
@@ -219,21 +220,26 @@ void key_handler()
          break;
      case '\n' :
          if(print_scank == true) printk("\n");
-         break;
+         break;   
      default:
-         if(kbd_info.is_caps == false && print_scank == true)
+         if(isalpha(kbd_info.key)!=0)
          {
-            __backspace_count++;
-            printk("%c", kbd_info.key,__backspace_count);
-         }
-         else if(kbd_info.is_caps == true && print_scank == true)
-         {
-            __backspace_count++;
-            printk("%c", toupper(kbd_info.key)); 
+             if(kbd_info.is_caps == false && print_scank == true)
+             {
+                __backspace_count++;
+                printk("%c", kbd_info.key,__backspace_count);
+             }
+             else if(kbd_info.is_caps == true && print_scank == true)
+             {
+                __backspace_count++;
+                printk("%c", toupper(kbd_info.key)); 
+             }
+
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
          }
 
-          if(active_scank == true && print_scank == true)
-              wait_until_enter(kbd_info.key);
+        
          break;
    }
 }
