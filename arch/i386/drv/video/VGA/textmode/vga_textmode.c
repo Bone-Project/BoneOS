@@ -29,14 +29,15 @@
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/80x25/term_scroll.h>
 
-#define crsr_start 0
-#define crsr_end 14
+#define crsr_start 0x0
+#define crsr_end 0x14
 
 
 int init_vga_textmode()
 {
-  outb16(0x3D5, (crsr_start << 8) | 0x0A);
-  outb16(0x3D5, (crsr_end << 8) | 0x0B);
+  //CURSOR REGISTER
+  outb8(0x3B5, 0x0);
+  outb8(0x3B5, 0x14);
   return STATUS_OK;
 }
 

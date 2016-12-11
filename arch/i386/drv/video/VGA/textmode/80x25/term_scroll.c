@@ -45,7 +45,6 @@ void term_scroll_vga_80_x_25(int offset)
     }
 
   terminal_row -=offset;    
-    //printk("\b");
   for(int i=0; i<78; i++)
     putch_vga_80_x_25(0);
 
