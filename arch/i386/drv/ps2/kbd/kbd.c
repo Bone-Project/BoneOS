@@ -221,13 +221,31 @@ void key_handler()
      case '\n' :
          if(print_scank == true) printk("\n");
          break;   
+      case ' ' :
+              if(kbd_info.is_caps == false && print_scank == true)
+             {
+                  __backspace_count++;
+                  printk("%c", kbd_info.key);
+             }
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+          break;   
+       case '-':
+              if(kbd_info.is_caps == false && print_scank == true)
+             {
+                  __backspace_count++;
+                  printk("%c", kbd_info.key);
+             }
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+          break;  
      default:
          if(isalpha(kbd_info.key)!=0)
          {
              if(kbd_info.is_caps == false && print_scank == true)
              {
                 __backspace_count++;
-                printk("%c", kbd_info.key,__backspace_count);
+                printk("%c", kbd_info.key);
              }
              else if(kbd_info.is_caps == true && print_scank == true)
              {

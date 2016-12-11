@@ -41,14 +41,14 @@ void term_scroll_vga_80_x_25(int offset)
         for (int m = 0; m < 80; m++)
         {
             const size_t index =  (i * 80 +  m);
-           // uint8_t terminal_color = make_color(FG,BG);
+            uint8_t terminal_color = make_color(FG,BG);
 
-           //   screen[index] = make_vgaentry(' ', terminal_color);
-           //   screen[index+1] = make_vgaentry(' ', terminal_color);
+              screen[index] = make_vgaentry(' ', terminal_color);
+              screen[index+1] = make_vgaentry(' ', terminal_color);
 
-              screen[index]=  screen[(i + offset) * 80 + m];
+              screen[index]=  screen[(i + offset) * 80 + m] | (char)0;
 
-            //screen[index] = screen[(i + offset) * 80 + m]; 
+            screen[index] = screen[(i + offset) * 80 + m]; 
         }
       }
 
