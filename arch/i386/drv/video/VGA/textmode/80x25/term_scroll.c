@@ -33,10 +33,28 @@ extern size_t terminal_row;
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
 
+bool BACK_ACTIVE = true;
 
 void term_scroll_vga_80_x_25(int offset)
 {
     uint16_t *screen = (uint16_t*)0xB8000;
+    for(int i = 0; i < 25; i++){
+        for (int m = 0; m < 80; m++){
+            screen[i * 80 + m] = screen[(i + offset) * 80 + m];
+        }
+    }
+
+  terminal_row -=offset;    
+    //printk("\b");
+  for(int i=0; i<78; i++)
+    putch_vga_80_x_25(0);
+
+  terminal_column=0;
+
+}
+
+
+/*
     for(int i = 0; i < 25; i++)
     {
         for (int m = 0; m < 80; m++)
@@ -53,8 +71,4 @@ void term_scroll_vga_80_x_25(int offset)
         }
       }
 
-  terminal_row -=offset;    
- for(int i=0; i<80; i++)
-     putch_vga_80_x_25('s')
-
-}
+*/
