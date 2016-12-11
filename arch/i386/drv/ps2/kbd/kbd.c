@@ -256,6 +256,22 @@ void key_handler()
               if(active_scank == true && print_scank == true)
                   wait_until_enter(kbd_info.key);
          }
+         else if(isdigit(kbd_info.key)!=0)
+         {
+            if(kbd_info.is_caps == false && print_scank == true)
+             {
+                __backspace_count++;
+                printk("%c", kbd_info.key);
+             }
+             else if(kbd_info.is_caps == true && print_scank == true)
+             {
+                __backspace_count++;
+                printk("%c", toupper(kbd_info.key)); 
+             }
+
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+         }
 
         
          break;

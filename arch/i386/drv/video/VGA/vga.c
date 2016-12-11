@@ -60,6 +60,7 @@ int init_vga_driver()
 {
      #if VIDEO_MODE == TEXTMODE && ACTIVE_RES_W == 80 && ACTIVE_RES_H == 25
      
+        init_vga_textmode();
         set_mode_util(
                        vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->putch,
                        0,

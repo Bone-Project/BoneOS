@@ -12,6 +12,7 @@ struct
   void(*putch)(char c);
   int(*update_cursor)(int row,int col);
   void(*scroll)(int offset);
+  int(*init)(void);
   char* name;
 }vga_textmode_t;
 

@@ -21,12 +21,24 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+#include <io/io.h>
 #include <misc/status_codes.h>
 #include <drv/video/VGA/textmode/80x25/clear.h>
 #include <drv/video/VGA/textmode/80x25/putch/putch.h>
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/80x25/term_scroll.h>
+
+#define crsr_start 0
+#define crsr_end 14
+
+
+int init_vga_textmode()
+{
+  outb16(0x3D5, (crsr_start << 8) | 0x0A);
+  outb16(0x3D5, (crsr_end << 8) | 0x0B);
+  return STATUS_OK;
+}
 
 vga_textmode_t eightyXtwentyfive_v = 
 {
@@ -36,7 +48,8 @@ vga_textmode_t eightyXtwentyfive_v =
   .putch = &putch_vga_80_x_25,
   .name = "VGA_TEXTMODE_80_x_25",
   .update_cursor = &update_cursor_textmode,
-  .scroll = &term_scroll_vga_80_x_25
+  .scroll = &term_scroll_vga_80_x_25,
+  .init = &init_vga_textmode
 };
 
 vga_textmode_t *vga_textmodes_arr[] = 
@@ -45,8 +58,3 @@ vga_textmode_t *vga_textmodes_arr[] =
   0
 };
 
-int init_vga_textmode()
-{
-  /*VGA_TESTS*/
-  return STATUS_OK;
-}

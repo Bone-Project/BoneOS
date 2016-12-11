@@ -21,6 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
+#include <drv/video/VGA/textmode/80x25/putch/putch.h>
 #include <drv/video/VGA/textmode/80x25/utils.h>
 #include <memmove/memmove.h>
 #include <memset/memset.h>
@@ -53,4 +54,7 @@ void term_scroll_vga_80_x_25(int offset)
       }
 
   terminal_row -=offset;    
+ for(int i=0; i<80; i++)
+     putch_vga_80_x_25('s')
+
 }
