@@ -49,26 +49,5 @@ void term_scroll_vga_80_x_25(int offset)
   for(int i=0; i<78; i++)
     putch_vga_80_x_25(0);
 
-  terminal_column=0;
-
+  terminal_column=1;
 }
-
-
-/*
-    for(int i = 0; i < 25; i++)
-    {
-        for (int m = 0; m < 80; m++)
-        {
-            const size_t index =  (i * 80 +  m);
-            uint8_t terminal_color = make_color(FG,BG);
-
-              screen[index] = make_vgaentry(' ', terminal_color);
-              screen[index+1] = make_vgaentry(' ', terminal_color);
-
-              screen[index]=  screen[(i + offset) * 80 + m] | (char)0;
-
-            screen[index] = screen[(i + offset) * 80 + m]; 
-        }
-      }
-
-*/
