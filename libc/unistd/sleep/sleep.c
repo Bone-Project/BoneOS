@@ -31,11 +31,12 @@
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
 #include <libc/assertk.h>
+#include <misc/asm_util.h>
 
 
 void sleep(uint32_t seconds)
 {
-  int64_t expiry = pit_ticks + seconds * IRQ_SEC_HIT;
-  while (pit_ticks < expiry);
+  int64_t expiry = (pit_ticks + seconds * IRQ_SEC_HIT)/1000;
+  while (pit_ticks < expiry) hlt();
 }
 

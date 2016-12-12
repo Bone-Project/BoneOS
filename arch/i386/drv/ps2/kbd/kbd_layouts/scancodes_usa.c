@@ -49,12 +49,12 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     KBD_QWERTY_USA_UP_KEY,  /* Up Arrow */
     0,  /* Page Up */
   '-',
-    0,  /* Left Arrow */
+    KBD_QWERTY_USA_LEFT_KEY,  /* Left Arrow */
     0,
-    0,  /* Right Arrow */
+    KBD_QWERTY_USA_RIGHT_KEY,  /* Right Arrow */
   '+',
     0,  /* 79 - End key*/
-    0,  /* Down Arrow */
+    KBD_QWERTY_USA_DOWN_KEY,  /* Down Arrow */
     0,  /* Page Down */
     0,  /* Insert Key */
     0,  /* Delete Key */
@@ -90,12 +90,12 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     KBD_QWERTY_USA_UP_KEY,  /* Up Arrow */
     0,  /* Page Up */
   '-',
-    0,  /* Left Arrow */
+    KBD_QWERTY_USA_LEFT_KEY,  /* Left Arrow */
     0,
-    0,  /* Right Arrow */
+    KBD_QWERTY_USA_RIGHT_KEY,  /* Right Arrow */
   '+',
     0,  /* 79 - End key*/
-    0,  /* Down Arrow */
+    KBD_QWERTY_USA_DOWN_KEY,  /* Down Arrow */
     0,  /* Page Down */
     0,  /* Insert Key */
     0,  /* Delete Key */

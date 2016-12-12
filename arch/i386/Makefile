@@ -6,8 +6,7 @@ NSRCS = \
 	cpu/gdt/gdt-asm.asm \
 	cpu/interrupts/irq.asm \
 	cpu/interrupts/isr.asm \
-	cpu/interrupts/interrupts-asm.asm \
-	io/io.asm
+	cpu/interrupts/interrupts-asm.asm 
 
 CSRCS = \
 	init/main.c \
@@ -31,7 +30,8 @@ CSRCS = \
 	drv/driver.c \
 	drv/ps2/kbd/scancodes.c \
 	drv/ps2/kbd/kbd_layouts/scancodes_usa.c \
-	drv/ps2/kbd/utils.c 
+	drv/ps2/kbd/utils.c  \
+	io/io.c
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
 

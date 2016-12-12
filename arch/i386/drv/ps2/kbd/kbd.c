@@ -40,6 +40,7 @@
 #include <misc/status_codes.h>
 #include <term/terminal.h>
 #include <ctype/ctype.h>
+#include <drv/video/video.h>
 
 
 volatile struct kbd_info_t kbd_info;
@@ -47,6 +48,9 @@ volatile bool initalized_ps2_kbd = false;
 volatile bool status_ps2_kbd;
 
 extern volatile bool TERMINAL_MODE;
+
+extern size_t terminal_column;
+extern size_t terminal_row;
 
 /*
  * @function key_press:
@@ -181,6 +185,20 @@ void key_handler()
              }
            }
             printk("%s" , cmd_active.value); 
+        }
+        break;
+     case KBD_QWERTY_USA_LEFT_KEY:
+        if(TERMINAL_MODE == true)
+        {
+          terminal_column--;
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+        }
+        break;
+     case KBD_QWERTY_USA_RIGHT_KEY:
+        if(TERMINAL_MODE == true)
+        {
+          terminal_column++;
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
         }
         break;
      case KBD_QWERTY_USA_CAPS_PRESS:

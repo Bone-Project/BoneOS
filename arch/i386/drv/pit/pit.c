@@ -41,7 +41,7 @@ volatile bool status_pit = STATUS_DRIVER_OK;
  */
 static void send_pit_command(uint8_t cmd)
 {
-  outb8(I386_PIT_CONTROL_WORD_REG, cmd);
+  outb(I386_PIT_CONTROL_WORD_REG, cmd);
 }
 
 /*
@@ -51,7 +51,7 @@ static void send_pit_command(uint8_t cmd)
  */
 static void send_msg_counter_0(uint8_t cmd)
 {
-  outb8(I386_PIT_COUNTER_0_REG,cmd);
+  outb(I386_PIT_COUNTER_0_REG,cmd);
 }
 
 /*

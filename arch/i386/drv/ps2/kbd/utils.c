@@ -35,13 +35,13 @@
  */
 uint8_t kbd_ctrl_read_status_reg()
 {
-  return (inb8(KBD_CTRL_STATS_REG));   
+  return (inb(KBD_CTRL_STATS_REG));   
 }
 
 void kbd_ctrl_send_cmd(uint8_t cmd)
 {
     while( (kbd_ctrl_read_status_reg() & KBD_CTRL_STATS_MASK_IN_BUF) != 0);
-    outb8(KBD_CTRL_CMD_REG,cmd);
+    outb(KBD_CTRL_CMD_REG,cmd);
 }
 
 /*
@@ -51,14 +51,14 @@ void kbd_ctrl_send_cmd(uint8_t cmd)
  */
 uint8_t kbd_enc_read_input_buf()
 {
-    return (inb8(KBD_ENC_INPUT_BUF_REG));    
+    return (inb(KBD_ENC_INPUT_BUF_REG));    
 }
 
 //Send command to encoder
 void kbd_enc_send_cmd(uint8_t cmd)
 {
     while( (kbd_ctrl_read_status_reg() & KBD_CTRL_STATS_MASK_IN_BUF) != 0);
-    outb8(KBD_ENC_CMD_REG,cmd);
+    outb(KBD_ENC_CMD_REG,cmd);
 }
 
 //Basic Assurance Test(Self Test)

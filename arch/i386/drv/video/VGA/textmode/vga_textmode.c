@@ -35,8 +35,8 @@
 
 int init_vga_textmode()
 {
-  outb16(CRTC_PORT, (CRSR_START_DEFAULT << 8) | 0x0A);
-  outb16(CRTC_PORT, (CRSR_END_DEFAULT << 8)   | 0x0B);
+  outw(CRTC_PORT, (CRSR_START_DEFAULT << 8) | 0x0A);
+  outw(CRTC_PORT, (CRSR_END_DEFAULT << 8)   | 0x0B);
   
   return STATUS_OK;
 }
