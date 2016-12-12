@@ -28,31 +28,21 @@
 #include <term/terminal.h>
 #include <stdlib/stdlib.h>
 #include <stdio/stdio.h>
-#include <help/help.h>
-#include <help/opts/help_cmd_opt.h>
+#include <echo/echo.h>
 
-int main_help_opt_handler(char *cmd)
+int main_echo_opt_handler(char *cmd)
 {
    size_t num_opts = get_opt_count(cmd);
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
-   if(strcmp(opts[1].str,"-cmd")==0)
-   {
-      if(strcmp(opts[2].str,"--help")==0)
-         printk(cmd_help_opt_cmd.help);
-      else   
-         cmd_help_opt_cmd.handler(cmd);
-   }
-   else if(strcmp(opts[1].str , "--help")==0)
-   {
-      printk(cmd_help.help);
-   }
+   if(strcmp(opts[1].str , "--help")==0)
+      printk(cmd_echo.help);
+   else if(num_opts == 2)
+       printk("%s\n" , opts[1].str);
    else
-   {
-      printk(cmd_help.invalid_use_msg);
-   }
-   
+      printk(cmd_echo.invalid_use_msg);
+    
    return STATUS_OK;
 }
 

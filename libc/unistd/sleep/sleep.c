@@ -34,9 +34,9 @@
 #include <misc/asm_util.h>
 
 
-void sleep(uint32_t seconds)
+void sleep(uint32_t ms)
 {
-  int64_t expiry = (pit_ticks + seconds * IRQ_SEC_HIT)/1000;
+  int64_t expiry = pit_ticks + (ms * IRQ_SEC_HIT) / 1000;
   while (pit_ticks < expiry) hlt();
 }
 

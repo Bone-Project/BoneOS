@@ -71,14 +71,14 @@ int cmd_sleep_handler(char* cmd)
 struct cmd_t cmd_sleep = 
 {
   .name = "sleep",
-  .usage ="sleep [<seconds>] [--help]",
+  .usage ="sleep [<ms>] [--help]",
   .help = "sleep(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\tsleep\n"
                 "SYNOPSIS : \n "
-                "\tsleep [<seconds>] [--help]\n"
+                "\tsleep [<ms>] [--help]\n"
                 "DESCRIPTION : \n"
-                "\tSleeps for the number of seconds specified.\n",   
+                "\tSleeps for the number of milliseconds specified.\n",   
   .cmd_opts =  cmd_sleep_opts,
   .handler = &cmd_sleep_handler,    
   .invalid_use_msg = "Invalid use of sleep command.\n"

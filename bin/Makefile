@@ -11,7 +11,9 @@ CSRCS = \
 	help/opts/help_cmd_opt.c \
 	help/opts/main_help.c \
 	sleep/sleep.c \
-	sleep/opts/main_sleep.c 
+	sleep/opts/main_sleep.c \
+	echo/echo.c \
+	echo/opts/main_echo.c
 
 LIBNAME := bin
 
