@@ -23,6 +23,7 @@
 
 #include <misc/status_codes.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
+#include <drv/video/VGA/textmode/cursor.h>
 #include <io/io.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -31,11 +32,11 @@ int update_cursor_textmode(int row, int col)
 {
     uint16_t position = (row*80)+col;
     
-    outb8(UPDATE_CURSOR_REGISTER_SELECT,UPDATE_CURSOR_REGISTER_LOW);
-    outb8(UPDATE_CURSOR_DATA_SEND, UPDATE_CURSOR_POS_LOW(position));
+    outb8(CURSOR_REGISTER_SELECT,UPDATE_CURSOR_REGISTER_LOW);
+    outb8(CURSOR_DATA_SEND, UPDATE_CURSOR_POS_LOW(position));
     
-    outb8(UPDATE_CURSOR_REGISTER_SELECT,UPDATE_CURSOR_REGISTER_HIGH);
-    outb8(UPDATE_CURSOR_DATA_SEND,UPDATE_CURSOR_POS_HIGH(position));
+    outb8(CURSOR_REGISTER_SELECT,UPDATE_CURSOR_REGISTER_HIGH);
+    outb8(CURSOR_DATA_SEND,UPDATE_CURSOR_POS_HIGH(position));
     
     return STATUS_OK;
 }
