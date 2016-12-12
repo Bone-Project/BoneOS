@@ -10,7 +10,7 @@
  *      a driver, and unintalize 
  *      a driver. 
  */
-struct  device_driver
+struct  device_driver_t
 {
   char* name;
   int(*init) (void);
@@ -31,7 +31,7 @@ extern int uninit_all_drivers();
 extern int init_all_drivers();
 extern bool device_initalized(int index);
 
-extern struct device_driver *drivers[];
+extern struct device_driver_t *drivers[];
 
 #endif /*_ARCH_DRV_DRIVER_H_*/
 

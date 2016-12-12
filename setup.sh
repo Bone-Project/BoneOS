@@ -23,6 +23,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something under Windows NT platform
     echo "BoneOS Isnt Available on Windows Operating Systems Yet."
+    echo "You Can Code here : https://ide.c9.io/amanuel2/osdev , or contact us at : https://meta.boneos.org"
 fi
 
 
