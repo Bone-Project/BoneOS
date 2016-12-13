@@ -208,6 +208,21 @@ void key_handler()
         else
            kbd_info.is_caps = true;
         break;  
+     case '=':
+         if(kbd_info.is_caps == false && print_scank == true)
+             {
+                __backspace_count++;
+                printk("%c", kbd_info.key);
+             }
+             else if(kbd_info.is_caps == true && print_scank == true)
+             {
+                __backspace_count++;
+                printk("%c", toupper(kbd_info.key)); 
+             }
+
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+          break;
      case KBD_QWERTY_USA_ENTER_PRESS:
         kbd_info.is_enter = true;
         active_scank = false;

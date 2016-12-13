@@ -61,6 +61,22 @@ int termcmp(const char* cmd, const char* value)
   return 1;  
 }
 
+static bool is_contain_equal(char* s)
+{
+  while(*s)
+    if(*s++ == '=')
+        return true;
+  return false;    
+}
+
+static str_t term_assignment_return_variable(str_t s)
+{
+  int counter = 0;
+  str_t __return;
+  while(s.str[counter] != '=') __return.str[counter]+=s.str[counter++];
+  return __return;
+}
+
 int __found = 0;
 
 void loop_terminal()
@@ -87,8 +103,15 @@ void loop_terminal()
     
     scank(true,true, "%s" , cmd_active.value);
     
+
+      if(is_contain_equal(cmd_active.value)==true)
+      {
+        printk("HERE:%s" ,term_assignment_return_variable())
+      }
+
     for(int i=0; cmds[i]; i++)
     {
+
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
       {
         cmds[i]->handler(cmd_active.value);
