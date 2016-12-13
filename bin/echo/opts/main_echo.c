@@ -29,6 +29,7 @@
 #include <stdlib/stdlib.h>
 #include <stdio/stdio.h>
 #include <echo/echo.h>
+#include <term/values.h>
 
 int main_echo_opt_handler(char *cmd)
 {
@@ -39,7 +40,20 @@ int main_echo_opt_handler(char *cmd)
    if(strcmp(opts[1].str , "--help")==0)
       printk(cmd_echo.help);
    else if(num_opts == 2)
+   {
+       if(opts[1].str[0] == '$')
+       {
+          for(int i=0; i<__values.index; i++)
+          {
+             if(strcmp(__values.pairs[i].key, opts[1].str))
+             {
+                printk("%s\n" , __values.pairs[i].val);
+                return STATUS_OK;
+             }
+          }
+       }
        printk("%s\n" , opts[1].str);
+   }
    else
       printk(cmd_echo.invalid_use_msg);
     
