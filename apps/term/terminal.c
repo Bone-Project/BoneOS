@@ -33,6 +33,7 @@
 #include <sleep/sleep.h>
 #include <stdbool.h>
 #include <echo/echo.h>
+#include <string/string.h>
 
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
@@ -73,7 +74,29 @@ static str_t term_assignment_return_variable(str_t s)
 {
   int counter = 0;
   str_t __return;
-  while(s.str[counter] != '=') __return.str[counter]+=s.str[counter++];
+  for(int i=0; i<200;i++) __return.str[i]=0;
+  
+  while(s.str[counter] != '=') {
+    __return.str[counter]+=s.str[counter];
+    counter++;
+  }
+  return __return;
+}
+
+static str_t term_assignment_return_value(str_t s)
+{
+  int counter=0;
+  int self_index=0;
+  str_t __return;
+  for(int i=0; i<200;i++) __return.str[i]=0;
+  
+  while(s.str[counter++] != '=');
+ // counter+=1;
+  for(; s.str[counter]; counter++)
+  {
+     __return.str[self_index++]+=s.str[counter];
+  }
+  
   return __return;
 }
 
@@ -106,7 +129,16 @@ void loop_terminal()
 
       if(is_contain_equal(cmd_active.value)==true)
       {
-        printk("HERE:%s" ,term_assignment_return_variable())
+        str_t temp_str;
+        strcpy(temp_str.str,cmd_active.value);
+        
+        char* key = term_assignment_return_variable(temp_str).str;
+        char* val = term_assignment_return_value(temp_str).str;
+        
+        strcpy(__values.pairs[__values.index].val,val);
+        strcpy(__values.pairs[__values.index].key,key);
+        __found=1;
+        __values.index++;
       }
 
     for(int i=0; cmds[i]; i++)
@@ -132,6 +164,7 @@ void loop_terminal()
 void init_terminal()
 {
   TERMINAL_MODE=true;
+  __values.index=0;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   loop_terminal();
 }

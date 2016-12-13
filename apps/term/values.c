@@ -27,13 +27,4 @@
 char* VAR_USER = "root";
 char* VAR_PWD = "/";
 
-struct pair_t
-{
-  str_t key;
-  str_t val;
-};
-
-struct values
-{
-  struct pair_t *pairs;
-}__values;
+struct values __values;

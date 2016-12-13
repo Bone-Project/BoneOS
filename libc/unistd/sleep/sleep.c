@@ -33,6 +33,19 @@
 #include <libc/assertk.h>
 #include <misc/asm_util.h>
 
+div_t div_64_32(int64_t numerator, int32_t denominator)
+{
+    div_t result;
+    result.quot = (int32_t)numerator;
+    result.rem = (int32_t)(numerator >> 32);
+    __asm__ (
+        "divl %[den]\n\t"
+        : "+a" (result.quot), "+d" (result.rem)
+        : [den] "rm" (denominator)
+    );
+    return result;
+}
+
 
 void sleep(uint32_t ms)
 {

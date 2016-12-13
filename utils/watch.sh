@@ -2,7 +2,7 @@
 
 if [ "$1" == "" ]
 then
-	TARGET=qemu_iso
+	TARGET=qemu_compile
 else
 	TARGET=$1
 fi
