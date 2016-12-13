@@ -46,6 +46,8 @@
 volatile struct kbd_info_t kbd_info;
 volatile bool initalized_ps2_kbd = false;
 volatile bool status_ps2_kbd;
+volatile int LENGTH_INPUT=0;
+volatile int INDEX_CURSOR_POSITION=0;
 
 extern volatile bool TERMINAL_MODE;
 
@@ -172,7 +174,7 @@ void key_handler()
      case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
      case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
       kbd_info.is_shift = true;
-      break; 
+      break;
      case KBD_QWERTY_USA_UP_KEY:
         if(TERMINAL_MODE == true)
         {
@@ -182,21 +184,24 @@ void key_handler()
              {
                     wait_until_enter(cmd_active.value[i]);
                        __backspace_count++;
+                       LENGTH_INPUT++;
              }
            }
             printk("%s" , cmd_active.value); 
         }
         break;
      case KBD_QWERTY_USA_LEFT_KEY:
-        if(TERMINAL_MODE == true)
+        if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION-1)>=0) )
         {
+          INDEX_CURSOR_POSITION-=1;
           terminal_column--;
           video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
         }
         break;
      case KBD_QWERTY_USA_RIGHT_KEY:
-        if(TERMINAL_MODE == true)
+        if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION+1)<=LENGTH_INPUT))
         {
+          INDEX_CURSOR_POSITION+=1;
           terminal_column++;
           video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
         }
@@ -211,11 +216,15 @@ void key_handler()
      case '=':
          if(kbd_info.is_caps == false && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", kbd_info.key);
              }
              else if(kbd_info.is_caps == true && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", toupper(kbd_info.key)); 
              }
@@ -226,11 +235,15 @@ void key_handler()
       case '$':
          if(kbd_info.is_caps == false && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", kbd_info.key);
              }
              else if(kbd_info.is_caps == true && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", toupper(kbd_info.key)); 
              }
@@ -246,7 +259,9 @@ void key_handler()
         break;
      case '\t':
          if(print_scank == true)  printk("\t");
+          LENGTH_INPUT+=4;
           __backspace_count+=4;
+          INDEX_CURSOR_POSITION+=4;
          break;
      case '\b':
           if((__backspace_count-1) < 0)
@@ -263,7 +278,9 @@ void key_handler()
             if(active_scank)
               buffer_scank[index_scank--] = 0;
             if(print_scank == true) printk("\b");   
+            INDEX_CURSOR_POSITION-=1;
             __backspace_count-=1;
+            LENGTH_INPUT-=1;
          }
          break;
      case '\n' :
@@ -272,6 +289,8 @@ void key_handler()
       case ' ' :
               if(kbd_info.is_caps == false && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                   __backspace_count++;
                   printk("%c", kbd_info.key);
              }
@@ -281,6 +300,8 @@ void key_handler()
        case '-':
               if(kbd_info.is_caps == false && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                   __backspace_count++;
                   printk("%c", kbd_info.key);
              }
@@ -292,11 +313,15 @@ void key_handler()
          {
              if(kbd_info.is_caps == false && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", kbd_info.key);
              }
              else if(kbd_info.is_caps == true && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", toupper(kbd_info.key)); 
              }
@@ -308,11 +333,15 @@ void key_handler()
          {
             if(kbd_info.is_caps == false && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", kbd_info.key);
              }
              else if(kbd_info.is_caps == true && print_scank == true)
              {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
                 __backspace_count++;
                 printk("%c", toupper(kbd_info.key)); 
              }

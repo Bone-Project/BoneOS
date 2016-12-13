@@ -34,6 +34,7 @@
 #include <stdbool.h>
 #include <echo/echo.h>
 #include <string/string.h>
+#include <cursor/cursor.h>
 
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
@@ -42,13 +43,15 @@ volatile bool TERMINAL_MODE = false;
 
 volatile struct typed_cmd cmd_active;
 
+
 struct cmd_t *cmds[] = 
 {
   &cmd_clear,
   &cmd_boneos_logo,
   &cmd_help,
   &cmd_sleep,
-  &cmd_echo
+  &cmd_echo,
+  &cmd_cursor
   ,0
 };
 

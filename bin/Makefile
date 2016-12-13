@@ -13,7 +13,9 @@ CSRCS = \
 	sleep/sleep.c \
 	sleep/opts/main_sleep.c \
 	echo/echo.c \
-	echo/opts/main_echo.c
+	echo/opts/main_echo.c \
+	cursor/cursor.c \
+	cursor/opts/main_cursor.c \
 
 LIBNAME := bin
 
