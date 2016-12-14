@@ -1,6 +1,12 @@
 #ifndef _APPS_TERM_TERMINAL_H_
 #define _APPS_TERM_TERMINAL_H_
 
+typedef enum 
+{
+  ROOT,
+  USER
+}exec_prv;
+
 struct cmd_opt_t
 {
   char* help;
@@ -15,6 +21,7 @@ struct cmd_t
   char*  usage;
   char*  help;
   char*  invalid_use_msg;
+  exec_prv privilege; 
   struct cmd_opt_t** cmd_opts;
   int(*handler)(char* cmd);
 };

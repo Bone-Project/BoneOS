@@ -69,6 +69,7 @@ struct cmd_t cmd_clear =
   .cmd_opts =  cmd_clear_opts,
   .handler = &cmd_clear_handler,    
   .invalid_use_msg = "Invalid use of clear command.\n"
-                     "Type in clear --help for more help.\n"
+                     "Type in clear --help for more help.\n",
+  .privilege = USER
 };
 

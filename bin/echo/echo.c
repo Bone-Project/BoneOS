@@ -65,7 +65,8 @@ struct cmd_t cmd_echo =
   .cmd_opts =  cmd_echo_opts,
   .handler = &cmd_echo_handler,    
   .invalid_use_msg = "Invalid use of echo command.\n"
-                     "Type in echo --help for more help.\n"
+                     "Type in echo --help for more help.\n",
+  .privilege = USER
 };
 
 

@@ -82,6 +82,7 @@ struct cmd_t cmd_sleep =
   .cmd_opts =  cmd_sleep_opts,
   .handler = &cmd_sleep_handler,    
   .invalid_use_msg = "Invalid use of sleep command.\n"
-                     "Type in sleep --help for more help.\n"
+                     "Type in sleep --help for more help.\n",
+  .privilege = USER
 };
 

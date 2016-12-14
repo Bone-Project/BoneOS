@@ -26,52 +26,57 @@
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <cursor/cursor.h>
-#include <cursor/opts/main_cursor.h>
+#include <reboot/reboot.h>
+#include <string/string.h>
+#include <io/io.h>
+#include <misc/asm_util.h>
 
-struct cmd_opt_t* cmd_cursor_opts[] = 
+
+
+struct cmd_opt_t* cmd_reboot_opts[] = 
 {
-   0
+    0
 };
 
-int cmd_cursor_handler(char* cmd)
+int cmd_reboot_handler(char* cmd)
 {
    size_t num_opts = get_opt_count(cmd);
+   str_t opts[num_opts];
+   get_opt(cmd,opts);
+   
    if(num_opts == 1)
    {
-      printk(cmd_cursor.invalid_use_msg);
-      return STATUS_OK;
+    uint8_t good = 0x02;
+    while (good & 0x02)
+        good = inb(0x64);
+    outb(0x64, 0xFE);
+    hlt();
    }
-      
-   main_cursor_opt_handler(cmd); 
+   else if(strcmp(opts[1].str,"--help")==0)
+     printk(cmd_reboot.help);
+   else 
+     printk(cmd_reboot.invalid_use_msg);
    return STATUS_OK;
 }
 
 
-struct cmd_t cmd_cursor = 
+struct cmd_t cmd_reboot = 
 {
-  .name = "cursor",
-  .usage ="cursor [-t <CRSR_START> <CRSR_END>] [-t block] [-t def]",
-  .help = "cursor(1) \t\t\t\t BoneOS Terminal Manual \n"
+  .name = "reboot",
+  .usage ="reboot",
+  .help = "reboot(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
-                "\tcursor\n"
+                "\treboot\n"
                 "SYNOPSIS : \n "
-                "\tcursor [-t <CRSR_START> <CRSR_END>]\n"
+                "\treboot\n"
                 "DESCRIPTION : \n"
-                "\tOptions to change cursor attributes.\n"
-                "OPTIONS : \n"
-                "\t Option Summary \n"
-                "\t\t [-t <CRSR_START> <CRSR_END>] : cursor now changes to custom type.\n"
-                "\t\t [-t block] : cursor is changed to a block cursor (START:0,END:20)\n"
-                "\t\t [-t def] : cursor changes to default underline.  (START:15,END:15)\n", 
-  .cmd_opts =  cmd_cursor_opts,
-  .handler = &cmd_cursor_handler,    
-  .invalid_use_msg = "Invalid use of cursor command.\n"
-                      "Type in cursor --help for more help.\n",
-  .privilege = USER
+                "\tReboots the Operating System.\n",
+  .cmd_opts =  cmd_reboot_opts,
+  .handler = &cmd_reboot_handler,    
+  .invalid_use_msg = "Invalid use of reboot command.\n"
+                     "Type in echo reboot for more help.\n",
+  .privilege = ROOT
 };
-
-
 
 
 

@@ -72,6 +72,7 @@ struct cmd_t cmd_help =
   .cmd_opts =  cmd_help_opts,
   .handler = &cmd_help_handler,    
   .invalid_use_msg = "Invalid use of help command.\n"
-                     "Type in help --help for more help.\n"
+                     "Type in help --help for more help.\n",
+  .privilege = USER
 };
 

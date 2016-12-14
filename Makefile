@@ -84,6 +84,7 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/arch/$(ARCH) \
     $(BUILDROOT)/include/apps \
     $(BUILDROOT)/include/bin \
+    $(BUILDROOT)/include/sbin \
     $(BUILDROOT)/include/libc \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 
@@ -127,6 +128,7 @@ libraries = \
 	arch/$(ARCH)/libarch.a \
 	apps/libapps.a \
 	bin/libbin.a \
+	sbin/libsbin.a \
 	arch/shared/$(ARCH_FAMILY)/libshared_arch.a
 export libraries
 
@@ -154,13 +156,15 @@ subdirs:
 	(cd libc && $(MAKE))
 	(cd arch && $(MAKE))
 	(cd apps && $(MAKE))
-	(cd bin && $(MAKE))
+	(cd bin  && $(MAKE))
+	(cd sbin && $(MAKE))
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)
 	(cd arch && $(MAKE) clean)
 	(cd apps && $(MAKE) clean)
-	(cd bin && $(MAKE) clean)
+	(cd bin  && $(MAKE) clean)
+	(cd sbin && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs
 

@@ -71,5 +71,6 @@ struct cmd_t cmd_boneos_logo =
                 "MORE HELP : \n"
                 "\t[boneos_logo -color--help] for help on -color option\n",   
   .cmd_opts =  cmd_boneos_logo_opts,
-  .handler = &boneos_logo_handler                     
+  .handler = &boneos_logo_handler,
+  .privilege = USER
 };
