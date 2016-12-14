@@ -1,3 +1,4 @@
+#!/bin/bash
 #Install Dependencies
 
 echo "SETTING UP DEPENDENCIES"
