@@ -88,6 +88,12 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 
 
+# Detect path to libgcc
+LIBGCC := $(shell $(CC) -m32 -print-libgcc-file-name)
+LIBGCCDIR := $(dir $(LIBGCC))
+LIBGCCFILENAME = $(notdir $(LIBGCC))
+LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
+
 # Parameters
 LDPARAMS := -melf_$(ARCH_QEMU)
 CFLAGS := \
@@ -165,7 +171,8 @@ $(BONEOS_BIN): $(libraries) $(LINKER_SCRIPT)
 	$(LD) $(LDPARAMS) \
 	-T $(LINKER_SCRIPT) \
 	-o $@ \
-	--start-group $(libraries) --end-group
+	--start-group $(libraries) --end-group \
+	-L$(LIBGCCDIR) -l$(LIBGCCNAME)
 
 #
 # Build ISO
