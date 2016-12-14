@@ -18,6 +18,7 @@ addons:
     packages:
     - gcc-5
     - g++-5
+    - gcc-multilib
     - nasm
     - grub-common
     - xorriso
