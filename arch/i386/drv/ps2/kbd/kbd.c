@@ -41,6 +41,8 @@
 #include <term/terminal.h>
 #include <ctype/ctype.h>
 #include <drv/video/video.h>
+#include <drv/video/VGA/textmode/update_cursor.h>
+
 
 
 volatile struct kbd_info_t kbd_info;
@@ -195,7 +197,7 @@ void key_handler()
         {
           INDEX_CURSOR_POSITION-=1;
           terminal_column--;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
         }
         break;
      case KBD_QWERTY_USA_RIGHT_KEY:
@@ -203,7 +205,7 @@ void key_handler()
         {
           INDEX_CURSOR_POSITION+=1;
           terminal_column++;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
         }
         break;
      case KBD_QWERTY_USA_CAPS_PRESS:

@@ -32,6 +32,9 @@
 #include <libc/stdlib/itoa/itoa.h>
 #include <libc/math/powk/powk.h>
 
+extern volatile uint8_t __crsr_start;
+extern volatile uint8_t __crsr_end;
+
 
 /*
  * @function printk:
@@ -98,13 +101,13 @@ void vprintk(const char* fmt, va_list arg)
               for(int x=0;result_pt[x]!='\0';x++)
               {
                 video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);
-                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
               }
               i+=1;
               break;
             case 'c':
               video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(va_arg(arg,int));
-              video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+              video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
               i+=1;
               break; 
             case 's':
@@ -112,7 +115,7 @@ void vprintk(const char* fmt, va_list arg)
               for(int x=0;result_pt[x]!='\0';x++)
               {
                 video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);
-                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
               }
               i+=1;
               break;   
@@ -121,7 +124,7 @@ void vprintk(const char* fmt, va_list arg)
               __itoa(integer_format, 16, result_pt);
               for(int x=0;result_pt[x]!='\0';x++)
               {
-                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
                 video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);
               }
               i+=1;
@@ -149,7 +152,7 @@ void vprintk(const char* fmt, va_list arg)
                         }
                         break;
                  }
-                 video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+                 video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
                  i+=3;
                break;
           }
@@ -157,29 +160,29 @@ void vprintk(const char* fmt, va_list arg)
         case '\n':
           terminal_row++;
           terminal_column=0;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
           break; 
         case '\b':
           terminal_column--;
           video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(' ');
           terminal_column--;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
           break;
         case '\t':
           for(int32_t t=0;t<=3;t++)terminal_column++; 
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
           break;
          case '\\':
           video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch('\\');
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
           break; 
          case '\"' :
            video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch('\"');
-           video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+           video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
            break; 
         default:
           video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(fmt[i]);
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
           break;       
      }
    }  

@@ -10,7 +10,8 @@ struct
   int h;
   void(*clear)(void);
   void(*putch)(char c);
-  int(*update_cursor)(int row,int col);
+  int(*update_cursor)(int row,int col,uint8_t crsr_start,
+                      uint8_t crsr_end);
   void(*scroll)(int offset);
   int(*init)(void);
   char* name;
