@@ -12,6 +12,7 @@ if [ "$(uname)" == "Darwin" ]; then
    brew install grub-common
    brew install xorriso
    brew install grub-pc-bin
+   brew install bochs
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    echo "RUNNING UNDER a linux distro"
     sleep 2
@@ -23,6 +24,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     sudo apt-get install grub-common
     sudo apt-get install xorriso
     sudo apt-get install grub-pc-bin
+    sudo apt-get install bochs
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something under Windows NT platform
     echo "BoneOS Isnt Available on Windows Operating Systems Yet."
