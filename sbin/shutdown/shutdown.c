@@ -30,50 +30,48 @@
 #include <string/string.h>
 #include <io/io.h>
 #include <misc/asm_util.h>
-#include <sys/reboot.h>
+#include <sys/shutdown.h>
+#include <shutdown/shutdown.h>
 
 
 
-struct cmd_opt_t* cmd_reboot_opts[] = 
+struct cmd_opt_t* cmd_shutdown_opts[] = 
 {
     0
 };
 
-int cmd_reboot_handler(char* cmd)
+int cmd_shutdown_handler(char* cmd)
 {
    size_t num_opts = get_opt_count(cmd);
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
    if(num_opts == 1)
-   {
-    for(int i=0;i<__len_reboot_instance;i++)
-        if(__reboot_i[i].active==true)
-            __reboot_i[i].reboot_v();
-   }
-   else if(strcmp(opts[1].str,"--help")==0)
-     printk(cmd_reboot.help);
+     printk("SHUT DOWN STILL ON WORK\n");
+   else if(strcmp(opts[2].str, "--help")==0)
+      printk(cmd_shutdown.help);
    else 
-     printk(cmd_reboot.invalid_use_msg);
+        printk(cmd_shutdown.invalid_use_msg);
+   
    return STATUS_OK;
 }
 
 
-struct cmd_t cmd_reboot = 
+struct cmd_t cmd_shutdown = 
 {
-  .name = "reboot",
-  .usage ="reboot",
-  .help = "reboot(1) \t\t\t\t BoneOS Terminal Manual \n"
+  .name = "shutdown",
+  .usage ="shutdown",
+  .help = "shutdown(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
-                "\treboot\n"
+                "\tshutdown\n"
                 "SYNOPSIS : \n "
-                "\treboot\n"
+                "\tshutdown\n"
                 "DESCRIPTION : \n"
-                "\tReboots the Operating System.\n",
-  .cmd_opts =  cmd_reboot_opts,
-  .handler = &cmd_reboot_handler,    
-  .invalid_use_msg = "Invalid use of reboot command.\n"
-                     "Type in reboot --help for more help.\n",
+                "\tShut downs the Operating System.\n",
+  .cmd_opts =  cmd_shutdown_opts,
+  .handler = &cmd_shutdown_handler,    
+  .invalid_use_msg = "Invalid use of shutdown command.\n"
+                     "Type in shutdown --help for more help.\n",
   .privilege = ROOT
 };
 
