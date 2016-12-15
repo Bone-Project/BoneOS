@@ -75,3 +75,4 @@ struct cmd_opt_t cmd_help_opt_cmd =
         .invalid_use_msg = "Invalid Use of -cmd option. Use command help --cmd --help for instructions\n"
                            "on how to use the clear command\n"
 };
+

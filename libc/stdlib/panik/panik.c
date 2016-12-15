@@ -42,3 +42,4 @@ void panik(const char *fmt, ...)
     
     __asm__ __volatile__("hlt");
 }
+

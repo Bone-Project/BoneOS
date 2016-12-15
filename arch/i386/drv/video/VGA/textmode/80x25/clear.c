@@ -68,3 +68,4 @@ void clear_vga_80_x_25()
   }
   term_zero();
 }
+

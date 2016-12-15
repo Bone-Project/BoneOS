@@ -252,7 +252,45 @@ void key_handler()
 
               if(active_scank == true && print_scank == true)
                   wait_until_enter(kbd_info.key);
-          break;          
+          break;
+          case '_':
+         if(kbd_info.is_caps == false && print_scank == true)
+             {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
+                __backspace_count++;
+                printk("%c", kbd_info.key);
+             }
+             else if(kbd_info.is_caps == true && print_scank == true)
+             {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
+                __backspace_count++;
+                printk("%c", toupper(kbd_info.key)); 
+             }
+
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+          break;
+       case '.':
+         if(kbd_info.is_caps == false && print_scank == true)
+             {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
+                __backspace_count++;
+                printk("%c", kbd_info.key);
+             }
+             else if(kbd_info.is_caps == true && print_scank == true)
+             {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
+                __backspace_count++;
+                printk("%c", toupper(kbd_info.key)); 
+             }
+
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+          break;      
      case KBD_QWERTY_USA_ENTER_PRESS:
         kbd_info.is_enter = true;
         active_scank = false;
@@ -411,4 +449,5 @@ int uninit_kbd()
   uninstall_irq_handler(IRQ_NUM_KBD);
   return STATUS_OK;
 }
+
 

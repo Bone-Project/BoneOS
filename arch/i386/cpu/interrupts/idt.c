@@ -87,3 +87,4 @@ void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
                             :"m"(idp)
                         );
  }
+

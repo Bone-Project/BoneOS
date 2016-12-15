@@ -101,7 +101,7 @@ CFLAGS := \
 	-m32 -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-error=missing-field-initializers \
-	-Wno-unused-parameter -Wno-unused-but-set-parameter \
+	-Wno-unused-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
 NASM ?= nasm
@@ -129,7 +129,8 @@ libraries = \
 	apps/libapps.a \
 	bin/libbin.a \
 	sbin/libsbin.a \
-	arch/shared/$(ARCH_FAMILY)/libshared_arch.a
+	sys/libsys.a \
+	arch/shared/$(ARCH_FAMILY)/libshared_arch.a 
 export libraries
 
 # -----------------------------------------------
@@ -158,6 +159,7 @@ subdirs:
 	(cd apps && $(MAKE))
 	(cd bin  && $(MAKE))
 	(cd sbin && $(MAKE))
+	(cd sys  && $(MAKE))
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)
@@ -165,6 +167,7 @@ clean-subdirs:
 	(cd apps && $(MAKE) clean)
 	(cd bin  && $(MAKE) clean)
 	(cd sbin && $(MAKE) clean)
+	(cd sys  && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs
 

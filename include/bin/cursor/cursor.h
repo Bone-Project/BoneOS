@@ -7,3 +7,4 @@ extern struct cmd_t cmd_cursor;
 
 #endif /*_BIN_CURSOR_H_*/
 
+

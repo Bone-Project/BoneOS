@@ -9,3 +9,4 @@ extern uint16_t make_vgaentry(char c, uint8_t color);
 
 #endif /*_DRV_VIDEO_VGA_TEXTMODE_80x25_UTILS_H_*/
 
+

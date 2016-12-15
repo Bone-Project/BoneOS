@@ -76,3 +76,4 @@ struct cmd_opt_t cmd_clear_opt_color =
         .invalid_use_msg = "Invalid Use of -color option. Use command clear -color --help for instructions\n"
                            "on how to use the clear command\n"
 };
+

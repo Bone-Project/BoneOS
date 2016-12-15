@@ -51,3 +51,4 @@ char *strchr(const char *str, int c)
         if (*str == c) return (char*)++str;
     return (char*)0;
 }
+

@@ -87,3 +87,4 @@ bool led_light(bool scroll, bool num, bool caps)
   kbd_enc_send_cmd(data_final);
   return true;
 }
+

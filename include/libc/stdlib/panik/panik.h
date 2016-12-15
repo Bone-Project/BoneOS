@@ -5,3 +5,4 @@ extern void panik(const char *fmt, ...);
 
 #endif /*_LIBC_STDLIB_PANIK_H_*/
 
+

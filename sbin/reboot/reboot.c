@@ -30,6 +30,7 @@
 #include <string/string.h>
 #include <io/io.h>
 #include <misc/asm_util.h>
+#include <sys/reboot.h>
 
 
 
@@ -46,11 +47,9 @@ int cmd_reboot_handler(char* cmd)
    
    if(num_opts == 1)
    {
-    uint8_t good = 0x02;
-    while (good & 0x02)
-        good = inb(0x64);
-    outb(0x64, 0xFE);
-    hlt();
+    for(int i=0;i<__len_reboot_instance;i++)
+        if(__reboot_i[i].active==true)
+            __reboot_i[i].reboot_v();
    }
    else if(strcmp(opts[1].str,"--help")==0)
      printk(cmd_reboot.help);
@@ -77,6 +76,7 @@ struct cmd_t cmd_reboot =
                      "Type in echo reboot for more help.\n",
   .privilege = ROOT
 };
+
 
 
 

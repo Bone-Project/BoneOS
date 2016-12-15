@@ -69,3 +69,4 @@ typedef void(*int_routines)(int_regs *r);
  extern void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,uint8_t flags);
  #endif
 
+

@@ -50,3 +50,4 @@ void remap_pic_irq()
 	outb(I386_SLAVE_REG_IMR ,PIC_NULL);
 }
 
+

@@ -41,3 +41,4 @@ extern volatile struct typed_cmd cmd_active;
 
 #endif /*_APPS_TERM_TERMINAL_H_*/
 
+

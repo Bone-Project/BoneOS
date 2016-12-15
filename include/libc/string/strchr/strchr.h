@@ -5,3 +5,4 @@ extern char *strchr(const char *str, int c);
 
 #endif /*_LIBC_STRING_STRCHR_H_*/
 
+

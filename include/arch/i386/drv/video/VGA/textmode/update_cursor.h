@@ -20,3 +20,4 @@ extern int update_cursor_textmode(int row, int col, uint8_t crc_start, uint8_t c
 
 #endif /*_DRV_VIDEO_VGA_TEXTMODE_UPDATE_CURSOR_H_*/
 
+

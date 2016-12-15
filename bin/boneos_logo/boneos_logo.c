@@ -74,3 +74,4 @@ struct cmd_t cmd_boneos_logo =
   .handler = &boneos_logo_handler,
   .privilege = USER
 };
+

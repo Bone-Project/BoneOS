@@ -8,3 +8,4 @@ extern void get_opt(const char* s, str_t str_p[]);
 
 #endif /*_LIBC_UNISTD_GETOPT_H_*/
 
+
