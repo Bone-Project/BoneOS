@@ -26,52 +26,56 @@
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <reboot/reboot.h>
 #include <string/string.h>
 #include <io/io.h>
 #include <misc/asm_util.h>
-#include <sys/shutdown.h>
-#include <shutdown/shutdown.h>
+#include <sys/sys_poweroff.h>
+#include <poweroff/sbin_cmd_poweroff.h>
+#include <reboot/sbin_cmd_reboot.h>
 
 
 
-struct cmd_opt_t* cmd_shutdown_opts[] = 
+struct cmd_opt_t* cmd_poweroff_opts[] = 
 {
     0
 };
 
-int cmd_shutdown_handler(char* cmd)
+int cmd_poweroff_handler(char* cmd)
 {
    size_t num_opts = get_opt_count(cmd);
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
    if(num_opts == 1)
-     printk("SHUT DOWN STILL ON WORK\n");
-   else if(strcmp(opts[2].str, "--help")==0)
-      printk(cmd_shutdown.help);
+   {
+     for(int i=0;i<__len_poweroff_instance;i++)
+        if(__poweroff_i[i].active==true)
+            __poweroff_i[i].poweroff_v();
+   }
+   else if(strcmp(opts[1].str, "--help")==0)
+      printk(cmd_poweroff.help);
    else 
-        printk(cmd_shutdown.invalid_use_msg);
+        printk(cmd_poweroff.invalid_use_msg);
    
    return STATUS_OK;
 }
 
 
-struct cmd_t cmd_shutdown = 
+struct cmd_t cmd_poweroff = 
 {
-  .name = "shutdown",
-  .usage ="shutdown",
-  .help = "shutdown(1) \t\t\t\t BoneOS Terminal Manual \n"
+  .name = "poweroff",
+  .usage ="poweroff",
+  .help = "poweroff(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
-                "\tshutdown\n"
+                "\tpoweroff\n"
                 "SYNOPSIS : \n "
-                "\tshutdown\n"
+                "\tpoweroff\n"
                 "DESCRIPTION : \n"
-                "\tShut downs the Operating System.\n",
-  .cmd_opts =  cmd_shutdown_opts,
-  .handler = &cmd_shutdown_handler,    
-  .invalid_use_msg = "Invalid use of shutdown command.\n"
-                     "Type in shutdown --help for more help.\n",
+                "\tShuts down the Operating System.\n",
+  .cmd_opts =  cmd_poweroff_opts,
+  .handler = &cmd_poweroff_handler,    
+  .invalid_use_msg = "Invalid use of poweroff command.\n"
+                     "Type in poweroff --help for more help.\n",
   .privilege = ROOT
 };
 

@@ -1,7 +1,8 @@
 BUILDROOT ?= ../
 
 CSRCS = \
-	reboot.c
+	reboot.c \
+	poweroff.c
 
 
 LIBNAME := sys

@@ -1,17 +1,17 @@
 #ifndef _SYS_REBOOT_H_
 #define _SYS_REBOOT_H_
 
-#define __len_shutdown_instance 1
+#define __len_poweroff_instance 1
 
-typedef int(*shutdown_t)();
+typedef int(*poweroff_t)();
 
 typedef struct{
-    shutdown_t shutdown_v;
+    poweroff_t poweroff_v;
     const char* arch;
     const char* arch_family;
     bool active;
-}__shutdown_t;
+}__poweroff_t;
 
-extern __shutdown_t __shutdown_i[];
+extern __poweroff_t __poweroff_i[];
 
 #endif /*_SYS_REBOOT_H_*/

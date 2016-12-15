@@ -35,8 +35,8 @@
 #include <echo/echo.h>
 #include <string/string.h>
 #include <cursor/cursor.h>
-#include <reboot/reboot.h>
-#include <shutdown/shutdown.h>
+#include <reboot/sbin_cmd_reboot.h>
+#include <poweroff/sbin_cmd_poweroff.h>
 
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
@@ -55,7 +55,7 @@ struct cmd_t *cmds[] =
   &cmd_echo,
   &cmd_cursor,
   &cmd_reboot,
-  &cmd_shutdown
+  &cmd_poweroff
   ,0
 };
 

@@ -21,4 +21,14 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-//Shutdown not implemented yet
+#include <stdint.h> 
+#include <misc/status_codes.h>
+#include <misc/asm_util.h>
+#include <stddef.h>
+#include <io/io.h>
+
+int poweroff_i386()
+{
+   __asm__ __volatile__ ("outw %1, %0" : : "dN" ((uint16_t)0xB004), "a" ((uint16_t)0x2000));
+   return STATUS_OK;
+}

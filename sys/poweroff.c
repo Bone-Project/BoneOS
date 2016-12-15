@@ -23,11 +23,11 @@
 
 #include <stdbool.h>
 #include <GlobalDefintions.h>
-#include <sys/i386_reboot.h>
-#include <sys/sys_reboot.h>
+#include <sys/i386_poweroff.h>
+#include <sys/sys_poweroff.h>
 
-__reboot_t __reboot_i[] = {
-    {reboot_i386, "i386" , "x86", 
+__poweroff_t __poweroff_i[] = {
+    {poweroff_i386, "i386" , "x86", 
       #if ARCH == i386
         true
       #endif

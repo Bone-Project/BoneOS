@@ -26,11 +26,11 @@
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <reboot/reboot.h>
 #include <string/string.h>
 #include <io/io.h>
 #include <misc/asm_util.h>
-#include <sys/reboot.h>
+#include <sys/sys_reboot.h>
+#include <reboot/sbin_cmd_reboot.h>
 
 
 

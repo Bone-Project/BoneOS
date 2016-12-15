@@ -2,7 +2,7 @@ BUILDROOT ?= ..
 
 CSRCS = \
 	reboot/reboot.c \
-	shutdown/shutdown.c
+	poweroff/poweroff.c
 
 LIBNAME := sbin
 
