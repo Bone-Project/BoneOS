@@ -26,13 +26,18 @@
 #include <misc/asm_util.h>
 #include <stddef.h>
 #include <io/io.h>
+#define KBD_PRE
+#include <drv/ps2/kbd/kbd.h>
+#undef KBD_PRE
 
 int reboot_i386()
 {
     uint8_t good = 0x02;
     while (good & 0x02)
         good = inb(0x64);
-    outb(0x64, 0xFE);
+    outb(0x64, KBD_ENCODER_CMD_SEND_SYSTEM_RESET);
+    kbd_ctrl_send_cmd(KBD_CTRL_STATS_MASK_OUT_BUF);
+    kbd_enc_send_cmd(KBD_ENCODER_CMD_SEND_SYSTEM_RESET);
     hlt();  
   return STATUS_OK;
 }
