@@ -26,7 +26,7 @@
 #include <sys/i386_reboot.h>
 #include <sys/reboot.h>
 
-__reboot_s __reboot_i[] = {
+__reboot_t __reboot_i[] = {
     {reboot_i386, "i386" , "x86", 
       #if ARCH == i386
         true

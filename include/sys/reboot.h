@@ -10,8 +10,8 @@ typedef struct{
     const char* arch;
     const char* arch_family;
     bool active;
-}__reboot_s;
+}__reboot_t;
 
-extern __reboot_s __reboot_i[];
+extern __reboot_t __reboot_i[];
 
 #endif /*_SYS_REBOOT_H_*/
