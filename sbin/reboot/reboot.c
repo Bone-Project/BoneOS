@@ -62,12 +62,12 @@ int cmd_reboot_handler(char* cmd)
 struct cmd_t cmd_reboot = 
 {
   .name = "reboot",
-  .usage ="reboot",
+  .usage ="reboot [--help]",
   .help = "reboot(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\treboot\n"
                 "SYNOPSIS : \n "
-                "\treboot\n"
+                "\treboot [--help]\n"
                 "DESCRIPTION : \n"
                 "\tReboots the Operating System.\n",
   .cmd_opts =  cmd_reboot_opts,

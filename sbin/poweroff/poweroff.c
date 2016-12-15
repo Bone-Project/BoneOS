@@ -64,12 +64,12 @@ int cmd_poweroff_handler(char* cmd)
 struct cmd_t cmd_poweroff = 
 {
   .name = "poweroff",
-  .usage ="poweroff",
+  .usage ="poweroff [--help]",
   .help = "poweroff(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n"
                 "\tpoweroff\n"
                 "SYNOPSIS : \n "
-                "\tpoweroff\n"
+                "\tpoweroff [--help]\n"
                 "DESCRIPTION : \n"
                 "\tShuts down the Operating System.\n",
   .cmd_opts =  cmd_poweroff_opts,
