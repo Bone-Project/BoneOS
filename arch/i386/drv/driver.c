@@ -72,17 +72,18 @@ struct device_driver_t *drivers[] =
  */
 void setup_driver_handler()
 {
-  pit_driver.initalized = initalized_pit;
-  pit_driver.status = status_pit;
-  kbd_driver.initalized = initalized_ps2_kbd;
-  kbd_driver.status = status_ps2_kbd;
 
-  
   /*Initalize and Uninitalize functions for Video Driver*/
   video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
   video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
   video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
   
+  init_all_drivers();
+  
+  pit_driver.initalized = initalized_pit;
+  pit_driver.status = status_pit;
+  kbd_driver.initalized = initalized_ps2_kbd;
+  kbd_driver.status = status_ps2_kbd;
 }
 
 //check if device is initalized
