@@ -24,6 +24,7 @@
 #include <libc/unistd/sleep/sleep.h>
 #include <libc/stdlib/stdlib.h>
 #include <stdio/stdio.h>
+#include <drv/driver.h>
 #include <drv/pit/pit.h>
 #include <io/io.h>
 #include <stdint.h>
@@ -31,8 +32,6 @@
 
 
 volatile uint32_t pit_ticks = 0;
-volatile bool initalized_pit = false;
-volatile bool status_pit = STATUS_DRIVER_OK;
 
 /*
  * @function send_pit_command: 
@@ -67,10 +66,10 @@ static void pit_phase(int htz)
   //the IRQ Should fire
   int divisor = 1193180 / htz;
 
-  send_pit_command(I386_PIT_OCW_BINCOUNT_BINARY              | 
-                                        I386_PIT_OCW_MODE_SQUAREWAVEGEN  |
-                                        I386_PIT_OCW_RL_DATA                                   |
-                                        I386_PIT_OCW_SCO_COUNTER_0);
+  send_pit_command( I386_PIT_OCW_BINCOUNT_BINARY     | 
+                    I386_PIT_OCW_MODE_SQUAREWAVEGEN  |
+                    I386_PIT_OCW_RL_DATA             |
+                    I386_PIT_OCW_SCO_COUNTER_0);
 
   send_msg_counter_0(divisor & 0xFF);
   send_msg_counter_0(divisor >> 8);
@@ -114,7 +113,8 @@ static void pit_handler(int_regs *r)
  */
 int init_pit()
 {
-  initalized_pit = true;
+  pit_driver.initalized = true;
+  pit_driver.status = STATUS_DRIVER_OK;
   pit_phase(IRQ_SEC_HIT);
   install_irq_handler(IRQ_NUM_PIT,pit_handler);
   return STATUS_OK;
@@ -122,7 +122,7 @@ int init_pit()
 
 int uninit_pit()
 {
-  initalized_pit = false;
+  pit_driver.initalized = false;
   uninstall_irq_handler(IRQ_NUM_PIT);
   return STATUS_OK;
 }

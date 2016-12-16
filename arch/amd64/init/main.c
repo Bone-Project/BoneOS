@@ -35,7 +35,7 @@
 typedef void (*constructor)();
 extern constructor start_ctors;
 extern constructor end_ctors;
-extern void callConstructors()
+extern void callConstructors(void)
 {
     for(constructor* i = &start_ctors;i != &end_ctors; i++)
         (*i)();

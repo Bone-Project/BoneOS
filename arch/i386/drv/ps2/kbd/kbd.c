@@ -41,13 +41,12 @@
 #include <term/terminal.h>
 #include <ctype/ctype.h>
 #include <drv/video/video.h>
+#include <drv/driver.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 
 
 
 volatile struct kbd_info_t kbd_info;
-volatile bool initalized_ps2_kbd = false;
-volatile bool status_ps2_kbd;
 volatile int LENGTH_INPUT=0;
 volatile int INDEX_CURSOR_POSITION=0;
 
@@ -108,11 +107,11 @@ void kbd_init_pointers()
     
     if(!kbd_info.tests.bat_test)
     {
-        status_ps2_kbd = STATUS_DRIVER_MALFUNCTION;
+        kbd_driver.status = STATUS_DRIVER_MALFUNCTION;
         printck(0x3,0x1,"BAT TEST FAILED");
     }
     else
-        status_ps2_kbd = STATUS_DRIVER_OK;
+        kbd_driver.status = STATUS_DRIVER_OK;
         
     kbd_info.routines.key_ev.key_press = &key_press;
     kbd_info.routines.key_ev.key_release = &key_release;
@@ -428,7 +427,7 @@ void kbd_handler(int_regs *r)
  */
 int init_kbd()
 {
-  initalized_ps2_kbd = true;
+  kbd_driver.initalized = true;
   kbd_init_pointers();
   install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
   return STATUS_OK;
@@ -445,7 +444,7 @@ int init_kbd()
  */
 int uninit_kbd()
 {
-  initalized_ps2_kbd = false;
+  kbd_driver.initalized = false;
   uninstall_irq_handler(IRQ_NUM_KBD);
   return STATUS_OK;
 }

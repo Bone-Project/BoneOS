@@ -18,17 +18,17 @@
  **		Amanuel Bogale <amanuel2> : start
  **/
  
-void sti()
+void sti(void)
 {
     __asm__ __volatile__ ("sti");
 }
 
-void cli()
+void cli(void)
 {
     __asm__ __volatile__ ("cli");
 }
 
-void hlt()
+void hlt(void)
 {
     __asm__ __volatile__ ("hlt");
 }

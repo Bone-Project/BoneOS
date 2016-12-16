@@ -16,7 +16,7 @@ struct  device_driver_t
   int(*init) (void);
   int(*uninit)(void);
   volatile bool initalized;
-  uint16_t status;
+  volatile uint16_t status;
   char* version;
 };
 
@@ -31,6 +31,9 @@ extern int uninit_all_drivers(void);
 extern int init_all_drivers(void);
 extern bool device_initalized(int index);
 
+extern struct device_driver_t pit_driver;
+extern struct device_driver_t kbd_driver;
+extern struct device_driver_t video_driver;
 extern struct device_driver_t *drivers[];
 
 #endif /*_ARCH_DRV_DRIVER_H_*/

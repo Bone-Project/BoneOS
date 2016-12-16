@@ -34,7 +34,7 @@
 #undef KERNEL_CALL
 #include <libc/string/string.h>
 
-void init_cpu()
+void init_cpu(void)
 {
    init_gdt();
    init_idt();

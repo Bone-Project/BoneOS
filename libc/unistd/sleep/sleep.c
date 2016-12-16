@@ -35,6 +35,7 @@
 
 void sleep(uint32_t ms)
 {
+  assertkm(device_initalized(PIT_DRIVER_INDEX) , "PIT NOT INITALIZED FOR SLEEP()");
   int64_t expiry = pit_ticks + ((uint64_t)ms * IRQ_SEC_HIT) / 1000;
   while (pit_ticks < expiry) hlt();
 }

@@ -79,11 +79,6 @@ void setup_driver_handler(void)
   video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
   
   init_all_drivers();
-  
-  pit_driver.initalized = initalized_pit;
-  pit_driver.status = status_pit;
-  kbd_driver.initalized = initalized_ps2_kbd;
-  kbd_driver.status = status_ps2_kbd;
 }
 
 //check if device is initalized

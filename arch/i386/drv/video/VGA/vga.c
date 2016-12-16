@@ -24,6 +24,7 @@
 #include <misc/status_codes.h>
 #include <drv/video/video.h>
 #include <drv/video/VGA/vga.h>
+#include <drv/driver.h>
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/80x25/putch/putch.h>
@@ -52,12 +53,14 @@ void set_mode_util(putch_t putch_v, put_pixel_t put_pixel_v, clear_t clear_v, up
 
 int uninit_vga_driver()
 {
+  video_driver.initalized = false;
   set_mode_util(0,0,0,0,0);
   return STATUS_OK;
 }
 
 int init_vga_driver()
 {
+     video_driver.initalized = true;
      #if VIDEO_MODE == TEXTMODE && ACTIVE_RES_W == 80 && ACTIVE_RES_H == 25
      
         init_vga_textmode();

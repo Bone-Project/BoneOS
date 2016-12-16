@@ -39,6 +39,8 @@
 #include <reboot/sbin_cmd_reboot.h>
 #include <poweroff/sbin_cmd_poweroff.h>
 #include <boneshell/boneshell.h>
+#include <assertk.h>
+#include <drv/driver.h>
 
 
 
@@ -64,6 +66,7 @@ struct cmd_t *cmds[] =
 
 void init_terminal()
 {
+  assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting terminal!");
   TERMINAL_MODE=true;
   __values.index=0;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
