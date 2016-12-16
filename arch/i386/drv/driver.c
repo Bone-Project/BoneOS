@@ -70,7 +70,7 @@ struct device_driver_t *drivers[] =
  *    using device driver handler.
  *    Initalizes values for drivers.
  */
-void setup_driver_handler()
+void setup_driver_handler(void)
 {
 
   /*Initalize and Uninitalize functions for Video Driver*/
@@ -107,7 +107,7 @@ int uninit_device_driver_t(uint32_t index)
 }
 
 //initalize all device drivers
-int init_all_drivers()
+int init_all_drivers(void)
 {
   for(uint32_t i=0; drivers[i]; i++)
     drivers[i]->init();
@@ -115,7 +115,7 @@ int init_all_drivers()
 }
 
 //unintalize all device drivers
-int uninit_all_drivers()
+int uninit_all_drivers(void)
 {
   for(uint32_t i=0; drivers[i]; i++)
     drivers[i]->uninit();

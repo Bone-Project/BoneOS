@@ -30,7 +30,7 @@
 #include <drv/ps2/kbd/kbd.h>
 #undef KBD_PRE
 
-int root_sys_reboot()
+int root_sys_reboot(void)
 {
     uint8_t _status = 0x02;
     while (_status & 0x02)

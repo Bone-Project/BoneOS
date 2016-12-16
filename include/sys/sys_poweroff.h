@@ -13,7 +13,7 @@ typedef struct{
 }__poweroff_t;
 
 extern __poweroff_t __poweroff_i[];
-extern int root_sys_poweroff();
+extern int root_sys_poweroff(void);
 
 
 #endif /*_SYS_REBOOT_H_*/

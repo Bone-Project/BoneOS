@@ -27,7 +27,7 @@
 #include <stddef.h>
 #include <io/io.h>
 
-int root_sys_poweroff()
+int root_sys_poweroff(void)
 {
    __asm__ __volatile__ ("outw %1, %0" 
                          : //ASM -> Var

@@ -24,11 +24,11 @@ struct  device_driver_t
 #define KBD_DRIVER_INDEX 1
 #define VIDEO_DRIVER_INDEX 2
 
-extern void setup_driver_handler();
+extern void setup_driver_handler(void);
 extern int init_device_driver(uint32_t index);
 extern int uninit_device_driver(uint32_t index);
-extern int uninit_all_drivers();
-extern int init_all_drivers();
+extern int uninit_all_drivers(void);
+extern int init_all_drivers(void);
 extern bool device_initalized(int index);
 
 extern struct device_driver_t *drivers[];
