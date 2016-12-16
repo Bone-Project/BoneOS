@@ -26,17 +26,12 @@
 #include <misc/asm_util.h>
 #include <stddef.h>
 #include <io/io.h>
-#define KBD_PRE
-#include <drv/ps2/kbd/kbd.h>
-#undef KBD_PRE
 
-int reboot_i386()
+int root_sys_poweroff()
 {
-    uint8_t _status = 0x02;
-    while (_status & 0x02)
-        _status = inb(KBD_CTRL_STATS_REG);
-    outb(KBD_CTRL_CMD_REG, KBD_ENCODER_CMD_SEND_SYSTEM_RESET);
-    kbd_ctrl_send_cmd(KBD_CTRL_STATS_MASK_OUT_BUF);
-    kbd_enc_send_cmd(KBD_ENCODER_CMD_SEND_SYSTEM_RESET);
-  return STATUS_OK;
+   __asm__ __volatile__ ("outw %1, %0" 
+                         : //ASM -> Var
+                         : "dN" ((uint16_t)0xB004), "a" ((uint16_t)0x2000) //VAR->ASM
+                        );
+   return STATUS_OK;
 }

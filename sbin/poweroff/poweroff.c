@@ -32,6 +32,7 @@
 #include <sys/sys_poweroff.h>
 #include <poweroff/sbin_cmd_poweroff.h>
 #include <reboot/sbin_cmd_reboot.h>
+#include <sys/sys_poweroff.h>
 
 
 
@@ -47,11 +48,7 @@ int cmd_poweroff_handler(char* cmd)
    get_opt(cmd,opts);
    
    if(num_opts == 1)
-   {
-     for(int i=0;i<__len_poweroff_instance;i++)
-        if(__poweroff_i[i].active==true)
-            __poweroff_i[i].poweroff_v();
-   }
+     root_sys_poweroff();
    else if(strcmp(opts[1].str, "--help")==0)
       printk(cmd_poweroff.help);
    else 

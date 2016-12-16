@@ -13,5 +13,6 @@ typedef struct{
 }__reboot_t;
 
 extern __reboot_t __reboot_i[];
+extern int root_sys_reboot();
 
 #endif /*_SYS_REBOOT_H_*/

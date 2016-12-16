@@ -46,11 +46,7 @@ int cmd_reboot_handler(char* cmd)
    get_opt(cmd,opts);
    
    if(num_opts == 1)
-   {
-    for(int i=0;i<__len_reboot_instance;i++)
-        if(__reboot_i[i].active==true)
-            __reboot_i[i].reboot_v();
-   }
+    root_sys_reboot();
    else if(strcmp(opts[1].str,"--help")==0)
      printk(cmd_reboot.help);
    else 

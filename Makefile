@@ -129,7 +129,6 @@ libraries = \
 	apps/libapps.a \
 	bin/libbin.a \
 	sbin/libsbin.a \
-	sys/libsys.a \
 	arch/shared/$(ARCH_FAMILY)/libshared_arch.a 
 export libraries
 
@@ -159,7 +158,6 @@ subdirs:
 	(cd apps && $(MAKE))
 	(cd bin  && $(MAKE))
 	(cd sbin && $(MAKE))
-	(cd sys  && $(MAKE))
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)
@@ -167,7 +165,6 @@ clean-subdirs:
 	(cd apps && $(MAKE) clean)
 	(cd bin  && $(MAKE) clean)
 	(cd sbin && $(MAKE) clean)
-	(cd sys  && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs
 

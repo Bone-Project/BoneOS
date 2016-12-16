@@ -32,8 +32,8 @@ CSRCS = \
 	drv/ps2/kbd/kbd_layouts/scancodes_usa.c \
 	drv/ps2/kbd/utils.c  \
 	io/io.c \
-	sys/reboot.c \
-	sys/poweroff.c
+	sys/sys_reboot.c \
+	sys/sys_poweroff.c
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
 
