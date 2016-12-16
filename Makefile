@@ -54,14 +54,13 @@ export VIDEO_DRIVER_RES_H
 export VIDEO_DRIVER_RES
 export VIDEO_DRIVER_MODE
 
+include config/ARCH.mk
 
-
-# Architecture
-ARCH_FAMILY := x86
-ARCH := i386
-ARCH_FAMILY_S = "x86"
-ARCH_S="i386"
-ARCH_QEMU := i386
+export ARCH
+export ARCH_S
+export ARCH_FAMILY
+export ARCH_FAMILY_S
+export ARCH_LINKER
 
 # Programs
 BOCHS := bochs
@@ -72,11 +71,6 @@ VB := virtualbox
 VBM := VBoxManage
 GDB := gdb_q
 
-
-export ARCH
-export ARCH_S
-export ARCH_FAMILY
-export ARCH_FAMILY_S
 
 
 INCDIRS := $(BUILDROOT)/include \
@@ -96,7 +90,7 @@ LIBGCCFILENAME = $(notdir $(LIBGCC))
 LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 
 # Parameters
-LDPARAMS := -melf_$(ARCH_QEMU)
+LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none
 CFLAGS := \
 	-m32 -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
