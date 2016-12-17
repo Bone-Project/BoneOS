@@ -1,0 +1,22 @@
+#!/bin/bash
+
+ENVS='GENCONFIG=1'
+for option in "$@"
+do
+	case $option in
+	--cc=*)
+		ENVS=$ENVS "CC=${option#*=}"
+	;;
+
+	--arch=*)
+		ENVS="$ENVS ARCH=${option#*=}"
+	;;
+
+	*)
+		echo "Unknown option $option"
+	;;
+	esac
+done
+
+(make distclean >/dev/null && eval $ENVS make configure-set)
+

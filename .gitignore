@@ -34,3 +34,7 @@ iso
 #Supervisord Unneccsary Files
 supervisord.log
 supervisord.pid
+
+#Generated config
+config/GENERATED-CONFIG.mk
+
