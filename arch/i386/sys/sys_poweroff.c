@@ -26,11 +26,15 @@
 #include <misc/asm_util.h>
 #include <stddef.h>
 #include <io/io.h>
+#include <unistd/unistd.h>
+#include <stdio/stdio.h>
 
 int root_sys_poweroff(void)
 {
+   printck(0x4,0x0,"SHUTTING DOWN\n");
+   sleep(2000); //2000 milliseconds timeout
    __asm__ __volatile__ ("outw %1, %0" 
-                         : //ASM -> Var
+                         :
                          : "dN" ((uint16_t)0xB004), "a" ((uint16_t)0x2000) //VAR->ASM
                         );
    return STATUS_OK;

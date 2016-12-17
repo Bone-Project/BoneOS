@@ -29,9 +29,13 @@
 #define KBD_PRE
 #include <drv/ps2/kbd/kbd.h>
 #undef KBD_PRE
+#include <unistd/unistd.h>
+#include <stdio/stdio.h>
 
 int root_sys_reboot(void)
 {
+    printck(0x4,0x0,"REBOOTING\n");
+    sleep(2000); //2000 milliseconds timeout
     uint8_t _status = 0x02;
     while (_status & 0x02)
         _status = inb(KBD_CTRL_STATS_REG);

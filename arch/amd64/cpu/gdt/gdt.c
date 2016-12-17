@@ -25,7 +25,6 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdbool.h>
-
 #include <cpu/gdt/gdt.h>
 #include <libc/string/string.h>
 

@@ -28,25 +28,6 @@
 #include <cpu/interrupts/irq.h>
 #include <libc/stdio/stdio.h>
 
-
-/*All Interupt Request handlers*/
-extern void int32(void);
-extern void int33(void);
-extern void int34(void);
-extern void int35(void);
-extern void int36(void);
-extern void int37(void);
-extern void int38(void);
-extern void int39(void);
-extern void int40(void);
-extern void int41(void);
-extern void int42(void);
-extern void int43(void);
-extern void int44(void);
-extern void int45(void);
-extern void int46(void);
-extern void int47(void);
-
 /*
  * @arr irq_routines :
  *    IRQ Routine Handlers
@@ -86,13 +67,12 @@ void init_irq()
 
 void install_irq_handler(int num,int_routines route)
 {
-//    printk("Installing IRQ #%d",num);
     irq_routines[num] = route;
 }
 
 void uninstall_irq_handler(int num)
 {
- irq_routines[num] = 0;
+    irq_routines[num] = 0;
 }
 
 

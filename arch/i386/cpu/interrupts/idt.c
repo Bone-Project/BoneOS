@@ -25,28 +25,9 @@
 #include <cpu/interrupts/idt.h>
 #include <cpu/interrupts/interrupts.h>
 
-/*
- * @IDT_SIZE : 256 Interrupt Descriptor tables
- */
-#define IDT_SiZE 256
 
-/*
- * @struct idt_ptr : 
- *   Pointer to the Interupt Descriptor Table.
- *      @limit : Limit Of IDT which is 256-1 , since 
- *               start from index 0.
- *      @base : 32 Bit Full Base Address of IDT.
- */
- typedef struct 
- {
-    uint16_t limit;
-    uint32_t base;
- }__attribute__((packed)) idt_ptr;
-
-
-
- idt_desc idt[IDT_SiZE];
- idt_ptr idp;
+idt_desc idt[IDT_SiZE];
+idt_ptr idp;
 
 /*
  * @function idt_set_gate :
@@ -58,7 +39,7 @@
  *         @param sel : Segment Selector
  *         @param flags : Flags like DPL.
  */
-void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
+void idt_set_gate(uint8_t num, int_handler handler, uint16_t sel,
               uint8_t flags) 
 {
     idt[num].base_lo = (uintptr_t)handler >> 0 & 0xFFFF;
@@ -74,6 +55,7 @@ void idt_set_gate(uint8_t num, void(*handler)(void), uint16_t sel,
   *   Sets limit and base, sets all 256 
   *   descriptors to 0.
   */
+  
  void init_idt()
  {
      idp.limit = (sizeof(idt))-1;

@@ -1,7 +1,6 @@
 #ifndef _ARCH_CPU_INTERRUPTS_PIC_H_
 #define _ARCH_CPU_INTERRUPTS_PIC_H_
 
-
 /*
  * PIC UTILITIES
  */
@@ -39,25 +38,25 @@
  * Initialization Control Word's Command Bits
  */
 //ICW1 Defintions
-#define i386_PIC_ICW1_IVT_ALWAYS_0                      0x0
-#define i386_PIC_ICW1_INITALIZED                             0x10
+#define i386_PIC_ICW1_IVT_ALWAYS_0               0x0
+#define i386_PIC_ICW1_INITALIZED                 0x10
 #define i386_PIC_ICW1_LEVEL_TRIGGERED            0x8
 #define i386_PIC_ICW1_EDGE_TRIGGERED             0x0
-#define i386_PIC_ICW1_CALL_ADDRESS_4              0x4
-#define i386_PIC_ICW1_CALL_ADDRESS_8              0x0
-#define i386_PIC_ICW1_ONE_PIC                                 0x2
-#define i386_PIC_ICW1_CASCADE_PIC                       0x0
-#define I386_PIC_ICW1_EXPECT_ICW4                       0x1
+#define i386_PIC_ICW1_CALL_ADDRESS_4             0x4
+#define i386_PIC_ICW1_CALL_ADDRESS_8             0x0
+#define i386_PIC_ICW1_ONE_PIC                    0x2
+#define i386_PIC_ICW1_CASCADE_PIC                0x0
+#define I386_PIC_ICW1_EXPECT_ICW4                0x1
 
-#define ICW1 i386_PIC_ICW1_IVT_ALWAYS_0 |\
-                          i386_PIC_ICW1_IVT_ALWAYS_0 |\
-                          i386_PIC_ICW1_IVT_ALWAYS_0 |\
-                          i386_PIC_ICW1_INITALIZED        |\
-                          i386_PIC_ICW1_EDGE_TRIGGERED |\
-                          i386_PIC_ICW1_CASCADE_PIC   |\
-                          i386_PIC_ICW1_CALL_ADDRESS_8 |\
-                          i386_PIC_ICW1_CASCADE_PIC |\
-                          I386_PIC_ICW1_EXPECT_ICW4
+#define ICW1 i386_PIC_ICW1_IVT_ALWAYS_0     |\
+             i386_PIC_ICW1_IVT_ALWAYS_0     |\
+             i386_PIC_ICW1_IVT_ALWAYS_0     |\
+             i386_PIC_ICW1_INITALIZED       |\
+             i386_PIC_ICW1_EDGE_TRIGGERED   |\
+             i386_PIC_ICW1_CASCADE_PIC      |\
+             i386_PIC_ICW1_CALL_ADDRESS_8   |\
+             i386_PIC_ICW1_CASCADE_PIC      |\
+             I386_PIC_ICW1_EXPECT_ICW4
 
 //ICW2
 #define IRQ_START 0x20 //32 || IRQ 0

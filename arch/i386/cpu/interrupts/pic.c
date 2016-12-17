@@ -31,6 +31,7 @@
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/pic.h>
 
+
 void remap_pic_irq()
 {
 	outb(I386_MASTER_REG_COMMAND , ICW1);
