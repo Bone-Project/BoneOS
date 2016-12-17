@@ -1,7 +1,6 @@
 language: c
 script:
-    - ./configure --cc=gcc-5
-    - ./configure --plat=pc
+    - ./configure --cc=gcc-5 --plat=pc
     - make
 # safelist
 branches:
