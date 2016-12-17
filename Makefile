@@ -248,6 +248,8 @@ configure-help:
 	@echo '--cc=CC             use C compiler [$(CC)]'
 	@echo '--arch=ARCH         compile kernel that runs on ARCH'
 	@echo '                    Available ARCH: x86, x86-64'
+	@echo '--plat=PLAT         compile kernel that is of platform PLAT'
+	@echo '                    Available PLAT: pc'
 	@echo ''
 
 configure-set:
@@ -255,8 +257,10 @@ configure-set:
 	@echo '# Invoke the configure script to make changes' >> $(GENERATED_CONFIG)
 	@echo "CC := $(CC)" >> $(GENERATED_CONFIG)
 	@echo "ARCH := $(ARCH)" >> $(GENERATED_CONFIG)
+	@echo "PLAT := $(PLAT)" >> $(GENERATED_CONFIG)
 	@echo "export CC" >> $(GENERATED_CONFIG)
 	@echo "export ARCH" >> $(GENERATED_CONFIG)
+	@echo "export PLAT" >> $(GENERATED_CONFIG)
 	@echo '' >> $(GENERATED_CONFIG)
 
 .PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line
