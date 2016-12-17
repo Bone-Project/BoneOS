@@ -37,15 +37,21 @@ int main_echo_opt_handler(char *cmd)
    str_t opts[num_opts];
    get_opt(cmd,opts);
    
+  
+   
+   
    if(strcmp(opts[1].str , "--help")==0)
       printk(cmd_echo.help);
    else if(num_opts == 2)
    {
        if(opts[1].str[0] == '$')
        {
+           char opts_one_key[strlen(opts[1].str)];
+           for(int i=1; opts[1].str[i]; i++)
+             opts_one_key[i-1] = opts[1].str[i];
           for(int i=0; i<__values.index; i++)
           {
-             if(strcmp(__values.pairs[i].key, opts[1].str))
+             if(strcmp(__values.pairs[i].key, opts_one_key)==0)
              {
                 printk("%s\n" , __values.pairs[i].val);
                 return STATUS_OK;

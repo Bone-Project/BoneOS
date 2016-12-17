@@ -65,7 +65,6 @@ str_t term_assignment_return_value(str_t s)
   for(int i=0; i<200;i++) __return.str[i]=0;
   
   while(s.str[counter++] != '=');
- // counter+=1;
   for(; s.str[counter]; counter++)
   {
      __return.str[self_index++]+=s.str[counter];

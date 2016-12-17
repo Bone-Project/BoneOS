@@ -92,7 +92,7 @@ void loop_terminal()
     if(__found == 0)
     {
       printk("Invalid Command '%s' \n", cmd_active.value);
-       printk("Try 'help' for more information.\n");
+      printk("Try 'help' for more information.\n");
     }
       
     __found = 0;  

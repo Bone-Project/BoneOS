@@ -88,14 +88,14 @@ bool device_initalized(int index)
 }
 
 //initalize device driver
-int init_device_driver_t(uint32_t index)
+int init_device_driver(uint32_t index)
 {
   drivers[index]->init();
   return 0;
 }
 
 //uninitalize device driver
-int uninit_device_driver_t(uint32_t index)
+int uninit_device_driver(uint32_t index)
 {
   drivers[index]->uninit();
   return 0;
@@ -105,7 +105,7 @@ int uninit_device_driver_t(uint32_t index)
 int init_all_drivers(void)
 {
   for(uint32_t i=0; drivers[i]; i++)
-    drivers[i]->init();
+    init_device_driver(i);
   return 0;
 }
 
@@ -113,7 +113,7 @@ int init_all_drivers(void)
 int uninit_all_drivers(void)
 {
   for(uint32_t i=0; drivers[i]; i++)
-    drivers[i]->uninit();
+    uninit_device_driver(i);
   return 0;
 }
 
