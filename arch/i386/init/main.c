@@ -79,6 +79,7 @@ void crash_me()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
+   if(multiboot_structure && magicnumber){};
    init_cpu();
    setup_driver_handler();
    sti();

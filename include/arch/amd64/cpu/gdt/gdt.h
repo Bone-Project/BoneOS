@@ -1,6 +1,9 @@
 #ifndef _ARCH_CPU_GDT_H_
 #define _ARCH_CPU_GDT_H_
 
+#include <stddef.h>
+#include <stdint.h>
+
 /*
  * @struct SegmentDescriptor:
  *     Descriptor to each segments

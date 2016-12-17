@@ -24,6 +24,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <misc/asm_util.h>
+#include <cpu/cpu.h>
 
 
 /*
@@ -50,7 +51,9 @@ extern void callConstructors(void)
  */
 void kernelMain(uint32_t multiboot,uint32_t magicnumber)
 {
-    while(1);
+   init_cpu();
+    while(1)
+        hlt();
 }
 
 

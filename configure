@@ -17,6 +17,9 @@ do
 		ENVS="$ENVS ARCH=${option#*=}"
 	;;
 
+	--plat=*)
+		ENVS="$ENVS PLAT=${option#*=}"
+	;;
 	*)
 		echo "Unknown option $option"
 	;;

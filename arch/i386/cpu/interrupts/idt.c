@@ -42,12 +42,13 @@ idt_ptr idp;
 void idt_set_gate(uint8_t num, int_handler handler, uint16_t sel,
               uint8_t flags) 
 {
-    idt[num].base_lo = (uintptr_t)handler >> 0 & 0xFFFF;
-    idt[num].base_hi = (uintptr_t)handler >> 16 & 0xffff;
+    idt[num].base_lo = (uint16_t)(((uintptr_t)handler >> 0) & 0xFFFF);
+    idt[num].base_hi = (uint16_t) (((uintptr_t)handler >> 16) & 0xffff);
     idt[num].reserved = 0;
     idt[num].sel = sel;
     idt[num].flags = flags;
 }
+
 
  /*
   * @function init_idt:

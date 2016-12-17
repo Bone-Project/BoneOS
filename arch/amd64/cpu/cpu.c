@@ -25,7 +25,6 @@
 
 void init_cpu(void)
 {
-    /*None Yet*/
     init_gdt();
 }
 
