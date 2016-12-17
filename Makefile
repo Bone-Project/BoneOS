@@ -20,28 +20,34 @@ export BUILDROOT
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
 ifeq (,$(GENCONFIG))
  -include $(GENERATED_CONFIG)
-endif
-
-# Remember this the first time it is used
-# so you don't have to keep specifying it
-ifdef CROSSROOT
- $(shell echo $(CROSSROOT) > Makefile.cached.CROSSROOT)
 else
- ifneq (,$(wildcard Makefile.cached.CROSSROOT))
-  CROSSROOT := $(shell cat Makefile.cached.CROSSROOT)
+ # Remember this the first time it is used
+ # so you don't have to keep specifying it
+ ifdef CROSSROOT
+  $(shell echo $(CROSSROOT) > Makefile.cached.CROSSROOT)
+ else
+  ifneq (,$(wildcard Makefile.cached.CROSSROOT))
+   CROSSROOT := $(shell cat Makefile.cached.CROSSROOT)
+  endif
  endif
-endif
 
-ifdef CROSSROOT
-  HOST_ENV = $(shell uname -p)
-  # Allow user to override cross-compiler directory
-  CROSSROOT ?= $(BUILDROOT)/cross
-  CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
-  LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
-  AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
-  export CC
-  export LD
-  export AR
+ ifdef CROSSROOT
+   HOST_ENV = $(shell uname -p)
+   # Allow user to override cross-compiler directory
+   CROSSROOT ?= $(BUILDROOT)/cross
+   CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
+   LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
+   AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
+   export CC
+   export LD
+   export AR
+ endif
+
+ # Detect path to libgcc
+ LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
+ LIBGCCDIR := $(dir $(LIBGCC))
+ LIBGCCFILENAME = $(notdir $(LIBGCC))
+ LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 endif
 
 
@@ -83,12 +89,6 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/platform/$(PLAT) \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 
-
-# Detect path to libgcc
-LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
-LIBGCCDIR := $(dir $(LIBGCC))
-LIBGCCFILENAME = $(notdir $(LIBGCC))
-LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 
 # Parameters
 LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none
