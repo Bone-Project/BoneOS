@@ -18,8 +18,17 @@ BUILDROOT := $(realpath .)
 export BUILDROOT
 
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
-ifeq (,$(GENCONFIG))
- -include $(GENERATED_CONFIG)
+ifndef GENCONFIG
+ include $(GENERATED_CONFIG)
+
+ include config/ARCH.mk
+ include config/PLAT.mk
+
+ # Detect path to libgcc
+ LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
+ LIBGCCDIR := $(dir $(LIBGCC))
+ LIBGCCFILENAME := $(notdir $(LIBGCC))
+ LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 endif
 
 # Remember this the first time it is used
@@ -59,9 +68,6 @@ export VIDEO_DRIVER_RES_H
 export VIDEO_DRIVER_RES
 export VIDEO_DRIVER_MODE
 
-include config/ARCH.mk
-include config/PLAT.mk
-
 # Programs
 BOCHS := bochs
 QEMU := qemu-system-$(ARCH_QEMU)
@@ -83,12 +89,6 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/platform/$(PLAT) \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 
-
-# Detect path to libgcc
-LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
-LIBGCCDIR := $(dir $(LIBGCC))
-LIBGCCFILENAME = $(notdir $(LIBGCC))
-LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 
 # Parameters
 LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none

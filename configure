@@ -23,5 +23,5 @@ do
 	esac
 done
 
-(make distclean >/dev/null && echo "$ENVS make configure-set" && eval "$ENVS make configure-set")
+(eval "$ENVS make configure-set" && make clean >/dev/null)
 
