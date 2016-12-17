@@ -25,3 +25,11 @@ else
  exit
 endif
 
+export ARCH
+export ARCH_S
+export ARCH_FAMILY
+export ARCH_FAMILY_S
+export ARCH_LINKER
+export PLAT
+export PLAT_S
+

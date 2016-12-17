@@ -62,14 +62,6 @@ export VIDEO_DRIVER_MODE
 include config/ARCH.mk
 include config/PLAT.mk
 
-export ARCH
-export ARCH_S
-export ARCH_FAMILY
-export ARCH_FAMILY_S
-export ARCH_LINKER
-export PLAT
-export PLAT_S
-
 # Programs
 BOCHS := bochs
 QEMU := qemu-system-$(ARCH_QEMU)
@@ -263,6 +255,8 @@ configure-set:
 	@echo '# Invoke the configure script to make changes' >> $(GENERATED_CONFIG)
 	@echo "CC := $(CC)" >> $(GENERATED_CONFIG)
 	@echo "ARCH := $(ARCH)" >> $(GENERATED_CONFIG)
+	@echo "export CC" >> $(GENERATED_CONFIG)
+	@echo "export ARCH" >> $(GENERATED_CONFIG)
 	@echo '' >> $(GENERATED_CONFIG)
 
 .PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line

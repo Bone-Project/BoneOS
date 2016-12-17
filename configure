@@ -8,8 +8,9 @@ do
 		make configure-help
 		exit
 	;;
+
 	--cc=*)
-		ENVS=$ENVS "CC=${option#*=}"
+		ENVS="$ENVS CC=${option#*=}"
 	;;
 
 	--arch=*)
@@ -22,5 +23,5 @@ do
 	esac
 done
 
-(make distclean >/dev/null && eval $ENVS make configure-set)
+(make distclean >/dev/null && echo "$ENVS make configure-set" && eval "$ENVS make configure-set")
 
