@@ -406,6 +406,7 @@ void key_handler()
  */
 void kbd_handler(int_regs *r)
 {
+  if(r){};
   kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
   if(kbd_info.kbd_enc_info & 0x80)
         (*kbd_info.routines.key_ev.key_release)(kbd_info.kbd_enc_info & ~0x80);
