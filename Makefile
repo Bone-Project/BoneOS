@@ -18,8 +18,17 @@ BUILDROOT := $(realpath .)
 export BUILDROOT
 
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
-ifeq (,$(GENCONFIG))
- -include $(GENERATED_CONFIG)
+ifndef GENCONFIG
+ include $(GENERATED_CONFIG)
+
+ include config/ARCH.mk
+ include config/PLAT.mk
+
+ # Detect path to libgcc
+ LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
+ LIBGCCDIR := $(dir $(LIBGCC))
+ LIBGCCFILENAME := $(notdir $(LIBGCC))
+ LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 endif
 
 # Remember this the first time it is used
@@ -59,9 +68,6 @@ export VIDEO_DRIVER_RES_H
 export VIDEO_DRIVER_RES
 export VIDEO_DRIVER_MODE
 
-include config/ARCH.mk
-include config/PLAT.mk
-
 # Programs
 BOCHS := bochs
 QEMU := qemu-system-$(ARCH_QEMU)
@@ -84,19 +90,12 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 
 
-# Detect path to libgcc
-LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
-LIBGCCDIR := $(dir $(LIBGCC))
-LIBGCCFILENAME = $(notdir $(LIBGCC))
-LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
-
 # Parameters
 LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none
 CFLAGS := \
 	$(ARCH_MACHINE) -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-error=missing-field-initializers \
-	-Wno-unused-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
 ASFLAGS := $(ARCH_AS_FLAGS)
@@ -248,6 +247,8 @@ configure-help:
 	@echo '--cc=CC             use C compiler [$(CC)]'
 	@echo '--arch=ARCH         compile kernel that runs on ARCH'
 	@echo '                    Available ARCH: x86, x86-64'
+	@echo '--plat=PLAT         compile kernel that is of platform PLAT'
+	@echo '                    Available PLAT: pc'
 	@echo ''
 
 configure-set:
@@ -255,8 +256,10 @@ configure-set:
 	@echo '# Invoke the configure script to make changes' >> $(GENERATED_CONFIG)
 	@echo "CC := $(CC)" >> $(GENERATED_CONFIG)
 	@echo "ARCH := $(ARCH)" >> $(GENERATED_CONFIG)
+	@echo "PLAT := $(PLAT)" >> $(GENERATED_CONFIG)
 	@echo "export CC" >> $(GENERATED_CONFIG)
 	@echo "export ARCH" >> $(GENERATED_CONFIG)
+	@echo "export PLAT" >> $(GENERATED_CONFIG)
 	@echo '' >> $(GENERATED_CONFIG)
 
-.PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line
+.PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line distclean configure-help configure-set

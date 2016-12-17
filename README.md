@@ -1,4 +1,3 @@
-
 # [BoneOS](https://BoneOS.org)
 
 | Branch | Status                                                                                                                                               |
@@ -18,13 +17,18 @@
 [![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
 
 
-
+SourceFourge : https://sourceforge.net/projects/boneproject-boneos/
 
 ### [BoneOS Meta](https://meta.boneos.org/)
 
 <img src="https://i.imgur.com/H6ixAr4.png" width="300" height="300" />
 
-Welcome! This is the official and main repository of BoneOS. This project is currently in high development, as we are working on getting the basic setup sorted out. Later on, we will start developing multitude of features. We have converted the project from C++ to C. This Operating System is predominately written in C, but there are parts (like hardware communication, scripting, building, etc ...) which will use other common languages. If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)! If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request [**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
+Welcome! This is the official and main repository of BoneOS. This project is currently in high active development , 
+and is predominately written in C ofcourse some parts such as  hardware communication, scripting, building, etc ...will use
+other languages. 
+If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)!
+If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request 
+[**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
 
 # Discussions
 
@@ -45,9 +49,10 @@ There are two ways to install BoneOS: one for the normal user to get it into his
 #### Cloud9 Collaboration (For Developer) 
  
  You can collaborate with the Main BoneOS Developer in Cloud9. Cloud9 Is an Online IDE , with an Ubuntu Terminal. We use Cloud9IDE Terminal + NoVNC to make this possible.
- the workspace is located [here](https://ide.c9.io/amanuel2/javaliu) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
+ the workspace is located [here](https://ide.c9.io/amanuel2/osdev) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
  
- If you want to setup NoVNC And you are in an Cloud9IDE You can use the command 
+ If you want to setup NoVNC Server and you are in an Cloud9IDE You can use the command 
+ 
  ```sh
  make no_vnc
  ```
@@ -61,44 +66,54 @@ There are two ways to install BoneOS: one for the normal user to get it into his
   $ CC=clang make #If you want to run via clang
   $ CC=gcc-5 make #If you want to run via GCC Version 5
  ```
+ 
+ You can see more in Documentation/options
 
 #### More Info(For Developer)
-For more information, go to `Documentation/{Desired OS}/README.md`
+For more information, go to `Documentation/TOC.md`
  
 Directory Structure
 ----
 Our firectory structure currently is as follows:
 
-- ***Documentation*** : For More Documentation on BoneOS
+- ***Documentation*** : Documentation for BoneOS
 - ***apps*** : Applications
    - ***term*** : Terminal
 - ***arch*** : Architecture Dependant Codes
    - ***@(ARCH)*** : Architecture name.
      - ***boot***: GRUB Bootloader information 
        - ***multiboot***: Grub Multiboot information
-     - ***drv***  : Device Drivers are located here.
+     - ***drv***  : Device Drivers for @(ARCH) are located here.
      - ***io*** : I/O Software Code 
      - ***link***: Where the linker is located.
      - ***init***: Main kernel function getting called by GRUB Bootloader
-- ***bin*** : Terminal Commands 
-- ***libc***: C Library constructed and used by BoneOS.
+  - ***shared*** : Shared piece of code between Proccecor Families
+     - ***x86*** : Shared piece of code for x86 family
+- ***bin*** : Non Adminstrator Terminal Commands
+- ***sbin*** : Adminstrator Terminal Commands
+- ***config*** : Configuration Files
+- ***platform*** : Platform Dependant Code
+   - ***pc*** : PC Platform
+- ***libc***: C Library constructed and used by BoneOS, non-archecture and non-platform dependant code.
 - ***utils***: Utilities for users.
    - ***cross_compiler***: Script for installing the cross compiler
+   - ***no_vnc***: Setup No_vnc server in Cloud9IDE
+   - ***watch.sh*** : Nodemon like script 
 - ***include***: All Include Files(.h).
 
 FAQ
 ---
 
-1) What is BoneOS Goal?
+1) **What is BoneOS Goal?**
  Our goal is to make an Operating System for 'Everyone'. Ranging from Programmers
  to Normal Users. We dont believe the "OS Problem" is solved by either Popular
  Operating Systems such as Windows, Mac OSX or even kernels such as Linux.
 
-2) Any new features?
+2) **Any new features?**
  We have some ideas in mind. But it will be a long way until we start adding
  new feautres, as we are just starting in the osdev world :).
 
-3) Need Help?
+3) **Need Help?**
  Absolutely! Any help would be appreciated! To get to us, either request an
  issue or check ask a question in meta : https://meta.boneos.org
 

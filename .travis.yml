@@ -1,6 +1,7 @@
 language: c
-script: CC=gcc-5 make
-
+script:
+    - ./configure --cc=gcc-5 --plat=pc
+    - make
 # safelist
 branches:
   only:

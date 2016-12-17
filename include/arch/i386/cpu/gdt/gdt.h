@@ -43,7 +43,8 @@ extern void gdt_load(struct gdt_ptr gp);
             downward, \
             rw, \
             granularity, \
-            is32) \
+            is32, \
+            is64) \
 { \
     ((limit) & 0xFFFF), \
     ((base) & 0xFFFF), \
@@ -59,19 +60,20 @@ extern void gdt_load(struct gdt_ptr gp);
     ( \
         ((granularity) ? 1 << 7 : 0) | \
         ((is32) ? 1 << 6 : 0) | \
+         ((is64) ? 1 << 5 : 0)| \
         (((limit) >> 16) & 0x0F) \
     ), \
     (((base) >> 24) & 0xFF) \
 }
 
 #define GDT_MAKE_EMPTY() \
-    GDT_MAKE_SEGMENT_DESCRIPTOR(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    GDT_MAKE_SEGMENT_DESCRIPTOR(0, 0, 0, 0, 0, 0, 0, 0,0, 0)
 
 #define GDT_MAKE_CODESEG(ring) \
-    GDT_MAKE_SEGMENT_DESCRIPTOR(0, 0xFFFFF, 1, ring, 1, 0, 1, 1, 1)
+    GDT_MAKE_SEGMENT_DESCRIPTOR(0, 0xFFFFF, 1, ring, 1, 0, 1, 1, 1,1)
 
 #define GDT_MAKE_DATASEG(ring) \
-    GDT_MAKE_SEGMENT_DESCRIPTOR(0, 0xFFFFF, 1, ring, 0, 0, 1, 1, 1)
+    GDT_MAKE_SEGMENT_DESCRIPTOR(0, 0xFFFFF, 1, ring, 0, 0, 1, 1, 1,0)
 
 
 extern void init_gdt();

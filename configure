@@ -17,11 +17,14 @@ do
 		ENVS="$ENVS ARCH=${option#*=}"
 	;;
 
+	--plat=*)
+		ENVS="$ENVS PLAT=${option#*=}"
+	;;
 	*)
 		echo "Unknown option $option"
 	;;
 	esac
 done
 
-(make distclean >/dev/null && echo "$ENVS make configure-set" && eval "$ENVS make configure-set")
+(eval "$ENVS make configure-set" && make clean >/dev/null)
 

@@ -99,6 +99,7 @@ static int pit_handler_nest()
  */
 static void pit_handler(int_regs *r)
 {
+  if(r){};
   pit_ticks++;
   if (pit_ticks % IRQ_SEC_HIT == 0)
        if(pit_handler_nest()!=0) 

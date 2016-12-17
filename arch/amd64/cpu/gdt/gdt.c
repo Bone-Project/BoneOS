@@ -48,9 +48,10 @@ struct SegmentDescriptor gdt[] = {
 
 void init_gdt()
 {
-   gp.limit = (sizeof(struct SegmentDescriptor) * 3) - 1;
-   gp.base = (uintptr_t)&gdt;
-   gdt_load(gp);
+  gp.limit = (sizeof(gdt)-1);
+  gp.base = (uintptr_t)&gdt;
+   __asm__ __volatile__ (" lgdtq %0" 
+                                            :
+                                            :  [gp]"m"(gp)
+                                            ); 
 }
-
-

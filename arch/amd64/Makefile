@@ -4,7 +4,10 @@ NSRCS = \
 	boot/boot.asm
 
 CSRCS = \
-	init/main.c
+	init/main.c \
+	cpu/cpu.c \
+	cpu/interrupts/idt.c \
+	cpu/gdt/gdt.c
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
 
