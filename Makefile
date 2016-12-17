@@ -263,4 +263,4 @@ configure-set:
 	@echo "export PLAT" >> $(GENERATED_CONFIG)
 	@echo '' >> $(GENERATED_CONFIG)
 
-.PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line
+.PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line distclean configure-help configure-set
