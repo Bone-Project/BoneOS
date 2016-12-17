@@ -4,6 +4,10 @@ ENVS='GENCONFIG=1'
 for option in "$@"
 do
 	case $option in
+	--help)
+		make configure-help
+		exit
+	;;
 	--cc=*)
 		ENVS=$ENVS "CC=${option#*=}"
 	;;
