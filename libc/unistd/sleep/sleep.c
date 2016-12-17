@@ -28,8 +28,6 @@
 #include <drv/pit/pit.h>
 #include <libc/unistd/sleep/sleep.h>
 #include <drv/driver.h>
-#include <cpu/interrupts/interrupts.h>
-#include <cpu/interrupts/irq.h>
 #include <libc/assertk.h>
 #include <misc/asm_util.h>
 

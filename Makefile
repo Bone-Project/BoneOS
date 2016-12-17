@@ -83,6 +83,7 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/bin \
     $(BUILDROOT)/include/sbin \
     $(BUILDROOT)/include/libc \
+    $(BUILDROOT)/include/platform/$(PLAT) \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 
 

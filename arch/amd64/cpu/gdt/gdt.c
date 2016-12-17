@@ -14,11 +14,11 @@
  **   You should have received a copy of the GNU General Public License
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
- **  @main_author : Amanuel Bogale
+ **  @main_author : Doug Gale
  **  
  **  @contributors:
 
- **     Amanuel Bogale <amanuel2> : start
+ **     Doug Gale <doug65536> : start
  **/  
 
 #include <stdint.h>
@@ -27,18 +27,31 @@
 #include <stdbool.h>
 
 #include <cpu/gdt/gdt.h>
-#include <cpu/interrupts/idt.h>
-#include <cpu/interrupts/isr.h>
-#define KERNEL_CALL
-  #include <cpu/interrupts/irq.h>
-#undef KERNEL_CALL
 #include <libc/string/string.h>
 
-void init_cpu(void)
+
+struct SegmentDescriptor gdt[] = {
+    GDT_MAKE_EMPTY(),
+    GDT_MAKE_CODESEG(0),
+    GDT_MAKE_DATASEG(0),
+    GDT_MAKE_CODESEG(3),
+    GDT_MAKE_DATASEG(3)
+};
+
+/*
+ * @function init_gdt:
+ *     Function that installs
+ *     the Global Descriptor Table
+ *     into the CPU for use. Main
+ *     called function
+ *
+ */
+
+void init_gdt()
 {
-   init_gdt();
-   init_idt();
-   init_isr();
-   init_irq();
+   gp.limit = (sizeof(struct SegmentDescriptor) * 3) - 1;
+   gp.base = (uintptr_t)&gdt;
+   gdt_load(gp);
 }
+
 

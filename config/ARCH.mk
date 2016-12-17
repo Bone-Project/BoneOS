@@ -1,8 +1,7 @@
 # Architecture
 ARCH_FAMILY := x86
-ARCH := i386
+ARCH := amd64
 ARCH_FAMILY_S := "x86"
-ARCH_S := "i386"
-ARCH_QEMU := i386
-ARCH_LINKER := i386
-
+ARCH_S := "amd64"
+ARCH_QEMU := x86_64
+ARCH_LINKER := x86_64
