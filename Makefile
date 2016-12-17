@@ -55,12 +55,15 @@ export VIDEO_DRIVER_RES
 export VIDEO_DRIVER_MODE
 
 include config/ARCH.mk
+include config/PLAT.mk
 
 export ARCH
 export ARCH_S
 export ARCH_FAMILY
 export ARCH_FAMILY_S
 export ARCH_LINKER
+export PLAT
+export PLAT_S
 
 # Programs
 BOCHS := bochs
@@ -123,7 +126,8 @@ libraries = \
 	apps/libapps.a \
 	bin/libbin.a \
 	sbin/libsbin.a \
-	arch/shared/$(ARCH_FAMILY)/libshared_arch.a 
+	arch/shared/$(ARCH_FAMILY)/libshared_arch.a \
+	platform/$(PLAT)/libplatform.a
 export libraries
 
 # -----------------------------------------------
@@ -152,6 +156,7 @@ subdirs:
 	(cd apps && $(MAKE))
 	(cd bin  && $(MAKE))
 	(cd sbin && $(MAKE))
+	(cd platform && $(MAKE))
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)
@@ -159,6 +164,7 @@ clean-subdirs:
 	(cd apps && $(MAKE) clean)
 	(cd bin  && $(MAKE) clean)
 	(cd sbin && $(MAKE) clean)
+	(cd platform && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs
 
