@@ -96,7 +96,6 @@ CFLAGS := \
 	$(ARCH_MACHINE) -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-error=missing-field-initializers \
-	-Wno-unused-parameter \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
 
 ASFLAGS := $(ARCH_AS_FLAGS)
