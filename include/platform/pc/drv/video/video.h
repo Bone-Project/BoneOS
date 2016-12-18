@@ -1,7 +1,7 @@
 #ifndef  ARCH_DRV_VIDEO_H_
 #define ARCH_DRV_VIDEO_H_
 
-#include <drv/video/rgb.h>
+#include <misc/rgb.h>
 #include <stddef.h>
 #include <stdint.h>
 

@@ -34,22 +34,22 @@
 
 size_t VGA_WIDTH = 80;
 size_t VGA_HEIGHT = 25; 
-const char* __VGA_NAME = "VGA_TEXTMODE_80_x_25";
+char* VGA_NAME = "VGA_TEXTMODE_80_x_25";
 
 
 
 int init_vga_textmode()
 {
+  __textmode.w = VGA_WIDTH;
+  __textmode.h = VGA_HEIGHT;
+  __textmode.name = VGA_NAME;
   return STATUS_OK;
 }
 
 vga_textmode_t __textmode = 
 {
-  .w = VGA_WIDTH,
-  .h = VGA_HEIGHT,
   .clear = &clear_vga_textmode,
   .putch = &putch_vga_textmode,
-  .name = __VGA_NAME,
   .update_cursor = &update_cursor_textmode,
   .scroll = &term_scroll_vga_textmode,
   .init = &init_vga_textmode
