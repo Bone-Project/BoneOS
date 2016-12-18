@@ -1,0 +1,1 @@
+## NoVNC Server Currently available only for Cloud9 IDE
