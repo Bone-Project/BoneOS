@@ -59,16 +59,16 @@ int cmd_help_opt_cmd_handler(char* cmd)
 struct cmd_opt_t cmd_help_opt_cmd = 
 {
     .help =  "help(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\thelp -cmd\n"
                 "SYNOPSIS : \n "
                 "\thelp [-cmd <cmd_name>]\n"
-                "DESCRIPTION : \n"
-                "\tCalls help handler for command name\n"
-                "\tif command dosent exist notifies that that\n"
+                "DESCRIPTION : \n "
+                "\tCalls help handler for command name\n "
+                "\tif command dosent exist notifies that that\n "
                 "\tcommand doesnt exit.\n"
-                "OPTIONS : \n"
-                "\t Option Summary \n"
+                "OPTIONS : \n "
+                "\t Option Summary \n "
                 "\t\t[-cmd <cmd_name>] : calls help handler of command name\n",
         .cmd_opt_name = "-cmd" ,
         .handler = &cmd_help_opt_cmd_handler,

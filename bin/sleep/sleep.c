@@ -73,11 +73,11 @@ struct cmd_t cmd_sleep =
   .name = "sleep",
   .usage ="sleep [<ms>] [--help]",
   .help = "sleep(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tsleep\n"
                 "SYNOPSIS : \n "
                 "\tsleep [<ms>] [--help]\n"
-                "DESCRIPTION : \n"
+                "DESCRIPTION : \n "
                 "\tSleeps for the number of milliseconds specified.\n",   
   .cmd_opts =  cmd_sleep_opts,
   .handler = &cmd_sleep_handler,    

@@ -53,16 +53,16 @@ struct cmd_t cmd_cursor =
   .name = "cursor",
   .usage ="cursor [-t <CRSR_START> <CRSR_END>] [-t block] [-t def]",
   .help = "cursor(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tcursor\n"
                 "SYNOPSIS : \n "
                 "\tcursor [-t <CRSR_START> <CRSR_END>]\n"
-                "DESCRIPTION : \n"
+                "DESCRIPTION : \n "
                 "\tOptions to change cursor attributes.\n"
                 "OPTIONS : \n"
-                "\t Option Summary \n"
-                "\t\t [-t <CRSR_START> <CRSR_END>] : cursor now changes to custom type.\n"
-                "\t\t [-t block] : cursor is changed to a block cursor (START:0,END:20)\n"
+                "\t Option Summary \n "
+                "\t\t [-t <CRSR_START> <CRSR_END>] : cursor now changes to custom type.\n "
+                "\t\t [-t block] : cursor is changed to a block cursor (START:0,END:20)\n "
                 "\t\t [-t def] : cursor changes to default underline.  (START:15,END:15)\n", 
   .cmd_opts =  cmd_cursor_opts,
   .handler = &cmd_cursor_handler,    

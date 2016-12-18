@@ -121,12 +121,12 @@ struct cmd_t cmd_boneshell =
   .name = "boneshell",
   .usage = "boneshell [--help] ",
   .help = "boneshell(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tboneshell\n"
                 "SYNOPSIS : \n "
                 "\tboneshell [--help]\n"
-                "DESCRIPTION : \n"
-                "\tThe General Shell For BoneOS \n"
+                "DESCRIPTION : \n "
+                "\tThe General Shell For BoneOS \n "
                 "\tOperating System.\n",
   .cmd_opts =  cmd_boneshell_opts,
   .handler = &boneshell_handler,
