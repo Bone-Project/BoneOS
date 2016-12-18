@@ -3,18 +3,16 @@
 
 #define eighty_twentyfive_TEXTMODE_INDEX 0
 
-typedef 
-struct
+typedef  struct
 {
   int w;
   int h;
   void(*clear)(void);
   void(*putch)(char c);
-  int(*update_cursor)(int row,int col,uint8_t crsr_start,
-                      uint8_t crsr_end);
+  int(*update_cursor)(int row,int col,uint8_t crsr_start, uint8_t crsr_end);
   void(*scroll)(int offset);
   int(*init)(void);
-  char* name;
+  const char* name;
 }vga_textmode_t;
 
 #define ACTIVE_RES_W 80

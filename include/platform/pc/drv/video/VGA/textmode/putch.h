@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-extern void putch_vga_80_x_25(char c);
+extern void putch_vga_textmode(char c);
 
 extern size_t terminal_column;
 extern size_t terminal_row;

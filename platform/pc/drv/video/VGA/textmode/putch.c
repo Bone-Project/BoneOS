@@ -21,18 +21,18 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <drv/video/VGA/textmode/80x25/utils.h>
+#include <drv/video/VGA/textmode/utils.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
-#include <drv/video/VGA/textmode/80x25/term_scroll.h>
+#include <drv/video/VGA/textmode/term_scroll.h>
 
 size_t terminal_column=0;
 size_t terminal_row=0;
 uint8_t FG = 0x7; // Foreground - White
 uint8_t BG = 0x0; // Background - BLACK 
-const size_t VGA_WIDTH = 80;
-const size_t VGA_HEIGHT = 25; 
+extern size_t VGA_WIDTH;
+extern size_t VGA_HEIGHT; 
 
 
 /*
@@ -45,7 +45,7 @@ const size_t VGA_HEIGHT = 25;
  *          the screen
  */
 
-void putch_vga_80_x_25(char c)
+void putch_vga_textmode(char c)
 {
   const size_t index =  (terminal_row * 80 +  terminal_column);
   uint16_t* VideoMemory = (uint16_t*)0xB8000;
@@ -57,7 +57,7 @@ void putch_vga_80_x_25(char c)
   VideoMemory[index]= (VideoMemory[index] & 0xFF00)|c;
   terminal_column++;
   if(terminal_column>=80) terminal_row++,terminal_column=0;
-  if(terminal_row>=25) term_scroll_vga_80_x_25(1);
+  if(terminal_row>=25) term_scroll_vga_textmode(1);
 }
 
 

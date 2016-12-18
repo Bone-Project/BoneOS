@@ -22,17 +22,17 @@
  **/ 
 
 
-#include <drv/video/VGA/textmode/80x25/putch.h>
+#include <drv/video/VGA/textmode/putch.h>
 #include <libc/string/memset/memset.h>
-#include <drv/video/VGA/textmode/80x25/utils.h>
+#include <drv/video/VGA/textmode/utils.h>
 
 
 extern size_t terminal_column;
 extern size_t terminal_row;
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
-extern const size_t VGA_WIDTH;
-extern const size_t VGA_HEIGHT; 
+extern size_t VGA_WIDTH;
+extern size_t VGA_HEIGHT; 
 
 void term_zero()
 {
@@ -48,7 +48,7 @@ void term_zero()
  */
 
 
-void clear_vga_80_x_25()    
+void clear_vga_textmode()    
 {
   term_zero();
   for(int i=0; i<80; i++)

@@ -23,13 +23,18 @@
 
 #include <io/io.h>
 #include <misc/status_codes.h>
-#include <drv/video/VGA/textmode/80x25/clear.h>
-#include <drv/video/VGA/textmode/80x25/putch.h>
+#include <drv/video/VGA/textmode/clear.h>
+#include <drv/video/VGA/textmode/putch.h>
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
-#include <drv/video/VGA/textmode/80x25/term_scroll.h>
+#include <drv/video/VGA/textmode/term_scroll.h>
 #include <drv/video/VGA/textmode/cursor.h>
+#include <stddef.h>
+#include <stdint.h>
 
+size_t VGA_WIDTH = 80;
+size_t VGA_HEIGHT = 25; 
+const char* __VGA_NAME = "VGA_TEXTMODE_80_x_25";
 
 
 
@@ -38,21 +43,21 @@ int init_vga_textmode()
   return STATUS_OK;
 }
 
-vga_textmode_t eightyXtwentyfive_v = 
+vga_textmode_t __textmode = 
 {
-  .w = 80,
-  .h = 25,
-  .clear = &clear_vga_80_x_25,
-  .putch = &putch_vga_80_x_25,
-  .name = "VGA_TEXTMODE_80_x_25",
+  .w = VGA_WIDTH,
+  .h = VGA_HEIGHT,
+  .clear = &clear_vga_textmode,
+  .putch = &putch_vga_textmode,
+  .name = __VGA_NAME,
   .update_cursor = &update_cursor_textmode,
-  .scroll = &term_scroll_vga_80_x_25,
+  .scroll = &term_scroll_vga_textmode,
   .init = &init_vga_textmode
 };
 
 vga_textmode_t *vga_textmodes_arr[] = 
 {
-  &eightyXtwentyfive_v,
+  &__textmode,
   0
 };
 

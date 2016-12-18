@@ -21,8 +21,8 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
-#include <drv/video/VGA/textmode/80x25/putch.h>
-#include <drv/video/VGA/textmode/80x25/utils.h>
+#include <drv/video/VGA/textmode/putch.h>
+#include <drv/video/VGA/textmode/utils.h>
 #include <memmove/memmove.h>
 #include <memset/memset.h>
 #include <stdio/stdio.h>
@@ -33,9 +33,7 @@ extern size_t terminal_row;
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
 
-bool BACK_ACTIVE = true;
-
-void term_scroll_vga_80_x_25(int offset)
+void term_scroll_vga_textmode(int offset)
 {
     uint16_t *screen = (uint16_t*)0xB8000;
     for(int i = 0; i < 25; i++){
@@ -46,7 +44,7 @@ void term_scroll_vga_80_x_25(int offset)
 
   terminal_row -=offset;    
   for(int i=0; i<78; i++)
-    putch_vga_80_x_25(0);
+    putch_vga_textmode(0);
 
   terminal_column=1;
 }
