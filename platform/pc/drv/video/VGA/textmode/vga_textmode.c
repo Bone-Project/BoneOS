@@ -24,7 +24,7 @@
 #include <io/io.h>
 #include <misc/status_codes.h>
 #include <drv/video/VGA/textmode/80x25/clear.h>
-#include <drv/video/VGA/textmode/80x25/putch/putch.h>
+#include <drv/video/VGA/textmode/80x25/putch.h>
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/80x25/term_scroll.h>

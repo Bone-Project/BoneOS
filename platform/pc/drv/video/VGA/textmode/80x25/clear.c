@@ -22,7 +22,7 @@
  **/ 
 
 
-#include <drv/video/VGA/textmode/80x25/putch/putch.h>
+#include <drv/video/VGA/textmode/80x25/putch.h>
 #include <libc/string/memset/memset.h>
 #include <drv/video/VGA/textmode/80x25/utils.h>
 

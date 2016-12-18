@@ -21,7 +21,7 @@
  **     Amanuel Bogale <amanuel2> : start
  **/ 
 
-#include <drv/video/VGA/textmode/80x25/putch/putch.h>
+#include <drv/video/VGA/textmode/80x25/putch.h>
 #include <drv/video/VGA/textmode/80x25/utils.h>
 #include <memmove/memmove.h>
 #include <memset/memset.h>
