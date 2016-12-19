@@ -44,6 +44,9 @@ struct video_driver_t
     TEXT_MODE 
   }mode;
 
+  uint8_t fg;
+  uint8_t bg;
+
   int(*init)(void);
   int(*uninit)(void);
   update_cursor_t update_cursor;
