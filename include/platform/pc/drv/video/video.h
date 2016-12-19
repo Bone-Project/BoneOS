@@ -5,6 +5,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+extern size_t VIDEO_DRIVER_WIDTH;
+extern size_t VIDEO_DRIVER_HEIGHT; 
+extern char*  VIDEO_DRIVER_NAME;
+extern char* VIDEO_DRIVER_MODE;
 
 #define VIDEO_DRIVER_ACTIVE VGA
 #define VIDEO_DRIVER_RES_W_ACTIVE 80

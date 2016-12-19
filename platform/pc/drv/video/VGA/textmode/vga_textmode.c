@@ -29,20 +29,18 @@
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/term_scroll.h>
 #include <drv/video/VGA/textmode/cursor.h>
+#include <drv/video/video.h>
 #include <stddef.h>
 #include <stdint.h>
 
-size_t VGA_WIDTH = 80;
-size_t VGA_HEIGHT = 25; 
-char* VGA_NAME = "VGA_TEXTMODE_80_x_25";
 
 
 
 int init_vga_textmode()
 {
-  __textmode.w = VGA_WIDTH;
-  __textmode.h = VGA_HEIGHT;
-  __textmode.name = VGA_NAME;
+  __textmode.w = VIDEO_DRIVER_WIDTH;
+  __textmode.h = VIDEO_DRIVER_HEIGHT;
+  __textmode.name = VIDEO_DRIVER_NAME;
   return STATUS_OK;
 }
 
@@ -60,5 +58,3 @@ vga_textmode_t *vga_textmodes_arr[] =
   &__textmode,
   0
 };
-
-

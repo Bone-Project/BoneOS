@@ -24,6 +24,11 @@
 #include <drv/video/video.h>
 #include <drv/video/VGA/vga.h>
 
+size_t VIDEO_DRIVER_WIDTH = 80;
+size_t VIDEO_DRIVER_HEIGHT = 25; 
+char* VIDEO_DRIVER_MODE = "VGA";
+char*  VIDEO_DRIVER_NAME = "VGA_TEXTMODE_80_x_25";
+
 struct video_driver_t *video_drivers[] = 
 {
   &vga_driver,
