@@ -43,23 +43,23 @@ void term_zero()
  */
 
 
-void clear_vga_textmode()    
+void clear_vga_textmode(void)    
 {
-  term_zero();
-  for(unsigned i=0; i<video_driver_width; i++)
-  {
-    for(unsigned j=0; j<video_driver_height; j++)
-    {
-        const size_t index =  (vga_driver.video_row * 80 +  vga_driver.video_column);
-        uint16_t* VideoMemory = (uint16_t*)0xB8000;
-        uint8_t terminal_color = make_color(FG,BG);
+  // term_zero();
+  // for(unsigned i=0; i<video_driver_width; i++)
+  // {
+  //   for(unsigned j=0; j<video_driver_height; j++)
+  //   {
+  //       const size_t index =  (vga_driver.video_row * 80 +  vga_driver.video_column);
+  //       uint16_t* VideoMemory = (uint16_t*)0xB8000;
+  //       uint8_t terminal_color = make_color(FG,BG);
         
-        VideoMemory[index]= (VideoMemory[index] & 0xFF00)|(char)0;
-        VideoMemory[index+1] = make_vgaentry(' ', terminal_color);
+  //       VideoMemory[index]= (VideoMemory[index] & 0xFF00)|(char)0;
+  //       VideoMemory[index+1] = make_vgaentry(' ', terminal_color);
 
-        vga_driver.video_column++;
-    }
-  }
-  term_zero();
+  //       vga_driver.video_column++;
+  //   }
+  // }
+  // term_zero();
 }
 

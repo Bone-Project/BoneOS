@@ -387,6 +387,11 @@ void key_handler()
               if(active_scank == true && print_scank == true)
                   wait_until_enter(kbd_info.key);
          }
+         
+         else if((int)kbd_info.key >= 33 && (int)kbd_info.key <= 47)
+         {
+             printk("%c", (kbd_info.key)); 
+         }
 
         
          break;
