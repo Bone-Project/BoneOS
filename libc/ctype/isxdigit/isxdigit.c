@@ -24,16 +24,15 @@
 #include <ctype/ctype.h>
 
 /*
- * @function isalnum:
+ * @function isxdigit:
  *      Checks if specified character
- *      is a letter in the alphabet or
- *      a digit
+ *      is a hexadecimal digit
  *
  *         @param c:
  *              Specified Character
  *
  *          @return int:
- *             Returns 1 if it is a letter or digit
+ *             Returns 1 if it is a hexadecimal digit
  *             0 otherwise
  */
 
