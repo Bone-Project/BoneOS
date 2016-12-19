@@ -40,7 +40,7 @@ int init_vga_textmode()
 {
   __textmode.w = video_driver_width;
   __textmode.h = video_driver_height;
-  __textmode.name = video_driver_name;
+  __textmode.name = video_driver_fullname;
   return STATUS_OK;
 }
 

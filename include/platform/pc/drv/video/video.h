@@ -6,10 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
+
 extern size_t video_driver_width;
 extern size_t video_driver_height; 
 extern char*  video_driver_name;
 extern char*  video_driver_mode;
+extern char*  video_driver_fullname;
+
 
 
 #define VGA_VIDEO_DRIVER_INDEX 0
