@@ -19,7 +19,7 @@ export BUILDROOT
 
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
 ifndef GENCONFIG
- include $(GENERATED_CONFIG)
+ -include $(GENERATED_CONFIG)
 
  include config/ARCH.mk
  include config/PLAT.mk

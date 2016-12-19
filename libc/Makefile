@@ -27,7 +27,9 @@ CSRCS = \
 	math/sqrtk/sqrtk.c \
 	ctype/toupper/toupper.c\
 	ctype/isdigit/isdigit.c \
-	ctype/isalpha/isalpha.c
+	ctype/isalpha/isalpha.c \
+	ctype/isalnum/isalnum.c \
+	ctype/isxdigit/isxdigit.c
 
 LIBNAME := c
 
