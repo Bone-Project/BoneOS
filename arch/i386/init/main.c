@@ -85,8 +85,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    sti();
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
-   printk("HELLO");
-   //init_terminal();
+   init_terminal();
 
    while(1)
       hlt();

@@ -388,11 +388,18 @@ void key_handler()
                   wait_until_enter(kbd_info.key);
          }
          
-         else if((int)kbd_info.key >= 33 && (int)kbd_info.key <= 47)
+         else if( ((int)kbd_info.key >= 33 && (int)kbd_info.key <= 47) || ((int)kbd_info.key >= 58 && (int)kbd_info.key <= 64))
          {
-             printk("%c", (kbd_info.key)); 
+              if(print_scank == true)
+             {
+                 INDEX_CURSOR_POSITION++;
+                 LENGTH_INPUT++;
+                __backspace_count++;
+                printk("%c", kbd_info.key);
+             }
+             if(active_scank == true && print_scank == true)
+                wait_until_enter(kbd_info.key);
          }
-
         
          break;
    }

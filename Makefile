@@ -220,10 +220,10 @@ debug_q:
 		-ex 'set radix 16' \
 
 qemu_compile: $(BONEOS_BIN)
-	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -k en-us
+	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -k en-us -s
 
 qemu_iso: $(BONEOS_BIN) $(BONEOS_ISO)
-	$(QEMU) -cdrom $(BONEOS_ISO) -k en-us
+	$(QEMU) -cdrom $(BONEOS_ISO) -k en-us -s
 
 bochs: $(BONEOS_ISO)
 	$(BOCHS) -f bochsrc.bxrc -q

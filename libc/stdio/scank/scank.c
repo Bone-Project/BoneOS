@@ -29,6 +29,7 @@
 #include <libc/stdlib/atoi/atoi.h>
 #include <libc/stdlib/strtoi/strtoi.h>
 #include <libc/string/strcpy/strcpy.h>
+#include <misc/asm_util.h>
 
 volatile uint32_t index_scank;
 volatile bool active_scank;
@@ -103,7 +104,8 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
              active_scank = true;
              index_scank=0 ;
              buffer_scank[0] = 0;
-             while(active_scank == true);
+             while(active_scank == true)
+                hlt();
              strcpy(string_format,(char*)buffer_scank);
             break;
            case 'c':
