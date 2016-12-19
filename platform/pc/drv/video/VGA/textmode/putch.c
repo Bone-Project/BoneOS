@@ -22,6 +22,7 @@
  **/  
 
 #include <drv/video/VGA/textmode/utils.h>
+#include <drv/video/video.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
@@ -31,8 +32,6 @@ size_t terminal_column=0;
 size_t terminal_row=0;
 uint8_t FG = 0x7; // Foreground - White
 uint8_t BG = 0x0; // Background - BLACK 
-extern size_t VGA_WIDTH;
-extern size_t VGA_HEIGHT; 
 
 
 /*
@@ -47,17 +46,16 @@ extern size_t VGA_HEIGHT;
 
 void putch_vga_textmode(char c)
 {
-  const size_t index =  (terminal_row * 80 +  terminal_column);
+  const size_t index =  (terminal_row * video_driver_width +  terminal_column);
   uint16_t* VideoMemory = (uint16_t*)0xB8000;
   uint8_t terminal_color = make_color(FG,BG);
   
-  VideoMemory[index] = make_vgaentry(' ', terminal_color);
+  VideoMemory[index]= (VideoMemory[index] & 0xFF00)|c;
   VideoMemory[index+1] = make_vgaentry(' ', terminal_color);
 
-  VideoMemory[index]= (VideoMemory[index] & 0xFF00)|c;
   terminal_column++;
-  if(terminal_column>=80) terminal_row++,terminal_column=0;
-  if(terminal_row>=25) term_scroll_vga_textmode(1);
+  if(terminal_column>=video_driver_width) terminal_row++,terminal_column=0;
+  if(terminal_row>=video_driver_height) term_scroll_vga_textmode(1);
 }
 
 

@@ -25,6 +25,7 @@
 #include <drv/video/VGA/textmode/utils.h>
 #include <memmove/memmove.h>
 #include <memset/memset.h>
+#include <drv/video/video.h>
 #include <stdio/stdio.h>
 #include <stddef.h>
 
@@ -36,14 +37,14 @@ extern uint8_t BG; // Background - BLACK
 void term_scroll_vga_textmode(int offset)
 {
     uint16_t *screen = (uint16_t*)0xB8000;
-    for(int i = 0; i < 25; i++){
-        for (int m = 0; m < 80; m++){
-            screen[i * 80 + m] = screen[(i + offset) * 80 + m];
+    for(unsigned i = 0; i < video_driver_height; i++){
+        for (unsigned m = 0; m < video_driver_width; m++){
+            screen[i * video_driver_width + m] = screen[(i + offset) * video_driver_width + m];
         }
     }
 
   terminal_row -=offset;    
-  for(int i=0; i<78; i++)
+  for(unsigned i=0; i<video_driver_height-2; i++)
     putch_vga_textmode(0);
 
   terminal_column=1;

@@ -1,23 +1,21 @@
 #ifndef  ARCH_DRV_VIDEO_H_
 #define ARCH_DRV_VIDEO_H_
 
+#include <drv/video/VGA/vga.h>
 #include <misc/rgb.h>
 #include <stddef.h>
 #include <stdint.h>
 
-extern size_t VIDEO_DRIVER_WIDTH;
-extern size_t VIDEO_DRIVER_HEIGHT; 
-extern char*  VIDEO_DRIVER_NAME;
-extern char* VIDEO_DRIVER_MODE;
+extern size_t video_driver_width;
+extern size_t video_driver_height; 
+extern char*  video_driver_name;
+extern char*  video_driver_mode;
 
 #define VIDEO_DRIVER_ACTIVE VGA
 #define VIDEO_DRIVER_RES_W_ACTIVE 80
 #define VIDEO_DRIVER_RES_H_ACTIVE 25
 #define VGA_VIDEO_DRIVER_INDEX 0
 
-#if VIDEO_DRIVER_ACTIVE == VGA
-  #include <drv/video/VGA/vga.h>
-#endif
 
 
 

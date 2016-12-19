@@ -2,6 +2,9 @@
 #define DRV_VIDEO_VGA_H_
 
 #include <drv/video/video.h>
+#include <stddef.h>
+#include <stdint.h>
+
 
 #define VIDEO_MODE TEXTMODE
 

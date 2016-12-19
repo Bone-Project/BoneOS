@@ -25,15 +25,13 @@
 #include <drv/video/VGA/textmode/putch.h>
 #include <libc/string/memset/memset.h>
 #include <drv/video/VGA/textmode/utils.h>
+#include <drv/video/video.h>
 
 
 extern size_t terminal_column;
 extern size_t terminal_row;
 extern uint8_t FG; // Foreground - White
 extern uint8_t BG; // Background - BLACK 
-extern size_t VGA_WIDTH;
-extern size_t VGA_HEIGHT; 
-
 void term_zero()
 {
   terminal_row=0;
@@ -51,18 +49,17 @@ void term_zero()
 void clear_vga_textmode()    
 {
   term_zero();
-  for(int i=0; i<80; i++)
+  for(unsigned i=0; i<video_driver_width; i++)
   {
-    for(int j=0; j<25; j++)
+    for(unsigned j=0; j<video_driver_height; j++)
     {
         const size_t index =  (terminal_row * 80 +  terminal_column);
         uint16_t* VideoMemory = (uint16_t*)0xB8000;
         uint8_t terminal_color = make_color(FG,BG);
         
-        VideoMemory[index] = make_vgaentry(' ', terminal_color);
+        VideoMemory[index]= (VideoMemory[index] & 0xFF00)|(char)0;
         VideoMemory[index+1] = make_vgaentry(' ', terminal_color);
 
-        VideoMemory[index]= (VideoMemory[index] & 0xFF00)|(char)0;
         terminal_column++;
     }
   }
