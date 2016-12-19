@@ -101,6 +101,18 @@ Our firectory structure currently is as follows:
    - ***watch.sh*** : Nodemon like script 
 - ***include***: All Include Files(.h).
 
+Architectures
+---
+Architecture          |   Status    | Plan to support |
+------------- | ------------- | -----------|
+x86(32 BIT) |    Ready   |  Already Supported        |
+x64| On Progress  |    Currently updating to support this architecture       |
+PowerPC| Unavailable  |   Yes, in later releases       |
+Arm| Unavailable   |    Yes, in later releases       |
+MIPS | Unavailable|     Yes, in later releases     |
+
+if there are architectures you want BoneOS to support , please request an issue to talk about it. 
+
 FAQ
 ---
 
