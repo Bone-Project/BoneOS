@@ -17,8 +17,6 @@ extern char*  video_driver_mode;
 #define VGA_VIDEO_DRIVER_INDEX 0
 
 
-
-
 typedef void(*clear_t)(void);
 typedef void(*putch_t)(char c);
 typedef void(*scroll_t)(int offset);
@@ -46,6 +44,8 @@ struct video_driver_t
 
   uint8_t fg;
   uint8_t bg;
+  size_t  video_column;
+  size_t  video_row;
 
   int(*init)(void);
   int(*uninit)(void);
@@ -60,6 +60,7 @@ struct video_driver_t
     int w;
     int h;
   }res;
+  
   uint16_t status;
   const char* name;
 };

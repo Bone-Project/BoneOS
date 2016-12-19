@@ -29,11 +29,6 @@ size_t video_driver_height = 25;
 char*  video_driver_name = "VGA";
 char*  video_driver_mode = "VGA_TEXTMODE_80_x_25";
 
-size_t video_column=0;
-size_t terminal_row=0;
-uint8_t FG = 0x7; // Foreground - White
-uint8_t BG = 0x0; // Background - BLACK 
-
 struct video_driver_t *video_drivers[] = 
 {
   &vga_driver,

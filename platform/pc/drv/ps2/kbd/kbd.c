@@ -42,6 +42,7 @@
 #include <ctype/ctype.h>
 #include <drv/video/video.h>
 #include <drv/driver.h>
+#include <drv/video/VGA/vga.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 
 
@@ -52,8 +53,6 @@ volatile int INDEX_CURSOR_POSITION=0;
 
 extern volatile bool TERMINAL_MODE;
 
-extern size_t terminal_column;
-extern size_t terminal_row;
 
 /*
  * @function key_press:
@@ -195,16 +194,16 @@ void key_handler()
         if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION-1)>=0) )
         {
           INDEX_CURSOR_POSITION-=1;
-          terminal_column--;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column--;
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column,__crsr_start,__crsr_end);
         }
         break;
      case KBD_QWERTY_USA_RIGHT_KEY:
         if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION+1)<=LENGTH_INPUT))
         {
           INDEX_CURSOR_POSITION+=1;
-          terminal_column++;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column++;
+          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column,__crsr_start,__crsr_end);
         }
         break;
      case KBD_QWERTY_USA_CAPS_PRESS:

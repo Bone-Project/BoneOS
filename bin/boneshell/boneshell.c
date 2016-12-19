@@ -30,14 +30,13 @@
 #include <term/terminal.h>
 #include <term/values.h>
 #include <term/utils.h>
+#include <drv/video/VGA/vga.h>
 
 struct cmd_opt_t* cmd_boneshell_opts[] = 
 {
   0
 };
 
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
 
 int __found = 0;
 
@@ -45,9 +44,9 @@ void loop_terminal()
 {
   while(1)
   {
-    int FG__ = FG;
-    int BG__ = BG;
-    if(FG==0x7 && BG==0x0)
+    int FG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
+    int BG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
+    if(video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg==0x7 && video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg==0x0)
     {
       printck(2,0,"%s@boneos:",VAR_USER);
       printck(1,0,"%s",VAR_PWD);
@@ -60,8 +59,8 @@ void loop_terminal()
       printk("%s",VAR_PWD);
       printk(" $ ");
     }
-    FG = FG__;
-    BG = BG__;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
     
     scank(true,true, "%s" , cmd_active.value);
  

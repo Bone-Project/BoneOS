@@ -30,11 +30,7 @@
 #include <stdio/stdio.h>
 #include <drv/video/video.h>
 #include <string/string.h>
-
-
-
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
+#include <drv/video/VGA/vga.h>
 
 int cmd_boneos_logo_color_handler(char* cmd)
 {
@@ -44,10 +40,10 @@ int cmd_boneos_logo_color_handler(char* cmd)
    
    int _FG = strtoi((char*)opts[2].str, 0, 16);
    int _BG = strtoi((char*)opts[3].str, 0, 16);
-   int __STORE_FG = FG;
-   int __STORE_BG = BG;
-   FG = _FG;
-   BG = _BG;
+   int __STORE_FG = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
+   int __STORE_BG = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = _FG;
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = _BG;
    
     printk("*********** ********** *      * *******      **********  *********\n");
     printk("*         * *        * * *    * *            *        *  *\n");
@@ -57,8 +53,8 @@ int cmd_boneos_logo_color_handler(char* cmd)
     printk("*         * *        * *     ** *            *        *          *\n");
     printk("*********** ********** *      * *******      **********  *********\n");
     
-    FG = __STORE_FG;
-    BG = __STORE_BG;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = __STORE_FG;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = __STORE_BG;
     
    return STATUS_OK;
 }

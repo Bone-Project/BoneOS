@@ -25,6 +25,7 @@
 #include <misc/status_codes.h>
 #include <term/terminal.h>
 #include <unistd/unistd.h>
+#include <drv/video/VGA/vga.h>
 #include <boneos_logo/opts/main_boneos_logo.h>
 #include <boneos_logo/opts/boneos_logo_color.h>
 

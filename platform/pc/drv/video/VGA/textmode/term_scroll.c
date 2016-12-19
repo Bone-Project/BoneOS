@@ -28,11 +28,9 @@
 #include <drv/video/video.h>
 #include <stdio/stdio.h>
 #include <stddef.h>
+#include <drv/video/VGA/vga.h>
 
-extern size_t terminal_column;
-extern size_t terminal_row;
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
+
 
 void term_scroll_vga_textmode(int offset)
 {
@@ -43,9 +41,9 @@ void term_scroll_vga_textmode(int offset)
         }
     }
 
-  terminal_row -=offset;    
+  vga_driver.video_row -=offset;    
   for(unsigned i=0; i<video_driver_height-2; i++)
     putch_vga_textmode(0);
 
-  terminal_column=1;
+  vga_driver.video_column=1;
 }

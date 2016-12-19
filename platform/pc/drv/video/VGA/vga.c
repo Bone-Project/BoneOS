@@ -35,8 +35,6 @@ struct video_driver_t vga_driver =
     .mode = TEXT_MODE,
     .put_pixel = 0,
   #endif
-     .res.w = ACTIVE_RES_W,
-     .res.h = ACTIVE_RES_H,
      .init =  &init_vga_driver,
      .uninit = &uninit_vga_driver,
      .status = STATUS_DRIVER_OK
@@ -61,6 +59,8 @@ int uninit_vga_driver()
 int init_vga_driver()
 {
      video_driver.initalized = true;
+     vga_driver.res.w = video_driver_width;
+     vga_driver.res.h = video_driver_height;
      #if VIDEO_MODE == TEXTMODE && ACTIVE_RES_W == 80 && ACTIVE_RES_H == 25
      
         init_vga_textmode();

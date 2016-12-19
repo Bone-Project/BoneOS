@@ -30,9 +30,7 @@
 #include <term/terminal.h>
 #include <stdlib/stdlib.h>
 #include <drv/video/video.h>
-
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
+#include <drv/video/VGA/vga.h>
 
 int main_clear_opt_handler(char *cmd)
 {
@@ -48,8 +46,8 @@ int main_clear_opt_handler(char *cmd)
      }
      else if(strcmp(opts[2].str, "--def")==0)
      {
-        FG = 0x7;
-        BG = 0x0;
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = 0x7;
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = 0x0;
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
      }
      else if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')

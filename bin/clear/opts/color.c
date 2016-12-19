@@ -30,11 +30,10 @@
 #include <stdio/stdio.h>
 #include <drv/video/video.h>
 #include <string/string.h>
+#include <drv/video/VGA/vga.h>
 
 
 
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
 
 int cmd_clear_color_handler(char* cmd)
 {
@@ -45,8 +44,8 @@ int cmd_clear_color_handler(char* cmd)
    int _FG = strtoi((char*)opts[2].str, 0, 16);
    int _BG = strtoi((char*)opts[3].str, 0, 16);
    
-   FG = _FG;
-   BG = _BG;
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = _FG;
+   video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = _BG;
    
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
         

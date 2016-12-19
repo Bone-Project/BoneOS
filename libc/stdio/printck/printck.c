@@ -77,11 +77,9 @@ void printck(uint8_t fg, uint8_t bg, const char* fmt,  ...)
 
 void vprintck(uint8_t fg, uint8_t bg, const char* fmt,  va_list arg)
 {
-    FG = fg;
-    BG = bg;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = fg;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = bg;
     vprintk(fmt, arg);
-    // FG = 0x7;
-    // BG = 0x0;
 }
 
 
