@@ -13,3 +13,6 @@
     - ***Section 2*** : Running the Nodemon-like Script
  - ***SupportedArchs.md***
  - ***Future.md***
+
+# Errors
+If any errors please request an issue [here](http://meta.boneos.org/) and we will get to you.
