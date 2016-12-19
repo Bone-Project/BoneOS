@@ -1,3 +1,4 @@
+# TOC
  - ***Chapter 1*** : Installation
     - ***Section 1*** : Windows
     - ***Section 2***: Linux Distros
@@ -10,5 +11,5 @@
  - ***Chapter 3*** : Additonal Utilities
     - ***Section 1*** : Setting up a NoVNC Server (Cloud9)
     - ***Section 2*** : Running the Nodemon-like Script
- - ***Summary.md***
+ - ***SupportedArchs.md***
  - ***Future.md***
