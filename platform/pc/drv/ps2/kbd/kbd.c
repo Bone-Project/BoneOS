@@ -84,8 +84,8 @@ int key_press(uint8_t scancode)
 void key_release(uint8_t scancode)
 {
   if (
-      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_QWERTY_USA_LEFT_SHIFT_PRESS || 
-      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_QWERTY_USA_RIGHT_SHIFT_PRESS
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID || 
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_RIGHT_SHIFT_PRESS_ID
      )  
         kbd_info.is_shift = false;
 }
@@ -227,14 +227,14 @@ void key_handler()
    switch(kbd_info.key)
    {
        //Is shift pressed
-       case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
-       case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
+       case KBD_LEFT_SHIFT_PRESS_ID:
+       case KBD_RIGHT_SHIFT_PRESS_ID:
             kbd_info.is_shift = true;
             break;
-       case KBD_QWERTY_USA_CAPS_PRESS:
+       case KBD_CAPS_PRESS_ID:
             printk("CAPS PRESSED");
             break;
-       case KBD_QWERTY_USA_UP_KEY:
+       case KBD_UP_KEY_ID:
             if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
             {
                UP_KEY_ACTIVE = false;
@@ -255,7 +255,7 @@ void key_handler()
               printk("%s" , cmd_active.value);
             }
             break;   
-        case KBD_QWERTY_USA_ENTER_PRESS:
+        case KBD_ENTER_PRESS_ID:
             kbd_info.is_enter = true;
             active_scank = false;
             buffer_scank[index_scank] = 0;
