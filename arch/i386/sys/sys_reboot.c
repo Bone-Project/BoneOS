@@ -26,9 +26,7 @@
 #include <misc/asm_util.h>
 #include <stddef.h>
 #include <io/io.h>
-#define KBD_PRE
 #include <drv/ps2/kbd/kbd.h>
-#undef KBD_PRE
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
 

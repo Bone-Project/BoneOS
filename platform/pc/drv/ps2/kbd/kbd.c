@@ -28,9 +28,7 @@
 #include <libc/stdio/stdio.h>
 #include <stdint.h>
 #include <stddef.h>
-#define KBD_PRE
 #include <drv/ps2/kbd/kbd.h>
-#undef KBD_PRE
 #include <stdbool.h>
 #include <libc/assertk.h>
 #include <libc/ctype/toupper/toupper.h>
@@ -69,15 +67,9 @@ extern volatile bool TERMINAL_MODE;
 int key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift)
-    {
-        printk("***SHIFT***");
-       return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_shift[scancode]);
-    }
+       return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_shift[scancode]);
     else
-    {
-        printk("NO SHIFT");
-       return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
-    }
+       return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode]);
 }
 
 /*
@@ -91,21 +83,20 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
-  if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_USA_LEFT_SHIFT_PRESS || 
-    kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_USA_RIGHT_SHIFT_PRESS)  
-    {
-        //printk("SHIFT RELEASE");
+  if (
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_QWERTY_USA_LEFT_SHIFT_PRESS || 
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_QWERTY_USA_RIGHT_SHIFT_PRESS
+     )  
         kbd_info.is_shift = false;
-    }
 }
 
 /*
- * @function kbd_init_pointers:
+ * @function kbd_early_init:
  *      Stuff to initalize
  *      before installing
  *      the PS/2 Keyboard
  */
-void kbd_init_pointers()
+void kbd_early_init()
 {
     kbd_info.tests.bat_test = bat_test();
     
@@ -125,7 +116,7 @@ void kbd_init_pointers()
     active_scank = false;
     print_scank = false;
 
-    kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
+    kbd_info.current_kbd_layout_index = QWERTY_USA_INDEX;
 }
 
 /*
@@ -142,6 +133,31 @@ void wait_until_enter(char key)
 
 
 /*
+ * @function key_handler:
+ *      Handles key events. 
+ *      called by primary
+ *      keyborad handler 
+ *      @kbd_handler.
+ *      
+ */
+void key_handler()
+{
+   switch(kbd_info.key)
+   {
+       //Is shift pressed
+       case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
+       case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
+        kbd_info.is_shift = true;
+        break;
+       case KBD_QWERTY_USA_CAPS_PRESS:
+        printk("CAPS PRESSED");
+        break;
+      default:
+        printk("DEFAULT HANDLER %d",kbd_info.key);
+   }
+}
+
+/*
  * @function kbd_handler:
  *      Primary Keyboard Handler
  *      called by the IRQ Handler.
@@ -152,18 +168,15 @@ void wait_until_enter(char key)
  */
 void kbd_handler(int_regs *r)
 {
+  printk("KBD HANDLER");
   if(r){};
-  kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
-  if(kbd_info.kbd_enc_info & 0x80)
-        key_release(kbd_info.kbd_enc_info & ~0x80);
+  kbd_info.scancode =kbd_enc_read_input_buf();
+  if(kbd_info.scancode & 0x80)
+        key_release(kbd_info.scancode & ~0x80);
     else
     {
-        printk("SCANCODE %c",key_press(kbd_info.kbd_enc_info));
-        //kbd_info.key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
-        //kbd_info.key = key_press(kbd_info.kbd_enc_info);
-        
-        //printk("CHARACTER = %cEND\n",kbd_info.key);
-        //key_handler();
+        kbd_info.key = key_press(kbd_info.scancode);
+        key_handler();
     }
 }
 
@@ -179,7 +192,7 @@ void kbd_handler(int_regs *r)
 int init_kbd()
 {
   kbd_driver.initalized = true;
-  kbd_init_pointers();
+  kbd_early_init();
   install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
   return STATUS_OK;
 }
