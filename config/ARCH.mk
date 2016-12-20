@@ -3,7 +3,7 @@
 ARCH ?= i386
 
 ifeq ($(ARCH),$(filter $(ARCH),i386 x86 80386 amd32))
- $(info 32 bit)
+ $(info x86 32 BIT Architecture Running)
  ARCH := i386
  ARCH_MACHINE := -m32
  ARCH_AS_FLAGS := --32

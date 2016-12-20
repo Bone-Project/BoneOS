@@ -16,10 +16,10 @@
 
 /*STATUS*/
 
-#define KBD_CTRL_STATS_MASK_OUT_BUF     0x1   //00000001
-#define KBD_CTRL_STATS_MASK_IN_BUF      0x2   //00000010
-#define KBD_CTRL_STATS_MASK_SYSTEM      0x4   //00000100
-#define KBD_CTRL_STATS_MASK_CMD_DATA    0x8   //00001000
+#define KBD_CTRL_STATS_MASK_OUT_BUF     0x1     //00000001
+#define KBD_CTRL_STATS_MASK_IN_BUF      0x2     //00000010
+#define KBD_CTRL_STATS_MASK_SYSTEM      0x4     //00000100
+#define KBD_CTRL_STATS_MASK_CMD_DATA    0x8     //00001000
 #define KBD_CTRL_STATS_MASK_LOCKED      0x10    //00010000
 #define KBD_CTRL_STATS_MASK_AUX_BUF     0x20    //00100000
 #define KBD_CTRL_STATS_MASK_TIMEOUT     0x40    //01000000
@@ -63,10 +63,10 @@
 #define KBD_QWERTY_USA_DOWN_KEY 0x101003
 #define KBD_QWERTY_USA_LEFT_KEY 0x101004
 #define KBD_QWERTY_USA_RIGHT_KEY 0x101005
-
-
 #define KBD_QWERTY_USA_CAPS_PRESS 0x3A
 #define KBD_QWERTY_USA_ENTER_PRESS 0x1C
+
+
 
 extern int init_kbd();
 extern int uninit_kbd();
@@ -103,22 +103,6 @@ kbd_info_t
     {
         bool bat_test;
     }tests;
-    
-    struct
-    {
-        struct
-        {
-            bool (*bat_test)(void);
-        }tests;
-        
-        struct
-        {
-            int (*key_press)(uint8_t scancode);
-            void (*key_release)(uint8_t scancode);
-        }key_ev;
-        
-    }routines;
-
     
     uint8_t kbd_enc_info;
     bool is_shift;

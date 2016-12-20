@@ -69,9 +69,15 @@ extern volatile bool TERMINAL_MODE;
 int key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift)
+    {
+        printk("***SHIFT***");
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_shift[scancode]);
+    }
     else
+    {
+        printk("NO SHIFT");
        return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
+    }
 }
 
 /*
@@ -101,8 +107,7 @@ void key_release(uint8_t scancode)
  */
 void kbd_init_pointers()
 {
-    kbd_info.routines.tests.bat_test = &bat_test;
-    kbd_info.tests.bat_test = (*kbd_info.routines.tests.bat_test)();
+    kbd_info.tests.bat_test = bat_test();
     
     if(!kbd_info.tests.bat_test)
     {
@@ -111,9 +116,7 @@ void kbd_init_pointers()
     }
     else
         kbd_driver.status = STATUS_DRIVER_OK;
-        
-    kbd_info.routines.key_ev.key_press = &key_press;
-    kbd_info.routines.key_ev.key_release = &key_release;
+
 
     led_light(false,false,false);
     kbd_info.is_shift = false;
@@ -137,274 +140,6 @@ void wait_until_enter(char key)
     buffer_scank[index_scank] = 0;
 }
 
-/*
- * @function key_handler:
- *      Handles key events. 
- *      called by primary
- *      keyborad handler 
- *      @kbd_handler.
- *      
- */
-void key_handler()
-{
-   if( 
-       ((kbd_info.key) == '6') 
-                  || 
-       ((kbd_info.key) == '8')
-     )
-   {
-        if(kbd_info.is_caps == false && print_scank == true)
-        {
-          __backspace_count++;
-         printk("%c", kbd_info.key);
-        }
-        else if(kbd_info.is_caps == true && print_scank == true)
-        {
-            __backspace_count++;
-         printk("%c", toupper(kbd_info.key)); 
-        }
-
-         if(active_scank == true)
-             wait_until_enter(kbd_info.key);
-          return; 
-   }
-   
-   switch(kbd_info.key)
-   {
-     case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
-     case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
-      kbd_info.is_shift = true;
-      break;
-     case KBD_QWERTY_USA_UP_KEY:
-        if(TERMINAL_MODE == true)
-        {
-           for(int i=0; cmd_active.value[i]; i++)
-           {
-             if(active_scank == true && print_scank == true)
-             {
-                    wait_until_enter(cmd_active.value[i]);
-                       __backspace_count++;
-                       LENGTH_INPUT++;
-             }
-           }
-            printk("%s" , cmd_active.value); 
-        }
-        break;
-     case KBD_QWERTY_USA_LEFT_KEY:
-        if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION-1)>=0) )
-        {
-          INDEX_CURSOR_POSITION-=1;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column--;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column,__crsr_start,__crsr_end);
-        }
-        break;
-     case KBD_QWERTY_USA_RIGHT_KEY:
-        if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION+1)<=LENGTH_INPUT))
-        {
-          INDEX_CURSOR_POSITION+=1;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column++;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column,__crsr_start,__crsr_end);
-        }
-        break;
-     case KBD_QWERTY_USA_CAPS_PRESS:
-        //led_light(false,false,true);
-        if(kbd_info.is_caps == true)
-          kbd_info.is_caps = false;
-        else
-           kbd_info.is_caps = true;
-        break;  
-     case '=':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;
-      case '$':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;
-          case '_':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;
-       case '.':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;      
-     case KBD_QWERTY_USA_ENTER_PRESS:
-        kbd_info.is_enter = true;
-        active_scank = false;
-        buffer_scank[index_scank] = 0;
-        if(print_scank == true) printk("\n");
-        break;
-     case '\t':
-         if(print_scank == true)  printk("\t");
-          LENGTH_INPUT+=4;
-          __backspace_count+=4;
-          INDEX_CURSOR_POSITION+=4;
-         break;
-     case '\b':
-          if((__backspace_count-1) < 0)
-          {
-              if(!(__backspace_count_active == true))
-              {
-                 if(active_scank)
-                 buffer_scank[index_scank--] = 0;
-                 if(print_scank == true) printk("\b");   
-              }
-          }
-          else
-          {
-            if(active_scank)
-              buffer_scank[index_scank--] = 0;
-            if(print_scank == true) printk("\b");   
-            INDEX_CURSOR_POSITION-=1;
-            __backspace_count-=1;
-            LENGTH_INPUT-=1;
-         }
-         break;
-     case '\n' :
-         if(print_scank == true) printk("\n");
-         break;   
-      case ' ' :
-              if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                  __backspace_count++;
-                  printk("%c", kbd_info.key);
-             }
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;   
-       case '-':
-              if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                  __backspace_count++;
-                  printk("%c", kbd_info.key);
-             }
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;  
-     default:
-         if(isalpha(kbd_info.key)!=0)
-         {
-             if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-         }
-         else if(isdigit(kbd_info.key)!=0)
-         {
-            if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-         }
-         
-         else if( ((int)kbd_info.key >= 33 && (int)kbd_info.key <= 47) || ((int)kbd_info.key >= 58 && (int)kbd_info.key <= 64))
-         {
-              if(print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             if(active_scank == true && print_scank == true)
-                wait_until_enter(kbd_info.key);
-         }
-        
-         break;
-   }
-}
-
 
 /*
  * @function kbd_handler:
@@ -420,12 +155,14 @@ void kbd_handler(int_regs *r)
   if(r){};
   kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
   if(kbd_info.kbd_enc_info & 0x80)
-        (*kbd_info.routines.key_ev.key_release)(kbd_info.kbd_enc_info & ~0x80);
+        key_release(kbd_info.kbd_enc_info & ~0x80);
     else
     {
+        printk("SCANCODE %c",key_press(kbd_info.kbd_enc_info));
         //kbd_info.key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
-        kbd_info.key = key_press(kbd_info.kbd_enc_info);
-        printk("CHARACTER = %cEND\n",kbd_info.key);
+        //kbd_info.key = key_press(kbd_info.kbd_enc_info);
+        
+        //printk("CHARACTER = %cEND\n",kbd_info.key);
         //key_handler();
     }
 }

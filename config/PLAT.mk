@@ -2,7 +2,7 @@
 PLAT?=pc
 
 ifeq ($(PLAT),$(filter $(PLAT),pc))
- $(info 32 bit)
+ $(info PC Platform)
   PLAT_S:="pc"
 else
  $(error SUPPORTED Platforms are {pc} . Change via ./configure --plat=PLAT_NAME) 
