@@ -180,6 +180,27 @@ void key_handler_util(int key)
     }
 }
 
+void key_handler_util_backspace()
+{
+    if((INDEX_CURSOR_POSITION-1) < 0)
+           {
+               if(!(__backspace_count_active == true))
+               {
+                  if(active_scank)
+                  buffer_scank[index_scank--] = 0;
+                  if(print_scank == true) printk("\b");   
+               }
+           }
+           else
+           {
+             if(active_scank)
+               buffer_scank[index_scank--] = 0;
+             if(print_scank == true) printk("\b");   
+             INDEX_CURSOR_POSITION-=1;
+             LENGTH_INPUT-=1;
+           }
+}
+
 /*
  * @function key_handler:
  *      Handles key events. 
@@ -203,14 +224,21 @@ void key_handler()
        case KBD_QWERTY_USA_UP_KEY:
             if(TERMINAL_MODE == true)
             {
-             for(int i=0; cmd_active.value[i]; i++)
-             {
-               if(active_scank == true && print_scank == true)
+               int LENGTH_INPUT_STORE = LENGTH_INPUT;
+               for (int i=0; i<LENGTH_INPUT_STORE; i++)
                {
-                  wait_until_enter(cmd_active.value[i]);
-                  LENGTH_INPUT++;
-                }
-              }
+                   key_handler_util_backspace();
+                   LENGTH_INPUT--;
+               }
+               for(int i=0; cmd_active.value[i]; i++)
+               {
+                 if(active_scank == true && print_scank == true)
+                 {
+                    wait_until_enter(cmd_active.value[i]);
+                    LENGTH_INPUT++;
+                 }
+               }
+              printk("%s" , cmd_active.value);
             }
             break;   
         case KBD_QWERTY_USA_ENTER_PRESS:
@@ -220,23 +248,7 @@ void key_handler()
             if(print_scank == true) printk("\n");
             break;
         case '\b':
-           if((INDEX_CURSOR_POSITION-1) < 0)
-           {
-               if(!(__backspace_count_active == true))
-               {
-                  if(active_scank)
-                  buffer_scank[index_scank--] = 0;
-                  if(print_scank == true) printk("\b");   
-               }
-           }
-           else
-           {
-             if(active_scank)
-               buffer_scank[index_scank--] = 0;
-             if(print_scank == true) printk("\b");   
-             INDEX_CURSOR_POSITION-=1;
-             LENGTH_INPUT-=1;
-           }
+           key_handler_util_backspace();
          break;
         case '\t':
             printk("\t");
