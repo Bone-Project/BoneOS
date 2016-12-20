@@ -1,8 +1,6 @@
 # Architecture
 
-ifndef ARCH
- ARCH := i386
-endif
+ARCH ?= i386
 
 ifeq ($(ARCH),$(filter $(ARCH),i386 x86 80386 amd32))
  $(info 32 bit)
