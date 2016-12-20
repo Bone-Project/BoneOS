@@ -21,18 +21,17 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+#include <io/io.h>
 #include <misc/status_codes.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
-#include <io/io.h>
 #include <libc/stdio/stdio.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <drv/ps2/kbd/kbd.h>
 #include <stdbool.h>
 #include <libc/assertk.h>
-#include <libc/ctype/toupper/toupper.h>
-#include <cpu/interrupts/irq.h>
+#include <libc/ctype/ctype.h>
 #include <drv/ps2/kbd/scancodes.h>
 #include <libc/stdio/scank/scank.h>
 #include <misc/status_codes.h>
@@ -46,9 +45,9 @@
 
 
 volatile struct kbd_info_t kbd_info;
-volatile int LENGTH_INPUT=0;
 volatile int INDEX_CURSOR_POSITION=0;
 
+//Is this getting emulated at a terminal
 extern volatile bool TERMINAL_MODE;
 
 
@@ -147,13 +146,89 @@ void key_handler()
        //Is shift pressed
        case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
        case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
-        kbd_info.is_shift = true;
-        break;
+            kbd_info.is_shift = true;
+            break;
        case KBD_QWERTY_USA_CAPS_PRESS:
-        printk("CAPS PRESSED");
-        break;
-      default:
-        printk("DEFAULT HANDLER %d",kbd_info.key);
+            printk("CAPS PRESSED");
+            break;
+       case KBD_QWERTY_USA_UP_KEY:
+            if(TERMINAL_MODE == true)
+            {
+             for(int i=0; cmd_active.value[i]; i++)
+             {
+               if(active_scank == true && print_scank == true)
+               {
+                  wait_until_enter(cmd_active.value[i]);
+                  LENGTH_INPUT++;
+                }
+              }
+            }
+            break;   
+        case KBD_QWERTY_USA_ENTER_PRESS:
+            kbd_info.is_enter = true;
+            active_scank = false;
+            buffer_scank[index_scank] = 0;
+            if(print_scank == true) printk("\n");
+            break;
+        case '\b':
+           if((INDEX_CURSOR_POSITION-1) < 0)
+           {
+               if(!(__backspace_count_active == true))
+               {
+                  if(active_scank)
+                  buffer_scank[index_scank--] = 0;
+                  if(print_scank == true) printk("\b");   
+               }
+           }
+           else
+           {
+             if(active_scank)
+               buffer_scank[index_scank--] = 0;
+             if(print_scank == true) printk("\b");   
+             INDEX_CURSOR_POSITION-=1;
+             LENGTH_INPUT-=1;
+           }
+         break;
+        case '\t':
+            printk("\t");
+            LENGTH_INPUT+=4;
+            INDEX_CURSOR_POSITION+=4;
+            break;
+        case '\n':
+            if(print_scank == true) printk("\n");
+            break;
+       default:
+         if(isalpha(kbd_info.key)!=0)
+         {
+              if(kbd_info.is_caps == false && print_scank == true)
+              {
+                INDEX_CURSOR_POSITION++;
+                LENGTH_INPUT++;
+                printk("%c", kbd_info.key);
+              }
+              else if(kbd_info.is_caps == true && print_scank == true)
+              {
+                INDEX_CURSOR_POSITION++;
+                LENGTH_INPUT++;
+                printk("%c", toupper(kbd_info.key)); 
+              }
+    
+              if(active_scank == true && print_scank == true)
+                wait_until_enter(kbd_info.key);
+         }
+         else if(isdigit(kbd_info.key)!=0)
+         {
+              if(print_scank == true)
+              {
+                  INDEX_CURSOR_POSITION++;
+                  LENGTH_INPUT++;
+                  printk("%c", kbd_info.key);
+              }
+
+              if(active_scank == true && print_scank == true)
+                  wait_until_enter(kbd_info.key);
+         }
+         break;
    }
 }
 
@@ -168,7 +243,6 @@ void key_handler()
  */
 void kbd_handler(int_regs *r)
 {
-  printk("KBD HANDLER");
   if(r){};
   kbd_info.scancode =kbd_enc_read_input_buf();
   if(kbd_info.scancode & 0x80)
