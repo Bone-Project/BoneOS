@@ -46,6 +46,7 @@
 
 volatile struct kbd_info_t kbd_info;
 volatile int INDEX_CURSOR_POSITION=0;
+volatile bool UP_KEY_ACTIVE=true;
 
 //Is this getting emulated at a terminal
 extern volatile bool TERMINAL_MODE;
@@ -132,6 +133,19 @@ void wait_until_enter(char key)
     buffer_scank[index_scank] = 0;
 }
 
+/*
+ * @utility inc_al
+ *      INcrements Position
+ *      and adds to length input.
+ *      used for when character typed.
+ */
+
+static inline void inc_al()
+{
+    INDEX_CURSOR_POSITION++;
+    LENGTH_INPUT++;
+}
+
 
 /*
  * @utility key_handler_util
@@ -152,8 +166,7 @@ void key_handler_util(int key)
     {
       if(print_scank == true)
       {
-          INDEX_CURSOR_POSITION++;
-          LENGTH_INPUT++;
+          inc_al();
           printk("%c", key);
       } 
 
@@ -164,14 +177,12 @@ void key_handler_util(int key)
     {
       if(kbd_info.is_caps == false && print_scank == true)
       {
-        INDEX_CURSOR_POSITION++;
-        LENGTH_INPUT++;
+        inc_al();
         printk("%c", key);
       }
       else if(kbd_info.is_caps == true && print_scank == true)
       {
-        INDEX_CURSOR_POSITION++;
-        LENGTH_INPUT++;
+        inc_al();
         printk("%c", toupper(key)); 
       }
     
@@ -183,22 +194,24 @@ void key_handler_util(int key)
 void key_handler_util_backspace()
 {
     if((INDEX_CURSOR_POSITION-1) < 0)
-           {
-               if(!(__backspace_count_active == true))
-               {
-                  if(active_scank)
-                  buffer_scank[index_scank--] = 0;
-                  if(print_scank == true) printk("\b");   
-               }
-           }
-           else
-           {
-             if(active_scank)
-               buffer_scank[index_scank--] = 0;
-             if(print_scank == true) printk("\b");   
-             INDEX_CURSOR_POSITION-=1;
-             LENGTH_INPUT-=1;
-           }
+    {
+        if(!(__backspace_count_active == true))
+        {
+            if(active_scank)
+              buffer_scank[index_scank--] = 0;
+            if(print_scank == true) 
+              printk("\b");   
+        }
+    }
+    
+    else
+    {
+        if(active_scank)
+            buffer_scank[index_scank--] = 0;
+        if(print_scank == true) printk("\b");   
+            INDEX_CURSOR_POSITION-=1;
+        LENGTH_INPUT-=1;
+    }
 }
 
 /*
@@ -222,8 +235,9 @@ void key_handler()
             printk("CAPS PRESSED");
             break;
        case KBD_QWERTY_USA_UP_KEY:
-            if(TERMINAL_MODE == true)
+            if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
             {
+               UP_KEY_ACTIVE = false;
                int LENGTH_INPUT_STORE = LENGTH_INPUT;
                for (int i=0; i<LENGTH_INPUT_STORE; i++)
                {
@@ -246,6 +260,7 @@ void key_handler()
             active_scank = false;
             buffer_scank[index_scank] = 0;
             if(print_scank == true) printk("\n");
+            UP_KEY_ACTIVE = true; //Reset Up Key
             break;
         case '\b':
            key_handler_util_backspace();
