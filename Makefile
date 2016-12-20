@@ -20,13 +20,6 @@ export BUILDROOT
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
 ifndef GENCONFIG
  -include $(GENERATED_CONFIG)
- 
- export ARCH
- export PLAT
- 
- include config/ARCH.mk
- include config/PLAT.mk
-
 
  # Detect path to libgcc
  LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
@@ -34,6 +27,10 @@ ifndef GENCONFIG
  LIBGCCFILENAME := $(notdir $(LIBGCC))
  LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 endif
+
+include config/ARCH.mk
+include config/PLAT.mk
+
 
 # Remember this the first time it is used
 # so you don't have to keep specifying it
