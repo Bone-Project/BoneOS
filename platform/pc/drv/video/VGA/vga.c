@@ -58,13 +58,11 @@ int init_vga_driver()
      video_driver.initalized = true;
      vga_driver.res.w = video_driver_width;
      vga_driver.res.h = video_driver_height;
+
      if(strcmp(video_driver_mode,"TEXTMODE")==0)
      {
-         vga_driver.mode = TEXT_MODE;
-         vga_driver.put_pixel=0;
-     }
-     if(strcmp(video_driver_mode,"TEXTMODE")==0 &&video_driver_width==80&&video_driver_height==25)
-     
+        vga_driver.mode = TEXT_MODE;
+        vga_driver.put_pixel=0;
         init_vga_textmode();
         set_mode_util(
                        vga_textmodes_arr[0]->putch,
@@ -77,6 +75,7 @@ int init_vga_driver()
         vga_driver.name = vga_textmodes_arr[0]->name;
         vga_driver.fg = 7;
         vga_driver.bg = 0;
+      }
         
      return STATUS_OK;   
 }

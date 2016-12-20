@@ -423,8 +423,10 @@ void kbd_handler(int_regs *r)
         (*kbd_info.routines.key_ev.key_release)(kbd_info.kbd_enc_info & ~0x80);
     else
     {
-        kbd_info.key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
-        key_handler();
+        //kbd_info.key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
+        kbd_info.key = key_press(kbd_info.kbd_enc_info);
+        printk("CHARACTER = %cEND\n",kbd_info.key);
+        //key_handler();
     }
 }
 
