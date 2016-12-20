@@ -118,6 +118,8 @@ void kbd_early_init()
     kbd_info.current_kbd_layout_index = QWERTY_USA_INDEX;
 }
 
+
+
 /*
  * @utility wait_until_enter
  *      Utility for Scank , to
@@ -130,6 +132,53 @@ void wait_until_enter(char key)
     buffer_scank[index_scank] = 0;
 }
 
+
+/*
+ * @utility key_handler_util
+ *      Utility used for default
+ *      cases in @key_handler.
+ *      used to print non 
+ *      'extreme-special' characters.
+ *      
+ *          @param key(int):
+ *              Character represented
+ *              int for NON-DOS MODE
+ *              , and use of special 
+ *              characters.(#define)
+ */
+void key_handler_util(int key)
+{
+    if(isalpha(key)==0)
+    {
+      if(print_scank == true)
+      {
+          INDEX_CURSOR_POSITION++;
+          LENGTH_INPUT++;
+          printk("%c", key);
+      } 
+
+      if(active_scank == true && print_scank == true)
+          wait_until_enter(key);
+    }
+    else
+    {
+      if(kbd_info.is_caps == false && print_scank == true)
+      {
+        INDEX_CURSOR_POSITION++;
+        LENGTH_INPUT++;
+        printk("%c", key);
+      }
+      else if(kbd_info.is_caps == true && print_scank == true)
+      {
+        INDEX_CURSOR_POSITION++;
+        LENGTH_INPUT++;
+        printk("%c", toupper(key)); 
+      }
+    
+      if(active_scank == true && print_scank == true)
+        wait_until_enter(key);
+    }
+}
 
 /*
  * @function key_handler:
@@ -199,35 +248,17 @@ void key_handler()
             break;
        default:
          if(isalpha(kbd_info.key)!=0)
-         {
-              if(kbd_info.is_caps == false && print_scank == true)
-              {
-                INDEX_CURSOR_POSITION++;
-                LENGTH_INPUT++;
-                printk("%c", kbd_info.key);
-              }
-              else if(kbd_info.is_caps == true && print_scank == true)
-              {
-                INDEX_CURSOR_POSITION++;
-                LENGTH_INPUT++;
-                printk("%c", toupper(kbd_info.key)); 
-              }
-    
-              if(active_scank == true && print_scank == true)
-                wait_until_enter(kbd_info.key);
-         }
+             key_handler_util(kbd_info.key);
          else if(isdigit(kbd_info.key)!=0)
-         {
-              if(print_scank == true)
-              {
-                  INDEX_CURSOR_POSITION++;
-                  LENGTH_INPUT++;
-                  printk("%c", kbd_info.key);
-              }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-         }
+             key_handler_util(kbd_info.key);
+         else if(((int)kbd_info.key) >= 33 && ((int)kbd_info.key) <=47)
+             key_handler_util(kbd_info.key);
+         else if(((int)kbd_info.key) >= 58 && ((int)kbd_info.key) <=64)
+             key_handler_util(kbd_info.key);   
+         else if(((int)kbd_info.key) >= 91 && ((int)kbd_info.key) <=96)
+             key_handler_util(kbd_info.key);
+         else if(((int)kbd_info.key) >= 123 && ((int)kbd_info.key) <=126)
+             key_handler_util(kbd_info.key);    
          break;
    }
 }
