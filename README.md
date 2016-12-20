@@ -17,7 +17,11 @@
 [![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
 
 
-SourceFourge : https://sourceforge.net/projects/boneproject-boneos/
+[![Download BoneOS](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+
+[![Download BoneOS](https://img.shields.io/sourceforge/dm/boneproject-boneos.svg)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+[![Download BoneOS](https://img.shields.io/sourceforge/dt/boneproject-boneos.svg)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+
 
 ### [BoneOS Meta](https://meta.boneos.org/)
 
