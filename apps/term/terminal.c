@@ -68,10 +68,10 @@ void init_terminal()
 {
   assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting terminal!");
   TERMINAL_MODE=true;
-  __values.index=0;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
 }
+
 
 
 

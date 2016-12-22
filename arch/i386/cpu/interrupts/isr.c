@@ -86,3 +86,4 @@ void init_isr()
     idt_set_gate(31, int31, CS_SEGMENT, 0x8e); 
 }
 
+

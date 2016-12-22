@@ -58,3 +58,4 @@ vga_textmode_t *vga_textmodes_arr[] =
   &__textmode,
   0
 };
+

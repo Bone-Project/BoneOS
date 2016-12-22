@@ -53,3 +53,4 @@ extern volatile uint32_t cmd_active_index;
 #endif /*_APPS_TERM_TERMINAL_H_*/
 
 
+

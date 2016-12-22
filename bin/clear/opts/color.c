@@ -76,3 +76,4 @@ struct cmd_opt_t cmd_clear_opt_color =
                            "on how to use the clear command\n"
 };
 
+

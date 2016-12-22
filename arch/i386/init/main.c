@@ -69,6 +69,10 @@ void crash_me()
     trick3 = trick1 / trick2;
 }
 
+static void kernel_init_early()
+{
+    getchar(); //Start out getchar();
+}
 
 /*
  * @function kernelMain:
@@ -83,13 +87,18 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_cpu();
    setup_driver_handler();
    sti();
+   kernel_init_early();
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
-   init_terminal();
+   getchar();
+   printk("CHARACTER GETTEN");
+   
+   //init_terminal();
 
    while(1)
       hlt();
 }
+
 
 
 

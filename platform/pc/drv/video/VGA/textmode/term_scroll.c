@@ -47,3 +47,4 @@ void term_scroll_vga_textmode(int offset)
 
   vga_driver.video_column=1;
 }
+

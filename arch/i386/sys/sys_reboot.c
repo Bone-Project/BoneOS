@@ -42,3 +42,4 @@ int root_sys_reboot(void)
     kbd_enc_send_cmd(KBD_ENCODER_CMD_SEND_SYSTEM_RESET);
   return STATUS_OK;
 }
+

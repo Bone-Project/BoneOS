@@ -27,4 +27,3 @@
 char* VAR_USER = "root";
 char* VAR_PWD = "/";
 
-struct values __values;

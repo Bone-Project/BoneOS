@@ -31,6 +31,7 @@
 #include <echo/echo.h>
 #include <term/values.h>
 
+
 int main_echo_opt_handler(char *cmd)
 {
    size_t num_opts = get_opt_count(cmd);
@@ -45,25 +46,27 @@ int main_echo_opt_handler(char *cmd)
       printk(cmd_echo.help);
    else if(num_opts == 2)
    {
-       if(opts[1].str[0] == '$')
-       {
-           for(int i=1; opts[1].str[i]; i++)
-             opts_one_key[i-1] = opts[1].str[i];
-          for(int i=0; i<__values.index; i++)
-          {
-             if(strcmp(__values.pairs[i].key, opts_one_key)==0)
-             {
-                printk("%s\n" , __values.pairs[i].val);
-                return STATUS_OK;
-             }
-          }
-       }
-       printk("%s\n" , opts[1].str);
+     if(opts[1].str[0] == '\'' && opts[1].str[(strlen(opts[1].str)-1)] == '\'')
+     {
+        for(size_t j=1; j<strlen(opts[1].str)-1; j++)
+            printk("%c", opts[1].str[j]);
+         printk("\n");   
+         return STATUS_OK;   
+     }
+     else if(opts[1].str[0] == '\"' && opts[1].str[(strlen(opts[1].str)-1)] == '\"')
+     {
+        for(size_t j=1; j<strlen(opts[1].str)-1; j++)
+            printk("%c", opts[1].str[j]);
+         printk("\n");   
+         return STATUS_OK;   
+     }
+     printk("%s\n" , opts[1].str);
    }
    else
       printk(cmd_echo.invalid_use_msg);
     
    return STATUS_OK;
 }
+
 
 

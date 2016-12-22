@@ -48,8 +48,13 @@ volatile struct kbd_info_t kbd_info;
 volatile int INDEX_CURSOR_POSITION=0;
 volatile bool UP_KEY_ACTIVE=true;
 
+
 //Is this getting emulated at a terminal
 extern volatile bool TERMINAL_MODE;
+
+//getchar();
+extern volatile bool __get_char_set;
+extern volatile char __get_char_chr;
 
 
 /*
@@ -232,7 +237,6 @@ void key_handler()
             kbd_info.is_shift = true;
             break;
        case KBD_CAPS_PRESS_ID:
-            printk("CAPS PRESSED");
             break;
        case KBD_UP_KEY_ID:
             if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
@@ -278,7 +282,7 @@ void key_handler()
              key_handler_util(kbd_info.key);
          else if(isdigit(kbd_info.key)!=0)
              key_handler_util(kbd_info.key);
-         else if(((int)kbd_info.key) >= 33 && ((int)kbd_info.key) <=47)
+         else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)
              key_handler_util(kbd_info.key);
          else if(((int)kbd_info.key) >= 58 && ((int)kbd_info.key) <=64)
              key_handler_util(kbd_info.key);   
@@ -289,6 +293,7 @@ void key_handler()
          break;
    }
 }
+
 
 /*
  * @function kbd_handler:
@@ -301,6 +306,7 @@ void key_handler()
  */
 void kbd_handler(int_regs *r)
 {
+    __get_char_set = true;
   if(r){};
   kbd_info.scancode =kbd_enc_read_input_buf();
   if(kbd_info.scancode & 0x80)
@@ -308,6 +314,7 @@ void kbd_handler(int_regs *r)
     else
     {
         kbd_info.key = key_press(kbd_info.scancode);
+        __get_char_chr = kbd_info.key;
         key_handler();
     }
 }
@@ -344,5 +351,6 @@ int uninit_kbd()
   uninstall_irq_handler(IRQ_NUM_KBD);
   return STATUS_OK;
 }
+
 
 

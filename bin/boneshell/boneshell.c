@@ -64,21 +64,6 @@ void loop_terminal()
     
     scank(true,true, "%s" , cmd_active.value);
  
-
-    if(is_contain_equal(cmd_active.value)==true)
-    {
-      str_t temp_str;
-      strcpy(temp_str.str,cmd_active.value);
-        
-      char* key = term_assignment_return_variable(temp_str).str;
-      char* val = term_assignment_return_value(temp_str).str;
-        
-      strcpy(__values.pairs[__values.index].val,val);
-      strcpy(__values.pairs[__values.index].key,key);
-      __found=1;
-      __values.index++;
-    }
-
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -133,4 +118,5 @@ struct cmd_t cmd_boneshell =
                      "Type in boneshell --help for more help.\n",
   .privilege = USER
 };
+
 

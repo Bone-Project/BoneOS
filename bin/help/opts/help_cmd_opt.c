@@ -76,3 +76,4 @@ struct cmd_opt_t cmd_help_opt_cmd =
                            "on how to use the clear command\n"
 };
 
+

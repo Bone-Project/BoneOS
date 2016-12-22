@@ -23,20 +23,10 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <stdarg.h>
-#include <drv/ps2/kbd/kbd.h>
-#include <libc/stdio/scank/scank.h>
-#include <libc/stdlib/atoi/atoi.h>
-#include <libc/stdlib/strtoi/strtoi.h>
-#include <libc/string/strcpy/strcpy.h>
-#include <misc/asm_util.h>
+#include <stdio/stdio.h>
 
-volatile uint32_t index_scank;
-volatile bool active_scank;
-volatile bool print_scank;
-volatile char buffer_scank[4096];
-volatile int LENGTH_INPUT=0;
-volatile bool __backspace_count_active=false;
+volatile bool __get_char_set=false; 
+volatile char __get_char_chr = 0;
 
 /*
  * @function getchar:
@@ -50,9 +40,14 @@ volatile bool __backspace_count_active=false;
  *          Returns the single character typed
  *
  */
+ 
 
 int getchar(void)
 {
-    return 0; //Getchar not implemented yet
+    /*TODO*/
+    while(__get_char_set==false);
+    __get_char_set = false;
+    return __get_char_chr; //Getchar not implemented yet
 }
+
 

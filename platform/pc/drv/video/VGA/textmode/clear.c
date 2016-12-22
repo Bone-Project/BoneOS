@@ -63,3 +63,4 @@ void clear_vga_textmode(void)
   term_zero();
 }
 
+
