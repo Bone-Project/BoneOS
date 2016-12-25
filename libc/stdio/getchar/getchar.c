@@ -44,10 +44,11 @@ volatile char __get_char_chr = 0;
 
 int getchar(void)
 {
-    /*TODO*/
-    while(__get_char_set==false);
-    __get_char_set = false;
-    return __get_char_chr; //Getchar not implemented yet
+    // while(__get_char_set==false);
+    // __get_char_set = false;
+    char c = 0;
+    scank(false,false,"%c",c);
+    return c;
 }
 
 

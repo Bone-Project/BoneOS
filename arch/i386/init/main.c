@@ -42,7 +42,7 @@
 #include <drv/driver.h>
 #include <term/terminal.h>
 #include <drv/video/video.h>
-
+        
 
 /*
  * Calling all Global C Objects
@@ -69,9 +69,9 @@ void crash_me()
     trick3 = trick1 / trick2;
 }
 
-static void kernel_init_early()
+static inline void kernel_init_early()
 {
-    getchar(); //Start out getchar();
+    //getchar(); //Start out getchar();
 }
 
 /*
@@ -88,12 +88,11 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    setup_driver_handler();
    sti();
    kernel_init_early();
+    
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
-   getchar();
-   printk("CHARACTER GETTEN");
-   
-   //init_terminal();
+
+   init_terminal();
 
    while(1)
       hlt();

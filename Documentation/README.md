@@ -13,6 +13,13 @@
     - ***Section 2*** : Running the Nodemon-like Script
  - ***SupportedArchs.md***
  - ***Future.md***
+ - 
+#Repository
+https://github.com/Bone-Project/BoneOS
+
+#Architectures
+
+Look at SupportedArchs.md for more on Architectures.
 
 # Errors
 If any errors please request an issue [here](http://meta.boneos.org/) and we will get to you.

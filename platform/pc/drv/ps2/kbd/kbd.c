@@ -247,6 +247,7 @@ void key_handler()
                {
                    key_handler_util_backspace();
                    LENGTH_INPUT--;
+                   __backspace_count--;
                }
                for(int i=0; cmd_active.value[i]; i++)
                {
@@ -254,6 +255,7 @@ void key_handler()
                  {
                     wait_until_enter(cmd_active.value[i]);
                     LENGTH_INPUT++;
+                    __backspace_count++;
                  }
                }
               printk("%s" , cmd_active.value);
@@ -279,7 +281,11 @@ void key_handler()
             break;
        default:
          if(isalpha(kbd_info.key)!=0)
+         {
              key_handler_util(kbd_info.key);
+             __backspace_count++;
+             LENGTH_INPUT++;
+         }
          else if(isdigit(kbd_info.key)!=0)
              key_handler_util(kbd_info.key);
          else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)
@@ -306,7 +312,6 @@ void key_handler()
  */
 void kbd_handler(int_regs *r)
 {
-    __get_char_set = true;
   if(r){};
   kbd_info.scancode =kbd_enc_read_input_buf();
   if(kbd_info.scancode & 0x80)
@@ -315,6 +320,7 @@ void kbd_handler(int_regs *r)
     {
         kbd_info.key = key_press(kbd_info.scancode);
         __get_char_chr = kbd_info.key;
+        __get_char_set = true;
         key_handler();
     }
 }
