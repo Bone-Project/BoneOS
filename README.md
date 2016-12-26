@@ -6,7 +6,7 @@
 |  Amanuel Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
 |  Doug Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=doug_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
 
-[![Stories in Ready](https://badge.waffle.io/Bone-Project/BoneOS.png?label=ready&title=Ready)](https://waffle.io/Bone-Project/BoneOS) 
+[![GitBook Status](https://img.shields.io/badge/Documentation-passing-brightgreen.svg)](https://amanuel2.gitbooks.io/boneos/content)
 [![Join the chat at https://gitter.im/amanuel2/BoneOS](https://badges.gitter.im/amanuel2/BoneOS.svg)](https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Join The chat](https://slack.boneos.org/badge.svg)](https://BoneOS.slack.com)
 [![ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.com)
@@ -104,6 +104,10 @@ Our firectory structure currently is as follows:
    - ***no_vnc***: Setup No_vnc server in Cloud9IDE
    - ***watch.sh*** : Nodemon like script 
 - ***include***: All Include Files(.h).
+
+Documentation
+---
+You can take a look at the Documentation/ Directory for docs on BoneOS , or even online [**here**](https://amanuel2.gitbooks.io/boneos/content). Documentation are for presistant information , not code details.
 
 Architectures
 ---
