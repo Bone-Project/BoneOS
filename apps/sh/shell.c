@@ -41,6 +41,7 @@
 #include <boneshell/boneshell.h>
 #include <assertk.h>
 #include <drv/driver.h>
+#include <sh/built-in/exit/exit.h>
 
 
 
@@ -60,7 +61,8 @@ struct cmd_t *cmds[] =
   &cmd_cursor,
   &cmd_reboot,
   &cmd_poweroff,
-  &cmd_boneshell
+  &cmd_boneshell,
+  &cmd_exit
   ,0
 };
 
@@ -70,6 +72,7 @@ void init_terminal()
   TERMINAL_MODE=true;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
+  TERMINAL_MODE=false;
 }
 
 

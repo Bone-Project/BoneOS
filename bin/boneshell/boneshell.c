@@ -38,6 +38,7 @@ struct cmd_opt_t* cmd_boneshell_opts[] =
 
 
 int __found = 0;
+volatile bool exit_set__shell = false;
 
 void loop_terminal()
 {
@@ -62,9 +63,6 @@ void loop_terminal()
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
     
     scank(true,true, "%s" , cmd_active.value);
-    if(strcmp(cmd_active.value, "exit")==0)
-      goto end_shell;
-      
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -73,7 +71,7 @@ void loop_terminal()
         __found = 1;
       }
     }
-    
+    if(exit_set__shell==true) goto end_shell;
     if(__found == 0)
     {
       printk("Invalid Command '%s' \n", cmd_active.value);
@@ -83,7 +81,8 @@ void loop_terminal()
     __found = 0;  
     cmd_active_index++;
   }
- end_shell:;  
+ end_shell:; 
+ exit_set__shell=false;
 }
 
 int boneshell_handler(char* cmd)
@@ -112,8 +111,10 @@ struct cmd_t cmd_boneshell =
                 "SYNOPSIS : \n "
                 "\tboneshell [--help]\n"
                 "DESCRIPTION : \n "
-                "\tThe General Shell For BoneOS \n "
-                "\tOperating System.\n",
+                "\tCreates another instance of a shell being \n "
+                "\tthe child of the previous parent shell process.\n "
+                "\tcommand exit used to stop this child shell process.\n "
+                "\ttype exit --help for more on exit command\n ",
   .cmd_opts =  cmd_boneshell_opts,
   .handler = &boneshell_handler,
   .invalid_use_msg = "Invalid use of boneshell command.\n"
