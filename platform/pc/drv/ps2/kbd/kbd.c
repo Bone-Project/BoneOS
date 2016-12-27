@@ -198,25 +198,14 @@ void key_handler_util(int key)
 
 void key_handler_util_backspace()
 {
-    if((INDEX_CURSOR_POSITION-1) < 0)
-    {
-        if(!(__backspace_count_active == true))
-        {
-            if(active_scank)
-              buffer_scank[index_scank--] = 0;
-            if(print_scank == true) 
-              printk("\b");   
-        }
-    }
-    
-    else
-    {
-        if(active_scank)
-            buffer_scank[index_scank--] = 0;
-        if(print_scank == true) printk("\b");   
-            INDEX_CURSOR_POSITION-=1;
-        LENGTH_INPUT-=1;
-    }
+  if(!((LENGTH_INPUT-1) < 0))
+  {
+    if(active_scank)
+      buffer_scank[index_scank--] = 0;
+    if(print_scank == true) printk("\b");   
+      INDEX_CURSOR_POSITION-=1;
+      LENGTH_INPUT-=1;
+  }
 }
 
 /*
@@ -244,18 +233,13 @@ void key_handler()
                UP_KEY_ACTIVE = false;
                int LENGTH_INPUT_STORE = LENGTH_INPUT;
                for (int i=0; i<LENGTH_INPUT_STORE; i++)
-               {
                    key_handler_util_backspace();
-                   LENGTH_INPUT--;
-                   __backspace_count--;
-               }
                for(int i=0; cmd_active.value[i]; i++)
                {
                  if(active_scank == true && print_scank == true)
                  {
                     wait_until_enter(cmd_active.value[i]);
                     LENGTH_INPUT++;
-                    __backspace_count++;
                  }
                }
               printk("%s" , cmd_active.value);
@@ -281,11 +265,7 @@ void key_handler()
             break;
        default:
          if(isalpha(kbd_info.key)!=0)
-         {
              key_handler_util(kbd_info.key);
-             __backspace_count++;
-             LENGTH_INPUT++;
-         }
          else if(isdigit(kbd_info.key)!=0)
              key_handler_util(kbd_info.key);
          else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)

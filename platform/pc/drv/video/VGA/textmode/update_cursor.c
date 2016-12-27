@@ -51,4 +51,3 @@ int update_cursor_textmode(int row, int col, uint8_t crsr_start, uint8_t crsr_en
     return STATUS_OK;
 }
 
-
