@@ -13,7 +13,7 @@
     - ***Section 2*** : Running the Nodemon-like Script
  - ***SupportedArchs.md***
  - ***Future.md***
- - 
+ 
 #Repository
 https://github.com/Bone-Project/BoneOS
 
