@@ -1,9 +1,9 @@
 BUILDROOT ?= ..
 
 CSRCS = \
-	term/terminal.c \
-	term/values.c \
-	term/utils.c
+	sh/shell.c \
+	sh/values.c \
+	sh/utils.c
 
 LIBNAME := apps
 

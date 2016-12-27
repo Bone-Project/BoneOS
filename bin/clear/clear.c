@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <clear/opts/color.h>
 #include <drv/video/VGA/vga.h>
 #include <stdio/stdio.h>

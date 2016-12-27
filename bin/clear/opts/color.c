@@ -24,7 +24,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <unistd/unistd.h>
 #include <stdlib/stdlib.h>
 #include <stdio/stdio.h>
@@ -82,11 +82,11 @@ struct cmd_opt_t cmd_clear_opt_color =
 };
 
 
-/* 0 = Black       8 = Gray
- 1 = Blue        9 = Light Blue
- 2 = Green       A = Light Green
- 3 = Aqua        B = Light Aqua
- 4 = Red         C = Light Red
- 5 = Purple      D = Light Purple
- 6 = Yellow      E = Light Yellow
- 7 = White       F = Bright White*/
+/*0 = Black       8 = Gray
+  1 = Blue        9 = Light Blue
+  2 = Green       A = Light Green
+  3 = Aqua        B = Light Aqua
+  4 = Red         C = Light Red
+  5 = Purple      D = Light Purple
+  6 = Yellow      E = Light Yellow
+  7 = White       F = Bright White*/

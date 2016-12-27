@@ -40,7 +40,7 @@
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
 #include <drv/driver.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
         
 

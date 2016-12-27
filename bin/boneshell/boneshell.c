@@ -23,13 +23,12 @@
 
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
 #include <unistd/unistd.h>
 #include <boneshell/boneshell.h>
 #include <string/string.h>
-#include <term/terminal.h>
-#include <term/values.h>
-#include <term/utils.h>
+#include <sh/shell.h>
+#include <sh/values.h>
+#include <sh/utils.h>
 #include <drv/video/VGA/vga.h>
 
 struct cmd_opt_t* cmd_boneshell_opts[] = 
@@ -63,7 +62,9 @@ void loop_terminal()
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
     
     scank(true,true, "%s" , cmd_active.value);
- 
+    if(strcmp(cmd_active.value, "exit")==0)
+      goto end_shell;
+      
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -82,6 +83,7 @@ void loop_terminal()
     __found = 0;  
     cmd_active_index++;
   }
+ end_shell:;  
 }
 
 int boneshell_handler(char* cmd)

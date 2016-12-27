@@ -23,7 +23,7 @@
 
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <unistd/unistd.h>
 #include <drv/video/VGA/vga.h>
 #include <boneos_logo/opts/main_boneos_logo.h>

@@ -21,15 +21,15 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <term/terminal.h>
-#include <term/values.h>
+
+#include <sh/values.h>
 #include <clear/clear.h>
 #include <boneos_logo/boneos_logo.h>
 #include <stdio/stdio.h>
 #include <strcmp/strcmp.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
-#include <term/utils.h>
+#include <sh/shell.h>
 #include <stdbool.h>
 #include <help/help.h>
 #include <sleep/sleep.h>
@@ -66,7 +66,7 @@ struct cmd_t *cmds[] =
 
 void init_terminal()
 {
-  assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting terminal!");
+  assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
   TERMINAL_MODE=true;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");

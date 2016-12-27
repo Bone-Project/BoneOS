@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>

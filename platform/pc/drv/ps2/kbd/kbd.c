@@ -35,11 +35,11 @@
 #include <drv/ps2/kbd/scancodes.h>
 #include <libc/stdio/scank/scank.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
 #include <ctype/ctype.h>
 #include <drv/video/video.h>
 #include <drv/driver.h>
 #include <drv/video/VGA/vga.h>
+#include <sh/shell.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 
 
