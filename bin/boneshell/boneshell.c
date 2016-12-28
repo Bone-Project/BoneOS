@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
@@ -31,7 +31,7 @@
 #include <sh/utils.h>
 #include <drv/video/VGA/vga.h>
 
-struct cmd_opt_t* cmd_boneshell_opts[] = 
+struct cmd_opt_t* cmd_boneshell_opts[] =
 {
   0
 };
@@ -61,11 +61,11 @@ void loop_terminal()
     }
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
-    
+
     scank(true,true, "%s" , cmd_active.value);
     if(strcmp(cmd_active.value, "exit")==0)
       goto end_shell;
-      
+
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -74,35 +74,35 @@ void loop_terminal()
         __found = 1;
       }
     }
-    
-    if(__found == 0)
+
+    if(__found == 0 && cmd_active.value [0] != '\0')
     {
       printk("Invalid Command '%s' \n", cmd_active.value);
       printk("Try 'help' for more information.\n");
     }
-      
-    __found = 0;  
+
+    __found = 0;
     cmd_active_index++;
   }
- end_shell:;  
+ end_shell:;
 }
 int boneshell_handler(char* cmd)
 {
     size_t num_opts = get_opt_count(cmd);
     str_t opts[num_opts];
     get_opt(cmd,opts);
-    
+
     if(strcmp(opts[1].str,"--help")==0)
         printk(cmd_boneshell.help);
     else if(num_opts==1)
        loop_terminal();
     else
         printk(cmd_boneshell.invalid_use_msg);
-   
+
     return STATUS_OK;
 }
 
-struct cmd_t cmd_boneshell = 
+struct cmd_t cmd_boneshell =
 {
   .name = "boneshell",
   .usage = "boneshell [--help] ",
