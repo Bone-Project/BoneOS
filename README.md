@@ -16,24 +16,76 @@
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 <a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
+<table>
+  <tr>
+    <th>Release Version</th>
+    <th>Release Date</th>
+    <th>Github Releases</th>
+    <th>SourceForge</th>
+  </tr>
+  
+  <tr>
+   <td>V 0.0.1</td>
+   <td>Dec/29/2016</td>
+   <td>To Be Added</td>
+   <td>
+   <a href="https://sourceforge.net/projects/boneproject-boneos/files/latest/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
+   </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Branch</th>
+    <th>Status</th>
+    <th>Main Developer</th>
+  </tr>
+  
+   <tr>
+    <td>master</td>
+    <td>
+    <a href="https://travis-ci.org/Bone-Project/BoneOS/branches"> <img src="https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master"/></a>
+    </td>
+    <td><strong><a href="https://github.com/Bone-Project">BoneOS Community</a></strong></td>
+  </tr>
+  
+  <tr>
+    <td>amanuel_dev</td>
+    <td>
+    <a href="https://travis-ci.org/Bone-Project/BoneOS/branches"> <img src="https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_dev"/></a>
+    </td>
+    <td><strong><a href="https://github.com/amanuel2">amanuel2</a></strong></td>
+  </tr>
+   <tr>
+    <td>doug_dev</td>
+    <td>
+    <a href="https://travis-ci.org/Bone-Project/BoneOS/branches"> <img src="https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=doug_dev"/></a>
+    </td>
+    <td><strong><a href="https://github.com/doug65536">doug65536</a></strong></td>
+  </tr>
+   <tr>
+    <td>ashish_dev</td>
+    <td>
+    <a href="https://travis-ci.org/Bone-Project/BoneOS/branches"> <img src="https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=ashish_dev"/></a>
+    </td>
+    <td><strong><a href="https://github.com/Fortunate-MAN">Fortunate-MAN</a></strong></td>
+  </tr>
+</table>
+
+
 
 </p>
 
-| Branch | Status                                                                                                                                               |
-| ------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Master | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master)](https://travis-ci.org/Bone-Project/BoneOS)                        |
-|  Amanuel Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
-|  Doug Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=doug_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
-|  Ashish Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=ashish_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
+
+
+
 
 
 [![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
 
 
-[![Download BoneOS](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
 
-[![Download BoneOS](https://img.shields.io/sourceforge/dm/boneproject-boneos.svg)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
-[![Download BoneOS](https://img.shields.io/sourceforge/dt/boneproject-boneos.svg)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+
 
 
 ### [BoneOS Meta](https://meta.boneos.org/)
