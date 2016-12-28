@@ -212,33 +212,42 @@ void key_handler_util_backspace()
 }
 
 
-bool tab_util(volatile char* buf_scan, volatile char* _cmd)
-{
-    for(int i=0; i<buf_scan[i]; i++)
-        if(buf_scan[i] != _cmd[i])
-            return false;
-    return true;        
-}
+ bool tab_util(volatile char* buf_scan, volatile char* _cmd)
+ {
+     for(int i=0; buf_scan[i]; i++)
+         if(buf_scan[i] != _cmd[i])
+             return false;
+     return true;        
+ }
 
-void key_handler_util_tab()
-{
-  printk("\n");
-  char* tab__ = "";
-  int index_tab=0;
-  int num_cmds=0;
-  for(int i=0; cmds[i]; i++)
-  {
-    if(tab_util(buffer_scank, cmds[i]->name) == true)
-    {
-      num_cmds++;
-      for(int j=0; cmds[i]->name[j]; j++)
-        tab__[index_tab++] = cmds[i]->name[j];
-     tab__[index_tab++] = '\t';
-    }   
-   }
-   tab__[index_tab] = 0; 
-  printk("%s" , tab__);
-}
+ void key_handler_util_tab()
+ {
+//   printk("\n");
+//   char* tab__ = "";
+//   int index_tab=0;
+//   int num_cmds=0;
+//   for(int i=0; cmds[i]; i++)
+//   {
+//     if(tab_util(buffer_scank, cmds[i]->name) == true)
+//     {
+//       num_cmds++;
+//       for(int j=0; cmds[i]->name[j]; j++)
+//         tab__[index_tab++] = cmds[i]->name[j];
+//      for(int rep=0; rep<4; rep++)tab__[index_tab++] = ' ';
+//     }   
+//   }
+//   tab__[index_tab] = 0; 
+//   if(num_cmds==1)
+//   {
+//       printk("WOGOO");
+//       goto end;
+//   }
+  
+// //   for(int i=0; tab__[i]; i++)
+// //      printk("%c", tab__[i]);
+//   end:; 
+//     printk("NUM_CMDS = %d" , num_cmds);
+ }
 
 
 /*
@@ -296,9 +305,7 @@ void key_handler()
                 INDEX_CURSOR_POSITION+=4;    
             }
             else
-            {
                 key_handler_util_tab();
-            }
             break;
         case '\n':
             if(print_scank == true) printk("\n");

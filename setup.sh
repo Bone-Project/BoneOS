@@ -6,6 +6,7 @@ if [ "$(uname)" == "Darwin" ]; then
    sleep 2
    brew install nasm
    brew install gcc
+   brew install gcc-multilib
    brew install qemu
    brew install grub-common
    brew install xorriso
@@ -19,6 +20,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     sudo apt-get upgrade
     sudo apt-get install nasm
     sudo apt-get install gcc
+     sudo apt-get install gcc-multilib
     sudo apt-get install qemu
     sudo apt-get install grub-common
     sudo apt-get install xorriso

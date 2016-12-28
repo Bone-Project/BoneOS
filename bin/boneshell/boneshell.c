@@ -63,6 +63,9 @@ void loop_terminal()
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
     
     scank(true,true, "%s" , cmd_active.value);
+    if(strcmp(cmd_active.value, "exit")==0)
+      goto end_shell;
+      
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -71,7 +74,7 @@ void loop_terminal()
         __found = 1;
       }
     }
-    if(exit_set__shell==true) goto end_shell;
+    
     if(__found == 0)
     {
       printk("Invalid Command '%s' \n", cmd_active.value);
@@ -81,10 +84,8 @@ void loop_terminal()
     __found = 0;  
     cmd_active_index++;
   }
- end_shell:; 
- exit_set__shell=false;
+ end_shell:;  
 }
-
 int boneshell_handler(char* cmd)
 {
     size_t num_opts = get_opt_count(cmd);
