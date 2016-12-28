@@ -42,8 +42,8 @@ void term_scroll_vga_textmode(int offset)
     }
 
   vga_driver.video_row -=offset;    
-  for(unsigned i=0; i<video_driver_height-2; i++)
-    putch_vga_textmode(0);
+   for(unsigned i=0; i<video_driver_width-2; i++)
+     putch_vga_textmode(0);
 
   vga_driver.video_column=1;
 }
