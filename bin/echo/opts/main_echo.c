@@ -42,23 +42,46 @@ int main_echo_opt_handler(char *cmd)
    
    if(strcmp(opts[1].str , "--help")==0)
       printk(cmd_echo.help);
-   else if(num_opts == 2)
+   else if(num_opts >= 2)
    {
-     if(opts[1].str[0] == '\'' && opts[1].str[(strlen(opts[1].str)-1)] == '\'')
-     {
-        for(size_t j=1; j<strlen(opts[1].str)-1; j++)
-            printk("%c", opts[1].str[j]);
-         printk("\n");   
-         return STATUS_OK;   
-     }
-     else if(opts[1].str[0] == '\"' && opts[1].str[(strlen(opts[1].str)-1)] == '\"')
-     {
-        for(size_t j=1; j<strlen(opts[1].str)-1; j++)
-            printk("%c", opts[1].str[j]);
-         printk("\n");   
-         return STATUS_OK;   
-     }
-     printk("%s\n" , opts[1].str);
+      if(opts[1].str[0] == '\'' && opts[num_opts-1].str[(strlen(opts[1].str)-1)] == '\'')
+      {
+          for(size_t i=1; i<num_opts; i++)
+          {
+            for(size_t j=0; opts[i].str[j]; j++)
+            {
+              if(i==1 && j==0) j++;
+              if(i==(num_opts-1) && j == (strlen(opts[1].str)-1) )
+              { 
+                printk("\n");  
+                return STATUS_OK;
+              }
+               printk("%c" , opts[i].str[j]);
+            }
+            printk(" ");
+          }
+          return STATUS_OK;   
+      }
+      else if(opts[1].str[0] == '\"' && opts[num_opts-1].str[(strlen(opts[1].str)-1)] == '\"')
+      {
+        for(size_t i=1; i<num_opts; i++)
+          {
+            for(size_t j=0; opts[i].str[j]; j++)
+            {
+              if(i==1 && j==0) j++;
+              if(i==(num_opts-1) && j == (strlen(opts[1].str)-1) )
+              { 
+                printk("\n");  
+                return STATUS_OK;
+              }
+               printk("%c" , opts[i].str[j]);
+            }
+            printk(" ");
+          }
+      }
+     for(size_t i=1; i<num_opts; i++)
+       printk("%s " , opts[i].str);
+     printk("\n");
    }
    else
       printk(cmd_echo.invalid_use_msg);
