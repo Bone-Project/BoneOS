@@ -48,10 +48,11 @@ int cmd_sleep_handler(char* cmd)
      return STATUS_OK;
    }
    
-   if(strcmp(opts[1].str,"")==0)
+   if(strcmp(opts[1].str,"")==0 || isdigit(opts[1].str[0])==0)
    {
        printk("sleep: missing operand\n");
        printk("Try 'sleep --help' for more information.\n");
+       return STATUS_OK;
    }
    
    for(size_t i=0; i< (strlen(opts[1].str)-1); i++)
