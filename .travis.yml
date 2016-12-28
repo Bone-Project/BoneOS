@@ -8,6 +8,7 @@ branches:
   - master
   - amanuel_dev
   - doug_dev
+  - ashish_dev
 
 env:
   - CC=gcc-5
