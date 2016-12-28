@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
 #include <string/string.h>
@@ -73,11 +73,11 @@ struct cmd_t cmd_sleep =
   .name = "sleep",
   .usage ="sleep [<ms>] [--help]",
   .help = "sleep(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tsleep\n"
                 "SYNOPSIS : \n "
                 "\tsleep [<ms>] [--help]\n"
-                "DESCRIPTION : \n"
+                "DESCRIPTION : \n "
                 "\tSleeps for the number of milliseconds specified.\n",   
   .cmd_opts =  cmd_sleep_opts,
   .handler = &cmd_sleep_handler,    
@@ -85,5 +85,6 @@ struct cmd_t cmd_sleep =
                      "Type in sleep --help for more help.\n",
   .privilege = USER
 };
+
 
 

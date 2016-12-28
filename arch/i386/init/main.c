@@ -40,9 +40,9 @@
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
 #include <drv/driver.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
-
+        
 
 /*
  * Calling all Global C Objects
@@ -69,6 +69,10 @@ void crash_me()
     trick3 = trick1 / trick2;
 }
 
+static inline void kernel_init_early()
+{
+    //getchar(); //Start out getchar();
+}
 
 /*
  * @function kernelMain:
@@ -83,13 +87,17 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    init_cpu();
    setup_driver_handler();
    sti();
+   kernel_init_early();
+    
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
+
    init_terminal();
 
    while(1)
       hlt();
 }
+
 
 
 

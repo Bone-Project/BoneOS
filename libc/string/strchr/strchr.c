@@ -52,3 +52,4 @@ char *strchr(const char *str, int c)
     return (char*)0;
 }
 
+

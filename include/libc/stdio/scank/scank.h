@@ -11,8 +11,9 @@ extern volatile uint32_t index_scank;
 extern volatile bool active_scank;
 extern volatile bool print_scank;
 extern volatile char buffer_scank[4096];
-extern volatile int __backspace_count;
+extern volatile int LENGTH_INPUT;
 extern volatile bool __backspace_count_active;
 #endif /*_LIBC_STDIO_SCANK_H_*/
+
 
 

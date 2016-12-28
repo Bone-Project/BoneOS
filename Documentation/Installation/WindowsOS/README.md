@@ -1,6 +1,8 @@
 # Building BoneOS From Source on Windows OS
 
-Here is how you build it from Windows OS. Before you do this remember to get the linux subsystem for windows New feature. [**Here**](http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) is a guide on how to install this awesome feature!
+Here is how you build it from Windows OS. 
+Before you do this remember to get the `Linux Subsystem For Windows` New feature. [**Here**](http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) 
+is a guide on how to install this awesome feature! This gives you a Ubuntu Based Terminal running in Windows! After sucessfully installing this awesome future :
 
 
 First Clone this repository the Cross Compiler 
@@ -9,21 +11,31 @@ First Clone this repository the Cross Compiler
 git clone <REPO_URL>
 ```
 
-After you did this `cd` into the cloned directory and then
+After sucessfully cloning the project You can have additonal configurations 
+to run at a specific Architecture / Platform / Compiler / etc...
 
-```sh
-make get-toolchain 
-```
+Look at Documentation/Options for more on this.
 
-After this , using your Ubuntu Bash (One of requirements listed) , if you dont have all the dependencies listed in the requirements(Microsoft Ubuntu Bash is a 100% Need) do: 
+If you choose not to have additonal options it will configure with the defaults
+set by Makefile `?=` . Now run make 
 
 ```sh
 make
 ```
 
-This will give you the .iso file on the outermost dir. You can then Hook up
-A Virtual Machine Emulator(Like VirtualBox or VMWare) on the ISO And Finally Run BoneOS :)
+And this will give you a sucessfull Image File(ISO) for BoneOS. If you have
+a qemu for testing you can run
+
+```sh
+make qemu_compile
+```
+
+for running the Binary version or the actual ISO using :
+
+```sh
+make qemu_iso
+```
 
 #Issues
 
-If there are any whatsoever issues , please request an issue here! https://meta.boneos.org/
+If there are any whatsoever issues , please request an issue [here](https://meta.boneos.org/)!

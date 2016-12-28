@@ -17,19 +17,18 @@
 BUILDROOT := $(realpath .)
 export BUILDROOT
 
+include config/ARCH.mk
+include config/PLAT.mk
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
 ifndef GENCONFIG
- include $(GENERATED_CONFIG)
-
- include config/ARCH.mk
- include config/PLAT.mk
-
+ -include $(GENERATED_CONFIG)
  # Detect path to libgcc
  LIBGCC := $(shell $(CC) $(ARCH_MACHINE) -print-libgcc-file-name)
  LIBGCCDIR := $(dir $(LIBGCC))
  LIBGCCFILENAME := $(notdir $(LIBGCC))
  LIBGCCNAME := $(patsubst lib%.a,%,$(LIBGCCFILENAME))
 endif
+
 
 # Remember this the first time it is used
 # so you don't have to keep specifying it
@@ -220,10 +219,10 @@ debug_q:
 		-ex 'set radix 16' \
 
 qemu_compile: $(BONEOS_BIN)
-	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -k en-us
+	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -k en-us -s
 
 qemu_iso: $(BONEOS_BIN) $(BONEOS_ISO)
-	$(QEMU) -cdrom $(BONEOS_ISO) -k en-us
+	$(QEMU) -cdrom $(BONEOS_ISO) -k en-us -s
 
 bochs: $(BONEOS_ISO)
 	$(BOCHS) -f bochsrc.bxrc -q

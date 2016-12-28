@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
@@ -59,15 +59,15 @@ struct cmd_t cmd_help =
   .name = "help",
   .usage ="help [-cmd <cmd_name>]",
   .help = "help(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\thelp\n"
                 "SYNOPSIS : \n "
                 "\thelp [-cmd <cmd_name>]\n"
-                "DESCRIPTION : \n"
-                "\tLists out all commands if called with no options\n"
-                "\tbut if called with -cmd option calls help handler\n"
+                "DESCRIPTION : \n "
+                "\tLists out all commands if called with no options\n "
+                "\tbut if called with -cmd option calls help handler\n "
                 "\tfor that command.\n"
-                "MORE HELP : \n"
+                "MORE HELP : \n "
                 "\t[help -cmd --help] for help on -cmd option\n",   
   .cmd_opts =  cmd_help_opts,
   .handler = &cmd_help_handler,    
@@ -75,5 +75,6 @@ struct cmd_t cmd_help =
                      "Type in help --help for more help.\n",
   .privilege = USER
 };
+
 
 

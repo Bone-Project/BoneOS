@@ -71,3 +71,4 @@ void idt_set_gate(uint8_t num, int_handler handler, uint16_t sel,
                         );
  }
 
+

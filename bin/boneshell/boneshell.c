@@ -23,31 +23,30 @@
 
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
 #include <unistd/unistd.h>
 #include <boneshell/boneshell.h>
 #include <string/string.h>
-#include <term/terminal.h>
-#include <term/values.h>
-#include <term/utils.h>
+#include <sh/shell.h>
+#include <sh/values.h>
+#include <sh/utils.h>
+#include <drv/video/VGA/vga.h>
 
 struct cmd_opt_t* cmd_boneshell_opts[] = 
 {
   0
 };
 
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
 
 int __found = 0;
+volatile bool exit_set__shell = false;
 
 void loop_terminal()
 {
   while(1)
   {
-    int FG__ = FG;
-    int BG__ = BG;
-    if(FG==0x7 && BG==0x0)
+    int FG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
+    int BG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
+    if(video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg==0x7 && video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg==0x0)
     {
       printck(2,0,"%s@boneos:",VAR_USER);
       printck(1,0,"%s",VAR_PWD);
@@ -60,26 +59,13 @@ void loop_terminal()
       printk("%s",VAR_PWD);
       printk(" $ ");
     }
-    FG = FG__;
-    BG = BG__;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
     
     scank(true,true, "%s" , cmd_active.value);
- 
-
-    if(is_contain_equal(cmd_active.value)==true)
-    {
-      str_t temp_str;
-      strcpy(temp_str.str,cmd_active.value);
-        
-      char* key = term_assignment_return_variable(temp_str).str;
-      char* val = term_assignment_return_value(temp_str).str;
-        
-      strcpy(__values.pairs[__values.index].val,val);
-      strcpy(__values.pairs[__values.index].key,key);
-      __found=1;
-      __values.index++;
-    }
-
+    if(strcmp(cmd_active.value, "exit")==0)
+      goto end_shell;
+      
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -98,8 +84,8 @@ void loop_terminal()
     __found = 0;  
     cmd_active_index++;
   }
+ end_shell:;  
 }
-
 int boneshell_handler(char* cmd)
 {
     size_t num_opts = get_opt_count(cmd);
@@ -121,17 +107,20 @@ struct cmd_t cmd_boneshell =
   .name = "boneshell",
   .usage = "boneshell [--help] ",
   .help = "boneshell(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tboneshell\n"
                 "SYNOPSIS : \n "
                 "\tboneshell [--help]\n"
-                "DESCRIPTION : \n"
-                "\tThe General Shell For BoneOS \n"
-                "\tOperating System.\n",
+                "DESCRIPTION : \n "
+                "\tCreates another instance of a shell being \n "
+                "\tthe child of the previous parent shell process.\n "
+                "\tcommand exit used to stop this child shell process.\n "
+                "\ttype exit --help for more on exit command\n ",
   .cmd_opts =  cmd_boneshell_opts,
   .handler = &boneshell_handler,
   .invalid_use_msg = "Invalid use of boneshell command.\n"
                      "Type in boneshell --help for more help.\n",
   .privilege = USER
 };
+
 

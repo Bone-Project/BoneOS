@@ -21,39 +21,41 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
+#include <io/io.h>
 #include <misc/status_codes.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
-#include <io/io.h>
 #include <libc/stdio/stdio.h>
 #include <stdint.h>
 #include <stddef.h>
-#define KBD_PRE
 #include <drv/ps2/kbd/kbd.h>
-#undef KBD_PRE
 #include <stdbool.h>
 #include <libc/assertk.h>
-#include <libc/ctype/toupper/toupper.h>
-#include <cpu/interrupts/irq.h>
+#include <libc/ctype/ctype.h>
 #include <drv/ps2/kbd/scancodes.h>
 #include <libc/stdio/scank/scank.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
 #include <ctype/ctype.h>
 #include <drv/video/video.h>
 #include <drv/driver.h>
+#include <drv/video/VGA/vga.h>
+#include <sh/shell.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 
 
 
 volatile struct kbd_info_t kbd_info;
-volatile int LENGTH_INPUT=0;
 volatile int INDEX_CURSOR_POSITION=0;
+volatile bool UP_KEY_ACTIVE=true;
 
+
+//Is this getting emulated at a terminal
 extern volatile bool TERMINAL_MODE;
 
-extern size_t terminal_column;
-extern size_t terminal_row;
+//getchar();
+extern volatile bool __get_char_set;
+extern volatile char __get_char_chr;
+
 
 /*
  * @function key_press:
@@ -70,9 +72,9 @@ extern size_t terminal_row;
 int key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift)
-       return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_shift[scancode]);
+       return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_shift[scancode]);
     else
-       return (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode]);
+       return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode]);
 }
 
 /*
@@ -86,24 +88,22 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
-  if (kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_USA_LEFT_SHIFT_PRESS || 
-    kbd_layouts[kbd_info.current_kbd_layout]->scancode_no_shift[scancode] == KBD_QWERTY_USA_RIGHT_SHIFT_PRESS)  
-    {
-        //printk("SHIFT RELEASE");
+  if (
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID || 
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_RIGHT_SHIFT_PRESS_ID
+     )  
         kbd_info.is_shift = false;
-    }
 }
 
 /*
- * @function kbd_init_pointers:
+ * @function kbd_early_init:
  *      Stuff to initalize
  *      before installing
  *      the PS/2 Keyboard
  */
-void kbd_init_pointers()
+void kbd_early_init()
 {
-    kbd_info.routines.tests.bat_test = &bat_test;
-    kbd_info.tests.bat_test = (*kbd_info.routines.tests.bat_test)();
+    kbd_info.tests.bat_test = bat_test();
     
     if(!kbd_info.tests.bat_test)
     {
@@ -112,9 +112,7 @@ void kbd_init_pointers()
     }
     else
         kbd_driver.status = STATUS_DRIVER_OK;
-        
-    kbd_info.routines.key_ev.key_press = &key_press;
-    kbd_info.routines.key_ev.key_release = &key_release;
+
 
     led_light(false,false,false);
     kbd_info.is_shift = false;
@@ -123,8 +121,10 @@ void kbd_init_pointers()
     active_scank = false;
     print_scank = false;
 
-    kbd_info.current_kbd_layout = QWERTY_USA_INDEX;
+    kbd_info.current_kbd_layout_index = QWERTY_USA_INDEX;
 }
+
+
 
 /*
  * @utility wait_until_enter
@@ -139,6 +139,118 @@ void wait_until_enter(char key)
 }
 
 /*
+ * @utility inc_al
+ *      INcrements Position
+ *      and adds to length input.
+ *      used for when character typed.
+ */
+
+static inline void inc_al()
+{
+    INDEX_CURSOR_POSITION++;
+    LENGTH_INPUT++;
+}
+
+
+/*
+ * @utility key_handler_util
+ *      Utility used for default
+ *      cases in @key_handler.
+ *      used to print non 
+ *      'extreme-special' characters.
+ *      
+ *          @param key(int):
+ *              Character represented
+ *              int for NON-DOS MODE
+ *              , and use of special 
+ *              characters.(#define)
+ */
+void key_handler_util(int key)
+{
+    if(isalpha(key)==0)
+    {
+      if(print_scank == true && active_scank == true)
+      {
+          inc_al();
+          printk("%c", key);
+          wait_until_enter(key);
+      } 
+
+      else if(active_scank == true)
+          wait_until_enter(key);
+    }
+    else
+    {
+      if(kbd_info.is_caps == false && print_scank == true && active_scank == true)
+      {
+        inc_al();
+        printk("%c", key);
+        wait_until_enter(key);
+      }
+      else if(kbd_info.is_caps == true && print_scank == true && active_scank == true)
+      {
+        inc_al();
+        printk("%c", toupper(key)); 
+        wait_until_enter(key);
+      }
+    
+      else if(active_scank == true)
+        wait_until_enter(key);
+    }
+}
+
+void key_handler_util_backspace()
+{
+  if(!((LENGTH_INPUT-1) < 0))
+  {
+    if(active_scank)
+      buffer_scank[index_scank--] = 0;
+    if(print_scank == true) printk("\b");   
+      INDEX_CURSOR_POSITION-=1;
+      LENGTH_INPUT-=1;
+  }
+}
+
+
+ bool tab_util(volatile char* buf_scan, volatile char* _cmd)
+ {
+     for(int i=0; buf_scan[i]; i++)
+         if(buf_scan[i] != _cmd[i])
+             return false;
+     return true;        
+ }
+
+ void key_handler_util_tab()
+ {
+//   printk("\n");
+//   char* tab__ = "";
+//   int index_tab=0;
+//   int num_cmds=0;
+//   for(int i=0; cmds[i]; i++)
+//   {
+//     if(tab_util(buffer_scank, cmds[i]->name) == true)
+//     {
+//       num_cmds++;
+//       for(int j=0; cmds[i]->name[j]; j++)
+//         tab__[index_tab++] = cmds[i]->name[j];
+//      for(int rep=0; rep<4; rep++)tab__[index_tab++] = ' ';
+//     }   
+//   }
+//   tab__[index_tab] = 0; 
+//   if(num_cmds==1)
+//   {
+//       printk("WOGOO");
+//       goto end;
+//   }
+  
+// //   for(int i=0; tab__[i]; i++)
+// //      printk("%c", tab__[i]);
+//   end:; 
+//     printk("NUM_CMDS = %d" , num_cmds);
+ }
+
+
+/*
  * @function key_handler:
  *      Handles key events. 
  *      called by primary
@@ -148,248 +260,69 @@ void wait_until_enter(char key)
  */
 void key_handler()
 {
-   if( 
-       ((kbd_info.key) == '6') 
-                  || 
-       ((kbd_info.key) == '8')
-     )
-   {
-        if(kbd_info.is_caps == false && print_scank == true)
-        {
-          __backspace_count++;
-         printk("%c", kbd_info.key);
-        }
-        else if(kbd_info.is_caps == true && print_scank == true)
-        {
-            __backspace_count++;
-         printk("%c", toupper(kbd_info.key)); 
-        }
-
-         if(active_scank == true)
-             wait_until_enter(kbd_info.key);
-          return; 
-   }
-   
    switch(kbd_info.key)
    {
-     case KBD_QWERTY_USA_LEFT_SHIFT_PRESS:
-     case KBD_QWERTY_USA_RIGHT_SHIFT_PRESS:
-      kbd_info.is_shift = true;
-      break;
-     case KBD_QWERTY_USA_UP_KEY:
-        if(TERMINAL_MODE == true)
-        {
-           for(int i=0; cmd_active.value[i]; i++)
-           {
-             if(active_scank == true && print_scank == true)
-             {
+       //Is shift pressed
+       case KBD_LEFT_SHIFT_PRESS_ID:
+       case KBD_RIGHT_SHIFT_PRESS_ID:
+            kbd_info.is_shift = true;
+            break;
+       case KBD_CAPS_PRESS_ID:
+            break;
+       case KBD_UP_KEY_ID:
+            if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
+            {
+               UP_KEY_ACTIVE = false;
+               int LENGTH_INPUT_STORE = LENGTH_INPUT;
+               for (int i=0; i<LENGTH_INPUT_STORE; i++)
+                   key_handler_util_backspace();
+               for(int i=0; cmd_active.value[i]; i++)
+               {
+                 if(active_scank == true && print_scank == true)
+                 {
                     wait_until_enter(cmd_active.value[i]);
-                       __backspace_count++;
-                       LENGTH_INPUT++;
-             }
-           }
-            printk("%s" , cmd_active.value); 
-        }
-        break;
-     case KBD_QWERTY_USA_LEFT_KEY:
-        if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION-1)>=0) )
-        {
-          INDEX_CURSOR_POSITION-=1;
-          terminal_column--;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
-        }
-        break;
-     case KBD_QWERTY_USA_RIGHT_KEY:
-        if(TERMINAL_MODE == true && ((INDEX_CURSOR_POSITION+1)<=LENGTH_INPUT))
-        {
-          INDEX_CURSOR_POSITION+=1;
-          terminal_column++;
-          video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(terminal_row,terminal_column,__crsr_start,__crsr_end);
-        }
-        break;
-     case KBD_QWERTY_USA_CAPS_PRESS:
-        //led_light(false,false,true);
-        if(kbd_info.is_caps == true)
-          kbd_info.is_caps = false;
-        else
-           kbd_info.is_caps = true;
-        break;  
-     case '=':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;
-      case '$':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;
-          case '_':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;
-       case '.':
-         if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;      
-     case KBD_QWERTY_USA_ENTER_PRESS:
-        kbd_info.is_enter = true;
-        active_scank = false;
-        buffer_scank[index_scank] = 0;
-        if(print_scank == true) printk("\n");
-        break;
-     case '\t':
-         if(print_scank == true)  printk("\t");
-          LENGTH_INPUT+=4;
-          __backspace_count+=4;
-          INDEX_CURSOR_POSITION+=4;
+                    LENGTH_INPUT++;
+                 }
+               }
+              printk("%s" , cmd_active.value);
+            }
+            break;   
+        case KBD_ENTER_PRESS_ID:
+            kbd_info.is_enter = true;
+            active_scank = false;
+            buffer_scank[index_scank] = 0;
+            if(print_scank == true) printk("\n");
+            UP_KEY_ACTIVE = true; //Reset Up Key
+            break;
+        case '\b':
+           key_handler_util_backspace();
          break;
-     case '\b':
-          if((__backspace_count-1) < 0)
-          {
-              if(!(__backspace_count_active == true))
-              {
-                 if(active_scank)
-                 buffer_scank[index_scank--] = 0;
-                 if(print_scank == true) printk("\b");   
-              }
-          }
-          else
-          {
-            if(active_scank)
-              buffer_scank[index_scank--] = 0;
-            if(print_scank == true) printk("\b");   
-            INDEX_CURSOR_POSITION-=1;
-            __backspace_count-=1;
-            LENGTH_INPUT-=1;
-         }
-         break;
-     case '\n' :
-         if(print_scank == true) printk("\n");
-         break;   
-      case ' ' :
-              if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                  __backspace_count++;
-                  printk("%c", kbd_info.key);
-             }
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;   
-       case '-':
-              if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                  __backspace_count++;
-                  printk("%c", kbd_info.key);
-             }
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-          break;  
-     default:
+        case '\t':
+            if(TERMINAL_MODE==false)
+            {
+                printk("\t");
+                LENGTH_INPUT+=4;
+                INDEX_CURSOR_POSITION+=4;    
+            }
+            else
+                key_handler_util_tab();
+            break;
+        case '\n':
+            if(print_scank == true) printk("\n");
+            break;
+       default:
          if(isalpha(kbd_info.key)!=0)
-         {
-             if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-         }
+             key_handler_util(kbd_info.key);
          else if(isdigit(kbd_info.key)!=0)
-         {
-            if(kbd_info.is_caps == false && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", kbd_info.key);
-             }
-             else if(kbd_info.is_caps == true && print_scank == true)
-             {
-                 INDEX_CURSOR_POSITION++;
-                 LENGTH_INPUT++;
-                __backspace_count++;
-                printk("%c", toupper(kbd_info.key)); 
-             }
-
-              if(active_scank == true && print_scank == true)
-                  wait_until_enter(kbd_info.key);
-         }
-
-        
+             key_handler_util(kbd_info.key);
+         else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)
+             key_handler_util(kbd_info.key);
+         else if(((int)kbd_info.key) >= 58 && ((int)kbd_info.key) <=64)
+             key_handler_util(kbd_info.key);   
+         else if(((int)kbd_info.key) >= 91 && ((int)kbd_info.key) <=96)
+             key_handler_util(kbd_info.key);
+         else if(((int)kbd_info.key) >= 123 && ((int)kbd_info.key) <=126)
+             key_handler_util(kbd_info.key);    
          break;
    }
 }
@@ -407,12 +340,14 @@ void key_handler()
 void kbd_handler(int_regs *r)
 {
   if(r){};
-  kbd_info.kbd_enc_info =kbd_enc_read_input_buf();
-  if(kbd_info.kbd_enc_info & 0x80)
-        (*kbd_info.routines.key_ev.key_release)(kbd_info.kbd_enc_info & ~0x80);
+  kbd_info.scancode =kbd_enc_read_input_buf();
+  if(kbd_info.scancode & 0x80)
+        key_release(kbd_info.scancode & ~0x80);
     else
     {
-        kbd_info.key = (*kbd_info.routines.key_ev.key_press)(kbd_info.kbd_enc_info);
+        kbd_info.key = key_press(kbd_info.scancode);
+        __get_char_chr = kbd_info.key;
+        __get_char_set = true;
         key_handler();
     }
 }
@@ -429,7 +364,7 @@ void kbd_handler(int_regs *r)
 int init_kbd()
 {
   kbd_driver.initalized = true;
-  kbd_init_pointers();
+  kbd_early_init();
   install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
   return STATUS_OK;
 }
@@ -449,5 +384,6 @@ int uninit_kbd()
   uninstall_irq_handler(IRQ_NUM_KBD);
   return STATUS_OK;
 }
+
 
 

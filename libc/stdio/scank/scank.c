@@ -29,12 +29,13 @@
 #include <libc/stdlib/atoi/atoi.h>
 #include <libc/stdlib/strtoi/strtoi.h>
 #include <libc/string/strcpy/strcpy.h>
+#include <misc/asm_util.h>
 
 volatile uint32_t index_scank;
 volatile bool active_scank;
 volatile bool print_scank;
 volatile char buffer_scank[4096];
-volatile int __backspace_count=0;
+volatile int LENGTH_INPUT=0;
 volatile bool __backspace_count_active=false;
 
 /*
@@ -95,7 +96,7 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
             integer_format = va_arg(arg,int*);
             active_scank = true;
             index_scank=0 ;
-            while(active_scank == true);
+            while(active_scank == true) hlt();
             *integer_format = atoi((char*)buffer_scank);
             break;
            case 's':
@@ -103,28 +104,29 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
              active_scank = true;
              index_scank=0 ;
              buffer_scank[0] = 0;
-             while(active_scank == true);
+             while(active_scank == true) hlt();
              strcpy(string_format,(char*)buffer_scank);
             break;
            case 'c':
              char_format = va_arg(arg,char*);
              active_scank = true;
              index_scank=0 ;
-             while(active_scank == true);
+             while(active_scank == true) hlt();
              *char_format = buffer_scank[0];
              break;
            case 'x':
              hex_format = va_arg(arg,int*);
              active_scank = true;
              index_scank = 0;
-             while(active_scank == true);
+             while(active_scank == true) hlt();
              *hex_format = strtoi((char*)buffer_scank, 0, 16);
               break;   
         }
       }  
   print_scank = false;
-  __backspace_count=0;
+   LENGTH_INPUT=0;
   __backspace_count_active=false;
   
 }
+
 

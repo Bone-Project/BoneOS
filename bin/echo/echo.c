@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
@@ -56,11 +56,11 @@ struct cmd_t cmd_echo =
   .name = "echo",
   .usage ="echo [value]",
   .help = "echo(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\techo\n"
                 "SYNOPSIS : \n "
                 "\techo [value]\n"
-                "DESCRIPTION : \n"
+                "DESCRIPTION : \n "
                 "\tPrints out the VALUE listed by option\n",
   .cmd_opts =  cmd_echo_opts,
   .handler = &cmd_echo_handler,    
@@ -68,6 +68,7 @@ struct cmd_t cmd_echo =
                      "Type in echo --help for more help.\n",
   .privilege = USER
 };
+
 
 
 

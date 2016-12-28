@@ -26,14 +26,11 @@
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
 #include <clear/clear.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <stdlib/stdlib.h>
 #include <drv/video/video.h>
 #include <boneos_logo/opts/boneos_logo_color.h>
 #include <boneos_logo/boneos_logo.h>
-
-extern uint8_t FG; // Foreground - White
-extern uint8_t BG; // Background - BLACK 
 
 int main_boneos_opt_handler(char *cmd)
 {
@@ -49,8 +46,8 @@ int main_boneos_opt_handler(char *cmd)
      }
      else if(strcmp(opts[2].str, "--def")==0)
      {
-        FG = 0x7;
-        BG = 0x0;
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = 0x7;
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = 0x0;
         printk("*********** ********** *      * *******      **********  *********\n");
         printk("*         * *        * * *    * *            *        *  *\n");
         printk("*         * *        * *  *   * *            *        *  *\n");
@@ -78,5 +75,6 @@ int main_boneos_opt_handler(char *cmd)
    }
   return STATUS_OK;
 }
+
 
 

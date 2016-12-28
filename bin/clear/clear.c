@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <clear/opts/color.h>
 #include <drv/video/VGA/vga.h>
 #include <stdio/stdio.h>
@@ -56,15 +56,15 @@ struct cmd_t cmd_clear =
   .name = "clear",
   .usage = "clear [--help]  [-color <fg-color> <bg-color>] [-color --def]  [-color <--help>] ",
   .help = "clear(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tclear\n"
                 "SYNOPSIS : \n "
                 "\tclear [--help]  [-color <fg-color> <bg-color>] [-color --def] [-color <--help>]\n"
-                "DESCRIPTION : \n"
-                "\tClears the terminal. Possible to specifiy the\n"
-                "\tcolor with the -color command and providing it\n"
+                "DESCRIPTION : \n "
+                "\tClears the terminal. Possible to specifiy the\n "
+                "\tcolor with the -color command and providing it\n "
                 "\ta Foreground as well as a Background Color \n"
-                "MORE HELP : \n"
+                "MORE HELP : \n "
                 "\t[clear -color --help] for help on -color option\n",   
   .cmd_opts =  cmd_clear_opts,
   .handler = &cmd_clear_handler,    
@@ -72,5 +72,6 @@ struct cmd_t cmd_clear =
                      "Type in clear --help for more help.\n",
   .privilege = USER
 };
+
 
 

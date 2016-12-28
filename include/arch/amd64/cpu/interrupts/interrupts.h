@@ -62,15 +62,16 @@ typedef struct
  #define SEGMENT_PRESENT_DPL_STORAGE 0x8
 
  #define SEGMENT_FLAG SEGMENT_PRESENT | \
-                                                  SEGMENT_RING_LEVEL_0 | \
-                                                  SEGMENT_STORAGE | \
-                                                  SEGMENT_32_BIT_INTERUPT_GATE | \
-                                                  SEGMENT_PRESENT_DPL_STORAGE
+                      SEGMENT_RING_LEVEL_0 | \
+                      SEGMENT_STORAGE | \
+                      SEGMENT_32_BIT_INTERUPT_GATE | \
+                      SEGMENT_PRESENT_DPL_STORAGE
 
  extern idt_desc idt[256];
  extern void idt_set_gate(uint8_t num, int_handler handler, uint16_t sel,
               uint8_t flags);
 
  #endif /*_ARCH_CPU_INTERRUPTS_H_*/
+
 
 

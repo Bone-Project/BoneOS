@@ -5,10 +5,10 @@ NSRCS =
 CSRCS = \
 	drv/video/video.c \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_LOW).c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/utils.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/putch/putch.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/clear.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/$(VIDEO_DRIVER_RES)/term_scroll.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/utils.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/putch.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/clear.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/term_scroll.c \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/update_cursor.c \
 	drv/pit/pit.c \

@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
@@ -63,11 +63,11 @@ struct cmd_t cmd_poweroff =
   .name = "poweroff",
   .usage ="poweroff [--help]",
   .help = "poweroff(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\tpoweroff\n"
                 "SYNOPSIS : \n "
                 "\tpoweroff [--help]\n"
-                "DESCRIPTION : \n"
+                "DESCRIPTION : \n "
                 "\tShuts down the Operating System.\n",
   .cmd_opts =  cmd_poweroff_opts,
   .handler = &cmd_poweroff_handler,    
@@ -75,6 +75,7 @@ struct cmd_t cmd_poweroff =
                      "Type in poweroff --help for more help.\n",
   .privilege = ROOT
 };
+
 
 
 

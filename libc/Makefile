@@ -19,6 +19,7 @@ CSRCS = \
 	stdio/sprintk/sprintk.c \
 	stdio/printk/printk.c \
 	stdio/scank/scank.c \
+	stdio/getchar/getchar.c \
 	unistd/sleep/sleep.c \
 	unistd/get_opt/get_opt_count.c \
 	unistd/get_opt/get_opt.c \
@@ -27,7 +28,9 @@ CSRCS = \
 	math/sqrtk/sqrtk.c \
 	ctype/toupper/toupper.c\
 	ctype/isdigit/isdigit.c \
-	ctype/isalpha/isalpha.c
+	ctype/isalpha/isalpha.c \
+	ctype/isalnum/isalnum.c \
+	ctype/isxdigit/isxdigit.c \
 
 LIBNAME := c
 

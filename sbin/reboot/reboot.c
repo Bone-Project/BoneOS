@@ -22,7 +22,7 @@
  **/  
 
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
@@ -60,11 +60,11 @@ struct cmd_t cmd_reboot =
   .name = "reboot",
   .usage ="reboot [--help]",
   .help = "reboot(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n"
+                "NAME : \n "
                 "\treboot\n"
                 "SYNOPSIS : \n "
-                "\treboot [--help]\n"
-                "DESCRIPTION : \n"
+                "\treboot [--help]\n "
+                "DESCRIPTION : \n "
                 "\tReboots the Operating System.\n",
   .cmd_opts =  cmd_reboot_opts,
   .handler = &cmd_reboot_handler,    
@@ -72,6 +72,7 @@ struct cmd_t cmd_reboot =
                      "Type in reboot --help for more help.\n",
   .privilege = ROOT
 };
+
 
 
 

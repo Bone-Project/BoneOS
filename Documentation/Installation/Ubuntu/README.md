@@ -9,21 +9,31 @@ First Clone this repository the Cross Compiler
 git clone <REPO_URL>
 ```
 
-After you did this `cd` into the cloned directory and then
+After sucessfully cloning the project You can have additonal configurations 
+to run at a specific Architecture / Platform / Compiler / etc...
 
-```sh
-make get-toolchain 
-```
+Look at Documentation/Options for more on this.
 
-After this , if you dont have all the dependencies listed in the requirements do: 
+If you choose not to have additonal options it will configure with the defaults
+set by Makefile `?=` . Now run make 
 
 ```sh
 make
 ```
 
-This will give you the .iso file on the outermost dir. You can then Hook up
-A Virtual Machine Emulator(Like VirtualBox or VMWare) on the ISO And Finally Run BoneOS :)
+And this will give you a sucessfull Image File(ISO) for BoneOS. If you have
+a qemu for testing you can run
+
+```sh
+make qemu_compile
+```
+
+for running the Binary version or the actual ISO using :
+
+```sh
+make qemu_iso
+```
 
 #Issues
 
-If there are any whatsoever issues , please request an issue here! https://meta.boneos.org/
+If there are any whatsoever issues , please request an issue [here](https://meta.boneos.org/)!

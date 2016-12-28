@@ -1,27 +1,43 @@
 # [BoneOS](https://BoneOS.org)
 
+
+<p align="center"><a href="https://boneos.org" target="_blank"><img width="200"src="https://i.imgur.com/H6ixAr4.png"></a></p>
+
+
+<p align="center">
+
+<a href="https://amanuel2.gitbooks.io/boneos/content"><img src="https://img.shields.io/badge/Documentation-passing-brightgreen.svg"></a>
+
+<a href="https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/amanuel2/BoneOS.svg"></a>
+
+<a href="https://BoneOS.slack.com"><img src="https://slack.boneos.org/badge.svg"></a>
+
+
+<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
+
+<a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
+
+</p>
+
 | Branch | Status                                                                                                                                               |
 | ------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Master | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=master)](https://travis-ci.org/Bone-Project/BoneOS)                        |
 |  Amanuel Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=amanuel_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
 |  Doug Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=doug_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
-
-[![Stories in Ready](https://badge.waffle.io/Bone-Project/BoneOS.png?label=ready&title=Ready)](https://waffle.io/Bone-Project/BoneOS) 
-[![Join the chat at https://gitter.im/amanuel2/BoneOS](https://badges.gitter.im/amanuel2/BoneOS.svg)](https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Join The chat](https://slack.boneos.org/badge.svg)](https://BoneOS.slack.com)
-[![ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.com)
-
-[![badge_donation_bountysource](https://api.bountysource.com/badge/team?team_id=184475)](https://www.bountysource.com/teams/boneos)
+|  Ashish Dev | [![Build Status](https://api.travis-ci.org/Bone-Project/BoneOS.svg?branch=ashish_dev)](https://travis-ci.org/Bone-Project/BoneOS/branches) |
 
 
 [![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
 
 
-SourceFourge : https://sourceforge.net/projects/boneproject-boneos/
+[![Download BoneOS](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+
+[![Download BoneOS](https://img.shields.io/sourceforge/dm/boneproject-boneos.svg)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+[![Download BoneOS](https://img.shields.io/sourceforge/dt/boneproject-boneos.svg)](https://sourceforge.net/projects/boneproject-boneos/files/latest/download)
+
 
 ### [BoneOS Meta](https://meta.boneos.org/)
 
-<img src="https://i.imgur.com/H6ixAr4.png" width="300" height="300" />
 
 Welcome! This is the official and main repository of BoneOS. This project is currently in high active development , 
 and is predominately written in C ofcourse some parts such as  hardware communication, scripting, building, etc ...will use
@@ -100,6 +116,22 @@ Our firectory structure currently is as follows:
    - ***no_vnc***: Setup No_vnc server in Cloud9IDE
    - ***watch.sh*** : Nodemon like script 
 - ***include***: All Include Files(.h).
+
+Documentation
+---
+You can take a look at the Documentation/ Directory for docs on BoneOS , or even online [**here**](https://amanuel2.gitbooks.io/boneos/content). Documentation are for presistant information , not code details.
+
+Architectures
+---
+Architecture          |   Status    | Plan to support |
+------------- | ------------- | -----------|
+x86(32 BIT) |    Ready   |  Already Supported        |
+x64| On Progress  |    Currently updating to support this architecture       |
+PowerPC| Unavailable  |   Yes, in later releases       |
+Arm| Unavailable   |    Yes, in later releases       |
+MIPS | Unavailable|     Yes, in later releases     |
+
+if there are architectures you want BoneOS to support , please request an issue to talk about it. 
 
 FAQ
 ---

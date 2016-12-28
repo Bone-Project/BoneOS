@@ -27,16 +27,11 @@
 #include <drv/driver.h>
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
-#include <drv/video/VGA/textmode/80x25/putch/putch.h>
+#include <drv/video/VGA/textmode/putch.h>
+#include <string/string.h>
 
 struct video_driver_t vga_driver = 
 {
-   #if VIDEO_MODE == TEXTMODE
-    .mode = TEXT_MODE,
-    .put_pixel = 0,
-  #endif
-     .res.w = ACTIVE_RES_W,
-     .res.h = ACTIVE_RES_H,
      .init =  &init_vga_driver,
      .uninit = &uninit_vga_driver,
      .status = STATUS_DRIVER_OK
@@ -61,22 +56,30 @@ int uninit_vga_driver()
 int init_vga_driver()
 {
      video_driver.initalized = true;
-     #if VIDEO_MODE == TEXTMODE && ACTIVE_RES_W == 80 && ACTIVE_RES_H == 25
-     
+     vga_driver.res.w = video_driver_width;
+     vga_driver.res.h = video_driver_height;
+
+     if(strcmp(video_driver_mode,"TEXTMODE")==0)
+     {
+        vga_driver.mode = TEXT_MODE;
+        vga_driver.put_pixel=0;
         init_vga_textmode();
         set_mode_util(
-                       vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->putch,
+                       vga_textmodes_arr[0]->putch,
                        0,
-                       vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->clear,
-                       vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->update_cursor,
-                       vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->scroll
+                       vga_textmodes_arr[0]->clear,
+                       vga_textmodes_arr[0]->update_cursor,
+                       vga_textmodes_arr[0]->scroll
                      );
                       
-        vga_driver.name = vga_textmodes_arr[eighty_twentyfive_TEXTMODE_INDEX]->name;
+        vga_driver.name = vga_textmodes_arr[0]->name;
+        vga_driver.fg = 7;
+        vga_driver.bg = 0;
+      }
         
-     #endif
      return STATUS_OK;   
 }
+
 
 
 
