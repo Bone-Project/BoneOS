@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 
 #include <sh/values.h>
@@ -51,7 +51,7 @@ volatile uint32_t cmd_active_index=0;
 volatile struct typed_cmd cmd_active;
 
 
-struct cmd_t *cmds[] = 
+struct cmd_t *cmds[] =
 {
   &cmd_clear,
   &cmd_boneos_logo,
