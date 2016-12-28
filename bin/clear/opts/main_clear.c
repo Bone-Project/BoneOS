@@ -27,7 +27,7 @@
 #include <stdio/stdio.h>
 #include <clear/clear.h>
 #include <clear/opts/color.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <stdlib/stdlib.h>
 #include <drv/video/video.h>
 #include <drv/video/VGA/vga.h>

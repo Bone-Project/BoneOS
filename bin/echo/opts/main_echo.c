@@ -25,12 +25,10 @@
 #include <string/string.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <stdlib/stdlib.h>
 #include <stdio/stdio.h>
 #include <echo/echo.h>
-#include <term/values.h>
-
 
 int main_echo_opt_handler(char *cmd)
 {

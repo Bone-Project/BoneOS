@@ -25,7 +25,7 @@
 #include <stdint.h>
 #include <unistd/unistd.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <stdio/stdio.h>
 #include <string/string.h>
 

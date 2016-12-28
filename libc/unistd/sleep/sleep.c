@@ -38,5 +38,3 @@ void sleep(uint32_t ms)
   while (pit_ticks < expiry) hlt();
 }
 
-
-

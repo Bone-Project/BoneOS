@@ -15,21 +15,21 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
-#include <term/terminal.h>
-#include <term/values.h>
+
+#include <sh/values.h>
 #include <clear/clear.h>
 #include <boneos_logo/boneos_logo.h>
 #include <stdio/stdio.h>
 #include <strcmp/strcmp.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
-#include <term/utils.h>
+#include <sh/shell.h>
 #include <stdbool.h>
 #include <help/help.h>
 #include <sleep/sleep.h>
@@ -41,6 +41,7 @@
 #include <boneshell/boneshell.h>
 #include <assertk.h>
 #include <drv/driver.h>
+#include <sh/built-in/exit/exit.h>
 
 
 
@@ -50,7 +51,7 @@ volatile uint32_t cmd_active_index=0;
 volatile struct typed_cmd cmd_active;
 
 
-struct cmd_t *cmds[] = 
+struct cmd_t *cmds[] =
 {
   &cmd_clear,
   &cmd_boneos_logo,
@@ -60,16 +61,18 @@ struct cmd_t *cmds[] =
   &cmd_cursor,
   &cmd_reboot,
   &cmd_poweroff,
-  &cmd_boneshell
+  &cmd_boneshell,
+  &cmd_exit
   ,0
 };
 
 void init_terminal()
 {
-  assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting terminal!");
+  assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
   TERMINAL_MODE=true;
   cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
+  TERMINAL_MODE=false;
 }
 
 

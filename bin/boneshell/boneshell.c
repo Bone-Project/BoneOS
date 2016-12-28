@@ -15,30 +15,30 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
-#include <term/terminal.h>
 #include <unistd/unistd.h>
 #include <boneshell/boneshell.h>
 #include <string/string.h>
-#include <term/terminal.h>
-#include <term/values.h>
-#include <term/utils.h>
+#include <sh/shell.h>
+#include <sh/values.h>
+#include <sh/utils.h>
 #include <drv/video/VGA/vga.h>
 
-struct cmd_opt_t* cmd_boneshell_opts[] = 
+struct cmd_opt_t* cmd_boneshell_opts[] =
 {
   0
 };
 
 
 int __found = 0;
+volatile bool exit_set__shell = false;
 
 void loop_terminal()
 {
@@ -61,9 +61,8 @@ void loop_terminal()
     }
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
-    
+
     scank(true,true, "%s" , cmd_active.value);
- 
     for(int i=0; cmds[i]; i++)
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
@@ -72,16 +71,18 @@ void loop_terminal()
         __found = 1;
       }
     }
-    
-    if(__found == 0)
+    if(exit_set__shell==true) goto end_shell;
+    if(__found == 0 && cmd_active.value [0] != '\0')
     {
       printk("Invalid Command '%s' \n", cmd_active.value);
       printk("Try 'help' for more information.\n");
     }
-      
-    __found = 0;  
+
+    __found = 0;
     cmd_active_index++;
   }
+ end_shell:;
+ exit_set__shell=false;
 }
 
 int boneshell_handler(char* cmd)
@@ -89,18 +90,18 @@ int boneshell_handler(char* cmd)
     size_t num_opts = get_opt_count(cmd);
     str_t opts[num_opts];
     get_opt(cmd,opts);
-    
+
     if(strcmp(opts[1].str,"--help")==0)
         printk(cmd_boneshell.help);
     else if(num_opts==1)
        loop_terminal();
     else
         printk(cmd_boneshell.invalid_use_msg);
-   
+
     return STATUS_OK;
 }
 
-struct cmd_t cmd_boneshell = 
+struct cmd_t cmd_boneshell =
 {
   .name = "boneshell",
   .usage = "boneshell [--help] ",
@@ -110,8 +111,10 @@ struct cmd_t cmd_boneshell =
                 "SYNOPSIS : \n "
                 "\tboneshell [--help]\n"
                 "DESCRIPTION : \n "
-                "\tThe General Shell For BoneOS \n "
-                "\tOperating System.\n",
+                "\tCreates another instance of a shell being \n "
+                "\tthe child of the previous parent shell process.\n "
+                "\tcommand exit used to stop this child shell process.\n "
+                "\ttype exit --help for more on exit command\n ",
   .cmd_opts =  cmd_boneshell_opts,
   .handler = &boneshell_handler,
   .invalid_use_msg = "Invalid use of boneshell command.\n"

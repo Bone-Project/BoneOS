@@ -21,56 +21,54 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <misc/status_codes.h>
-#include <sh/shell.h>
-#include <drv/video/video.h>
-#include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <echo/echo.h>
-#include <echo/opts/main_echo.h>
+#include <misc/status_codes.h>
+#include <unistd/unistd.h>
+#include <string/string.h>
+#include <sh/shell.h>
+#include <sh/built-in/exit/exit.h>
 
+extern volatile bool exit_set__shell;
 
-
-struct cmd_opt_t* cmd_echo_opts[] = 
+struct cmd_opt_t* cmd_exit_opts[] = 
 {
-    0
+  0
 };
 
-int cmd_echo_handler(char* cmd)
+int exit_handler(char* cmd)
 {
-   size_t num_opts = get_opt_count(cmd);
-   if(num_opts == 1)
-   {
-     printk(cmd_echo.invalid_use_msg);
-     return STATUS_OK;    
-   }
+    size_t num_opts = get_opt_count(cmd);
+    str_t opts[num_opts];
+    get_opt(cmd,opts);
     
-   main_echo_opt_handler(cmd);    
-    
-   return STATUS_OK;
+    if(num_opts==1) 
+    {
+        exit_set__shell=true;
+        return STATUS_OK;
+    }
+    else if(strcmp(opts[1].str,"--help")==0)
+        printk(cmd_exit.help);
+    else    
+        printk(cmd_exit.invalid_use_msg);
+   
+    return STATUS_OK;
 }
 
-
-struct cmd_t cmd_echo = 
+struct cmd_t cmd_exit = 
 {
-  .name = "echo",
-  .usage ="echo [value]",
-  .help = "echo(1) \t\t\t\t BoneOS Terminal Manual \n"
+  .name = "exit",
+  .usage = "exit [--help] ",
+  .help = "exit(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
-                "\techo\n"
+                "\texit\n"
                 "SYNOPSIS : \n "
-                "\techo [value]\n"
+                "\texit [--help]\n"
                 "DESCRIPTION : \n "
-                "\tPrints out the VALUE listed by option\n",
-  .cmd_opts =  cmd_echo_opts,
-  .handler = &cmd_echo_handler,    
-  .invalid_use_msg = "Invalid use of echo command.\n"
-                     "Type in echo --help for more help.\n",
+                "\tCommand to exit the current \n "
+                "\tshell process\n",
+  .cmd_opts =  cmd_exit_opts,
+  .handler = &exit_handler,
+  .invalid_use_msg = "Invalid use of exit command.\n"
+                     "Type in exit --help for more help.\n",
   .privilege = USER
 };
-
-
-
-
-
-

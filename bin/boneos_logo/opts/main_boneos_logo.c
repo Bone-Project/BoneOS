@@ -26,7 +26,7 @@
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
 #include <clear/clear.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <stdlib/stdlib.h>
 #include <drv/video/video.h>
 #include <boneos_logo/opts/boneos_logo_color.h>

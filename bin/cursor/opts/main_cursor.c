@@ -25,7 +25,7 @@
 #include <string/string.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <term/terminal.h>
+#include <sh/shell.h>
 #include <stdlib/stdlib.h>
 #include <cursor/cursor.h>
 #include <drv/video/video.h>
