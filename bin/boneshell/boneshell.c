@@ -42,6 +42,7 @@ volatile bool exit_set__shell = false;
 
 void loop_terminal()
 {
+  shell_instance_cnt+=1;
   while(1)
   {
     int FG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
@@ -64,7 +65,11 @@ void loop_terminal()
 
     scank(true,true, "%s" , cmd_active.value);
     if(strcmp(cmd_active.value, "exit")==0)
+    {
+      shell_instance_cnt-=1;
+      printk("EXITED SHELL INSTANCE #%d\n",shell_instance_cnt+1);
       goto end_shell;
+    }
 
     for(int i=0; cmds[i]; i++)
     {

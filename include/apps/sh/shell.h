@@ -49,6 +49,7 @@ extern struct cmd_t *cmds[];
 
 extern volatile struct typed_cmd cmd_active;
 extern volatile uint32_t cmd_active_index;
+volatile uint32_t shell_instance_cnt;
 
 #endif /*_APPS_TERM_TERMINAL_H_*/
 
