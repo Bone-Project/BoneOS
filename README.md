@@ -162,10 +162,11 @@ Our firectory structure currently is as follows:
 - ***bin*** : Non Adminstrator Terminal Commands
 - ***sbin*** : Adminstrator Terminal Commands
 - ***config*** : Configuration Files
+- ***hdd*** : Default files on first time use
 - ***platform*** : Platform Dependant Code
    - ***pc*** : PC Platform
 - ***libc***: C Library constructed and used by BoneOS, non-archecture and non-platform dependant code.
-- ***utils***: Utilities for users.
+- ***utils***: Utilities for devs.
    - ***cross_compiler***: Script for installing the cross compiler
    - ***no_vnc***: Setup No_vnc server in Cloud9IDE
    - ***watch.sh*** : Nodemon like script 

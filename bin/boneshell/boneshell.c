@@ -48,10 +48,26 @@ int __found = 0;
 volatile bool exit_set__shell = false;
 volatile bool tab_multiple_opts = false;
 volatile bool tab_one_opt = false;
+bool executed_internally=false;
+
+void removeSpaces(char* source)
+{
+  char* i = source;
+  char* j = source;
+  while(*j != 0)
+  {
+    *i = *j++;
+    if(*i != ' ')
+      i++;
+  }
+  *i = 0;
+}
+
 
 void loop_terminal()
 {
   shell_instance_cnt+=1;
+  printk("SHELL INSTANCE #%d\n",shell_instance_cnt);
   while(1)
   {
     start_shell:;
@@ -85,8 +101,11 @@ void loop_terminal()
     {
       tab_one_opt = false;
       strcpy (cmd_active.value, tab__);
-      //goto start_shell;
+      executed_internally = true;
     }
+
+
+    removeSpaces(cmd_active.value);
     if(strcmp(cmd_active.value, "exit")==0)
     {
       shell_instance_cnt-=1;
@@ -98,6 +117,11 @@ void loop_terminal()
     {
       if(termcmp(cmds[i]->name, cmd_active.value)==0)
       {
+        if(executed_internally==true)
+        {
+          executed_internally=false;
+          printk("EXECUTED INTERNALLY\n");
+        }
         cmds[i]->handler(cmd_active.value);
         __found = 1;
       }
