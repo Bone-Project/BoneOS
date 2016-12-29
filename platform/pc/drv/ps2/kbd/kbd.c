@@ -225,16 +225,14 @@ void key_handler_util_backspace()
  {
 
     printk("\n");
-   char* tab__ = "";
+  char tab__ [1028];
    int index_tab=0;
    int num_cmds=0;
-  // int len;
    for(int i=0; cmds[i]; i++)
    {
      if(tab_util(buffer_scank, cmds[i]->name) == true)
      {
        num_cmds++;
-      // len = (int) strlen (cmds [i]->name);
        for(int j=0; cmds[i]->name[j]; j++){
          tab__[index_tab] = cmds[i]->name[j];
          index_tab++;
