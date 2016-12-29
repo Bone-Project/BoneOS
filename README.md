@@ -100,6 +100,11 @@ If you find any issue using this OS please request an issue [**here**](https://m
 If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request 
 [**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
 
+#WARNINGS
+
+ - Installing VirtualBox on Ubuntu may lead to problems.
+
+
 # Discussions
 
 Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up on the [BoneOS Meta](https://meta.boneos.org/).
@@ -188,10 +193,6 @@ MIPS | Unavailable|     Yes, in later releases     |
 
 if there are architectures you want BoneOS to support , please request an issue to talk about it. 
 
-WARNINGS
----
-
- 1) Installing VirtualBox on Ubuntu may lead to problems.
 
 FAQ
 ---
