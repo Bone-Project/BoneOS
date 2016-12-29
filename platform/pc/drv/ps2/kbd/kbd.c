@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <io/io.h>
@@ -225,7 +226,7 @@ void key_handler_util_backspace()
  {
 
     printk("\n");
-  char tab__ [1028];
+  char tab__ [1024];
    int index_tab=0;
    int num_cmds=0;
    for(int i=0; cmds[i]; i++)
@@ -247,6 +248,7 @@ void key_handler_util_backspace()
        {
         printk ("%c", tab__[i]);
        }
+       return;
    }
 
    for(int i=0; tab__[i]; i++)
