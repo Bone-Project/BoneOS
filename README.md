@@ -12,7 +12,6 @@
 
 <a href="https://BoneOS.slack.com"><img src="https://slack.boneos.org/badge.svg"></a>
 
-
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 <a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
@@ -29,7 +28,7 @@
    <td>Dec/29/2016</td>
    <td>To Be Added</td>
    <td>
-   <a href="https://sourceforge.net/projects/boneproject-boneos/files/latest/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
+   <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20V%200.0.1/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
    </td>
   </tr>
 </table>
@@ -77,6 +76,9 @@
 </p>
 
 
+
+
+<h3 color="red"> Current BoneOS Version : V 0.0.1 </h3>
 
 
 
