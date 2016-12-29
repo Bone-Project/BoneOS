@@ -22,7 +22,7 @@ else ifeq ($(ARCH),$(filter $(ARCH), amd64 x86_64 x86-64 emt64 x64))
  ARCH_QEMU := x86_64
  ARCH_LINKER := x86_64
 else
- $(error SUPPORTED Architectures are {i386,amd32,80386} , {amd64, x86_64}. Change via ./configure --arch=ARCH_NAME) 
+ $(error SUPPORTED Architectures are {i386,amd32,80386,x86} , {amd64,x86_64,x86-64,x64,emt64}. Change via ./configure --arch=ARCH_NAME) 
 endif
 
 export ARCH

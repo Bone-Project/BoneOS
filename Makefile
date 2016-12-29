@@ -87,7 +87,7 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/libc \
     $(BUILDROOT)/include/platform/$(PLAT) \
     $(BUILDROOT)/include/libc/string \
-    $(BUILDROOT)/include/arch/shared/x86 
+    $(BUILDROOT)/include/arch/shared/x86 \
 
 # Parameters
 LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none

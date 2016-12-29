@@ -48,7 +48,11 @@
 volatile bool TERMINAL_MODE = false;
 volatile uint32_t cmd_active_index=0;
 
+
+volatile uint32_t shell_instance_cnt = 0;
+
 volatile struct typed_cmd cmd_active;
+
 
 
 struct cmd_t *cmds[] = 

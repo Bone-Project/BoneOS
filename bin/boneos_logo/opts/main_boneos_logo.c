@@ -56,7 +56,7 @@ int main_boneos_opt_handler(char *cmd)
         printk("*         * *        * *     ** *            *        *          *\n");
         printk("*********** ********** *      * *******      **********  *********\n");
      }
-     else if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
+     else if(opts[2].str[0] == '\0' || opts[3].str[0] == '\0')
      {
        printk(cmd_boneos_logo_opt_color.invalid_use_msg);
      }

@@ -12,7 +12,6 @@
 
 <a href="https://BoneOS.slack.com"><img src="https://slack.boneos.org/badge.svg"></a>
 
-
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 <a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
@@ -27,9 +26,11 @@
   <tr>
    <td>V 0.0.1</td>
    <td>Dec/29/2016</td>
-   <td>To Be Added</td>
    <td>
-   <a href="https://sourceforge.net/projects/boneproject-boneos/files/latest/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
+   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.1/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/BoneOS.iso.svg"/></a>
+   </td>
+   <td>
+   <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20V%200.0.1/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
    </td>
   </tr>
 </table>
@@ -79,6 +80,9 @@
 
 
 
+<h3 color="red"> Current BoneOS Version : V 0.0.1 </h3>
+
+
 
 
 [![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
@@ -97,6 +101,11 @@ other languages.
 If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)!
 If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request 
 [**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
+
+#WARNINGS
+
+ - Installing VirtualBox on Ubuntu may lead to problems.
+
 
 # Discussions
 
@@ -160,10 +169,11 @@ Our firectory structure currently is as follows:
 - ***bin*** : Non Adminstrator Terminal Commands
 - ***sbin*** : Adminstrator Terminal Commands
 - ***config*** : Configuration Files
+- ***hdd*** : Default files on first time use
 - ***platform*** : Platform Dependant Code
    - ***pc*** : PC Platform
 - ***libc***: C Library constructed and used by BoneOS, non-archecture and non-platform dependant code.
-- ***utils***: Utilities for users.
+- ***utils***: Utilities for devs.
    - ***cross_compiler***: Script for installing the cross compiler
    - ***no_vnc***: Setup No_vnc server in Cloud9IDE
    - ***watch.sh*** : Nodemon like script 
@@ -184,6 +194,7 @@ Arm| Unavailable   |    Yes, in later releases       |
 MIPS | Unavailable|     Yes, in later releases     |
 
 if there are architectures you want BoneOS to support , please request an issue to talk about it. 
+
 
 FAQ
 ---

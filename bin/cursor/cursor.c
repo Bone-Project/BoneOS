@@ -59,7 +59,7 @@ struct cmd_t cmd_cursor =
                 "\tcursor [-t <CRSR_START> <CRSR_END>]\n"
                 "DESCRIPTION : \n "
                 "\tOptions to change cursor attributes.\n"
-                "OPTIONS : \n"
+                "OPTIONS : \n "
                 "\t Option Summary \n "
                 "\t\t [-t <CRSR_START> <CRSR_END>] : cursor now changes to custom type.\n "
                 "\t\t [-t block] : cursor is changed to a block cursor (START:0,END:20)\n "

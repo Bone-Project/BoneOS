@@ -15,17 +15,19 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
 
 #include <io/io.h>
 #include <misc/status_codes.h>
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
 #include <libc/stdio/stdio.h>
+#include <string/string.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <drv/ps2/kbd/kbd.h>
@@ -47,6 +49,11 @@
 volatile struct kbd_info_t kbd_info;
 volatile int INDEX_CURSOR_POSITION=0;
 volatile bool UP_KEY_ACTIVE=true;
+
+volatile bool TAB_PREVIOUS_VALUE_SET = false;
+volatile char* TAB_PREVIOUS_VALUE = 0;
+
+char tab__ [1024];
 
 
 //Is this getting emulated at a terminal
@@ -89,9 +96,9 @@ int key_press(uint8_t scancode)
 void key_release(uint8_t scancode)
 {
   if (
-      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID || 
+      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID ||
       kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_RIGHT_SHIFT_PRESS_ID
-     )  
+     )
         kbd_info.is_shift = false;
 }
 
@@ -104,7 +111,7 @@ void key_release(uint8_t scancode)
 void kbd_early_init()
 {
     kbd_info.tests.bat_test = bat_test();
-    
+
     if(!kbd_info.tests.bat_test)
     {
         kbd_driver.status = STATUS_DRIVER_MALFUNCTION;
@@ -129,7 +136,7 @@ void kbd_early_init()
 /*
  * @utility wait_until_enter
  *      Utility for Scank , to
- *      wait and store string 
+ *      wait and store string
  *      until enter is pressed
  */
 void wait_until_enter(char key)
@@ -156,13 +163,13 @@ static inline void inc_al()
  * @utility key_handler_util
  *      Utility used for default
  *      cases in @key_handler.
- *      used to print non 
+ *      used to print non
  *      'extreme-special' characters.
- *      
+ *
  *          @param key(int):
  *              Character represented
  *              int for NON-DOS MODE
- *              , and use of special 
+ *              , and use of special
  *              characters.(#define)
  */
 void key_handler_util(int key)
@@ -174,7 +181,7 @@ void key_handler_util(int key)
           inc_al();
           printk("%c", key);
           wait_until_enter(key);
-      } 
+      }
 
       else if(active_scank == true)
           wait_until_enter(key);
@@ -190,10 +197,10 @@ void key_handler_util(int key)
       else if(kbd_info.is_caps == true && print_scank == true && active_scank == true)
       {
         inc_al();
-        printk("%c", toupper(key)); 
+        printk("%c", toupper(key));
         wait_until_enter(key);
       }
-    
+
       else if(active_scank == true)
         wait_until_enter(key);
     }
@@ -205,7 +212,7 @@ void key_handler_util_backspace()
   {
     if(active_scank)
       buffer_scank[index_scank--] = 0;
-    if(print_scank == true) printk("\b");   
+    if(print_scank == true) printk("\b");
       INDEX_CURSOR_POSITION-=1;
       LENGTH_INPUT-=1;
   }
@@ -217,46 +224,53 @@ void key_handler_util_backspace()
      for(int i=0; buf_scan[i]; i++)
          if(buf_scan[i] != _cmd[i])
              return false;
-     return true;        
+     return true;
  }
 
  void key_handler_util_tab()
  {
-//   printk("\n");
-//   char* tab__ = "";
-//   int index_tab=0;
-//   int num_cmds=0;
-//   for(int i=0; cmds[i]; i++)
-//   {
-//     if(tab_util(buffer_scank, cmds[i]->name) == true)
-//     {
-//       num_cmds++;
-//       for(int j=0; cmds[i]->name[j]; j++)
-//         tab__[index_tab++] = cmds[i]->name[j];
-//      for(int rep=0; rep<4; rep++)tab__[index_tab++] = ' ';
-//     }   
-//   }
-//   tab__[index_tab] = 0; 
-//   if(num_cmds==1)
-//   {
-//       printk("WOGOO");
-//       goto end;
-//   }
-  
-// //   for(int i=0; tab__[i]; i++)
-// //      printk("%c", tab__[i]);
-//   end:; 
-//     printk("NUM_CMDS = %d" , num_cmds);
- }
+
+   printk("\n");
+   //char tab__ [1024];
+   int index_tab=0;
+   int num_cmds=0;
+   for(int i=0; cmds[i]; i++)
+   {
+     if(tab_util(buffer_scank, cmds[i]->name) == true)
+     {
+       num_cmds++;
+       for(int j=0; cmds[i]->name[j]; j++)
+       {
+         tab__[index_tab] = cmds[i]->name[j];
+         index_tab++;
+        }
+      for(int rep=0; rep<4; rep++)tab__[index_tab++] = ' ';
+     }
+   }
+   tab__[index_tab] = 0;
+   if(num_cmds==1)
+   {
+       for(int i = 0; tab__[i]; i ++) {
+          printk("%c", tab__[i]);
+          cmd_active.value [i] = tab__ [i];
+        }
+        tab_one_opt=true;
+       return;
+   }
+
+   for(int i=0; tab__[i]; i++)
+      printk("%c", tab__[i]);
+   tab_multiple_opts=true;
+}
 
 
 /*
  * @function key_handler:
- *      Handles key events. 
+ *      Handles key events.
  *      called by primary
- *      keyborad handler 
+ *      keyborad handler
  *      @kbd_handler.
- *      
+ *
  */
 void key_handler()
 {
@@ -286,7 +300,7 @@ void key_handler()
                }
               printk("%s" , cmd_active.value);
             }
-            break;   
+            break;
         case KBD_ENTER_PRESS_ID:
             kbd_info.is_enter = true;
             active_scank = false;
@@ -302,10 +316,18 @@ void key_handler()
             {
                 printk("\t");
                 LENGTH_INPUT+=4;
-                INDEX_CURSOR_POSITION+=4;    
+                INDEX_CURSOR_POSITION+=4;
             }
             else
+            {
                 key_handler_util_tab();
+                active_scank = false;
+                buffer_scank[index_scank] = 0;
+                if(print_scank == true) printk("\n");
+                UP_KEY_ACTIVE = true; //Reset Up Key
+                TAB_PREVIOUS_VALUE_SET = true;
+                TAB_PREVIOUS_VALUE = buffer_scank;
+            }
             break;
         case '\n':
             if(print_scank == true) printk("\n");
@@ -318,11 +340,11 @@ void key_handler()
          else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)
              key_handler_util(kbd_info.key);
          else if(((int)kbd_info.key) >= 58 && ((int)kbd_info.key) <=64)
-             key_handler_util(kbd_info.key);   
+             key_handler_util(kbd_info.key);
          else if(((int)kbd_info.key) >= 91 && ((int)kbd_info.key) <=96)
              key_handler_util(kbd_info.key);
          else if(((int)kbd_info.key) >= 123 && ((int)kbd_info.key) <=126)
-             key_handler_util(kbd_info.key);    
+             key_handler_util(kbd_info.key);
          break;
    }
 }
@@ -332,7 +354,7 @@ void key_handler()
  * @function kbd_handler:
  *      Primary Keyboard Handler
  *      called by the IRQ Handler.
- *      
+ *
  *      @param int_regs *r:
  *          Info about Registers
  *          during IRQ Request
@@ -356,16 +378,16 @@ void kbd_handler(int_regs *r)
  * @function init_kbd:
  *      Initalize the Keyboard
  *      PS/2 Driver
- *            
+ *
  *      @return {STATUS}:
- *          returns STATUS_OK 
+ *          returns STATUS_OK
  *          if sucessfully exited.
  */
 int init_kbd()
 {
   kbd_driver.initalized = true;
   kbd_early_init();
-  install_irq_handler(IRQ_NUM_KBD,kbd_handler);	
+  install_irq_handler(IRQ_NUM_KBD,kbd_handler);
   return STATUS_OK;
 }
 
@@ -373,9 +395,9 @@ int init_kbd()
  * @function uninit_kbd:
  *      Uninitalize the Keyboard
  *      PS/2 Driver
- *            
+ *
  *      @return {STATUS}:
- *          returns STATUS_OK 
+ *          returns STATUS_OK
  *          if sucessfully exited.
  */
 int uninit_kbd()

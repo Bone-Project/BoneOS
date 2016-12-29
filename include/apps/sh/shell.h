@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef enum 
 {
@@ -49,6 +50,9 @@ extern struct cmd_t *cmds[];
 
 extern volatile struct typed_cmd cmd_active;
 extern volatile uint32_t cmd_active_index;
+extern volatile bool tab_multiple_opts;
+extern volatile bool tab_one_opt;
+volatile uint32_t shell_instance_cnt;
 
 #endif /*_APPS_TERM_TERMINAL_H_*/
 

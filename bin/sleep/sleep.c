@@ -48,13 +48,14 @@ int cmd_sleep_handler(char* cmd)
      return STATUS_OK;
    }
    
-   if(strcmp(opts[1].str,"")==0)
+   if(strcmp(opts[1].str,"")==0 || isdigit(opts[1].str[0])==0)
    {
        printk("sleep: missing operand\n");
        printk("Try 'sleep --help' for more information.\n");
+       return STATUS_OK;
    }
    
-   for(int i=0; opts[1].str[i]; i++)
+   for(size_t i=0; i< (strlen(opts[1].str)-1); i++)
    {
         if(isdigit(opts[1].str[i])==0)
         {
@@ -71,14 +72,16 @@ int cmd_sleep_handler(char* cmd)
 struct cmd_t cmd_sleep = 
 {
   .name = "sleep",
-  .usage ="sleep [<ms>] [--help]",
+  .usage ="sleep [<s> || suffix[s,m,h,d]] [--help]",
   .help = "sleep(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tsleep\n"
                 "SYNOPSIS : \n "
-                "\tsleep [<ms>] [--help]\n"
+                "\tsleep [<s> || suffix[s,m,h,d]] [--help]\n"
                 "DESCRIPTION : \n "
-                "\tSleeps for the number of milliseconds specified.\n",   
+                "\tSleeps for the number of seconds specified.\n "
+                "\tAdditonal suffix may be added either s,m,h,d to specify\n "
+                "\tsecond(s),minute(s),hour(s),day(s) respectively\n", 
   .cmd_opts =  cmd_sleep_opts,
   .handler = &cmd_sleep_handler,    
   .invalid_use_msg = "Invalid use of sleep command.\n"

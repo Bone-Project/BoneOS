@@ -50,7 +50,7 @@ int main_clear_opt_handler(char *cmd)
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = 0x0;
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
      }
-     else if(opts[3].str[0] == '\0' || opts[4].str[0] == '\0')
+     else if(opts[2].str[0] == '\0' || opts[3].str[0] == '\0')
      {
        printk(cmd_clear_opt_color.invalid_use_msg);
      }
