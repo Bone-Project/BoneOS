@@ -53,6 +53,8 @@ volatile bool UP_KEY_ACTIVE=true;
 volatile bool TAB_PREVIOUS_VALUE_SET = false;
 volatile char* TAB_PREVIOUS_VALUE = 0;
 
+char tab__ [1024];
+
 
 //Is this getting emulated at a terminal
 extern volatile bool TERMINAL_MODE;
@@ -229,7 +231,7 @@ void key_handler_util_backspace()
  {
 
    printk("\n");
-   char tab__ [1024];
+   //char tab__ [1024];
    int index_tab=0;
    int num_cmds=0;
    for(int i=0; cmds[i]; i++)
@@ -248,15 +250,17 @@ void key_handler_util_backspace()
    tab__[index_tab] = 0;
    if(num_cmds==1)
    {
-       for(int i = 0; tab__[i]; i ++)
+       for(int i = 0; tab__[i]; i ++) {
           printk("%c", tab__[i]);
+          cmd_active.value [i] = tab__ [i];
+        }
         tab_one_opt=true;
        return;
    }
 
    for(int i=0; tab__[i]; i++)
       printk("%c", tab__[i]);
-   tab_multiple_opts=true; 
+   tab_multiple_opts=true;
 }
 
 
