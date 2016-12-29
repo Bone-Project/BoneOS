@@ -30,6 +30,12 @@
 #include <sh/values.h>
 #include <sh/utils.h>
 #include <drv/video/VGA/vga.h>
+#include <libc/stdio/scank/scank.h>
+#include <drv/ps2/kbd/kbd.h>
+
+extern volatile bool TAB_PREVIOUS_VALUE_SET;
+extern volatile char* TAB_PREVIOUS_VALUE;
+extern void key_handler_util(int key);
 
 struct cmd_opt_t* cmd_boneshell_opts[] =
 {
@@ -39,12 +45,15 @@ struct cmd_opt_t* cmd_boneshell_opts[] =
 
 int __found = 0;
 volatile bool exit_set__shell = false;
+volatile bool tab_multiple_opts = false;
+volatile bool tab_one_opt = false;
 
 void loop_terminal()
 {
   shell_instance_cnt+=1;
   while(1)
   {
+    start_shell:;
     int FG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
     int BG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
     if(video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg==0x7 && video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg==0x0)
@@ -63,7 +72,19 @@ void loop_terminal()
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
 
+
     scank(true,true, "%s" , cmd_active.value);
+    
+    if(tab_multiple_opts==true)
+    {
+     tab_multiple_opts=false;
+     goto start_shell;
+    }
+    else if(tab_one_opt == true)
+    {
+      tab_one_opt = false;
+      goto start_shell;
+    }
     if(strcmp(cmd_active.value, "exit")==0)
     {
       shell_instance_cnt-=1;

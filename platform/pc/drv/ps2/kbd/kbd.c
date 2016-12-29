@@ -50,6 +50,9 @@ volatile struct kbd_info_t kbd_info;
 volatile int INDEX_CURSOR_POSITION=0;
 volatile bool UP_KEY_ACTIVE=true;
 
+volatile bool TAB_PREVIOUS_VALUE_SET = false;
+volatile char* TAB_PREVIOUS_VALUE = 0;
+
 
 //Is this getting emulated at a terminal
 extern volatile bool TERMINAL_MODE;
@@ -225,8 +228,8 @@ void key_handler_util_backspace()
  void key_handler_util_tab()
  {
 
-    printk("\n");
-  char tab__ [1024];
+   printk("\n");
+   char tab__ [1024];
    int index_tab=0;
    int num_cmds=0;
    for(int i=0; cmds[i]; i++)
@@ -234,7 +237,8 @@ void key_handler_util_backspace()
      if(tab_util(buffer_scank, cmds[i]->name) == true)
      {
        num_cmds++;
-       for(int j=0; cmds[i]->name[j]; j++){
+       for(int j=0; cmds[i]->name[j]; j++)
+       {
          tab__[index_tab] = cmds[i]->name[j];
          index_tab++;
         }
@@ -244,15 +248,15 @@ void key_handler_util_backspace()
    tab__[index_tab] = 0;
    if(num_cmds==1)
    {
-       for (int i = 0; tab__ [i]; i ++)
-       {
-        printk ("%c", tab__[i]);
-       }
+       for(int i = 0; tab__[i]; i ++)
+          printk("%c", tab__[i]);
+        tab_one_opt=true;
        return;
    }
 
    for(int i=0; tab__[i]; i++)
       printk("%c", tab__[i]);
+   tab_multiple_opts=true; 
 }
 
 
@@ -311,7 +315,15 @@ void key_handler()
                 INDEX_CURSOR_POSITION+=4;
             }
             else
+            {
                 key_handler_util_tab();
+                active_scank = false;
+                buffer_scank[index_scank] = 0;
+                if(print_scank == true) printk("\n");
+                UP_KEY_ACTIVE = true; //Reset Up Key
+                TAB_PREVIOUS_VALUE_SET = true;
+                TAB_PREVIOUS_VALUE = buffer_scank;
+            }
             break;
         case '\n':
             if(print_scank == true) printk("\n");
