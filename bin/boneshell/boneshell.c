@@ -32,6 +32,7 @@
 #include <drv/video/VGA/vga.h>
 #include <libc/stdio/scank/scank.h>
 #include <drv/ps2/kbd/kbd.h>
+#include <../platform/pc/drv/ps2/kbd/kbd.c>
 
 extern volatile bool TAB_PREVIOUS_VALUE_SET;
 extern volatile char* TAB_PREVIOUS_VALUE;
@@ -74,7 +75,7 @@ void loop_terminal()
 
 
     scank(true,true, "%s" , cmd_active.value);
-    
+
     if(tab_multiple_opts==true)
     {
      tab_multiple_opts=false;
@@ -83,7 +84,8 @@ void loop_terminal()
     else if(tab_one_opt == true)
     {
       tab_one_opt = false;
-      goto start_shell;
+      strcpy (cmd_active.value, tab__);
+      //goto start_shell;
     }
     if(strcmp(cmd_active.value, "exit")==0)
     {
