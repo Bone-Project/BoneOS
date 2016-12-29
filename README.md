@@ -26,7 +26,9 @@
   <tr>
    <td>V 0.0.1</td>
    <td>Dec/29/2016</td>
-   <td>To Be Added</td>
+   <td>
+   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.1/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/BoneOS.iso.svg"/></a>
+   </td>
    <td>
    <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20V%200.0.1/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
    </td>
@@ -99,6 +101,11 @@ other languages.
 If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)!
 If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request 
 [**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
+
+#WARNINGS
+
+ - Installing VirtualBox on Ubuntu may lead to problems.
+
 
 # Discussions
 
@@ -188,10 +195,6 @@ MIPS | Unavailable|     Yes, in later releases     |
 
 if there are architectures you want BoneOS to support , please request an issue to talk about it. 
 
-WARNINGS
----
-
- 1) Installing VirtualBox on Ubuntu may lead to problems.
 
 FAQ
 ---
