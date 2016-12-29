@@ -188,6 +188,11 @@ MIPS | Unavailable|     Yes, in later releases     |
 
 if there are architectures you want BoneOS to support , please request an issue to talk about it. 
 
+WARNINGS
+---
+
+ 1) Installing VirtualBox on Ubuntu may lead to problems.
+
 FAQ
 ---
 
