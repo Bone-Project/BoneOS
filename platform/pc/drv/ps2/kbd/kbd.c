@@ -221,20 +221,6 @@ void key_handler_util_backspace()
      return true;
  }
 
-//http://stackoverflow.com/a/1726321/5735775
- void remove_spaces(char* source)
-{
-  char* i = source;
-  char* j = source;
-  while(*j != 0)
-  {
-    *i = *j++;
-    if(*i != ' ')
-      i++;
-  }
-  *i = 0;
-}
-
  void key_handler_util_tab()
  {
 
