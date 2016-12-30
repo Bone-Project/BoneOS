@@ -2,7 +2,7 @@ language: c
 
 script:
   - "./configure --cc=gcc-5 --plat=pc"
-  - make
+  - make iso
 
 branches:
   only:
