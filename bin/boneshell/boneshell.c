@@ -102,10 +102,11 @@ void loop_terminal()
       tab_one_opt = false;
       strcpy (cmd_active.value, tab__);
       executed_internally = true;
+      removeSpaces (cmd_active.value);
     }
 
 
-    removeSpaces(cmd_active.value);
+    //removeSpaces(cmd_active.value);
     if(strcmp(cmd_active.value, "exit")==0)
     {
       shell_instance_cnt-=1;
