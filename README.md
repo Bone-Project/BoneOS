@@ -14,6 +14,8 @@
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
+<a href="https://bintray.com/boneos/BoneOS/download_file?file_path=BoneOS-master.iso"><img src="https://api.bintray.com/packages/boneos/BoneOS/BoneOS.iso/images/download.svg?version=Nightly"/></a>
+
 <a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
 <table>
   <tr>
@@ -72,7 +74,11 @@
     <td><strong><a href="https://github.com/Fortunate-MAN">Fortunate-MAN</a></strong></td>
   </tr>
 </table>
+
+
+
 </p>
+
 
 
 
@@ -80,8 +86,7 @@
 
 
 
-
-[![gitcheese.com](https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1)](https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create)
+<a href="https://www.gitcheese.com/app/#/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/pledges/create"><img src="https://api.gitcheese.com/v1/projects/fa53637b-26a0-49e0-b836-ae4b5c63adc8/badges?type=1"/></a>
 
 
 
@@ -113,18 +118,22 @@ Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up on the 
 There are two ways to install BoneOS: one for the normal user to get it into his Virtual Machine and the other for the developer who want to contribute (building from source). 
 
 #### Normal Installation (For user)
-  First download the ISO from this repository by either downloading the zip and extracting it, or by cloning it using git. Next, plug it into your Virtual Machine. [**here**](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be) is a video showing how to do this using VirtualBox as the Virtual Machine Emulator. You can download Virtual Box [**here**](https://www.virtualbox.org/). [Here](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be) is a video showing how to get it in VMWare. VMWare is paid , there if a free trial though. You can get more Information at our Offical Download Page [here](https://boneos.org/download.html). 
+  To install a spsecific version , go to the top of readme where you will see the version number listed as well as installing the Image File via SourceForge or Github Releases. Choose whichever you would like and when you finish installing the ISO(Image File) plug it into your Virtual Machine. [**here**](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be) is a video showing how to do this using VirtualBox as the Virtual Machine Emulator. You can download Virtual Box [**here**](https://www.virtualbox.org/). [Here](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be) is a video showing how to get it in VMWare. VMWare is paid , there if a free trial though. You can get more Information at our Offical Download Page [here](https://boneos.org/download.html). 
  
+#### Nightly Builds (For Developer Or Normal User)
+
+You can  get the nightly builds for the latest updated iso for the master branch [here](https://bintray.com/boneos/BoneOS/download_file?file_path=BoneOS-master.iso) . 
+
 #### Building From Source (For developer)
 
- First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `sh setup.sh`. Then compile BoneOS using `make`. Now that you have qemu after you executed `setup.sh` , you can go ahead and run on qemu using `make qemu_compile` for running the binary or `make qemu_iso` to run the actual Image File(.ISO).
+ First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `bash setup.sh`. Then compile BoneOS using `make`. Now that you have qemu after you executed `setup.sh` , you can go ahead and run on qemu using `make qemu_compile` for running the binary or `make qemu_iso` to run the actual Image File(.ISO).
  
 #### Cloud9 Collaboration (For Developer) 
  
  You can collaborate with the Main BoneOS Developer in Cloud9. Cloud9 Is an Online IDE , with an Ubuntu Terminal. We use Cloud9IDE Terminal + NoVNC to make this possible.
  the workspace is located [here](https://ide.c9.io/amanuel2/osdev) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
  
- If you want to setup NoVNC Server and you are in an Cloud9IDE You can use the command 
+ If you want to setup NoVNC Server once you are in an Cloud9IDE You can use the command 
  
  ```sh
  make no_vnc
@@ -140,10 +149,10 @@ There are two ways to install BoneOS: one for the normal user to get it into his
   $ CC=gcc-5 make #If you want to run via GCC Version 5
  ```
  
- You can see more in Documentation/options
+ You can see more in [Docs](https://amanuel2.gitbooks.io/boneos/content/)
 
 #### More Info(For Developer)
-For more information, go to `Documentation/TOC.md`
+For more information, go [here](https://amanuel2.gitbooks.io/boneos/content/) for documentation.
  
 Directory Structure
 ----
@@ -177,7 +186,7 @@ Our firectory structure currently is as follows:
 
 Documentation
 ---
-You can take a look at the Documentation/ Directory for docs on BoneOS , or even online [**here**](https://amanuel2.gitbooks.io/boneos/content). Documentation are for presistant information , not code details.
+You can take a look at the Documentation online hosted by gitbook [**here**](https://amanuel2.gitbooks.io/boneos/content). Documentation are for presistant information , not code details.
 
 Architectures
 ---
