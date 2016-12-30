@@ -1,10 +1,11 @@
 # BoneOS ChangeLog
 
-## No Released Version
-
-#### Toward v0.0.1:
+## Pre Release v0.0.1 :
 + **IDT**
 + **GDT**
-+ **LIBC(NOT FULL)**
-+ **VGA NORMAL TEXT MODE/NON GRAPHICAL MODE**
++ **Some LIBC Implementation**
++ **Video Driver**
 + **GRUB**
++ **Keyboard Driver**
++ **PIT Driver**
++ **Builder(Arch/Platform Dependant Code)**
