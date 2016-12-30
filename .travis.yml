@@ -24,6 +24,7 @@ addons:
     - g++-5-multilib
     - nasm
     - grub-common
+    - grub-pc-bin
     - xorriso
 
 notifications:
