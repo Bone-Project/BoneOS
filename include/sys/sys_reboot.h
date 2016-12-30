@@ -4,3 +4,4 @@
 extern int root_sys_reboot(void);
 
 #endif /*_SYS_REBOOT_H_*/
+

@@ -89,3 +89,4 @@ struct cmd_opt_t cmd_boneos_logo_opt_color =
 };
 
 
+

@@ -55,3 +55,4 @@ void init_gdt()
                                             :  [gp]"m"(gp)
                                             ); 
 }
+
