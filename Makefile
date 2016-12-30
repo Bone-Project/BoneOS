@@ -185,7 +185,7 @@ $(BONEOS_BOOT_BIN): $(BONEOS_BIN)
 
 $(BONEOS_ISO): $(BONEOS_BOOT_BIN)
 	cp BoneOS.bin boot/boot/BoneOS.bin
-	grub-mkrescue -v --output=BoneOS.iso boot
+	grub-mkrescue --output=BoneOS.iso boot
 
 iso: $(BONEOS_ISO)
 
