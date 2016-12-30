@@ -29,6 +29,7 @@ addons:
     - g++-5-multilib
     - nasm
     - grub-common
+    - grub-pc-bin
     - xorriso
 
 notifications:
@@ -39,5 +40,6 @@ notifications:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - ls
+  - du -h BoneOS.iso
   - curl -T BoneOS.iso -uxrisk:$BINTRAY -H "X-Bintray-Package:BoneOS.iso" -H "X-Bintray-Version:Nightly" -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" https://api.bintray.com/content/boneos/BoneOS/BoneOS-$TRAVIS_BRANCH.iso
 
