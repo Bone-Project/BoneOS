@@ -72,11 +72,7 @@
     <td><strong><a href="https://github.com/Fortunate-MAN">Fortunate-MAN</a></strong></td>
   </tr>
 </table>
-
-
-
 </p>
-
 
 
 
