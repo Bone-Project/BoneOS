@@ -12,6 +12,7 @@ branches:
   - doug_dev
   - ashish_dev
   - travis_testing
+  - new-makefile
 
 env:
   matrix:
