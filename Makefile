@@ -261,4 +261,13 @@ configure-set:
 	@echo "export PLAT" >> $(GENERATED_CONFIG)
 	@echo '' >> $(GENERATED_CONFIG)
 
+
+# Deploy
+
+deploy-bintray: iso
+	ls -la
+	du -h BoneOS.iso
+	curl -T BoneOS.iso -uxrisk:$(BINTRAY) -H "X-Bintray-Package:BoneOS.iso" -H "X-Bintray-Version:Nightly" -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" https://api.bintray.com/content/boneos/BoneOS/BoneOS-$(TRAVIS_BRANCH).iso
+
+	
 .PHONY: gdb_q qemu_compile bochs qemu_iso custom new_line distclean configure-help configure-set

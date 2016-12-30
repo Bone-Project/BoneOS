@@ -3,6 +3,7 @@ language: c
 script:
   - "./configure --cc=gcc-5 --plat=pc"
   - make iso
+  - make deploy-bintray
 
 branches:
   only:
@@ -11,6 +12,7 @@ branches:
   - doug_dev
   - ashish_dev
   - travis_testing
+  - new-makefile
 
 env:
   matrix:
@@ -39,7 +41,4 @@ notifications:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - ls
-  - du -h BoneOS.iso
-  - curl -T BoneOS.iso -uxrisk:$BINTRAY -H "X-Bintray-Package:BoneOS.iso" -H "X-Bintray-Version:Nightly" -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" https://api.bintray.com/content/boneos/BoneOS/BoneOS-$TRAVIS_BRANCH.iso
 
