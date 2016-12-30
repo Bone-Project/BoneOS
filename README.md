@@ -26,7 +26,9 @@
   <tr>
    <td>V 0.0.1</td>
    <td>Dec/29/2016</td>
-   <td>To Be Added</td>
+   <td>
+   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.1/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/BoneOS.iso.svg"/></a>
+   </td>
    <td>
    <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20V%200.0.1/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
    </td>
