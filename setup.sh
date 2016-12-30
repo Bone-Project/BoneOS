@@ -15,7 +15,11 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    echo pwd
    echo "RUNNING UNDER a linux distro"
     sudo apt-get update
-    sudo apt-get install nasm gcc gcc-multilib qemu grub-common xorriso grub-pc-bin supervisor
+	if [ -z "$TRAVIS" ]; then
+		sudo apt-get install -y nasm gcc-5 gcc-5-multilib qemu grub-common xorriso grub-pc-bin supervisor
+	else
+		sudo apt-get install nasm gcc-5 gcc-5-multilib qemu grub-common xorriso grub-pc-bin supervisor
+	fi
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something under Windows NT platform
     echo "BoneOS Isnt Available on Windows Operating Systems Yet."

@@ -1,17 +1,22 @@
 language: c
+
 script:
-    - ./configure --cc=gcc-5 --plat=pc
-    - make
-# safelist
+  - "./configure --cc=gcc-5 --plat=pc"
+  - make
+
 branches:
   only:
   - master
   - amanuel_dev
   - doug_dev
   - ashish_dev
+  - travis_testing
 
 env:
+  matrix:
   - CC=gcc-5
+  global:
+    secure: 0OcH9+iPTfKpPRFa2w/Au4Nzj91XlskcBnK/eYh94+TrK3mH2n9s49f85mrxbhSpg5qeLbPucQB99WKD7vx9kf6gK6oqrFXVUKQsvAgbErmOCD/71CCx2FMae2DDIhMpKIdBWGJ2h+VXMjhts5yT8vgMyjbIzHoaDgejg5glWXHG8UQcNaCJYGchoNc25hj6+VnOtFMMBq9TVbzXpQpu490xc+czjub2QA2TU3If4S0NwKNnw8ty6E0P2iXosrEhBYXLRFPznxgzrhlFTACIaTM7v3hqE8RWEs6I48YHyi/6C89KNpKAygnEphngS+BvbVFSrTLtP5X3LigdC5/CBNQyZAK7Spx3pieT6JF5C+99AiuJi4/3wceurD6pA3ig4cyCe4rRMeWWmxUICKS4EWgpO0mY5TlR2X9d7fyEmq0LCCuZVaRIcQxfFsjl9FJ6e6BkNjxoC2enuLNCoizZhZu6wvGlARxmy8r38LTeDruFgo+mSpuUHQcXtMEtec0W14XfWwQ5I/0ESqBl/VmkvlK8nr86rQ95T1dR++l1nAXGAq2oa4+07KWok2M9P3BKK1H/u50lOCuCEjS2+3aE0yyg6XvAkXknUl8GLBx/XxKD/t5brjxRA6E1s6w8/Rdl6/3s5gHEk8+vppjKanIKhWWxmi9MrHmqPCN0kGL8BOw=
 
 addons:
   apt:
@@ -30,6 +35,9 @@ addons:
 notifications:
   slack:
     rooms:
-      - boneos:mo6es1CK4x5OpDJzWvCR9p21#github
+    - boneos:mo6es1CK4x5OpDJzWvCR9p21#github
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - curl -T BoneOS.iso -uxrisk:$BINTRAY -H "X-Bintray-Package:BoneOS.iso" -H "X-Bintray-Version:Nightly" -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" https://api.bintray.com/content/boneos/BoneOS/BoneOS-$TRAVIS_BRANCH.iso
+
