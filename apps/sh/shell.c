@@ -34,6 +34,7 @@
 #include <stdbool.h>
 #include <help/help.h>
 #include <pwd/pwd.h>
+#include <logname/logname.h>
 #include <sleep/sleep.h>
 #include <echo/echo.h>
 #include <string/string.h>
@@ -69,7 +70,8 @@ struct cmd_t *cmds[] =
   &cmd_poweroff,
   &cmd_boneshell,
   &cmd_exit,
-  &cmd_pwd
+  &cmd_pwd,
+  &cmd_logname
   ,0
 };
 
