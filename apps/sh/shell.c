@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 
 #include <sh/values.h>
@@ -32,6 +32,7 @@
 #include <sh/shell.h>
 #include <stdbool.h>
 #include <help/help.h>
+#include <pwd/pwd.h>
 #include <sleep/sleep.h>
 #include <echo/echo.h>
 #include <string/string.h>
@@ -55,7 +56,7 @@ volatile struct typed_cmd cmd_active;
 
 
 
-struct cmd_t *cmds[] = 
+struct cmd_t *cmds[] =
 {
   &cmd_clear,
   &cmd_boneos_logo,
@@ -66,7 +67,8 @@ struct cmd_t *cmds[] =
   &cmd_reboot,
   &cmd_poweroff,
   &cmd_boneshell,
-  &cmd_exit
+  &cmd_exit,
+  &cmd_pwd
   ,0
 };
 

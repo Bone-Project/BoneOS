@@ -16,6 +16,7 @@ CSRCS = \
 	echo/opts/main_echo.c \
 	cursor/cursor.c \
 	cursor/opts/main_cursor.c \
+	pwd/pwd.c \
 	boneshell/boneshell.c
 
 LIBNAME := bin
