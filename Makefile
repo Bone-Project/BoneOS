@@ -95,7 +95,8 @@ CFLAGS := \
 	$(ARCH_MACHINE) -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-error=missing-field-initializers \
-	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS))
+	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS)) \
+	-DDEBUG
 
 ASFLAGS := $(ARCH_AS_FLAGS)
 

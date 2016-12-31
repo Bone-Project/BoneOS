@@ -42,6 +42,7 @@
 #include <drv/driver.h>
 #include <sh/shell.h>
 #include <drv/video/video.h>
+#include <mm/pmm.h>
         
 
 /*
@@ -92,7 +93,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
-   init_terminal();
+   //init_terminal();
+   pmm_init(multiboot_structure);
 
    while(1)
       hlt();

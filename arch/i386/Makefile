@@ -17,7 +17,8 @@ CSRCS = \
 	cpu/interrupts/isr.c \
 	cpu/cpu.c \
 	sys/sys_reboot.c \
-	sys/sys_poweroff.c
+	sys/sys_poweroff.c \
+	mm/pmm.c
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
 
