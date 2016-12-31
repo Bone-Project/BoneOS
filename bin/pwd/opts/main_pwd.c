@@ -29,33 +29,31 @@
 #include <string/string.h>
 #include <sh/values.h>
 #include <pwd/pwd.h>
-#include <pwd/opts/main_pwd.h>
 
-struct cmd_opt_t* cmd_pwd_opts[] =
+int main_pwd_opt_handler (char *cmd)
 {
-    0
-};
+    size_t num_opts = get_opt_count(cmd);
+    str_t opts[num_opts];
+    get_opt(cmd,opts);
 
-int cmd_pwd_handler (char *cmd)
-{
-    main_pwd_opt_handler (cmd);
+    if (num_opts == 1)
+    {
+        printk ("%s\n", VAR_PWD);
+        return STATUS_OK;
+    }
+    else if (num_opts > 1)
+    {
+        if (strcmp (opts [1].str, "--help") == 0)
+        {
+            printk (cmd_pwd.help);
+            return STATUS_OK;
+        }
+        else
+        {
+            printk (cmd_pwd.invalid_use_msg);
+            return STATUS_OK;
+        }
+    }
+
     return STATUS_OK;
 }
-
-struct cmd_t cmd_pwd =
-{
-  .name = "pwd",
-  .usage ="pwd",
-  .help = "pwd(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n "
-                "\tpwd\n"
-                "SYNOPSIS : \n "
-                "\tpwd [option]\n"
-                "DESCRIPTION : \n "
-                "\tPrints out the current working directory.\n",
-  .cmd_opts =  cmd_pwd_opts,
-  .handler = &cmd_pwd_handler,
-  .invalid_use_msg = "Invalid use of pwd command.\n"
-                     "Type in pwd --help for more help.\n",
-  .privilege = USER
-};
