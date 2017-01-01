@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Ashish Ahuja<Fortunate-MAN>: start
+ **     Muhammad Rifqi Priyo Susanto<srifqi>
  **/
 
 #include <cpu/interrupts/interrupts.h>
@@ -32,46 +33,43 @@
 #include <io/io.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
 
-uint8_t rtc_get_year()
+uint8_rtc rtc_get()
 {
-	outb(0x70, 0x09);
-	return inb(0x71);
-}
+	uint8_rtc curr;
+	uint8_rtc last;
 
-uint8_t rtc_get_month()
-{
-	outb(0x70, 0x08);
-	return inb(0x71);
-}
+	// Keep reading time until we get
+	// the same values twice
+	memset(&last, 0xFF, sizeof(last));
+	for (curr.year = 0; memcmp(&curr, &last, sizeof(curr)); last = curr)
+	{
+		outb(0x70, 0x09);
+		curr.year = inb(0x71);
 
-uint8_t rtc_get_day()
-{
-	outb(0x70, 0x07);
-	return inb(0x71);
-}
+		outb(0x70, 0x08);
+		curr.month = inb(0x71);
 
-uint8_t rtc_get_hour()
-{
-	outb(0x70, 0x04);
-	return inb(0x71);
-}
+		outb(0x70, 0x07);
+		curr.day = inb(0x71);
 
-uint8_t rtc_get_minute ()
-{
-    outb(0x70, 0x02);
-    return inb (0x71);
-}
+		outb(0x70, 0x04);
+		curr.hour = inb(0x71);
 
-uint8_t rtc_get_second()
-{
-    outb(0x70, 0x00);
-    return inb(0x71);
+		outb(0x70, 0x02);
+		curr.minute = inb(0x71);
+
+		outb(0x70, 0x00);
+		curr.second = inb(0x71);
+	}
+	return curr;
 }
 
 void rtc_print_time ()
 {
-    printk("20%x, %x. %x. %x:%x:%x\n",
-			rtc_get_year(), rtc_get_month(), rtc_get_day(),
-			rtc_get_hour(), rtc_get_minute(), rtc_get_second());
+	uint8_rtc rtc = rtc_get();
+	printk("20%x, %x. %x. %x:%x:%x\n",
+			rtc.year, rtc.month, rtc.day,
+			rtc.hour, rtc.minute, rtc.second);
 }

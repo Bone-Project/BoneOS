@@ -34,9 +34,10 @@
 
 int main_time_opt_handler()
 {
-   printk("%x:%x:%x UTC.\n", rtc_get_hour(), rtc_get_minute(), rtc_get_second());
-    
-   return STATUS_OK;
+	uint8_rtc rtc = rtc_get();
+	printk("%x:%x:%x UTC.\n", rtc.hour, rtc.minute, rtc.second);
+
+	return STATUS_OK;
 }
 
 
