@@ -85,7 +85,7 @@ void init_terminal()
 {
   assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
   TERMINAL_MODE=true;
-  uint8_rtc rtc = rtc_get();
+  rtc_t rtc = rtc_get();
   //cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   printk ("%s release %s started at %x:%x:%x UTC.\n", VAR_OSNAME, VAR_RELEASE, rtc.hour, rtc.minute, rtc.second);
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
