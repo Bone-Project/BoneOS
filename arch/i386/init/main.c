@@ -15,14 +15,14 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **		Amanuel Bogale <amanuel2> : start
- **/   
- 
+ **/
+
 #define DEBUG 1 /*DEBUG_MODE*/
-  
+
 #include <stdarg.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -43,7 +43,7 @@
 #include <sh/shell.h>
 #include <drv/video/video.h>
 #include <mm/pmm.h>
-        
+
 
 /*
  * Calling all Global C Objects
@@ -89,12 +89,12 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    setup_driver_handler();
    sti();
    kernel_init_early();
-    
+
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
-   //init_terminal();
-   pmm_init(multiboot_structure);
+   init_terminal();
+   //pmm_init(multiboot_structure);
 
    while(1)
       hlt();
