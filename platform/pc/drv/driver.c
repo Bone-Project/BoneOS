@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
+ **/
 
 #include <stdint.h>
 #include <stddef.h>
@@ -30,33 +30,8 @@
 #include <misc/status_codes.h>
 #include <assertk.h>
 
-//Timer Driver Handler
-struct device_driver_t pit_driver = 
-{
-   .name = "8253 Programmable Interval Timer",
-   .init = &init_pit,
-   .uninit = &uninit_pit,
-   .version = "8253"
-};
-
-//Keyboard Driver Handler
-struct device_driver_t kbd_driver = 
-{
-   .name = "8042 Keyboard PS/2 Driver",
-   .init = &init_kbd,
-   .uninit = &uninit_kbd,
-   .version = "8042"
-};
-
-//Video Driver Handler
-struct device_driver_t video_driver = 
-{
-  .name = "Video Driver",
-  .version = "STATUS_VERSION_NA"
-};
-
-//All Drivers 
-struct device_driver_t *drivers[] = 
+//All Drivers
+struct device_driver_t *drivers[] =
 {
     &pit_driver,
     &kbd_driver,
@@ -77,7 +52,7 @@ void setup_driver_handler(void)
   video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
   video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
   video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
-  
+
   init_all_drivers();
 }
 

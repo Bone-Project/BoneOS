@@ -15,22 +15,35 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <drv/video/video.h>
 #include <drv/video/VGA/vga.h>
+#include <misc/status_codes.h>
+#include <drv/driver.h>
+#include <assertk.h>
+#include <stdint.h>
+#include <stddef.h>
+
+//Video Driver Handler
+struct device_driver_t video_driver =
+{
+  .name = "Video Driver",
+  .version = "STATUS_VERSION_NA"
+};
 
 size_t video_driver_width = 80;
-size_t video_driver_height = 25; 
+size_t video_driver_height = 25;
 char*  video_driver_name = "VGA";
 char*  video_driver_mode = "TEXTMODE";
 char*  video_driver_fullname = "VGA_TEXTMODE_80_x_25";
 
-struct video_driver_t *video_drivers[] = 
+
+struct video_driver_t *video_drivers[] =
 {
   &vga_driver,
   0

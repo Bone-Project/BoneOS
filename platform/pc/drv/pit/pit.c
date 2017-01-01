@@ -13,7 +13,7 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
  **   Amanuel Bogale <amanuel2> : start
  **/
@@ -30,11 +30,20 @@
 #include <stdint.h>
 #include <stddef.h>
 
+//Timer Driver Handler
+struct device_driver_t pit_driver =
+{
+   .name = "8253 Programmable Interval Timer",
+   .init = &init_pit,
+   .uninit = &uninit_pit,
+   .version = "8253"
+};
+
 
 volatile uint32_t pit_ticks = 0;
 
 /*
- * @function send_pit_command: 
+ * @function send_pit_command:
  *    Sends Operation Command Word
  *    to PIT.
  */
@@ -44,7 +53,7 @@ static void send_pit_command(uint8_t cmd)
 }
 
 /*
- * @function send_pit_command: 
+ * @function send_pit_command:
  *    Sends Messages to Counter
  *    0 of PIT's Internal Registers.
  */
@@ -54,7 +63,7 @@ static void send_msg_counter_0(uint8_t cmd)
 }
 
 /*
- * @function send_pit_command: 
+ * @function send_pit_command:
  *    Initalizes the PIT Intenally
  *    with the number of IRQ's per
  *    second specified.
@@ -66,7 +75,7 @@ static void pit_phase(int htz)
   //the IRQ Should fire
   int divisor = 1193180 / htz;
 
-  send_pit_command( I386_PIT_OCW_BINCOUNT_BINARY     | 
+  send_pit_command( I386_PIT_OCW_BINCOUNT_BINARY     |
                     I386_PIT_OCW_MODE_SQUAREWAVEGEN  |
                     I386_PIT_OCW_RL_DATA             |
                     I386_PIT_OCW_SCO_COUNTER_0);
@@ -102,7 +111,7 @@ static void pit_handler(int_regs *r)
   if(r){};
   pit_ticks++;
   if (pit_ticks % IRQ_SEC_HIT == 0)
-       if(pit_handler_nest()!=0) 
+       if(pit_handler_nest()!=0)
               panik("PIT Handler Nest Exception");
 }
 
