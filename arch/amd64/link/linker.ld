@@ -3,6 +3,7 @@ OUTPUT_FORMAT(elf64-x86-64)
  
 SECTIONS
 {
+    KERNEL_VMA = 0x400000000000;
     . = KERNEL_VMA;
 
     .text : AT(ADDR(.text) - KERNEL_VMA)
@@ -10,6 +11,17 @@ SECTIONS
         _code = .;
         *(.text)
         *(.rodata*)
+
+        start_ctors = .;
+        *(.init_array)
+        *(SORT(.init_array.*));
+        end_ctors = .;
+
+        start_dtors = .;
+        *(.fini_array)
+        *(SORT(.fini_array.*));
+        end_dtors = .;
+
         . = ALIGN(4096);
     }
 

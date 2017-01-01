@@ -21,13 +21,29 @@
 
 typedef struct 
 {
-    uint32_t ds; 
-    uint32_t edx, ecx, eax;
-    uint32_t int_no, err_code;
-}__attribute__((packed)) int_regs;
+    uint16_t ds, es, fs, gs;
+    uintptr_t rax, rbx, rcx, rdx, rsi, rdi, rbp;
+    uintptr_t r8, r9, r10, r11, r12, r13, r14, r15;
+    uintptr_t int_no, err_code;
+    uintptr_t rip;
+    uintptr_t cs;
+    uintptr_t rflags;
+    uintptr_t rsp;
+    uintptr_t ss;
+}__attribute__((packed)) gpr_context_t;
 
+typedef struct fpr_context_t {
+    char r[512];
+} fpr_context_t;
 
-typedef void(*int_routines)(int_regs *r);
+typedef struct isr_context_t {
+    gpr_context_t *gpr;
+    fpr_context_t *fpr;
+} isr_context_t;
+
+typedef void(*int_routines)(isr_context_t *r);
+
+typedef isr_context_t int_regs;
 
 /*
  * @struct idt_desc:
@@ -46,11 +62,11 @@ typedef struct
    uint16_t base_lo;
    uint16_t sel; // Kernel segment goes here.
    uint8_t  reserved;
-   uint8_t flags;
+   uint8_t  flags;
    uint16_t base_hi;
    uint32_t base_hi2;
    uint32_t reserved2;
-}__attribute__((packed)) idt_desc;
+} idt_desc;
 
 #define CS_SEGMENT 0x8
 

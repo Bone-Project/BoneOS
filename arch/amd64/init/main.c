@@ -25,7 +25,7 @@
 #include <stddef.h>
 #include <misc/asm_util.h>
 #include <cpu/cpu.h>
-
+#include <drv/driver.h>
 
 /*
  * Calling all Global C Objects
@@ -33,13 +33,18 @@
  *   @attribute __constructor__
  *   @attribute __deconstructor__
  */
-typedef void (*constructor)();
+typedef void (*constructor)(void);
 extern constructor start_ctors;
 extern constructor end_ctors;
 extern void callConstructors(void)
 {
     for(constructor* i = &start_ctors;i != &end_ctors; i++)
         (*i)();
+}
+
+static inline void kernel_init_early(void)
+{
+
 }
 
 /*
@@ -51,13 +56,13 @@ extern void callConstructors(void)
  */
 void kernelMain(uint32_t multiboot,uint32_t magicnumber)
 {
-    if(multiboot && magicnumber){};
+   if(multiboot && magicnumber){};
    init_cpu();
-    while(1)
+   setup_driver_handler();
+   sti();
+   kernel_init_early();
+   while(1)
         hlt();
 }
-
-
-
 
 

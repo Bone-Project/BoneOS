@@ -38,10 +38,15 @@ global loader
 
 
 loader:
-    mov esp,kernel_stack
+    xor rbp,rbp
+wait_debugger:
+    test rbp,rbp
+    jz wait_debugger
+
+    mov rsp,kernel_stack
     call callConstructors
-    push eax
-    push ebx
+    mov rdi,rax
+    mov rsi,rbx
     call kernelMain
 
 

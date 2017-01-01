@@ -95,16 +95,17 @@ INCDIRS := $(BUILDROOT)/include \
 # Parameters
 LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none
 CFLAGS := \
-	$(ARCH_MACHINE) -std=c11 \
+	$(ARCH_MACHINE)  -std=c11 \
 	-O0 -g -Wall -Wextra -Wpedantic -Werror  -g \
 	-Wno-error=missing-field-initializers \
 	-nostdlib -ffreestanding $(patsubst %,-I%,$(INCDIRS)) \
-	-DDEBUG
+	-DDEBUG \
+        $(ARCH_CFLAGS)
 
 ASFLAGS := $(ARCH_AS_FLAGS)
 
 NASM ?= nasm
-NASMFLAGS := -f elf32
+NASMFLAGS := -f elf$(ARCH_NN)
 
 export CFLAGS
 export LDFLAGS
