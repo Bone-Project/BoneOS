@@ -9,8 +9,8 @@ typedef struct uint8_rtc
 	uint8_t hour;
 	uint8_t minute;
 	uint8_t second;
-} uint8_rtc;
-uint8_rtc rtc_get();
-void rtc_print_time ();
+} rtc_t;
+extern rtc_t rtc_get();
+extern void rtc_print_time ();
 
 #endif // _DRV_RTC_H_
