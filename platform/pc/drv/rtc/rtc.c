@@ -35,7 +35,7 @@
 #include <stddef.h>
 #include <string.h>
 
-uint8_rtc rtc_get() 
+rtc_t rtc_get() 
 { 	
   rtc_t curr; 	
   rtc_t last; 	// Keep reading time until we get 	// the same values twice
