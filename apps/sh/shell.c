@@ -20,6 +20,7 @@
 
  **     Amanuel Bogale <amanuel2> : start
  **     Ashish Ahuja
+ **     Muhammad Rifqi Priyo Susanto
  **/
 
 
@@ -38,6 +39,7 @@
 #include <uname/uname.h>
 #include <sleep/sleep.h>
 #include <echo/echo.h>
+#include <time/time.h>
 #include <string/string.h>
 #include <cursor/cursor.h>
 #include <reboot/sbin_cmd_reboot.h>
@@ -74,6 +76,7 @@ struct cmd_t *cmds[] =
   &cmd_exit,
   &cmd_pwd,
   &cmd_logname,
+  &cmd_time,
   &cmd_uname
   ,0
 };
