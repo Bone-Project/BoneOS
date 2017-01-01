@@ -21,6 +21,6 @@ clean:
 	rm -r .d
 
 $(LIBFILENAME): $(OBJS)
-	ar -rcs $@ $^
+	$(AR) -rcs $@ $^
 
 include $(BUILDROOT)/autodep.mk

@@ -50,12 +50,10 @@ ifdef CROSSROOT
   CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
   LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
   AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
-  export CC
-  export LD
-  export AR
 endif
-
-
+export CC
+export LD
+export AR
 
 VIDEO_DRIVER := VGA
 VIDEO_DRIVER_LOW := vga
