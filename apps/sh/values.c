@@ -15,16 +15,19 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **   Amanuel Bogale <amanuel2> : start
- **/   
- 
+ **/
+
 #include <sh/shell.h>
-#include <str_t.h>  
+#include <str_t.h>
 
 char* VAR_USER = "root";
 char* VAR_PWD = "/";
+char* VAR_RELEASE = "0.0.1";
+char* VAR_OSNAME = "BoneOS";
+char* VAR_PLATFORM = "x86_32";
 
 

@@ -67,7 +67,10 @@ void removeSpaces(char* source)
 void loop_terminal()
 {
   shell_instance_cnt+=1;
-  printk("SHELL INSTANCE #%d\n",shell_instance_cnt);
+  if (shell_instance_cnt != 1)
+  {
+    printk("New shell instance #%d\n",shell_instance_cnt);
+  }
   while(1)
   {
     start_shell:;
@@ -110,7 +113,7 @@ void loop_terminal()
     if(strcmp(cmd_active.value, "exit")==0)
     {
       shell_instance_cnt-=1;
-      printk("EXITED SHELL INSTANCE #%d\n",shell_instance_cnt+1);
+      printk("Exited shell instance #%d\n",shell_instance_cnt+1);
       goto end_shell;
     }
 
@@ -121,7 +124,6 @@ void loop_terminal()
         if(executed_internally==true)
         {
           executed_internally=false;
-          printk("EXECUTED INTERNALLY\n");
         }
         cmds[i]->handler(cmd_active.value);
         __found = 1;

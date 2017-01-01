@@ -35,6 +35,7 @@
 #include <help/help.h>
 #include <pwd/pwd.h>
 #include <logname/logname.h>
+#include <uname/uname.h>
 #include <sleep/sleep.h>
 #include <echo/echo.h>
 #include <string/string.h>
@@ -71,7 +72,8 @@ struct cmd_t *cmds[] =
   &cmd_boneshell,
   &cmd_exit,
   &cmd_pwd,
-  &cmd_logname
+  &cmd_logname,
+  &cmd_uname
   ,0
 };
 
@@ -79,7 +81,8 @@ void init_terminal()
 {
   assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
   TERMINAL_MODE=true;
-  cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
+  //cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
+  printk ("%s release %s started.\n", VAR_OSNAME, VAR_RELEASE);
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
   TERMINAL_MODE=false;
 }
