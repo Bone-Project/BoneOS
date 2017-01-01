@@ -27,6 +27,8 @@ else
  endif
 endif
 
+GRUB_MKRESCUE ?= grub-mkrescue
+
 ifdef CROSSROOT
   HOST_ENV = $(shell uname -p)
   # Allow user to override cross-compiler directory
@@ -78,7 +80,6 @@ SH := sh
 VB := virtualbox
 VBM := VBoxManage
 GDB := gdb_q
-
 
 
 INCDIRS := $(BUILDROOT)/include \
