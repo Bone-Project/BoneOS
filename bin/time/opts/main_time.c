@@ -34,7 +34,7 @@
 
 int main_time_opt_handler()
 {
-	uint8_rtc rtc = rtc_get();
+	 rtc_t rtc  = rtc_get();
 	printk("%x:%x:%x UTC.\n", rtc.hour, rtc.minute, rtc.second);
 
 	return STATUS_OK;
