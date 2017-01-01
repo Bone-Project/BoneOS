@@ -61,7 +61,7 @@ section .text
         push r14
         push r15
 
-        movabs rax,0x0010001000100010
+        mov rax,0x0010001000100010
         push rax
 
         mov rax,rsp
@@ -77,7 +77,7 @@ section .text
 
         pop rax
         pop rcx
-        fxrstr [rcx]
+        fxrstor [rcx]
         mov rsp,rax
 
         pop rax
@@ -92,17 +92,16 @@ section .text
         pop r8
         pop rbp
         pop rdi
-        pop rsu
+        pop rsi
         pop rdx
         pop rcx
         pop rbx
         pop rax
 
-        add esp,8
+        add esp,16
         iretq
 
-    %include "isr.asm"
-    %include "irq.asm"
-
+    %include "../../../shared/x86/cpu/interrupts/isr.asm"
+    %include "../../../shared/x86/cpu/interrupts/irq.asm"
 
 

@@ -59,8 +59,8 @@ section .text
         add esp,8
         iret
 
-    %include "isr.asm"
-    %include "irq.asm"
+    %include "../../../shared/x86/cpu/interrupts/isr.asm"
+    %include "../../../shared/x86/cpu/interrupts/irq.asm"
 
 
 

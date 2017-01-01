@@ -26,6 +26,7 @@
 #include <misc/asm_util.h>
 #include <cpu/cpu.h>
 #include <drv/driver.h>
+#include <apps/sh/shell.h>
 
 /*
  * Calling all Global C Objects
@@ -61,6 +62,7 @@ void kernelMain(uint32_t multiboot,uint32_t magicnumber)
    setup_driver_handler();
    sti();
    kernel_init_early();
+init_terminal();
    while(1)
         hlt();
 }

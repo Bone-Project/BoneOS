@@ -1,7 +1,14 @@
 BUILDROOT ?= ../../../
 
+NSRC = cpu/interrupts/isr.asm \
+	   cpu/interrupts/irq.asm
 CSRCS = \
-		misc/asm_util.c
+		misc/asm_util.c \
+		cpu/interrupts/irq.c \
+		cpu/interrupts/isr.c \
+		sys/sys_reboot.c \
+		sys/sys_poweroff.c \
+		cpu/interrupts/interrupts.c
 
 
 LIBNAME := shared_arch
