@@ -89,10 +89,10 @@ uint8_t rtc_get_month()
 	 return (inb(0x71));
 }
 
+
 void rtc_print_time ()
 {
-	 rtc_g
-= rtc_get();
+	rtc_t rtc = rtc_get();
 	printk("20%x, %x. %x. %x:%x:%x\n",
 			rtc.year, rtc.month, rtc.day,
 			rtc.hour, rtc.minute, rtc.second);
