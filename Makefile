@@ -266,7 +266,7 @@ configure-set:
 	@echo "LD := $(LD)" >> $(GENERATED_CONFIG)
 	@echo "AR := $(AR)" >> $(GENERATED_CONFIG)
 	@echo "AS := $(AS)" >> $(GENERATED_CONFIG)
-	@echo "GRUB_MKCONFIG := $(GRUB_MKCONFIG)" >> $(GENERATED_CONFIG)
+	@echo "GRUB_MKRESCUE := $(GRUB_MKRESCUE)" >> $(GENERATED_CONFIG)
 	@echo "ARCH := $(ARCH)" >> $(GENERATED_CONFIG)
 	@echo "PLAT := $(PLAT)" >> $(GENERATED_CONFIG)
 	@echo '' >> $(GENERATED_CONFIG)
