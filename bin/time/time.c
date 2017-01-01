@@ -47,14 +47,14 @@ int cmd_time_handler(char* cmd)
 struct cmd_t cmd_time = 
 {
   .name = "time",
-  .usage ="time",
+  .usage ="time [--help]",
   .help = "time(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\ttime\n"
                 "SYNOPSIS : \n "
-                "\ttime\n"
+                "\ttime [--help]\n"
                 "DESCRIPTION : \n "
-                "\tPrints out time from Real Time Clock\n",
+                "\tPrints out time from in format hour minutes second\n",
   .cmd_opts =  cmd_time_opts,
   .handler = &cmd_time_handler, /*
   .invalid_use_msg = "Invalid use of time command.\n"
