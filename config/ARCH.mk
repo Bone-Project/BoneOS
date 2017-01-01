@@ -13,6 +13,7 @@ ifeq ($(ARCH),$(filter $(ARCH),i386 x86 80386 amd32))
  ARCH_QEMU := i386
  ARCH_LINKER := i386
 else ifeq ($(ARCH),$(filter $(ARCH), amd64 x86_64 x86-64 emt64 x64))
+ $(info x86-64 64 BIT Architecture Running)
  ARCH := amd64
  ARCH_MACHINE := -m64
  ARCH_AS_FLAGS := --64

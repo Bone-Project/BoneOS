@@ -26,7 +26,7 @@
 #include <cpu/interrupts/interrupts.h>
 
 idt_desc idt[IDT_SiZE];
-idt_ptr idp;
+
 
 /*
  * @function idt_set_gate :
@@ -59,15 +59,17 @@ void idt_set_gate(uint8_t num, int_handler handler, uint16_t sel,
   
  void init_idt()
  {
+     idt_ptr idp;
      idp.limit = (sizeof(idt))-1;
-     idp.base = (uint64_t) &idt; 
+     idp.base = (uintptr_t)idt; 
 
      memset(&idt,0,sizeof(idt));
 
-     __asm__ __volatile__(
-                            "lidtq %0"
+
+ __asm__ __volatile__(
+                            "lidt%z0 (%0)"
                             :
-                            :"m"(idp)
+                            :"r"(&idp.limit)
                         );
  }
 

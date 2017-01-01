@@ -16,11 +16,11 @@ typedef void(*int_handler)(void);
  *      @base : 32 Bit Full Base Address of IDT.
  */
  typedef struct 
- {
-    uint16_t limit;
-    uint64_t base;
- }__attribute__((packed)) idt_ptr;
-
+{ 
+  uint8_t align[sizeof(uintptr_t) - sizeof(uint16_t)]; 
+  uint16_t limit; 
+  uintptr_t base; 
+} idt_ptr;
 
 extern void init_idt();
 

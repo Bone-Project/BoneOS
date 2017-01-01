@@ -60,14 +60,14 @@ void idt_set_gate(uint8_t num, int_handler handler, uint16_t sel,
  void init_idt()
  {
      idp.limit = (sizeof(idt))-1;
-     idp.base = (uint32_t) &idt; 
+     idp.base = (uintptr_t) idt; 
 
      memset(&idt,0,sizeof(idt));
 
      __asm__ __volatile__(
-                            "lidt %0"
+                            "lidt%z0 (%0)"
                             :
-                            :"m"(idp)
+                            :"r"(&idp.limit)
                         );
  }
 

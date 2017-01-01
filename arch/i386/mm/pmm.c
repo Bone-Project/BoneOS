@@ -42,30 +42,26 @@ int pmm_init(multiboot_info_t* multiboot_structure)
    * NO.  ADDRESS  LENGTH  SIZE  TYPE
    */
 
-  mb_info.multiboot_structure->mmap_addr += 0xD0000000;
+  //mb_info.multiboot_structure->mmap_addr += 0xD0000000;
   multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) mb_info.multiboot_structure->mmap_addr ;
   printk("********RAM INFO*********\n");
-  printk("No.\t\tADDRESS\t\tLENGTH\t\t\t\tSIZE\t\tTYPE\n");
+  printk("No.\t\tADDRESS\t\tLENGTH\t\t\t\tTYPE\t\tSIZE\n");
   for(
       size_t i=0 ;
       i<mb_info.multiboot_structure->mmap_length/(sizeof(multiboot_memory_map_t));
       i++)
   {
-            if(mmap[i].type == MULTIBOOT_MEMORY_AVAILABLE)
-            {
-
               uintptr_t addr = ((uintptr_t)mmap[i].addr);
               uintptr_t length=((uintptr_t)mmap[i].len);
-              uintptr_t size=((uintptr_t)mmap[i].size);
-              //uintptr_t type=((uintptr_t)mmap[i].type);
+              //uintptr_t size=((uintptr_t)mmap[i].size);
+              uintptr_t type=((uintptr_t)mmap[i].type);
 
                printk("#%d" , i);
                printk("\t\t0x%x",addr);
                printk("\t\t%x"  ,length);
-               printk("\t\t\t\t\t\t%d\n"  ,size);
-              // printk("\t\t\t\t\t\t\t\t%d\n"  ,type);
+               printk("\t\t\t\t\t\t%d\n"  ,type);
+               //printk("\t\t\t\t\t\t\t\t%d\n"  ,type);
                _mmngr_mem_size+=length;
-            }
           }
           printk("**************************\n");
 

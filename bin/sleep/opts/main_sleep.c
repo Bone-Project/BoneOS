@@ -28,14 +28,14 @@
 #include <sh/shell.h>
 #include <stdlib/stdlib.h>
 
-enum SLEEP_MODE
-{
-  SECONDS = (long) 1000,
-  MINUTES = (long) 60000,
-  HOURS   = (long) 3600000,
-  DAYS 	  = (long) 86400000,
-  YEARS   = (long) 31536000000
-};
+
+#define SLEEP_MODE_SECONDS  1000
+#define SLEEP_MODE_MINUTES  60000
+#define SLEEP_MODE_HOURS    3600000
+#define SLEEP_MODE_DAYS     86400000
+#define SLEEP_MODE_YEARS    31536000000
+
+static int current_sleep_mode=0;
 
 int main_sleep_opt_handler(char *cmd)
 {
@@ -43,16 +43,16 @@ int main_sleep_opt_handler(char *cmd)
    str_t opts[num_opts];
    get_opt(cmd,opts);
    size_t num_len = strlen(opts[1].str);
-   enum SLEEP_MODE MODE;
-   if(opts[1].str[num_len-1] == 's') MODE = SECONDS;
-   else if(opts[1].str[num_len-1] == 'm') MODE = MINUTES;
-   else if(opts[1].str[num_len-1] == 'h') MODE = HOURS;
-   else if(opts[1].str[num_len-1] == 'd') MODE = DAYS;
-   else MODE=SECONDS;
+   
+   if(opts[1].str[num_len-1] == 's') current_sleep_mode = SLEEP_MODE_SECONDS;
+   else if(opts[1].str[num_len-1] == 'm') current_sleep_mode = SLEEP_MODE_MINUTES;
+   else if(opts[1].str[num_len-1] == 'h') current_sleep_mode = SLEEP_MODE_HOURS;
+   else if(opts[1].str[num_len-1] == 'd') current_sleep_mode = SLEEP_MODE_DAYS;
+   else current_sleep_mode=SLEEP_MODE_SECONDS;
 
    int __seconds_sleep = atoi(opts[1].str);
    printk(" \n");
-   sleep(__seconds_sleep * MODE);
+   sleep(__seconds_sleep * current_sleep_mode);
    
    return STATUS_OK;
 }
