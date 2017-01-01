@@ -45,6 +45,7 @@
 #include <boneshell/boneshell.h>
 #include <assertk.h>
 #include <drv/driver.h>
+#include <drv/rtc/rtc.h>
 #include <sh/built-in/exit/exit.h>
 
 
@@ -82,7 +83,7 @@ void init_terminal()
   assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
   TERMINAL_MODE=true;
   //cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
-  printk ("%s release %s started.\n", VAR_OSNAME, VAR_RELEASE);
+  printk ("%s release %s started at %x:%x:%x UTC.\n", VAR_OSNAME, VAR_RELEASE, rtc_get_hour(), rtc_get_minute(), rtc_get_second());
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
   TERMINAL_MODE=false;
 }
