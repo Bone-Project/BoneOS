@@ -179,6 +179,7 @@ $(BONEOS_BIN): $(libraries) $(LINKER_SCRIPT)
 	-T $(LINKER_SCRIPT) \
 	-o $@ \
 	--start-group $(libraries) --end-group \
+	-Map=BoneOS.map \
 	-L$(LIBGCCDIR) -l$(LIBGCCNAME)
 
 #

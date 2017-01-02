@@ -1,0 +1,1658 @@
+Archive member included to satisfy reference by file (symbol)
+
+arch/amd64/libarch.a(boot.o)  (loader)
+arch/amd64/libarch.a(main.o)  arch/amd64/libarch.a(boot.o) (callConstructors)
+arch/amd64/libarch.a(cpu.o)   arch/amd64/libarch.a(main.o) (init_cpu)
+arch/amd64/libarch.a(idt.o)   arch/amd64/libarch.a(cpu.o) (init_idt)
+arch/amd64/libarch.a(gdt.o)   arch/amd64/libarch.a(cpu.o) (init_gdt)
+apps/libapps.a(shell.o)       arch/amd64/libarch.a(main.o) (shell_instance_cnt)
+apps/libapps.a(exit.o)        apps/libapps.a(shell.o) (cmd_exit)
+bin/libbin.a(clear.o)         apps/libapps.a(shell.o) (cmd_clear)
+bin/libbin.a(color.o)         bin/libbin.a(clear.o) (cmd_clear_opt_color)
+bin/libbin.a(main_clear.o)    bin/libbin.a(clear.o) (main_clear_opt_handler)
+bin/libbin.a(boneos_logo.o)   apps/libapps.a(shell.o) (cmd_boneos_logo)
+bin/libbin.a(main_boneos_logo.o)
+                              bin/libbin.a(boneos_logo.o) (main_boneos_opt_handler)
+bin/libbin.a(boneos_logo_color.o)
+                              bin/libbin.a(boneos_logo.o) (cmd_boneos_logo_opt_color)
+bin/libbin.a(help.o)          apps/libapps.a(shell.o) (cmd_help)
+bin/libbin.a(help_cmd_opt.o)  bin/libbin.a(help.o) (cmd_help_opt_cmd)
+bin/libbin.a(main_help.o)     bin/libbin.a(help.o) (main_help_opt_handler)
+bin/libbin.a(sleep.o)         apps/libapps.a(shell.o) (cmd_sleep)
+bin/libbin.a(main_sleep.o)    bin/libbin.a(sleep.o) (main_sleep_opt_handler)
+bin/libbin.a(echo.o)          apps/libapps.a(shell.o) (cmd_echo)
+bin/libbin.a(main_echo.o)     bin/libbin.a(echo.o) (main_echo_opt_handler)
+bin/libbin.a(cursor.o)        apps/libapps.a(shell.o) (cmd_cursor)
+bin/libbin.a(main_cursor.o)   bin/libbin.a(cursor.o) (main_cursor_opt_handler)
+bin/libbin.a(pwd.o)           apps/libapps.a(shell.o) (cmd_pwd)
+bin/libbin.a(main_pwd.o)      bin/libbin.a(pwd.o) (main_pwd_opt_handler)
+bin/libbin.a(logname.o)       apps/libapps.a(shell.o) (cmd_logname)
+bin/libbin.a(main_logname.o)  bin/libbin.a(logname.o) (main_logname_opt_handler)
+bin/libbin.a(boneshell.o)     apps/libapps.a(exit.o) (exit_set__shell)
+sbin/libsbin.a(reboot.o)      apps/libapps.a(shell.o) (cmd_reboot)
+sbin/libsbin.a(poweroff.o)    apps/libapps.a(shell.o) (cmd_poweroff)
+arch/shared/x86/libshared_arch.a(asm_util.o)
+                              arch/amd64/libarch.a(main.o) (sti)
+arch/shared/x86/libshared_arch.a(irq.o)
+                              bin/libbin.a(boneshell.o) (install_irq_handler)
+arch/shared/x86/libshared_arch.a(sys_reboot.o)
+                              sbin/libsbin.a(reboot.o) (root_sys_reboot)
+arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+                              sbin/libsbin.a(poweroff.o) (root_sys_poweroff)
+platform/pc/libplatform.a(video.o)
+                              bin/libbin.a(clear.o) (video_drivers)
+platform/pc/libplatform.a(vga.o)
+                              platform/pc/libplatform.a(video.o) (vga_driver)
+platform/pc/libplatform.a(vga_textmode.o)
+                              platform/pc/libplatform.a(vga.o) (init_vga_textmode)
+platform/pc/libplatform.a(update_cursor.o)
+                              platform/pc/libplatform.a(vga_textmode.o) (update_cursor_textmode)
+platform/pc/libplatform.a(driver.o)
+                              bin/libbin.a(boneshell.o) (kbd_driver)
+platform/pc/libplatform.a(scancodes.o)
+                              bin/libbin.a(boneshell.o) (kbd_layouts)
+platform/pc/libplatform.a(scancodes_usa.o)
+                              platform/pc/libplatform.a(scancodes.o) (QWERTY_USA_NOSHIFT_VAL)
+platform/pc/libplatform.a(utils.o)
+                              arch/shared/x86/libshared_arch.a(sys_reboot.o) (kbd_ctrl_send_cmd)
+platform/pc/libplatform.a(pic.o)
+                              arch/shared/x86/libshared_arch.a(irq.o) (remap_pic_irq)
+platform/pc/libplatform.a(io.o)
+                              arch/shared/x86/libshared_arch.a(sys_reboot.o) (inb)
+platform/pc/libplatform.a(putch.o)
+                              platform/pc/libplatform.a(vga_textmode.o) (putch_vga_textmode)
+platform/pc/libplatform.a(clear.o)
+                              platform/pc/libplatform.a(vga_textmode.o) (clear_vga_textmode)
+platform/pc/libplatform.a(term_scroll.o)
+                              platform/pc/libplatform.a(vga_textmode.o) (term_scroll_vga_textmode)
+platform/pc/libplatform.a(pit.o)
+                              platform/pc/libplatform.a(driver.o) (init_pit)
+platform/pc/libplatform.a(utils.o)
+                              platform/pc/libplatform.a(putch.o) (make_color)
+libc/libc.a(strlen.o)         bin/libbin.a(sleep.o) (strlen)
+libc/libc.a(strcpy.o)         bin/libbin.a(boneshell.o) (strcpy)
+libc/libc.a(memset.o)         arch/amd64/libarch.a(idt.o) (memset)
+libc/libc.a(strcmp.o)         apps/libapps.a(exit.o) (strcmp)
+libc/libc.a(printck.o)        bin/libbin.a(boneshell.o) (printck)
+libc/libc.a(atoi.o)           bin/libbin.a(main_sleep.o) (atoi)
+libc/libc.a(strtoi.o)         bin/libbin.a(color.o) (strtoi)
+libc/libc.a(printk.o)         arch/amd64/libarch.a(main.o) (printk)
+libc/libc.a(scank.o)          bin/libbin.a(boneshell.o) (index_scank)
+libc/libc.a(getchar.o)        bin/libbin.a(boneshell.o) (__get_char_set)
+libc/libc.a(sleep.o)          bin/libbin.a(main_sleep.o) (sleep)
+libc/libc.a(get_opt_count.o)  apps/libapps.a(exit.o) (get_opt_count)
+libc/libc.a(get_opt.o)        apps/libapps.a(exit.o) (get_opt)
+libc/libc.a(panik.o)          platform/pc/libplatform.a(pit.o) (panik)
+libc/libc.a(powk.o)           libc/libc.a(printk.o) (powk)
+libc/libc.a(toupper.o)        bin/libbin.a(boneshell.o) (toupper)
+libc/libc.a(isdigit.o)        bin/libbin.a(sleep.o) (isdigit)
+libc/libc.a(isalpha.o)        bin/libbin.a(boneshell.o) (isalpha)
+libc/libc.a(eat_front_whitespace.o)
+                              libc/libc.a(get_opt_count.o) (eat_front_whitespace)
+libc/libc.a(validate_char.o)  libc/libc.a(get_opt_count.o) (validate_char)
+libc/libc.a(itoa.o)           libc/libc.a(printk.o) (__itoa)
+arch/amd64/libarch.a(interrupts-asm.o)
+                              arch/shared/x86/libshared_arch.a(irq.o) (int32)
+arch/amd64/libarch.a(interrupts.o)
+                              arch/amd64/libarch.a(interrupts-asm.o) (interupt_handler)
+apps/libapps.a(values.o)      bin/libbin.a(main_logname.o) (VAR_USER)
+apps/libapps.a(utils.o)       bin/libbin.a(boneshell.o) (termcmp)
+arch/shared/x86/libshared_arch.a(isr.o)
+                              arch/amd64/libarch.a(interrupts.o) (exception_messages)
+
+Allocating common symbols
+Common symbol       size              file
+
+tab__               0x400             bin/libbin.a(boneshell.o)
+index_scank         0x4               libc/libc.a(scank.o)
+gp                  0xa               arch/amd64/libarch.a(cpu.o)
+kbd_info            0x14              bin/libbin.a(boneshell.o)
+print_scank         0x1               libc/libc.a(scank.o)
+active_scank        0x1               libc/libc.a(scank.o)
+idt                 0x1000            arch/amd64/libarch.a(idt.o)
+buffer_scank        0x1000            libc/libc.a(scank.o)
+cmd_active          0x8               apps/libapps.a(shell.o)
+tbuf                0x20              libc/libc.a(itoa.o)
+
+Discarded input sections
+
+ .comment       0x0000000000000000       0x2c arch/amd64/libarch.a(main.o)
+ .comment       0x0000000000000000       0x2c arch/amd64/libarch.a(cpu.o)
+ .comment       0x0000000000000000       0x2c arch/amd64/libarch.a(idt.o)
+ .comment       0x0000000000000000       0x2c arch/amd64/libarch.a(gdt.o)
+ .comment       0x0000000000000000       0x2c apps/libapps.a(shell.o)
+ .comment       0x0000000000000000       0x2c apps/libapps.a(exit.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(clear.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(color.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_clear.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(boneos_logo.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_boneos_logo.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(boneos_logo_color.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(help.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(help_cmd_opt.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_help.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(sleep.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_sleep.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(echo.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_echo.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(cursor.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_cursor.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(pwd.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_pwd.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(logname.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(main_logname.o)
+ .comment       0x0000000000000000       0x2c bin/libbin.a(boneshell.o)
+ .comment       0x0000000000000000       0x2c sbin/libsbin.a(reboot.o)
+ .comment       0x0000000000000000       0x2c sbin/libsbin.a(poweroff.o)
+ .comment       0x0000000000000000       0x2c arch/shared/x86/libshared_arch.a(asm_util.o)
+ .comment       0x0000000000000000       0x2c arch/shared/x86/libshared_arch.a(irq.o)
+ .comment       0x0000000000000000       0x2c arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .comment       0x0000000000000000       0x2c arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(video.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(vga.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(vga_textmode.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(update_cursor.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(driver.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(scancodes.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(scancodes_usa.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(utils.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(pic.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(io.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(putch.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(clear.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(term_scroll.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(pit.o)
+ .comment       0x0000000000000000       0x2c platform/pc/libplatform.a(utils.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(strlen.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(strcpy.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(memset.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(strcmp.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(printck.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(atoi.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(strtoi.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(printk.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(scank.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(getchar.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(sleep.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(get_opt_count.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(get_opt.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(panik.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(powk.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(toupper.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(isdigit.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(isalpha.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(eat_front_whitespace.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(validate_char.o)
+ .comment       0x0000000000000000       0x2c libc/libc.a(itoa.o)
+ .comment       0x0000000000000000       0x2c arch/amd64/libarch.a(interrupts.o)
+ .comment       0x0000000000000000       0x2c apps/libapps.a(values.o)
+ .comment       0x0000000000000000       0x2c apps/libapps.a(utils.o)
+ .comment       0x0000000000000000       0x2c arch/shared/x86/libshared_arch.a(isr.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000400000000000                KERNEL_VMA = 0x400000000000
+                0x0000000000100000                KERNEL_PMA = 0x100000
+                0x0000400000000000                . = KERNEL_VMA
+
+.text           0x0000400000000000     0x9000 load address 0x0000000000100000
+                0x0000400000000000                _code = .
+ *(.multiboot)
+ .multiboot     0x0000400000000000        0xc arch/amd64/libarch.a(boot.o)
+ *(.text)
+ *fill*         0x000040000000000c        0x4 
+ .text          0x0000400000000010       0x2a arch/amd64/libarch.a(boot.o)
+                0x0000400000000010                loader
+ .text          0x000040000000003a       0x72 arch/amd64/libarch.a(main.o)
+                0x000040000000003a                callConstructors
+                0x0000400000000072                kernelMain
+ .text          0x00004000000000ac       0x1a arch/amd64/libarch.a(cpu.o)
+                0x00004000000000ac                init_cpu
+ .text          0x00004000000000c6      0x121 arch/amd64/libarch.a(idt.o)
+                0x00004000000000c6                idt_set_gate
+                0x00004000000001a8                init_idt
+ .text          0x00004000000001e7       0x31 arch/amd64/libarch.a(gdt.o)
+                0x00004000000001e7                init_gdt
+ .text          0x0000400000000218       0x81 apps/libapps.a(shell.o)
+                0x0000400000000218                init_terminal
+ .text          0x0000400000000299      0x18a apps/libapps.a(exit.o)
+                0x0000400000000299                exit_handler
+ .text          0x0000400000000423       0x4d bin/libbin.a(clear.o)
+                0x0000400000000423                cmd_clear_handler
+ .text          0x0000400000000470      0x191 bin/libbin.a(color.o)
+                0x0000400000000470                cmd_clear_color_handler
+ .text          0x0000400000000601      0x268 bin/libbin.a(main_clear.o)
+                0x0000400000000601                main_clear_opt_handler
+ .text          0x0000400000000869       0xb4 bin/libbin.a(boneos_logo.o)
+                0x0000400000000869                boneos_logo_handler
+ .text          0x000040000000091d      0x2d3 bin/libbin.a(main_boneos_logo.o)
+                0x000040000000091d                main_boneos_opt_handler
+ .text          0x0000400000000bf0      0x240 bin/libbin.a(boneos_logo_color.o)
+                0x0000400000000bf0                cmd_boneos_logo_color_handler
+ .text          0x0000400000000e30       0xd2 bin/libbin.a(help.o)
+                0x0000400000000e30                cmd_help_handler
+ .text          0x0000400000000f02      0x1c2 bin/libbin.a(help_cmd_opt.o)
+                0x0000400000000f02                cmd_help_opt_cmd_handler
+ .text          0x00004000000010c4      0x1db bin/libbin.a(main_help.o)
+                0x00004000000010c4                main_help_opt_handler
+ .text          0x000040000000129f      0x242 bin/libbin.a(sleep.o)
+                0x000040000000129f                cmd_sleep_handler
+ .text          0x00004000000014e1      0x20a bin/libbin.a(main_sleep.o)
+                0x00004000000014e1                main_sleep_opt_handler
+ .text          0x00004000000016eb       0x55 bin/libbin.a(echo.o)
+                0x00004000000016eb                cmd_echo_handler
+ .text          0x0000400000001740      0x588 bin/libbin.a(main_echo.o)
+                0x0000400000001740                main_echo_opt_handler
+ .text          0x0000400000001cc8       0x55 bin/libbin.a(cursor.o)
+                0x0000400000001cc8                cmd_cursor_handler
+ .text          0x0000400000001d1d      0x334 bin/libbin.a(main_cursor.o)
+                0x0000400000001d1d                main_cursor_opt_handler
+ .text          0x0000400000002051       0x1f bin/libbin.a(pwd.o)
+                0x0000400000002051                cmd_pwd_handler
+ .text          0x0000400000002070      0x1b1 bin/libbin.a(main_pwd.o)
+                0x0000400000002070                main_pwd_opt_handler
+ .text          0x0000400000002221       0x1f bin/libbin.a(logname.o)
+                0x0000400000002221                cmd_logname_handler
+ .text          0x0000400000002240      0x1b1 bin/libbin.a(main_logname.o)
+                0x0000400000002240                main_logname_opt_handler
+ .text          0x00004000000023f1     0x1075 bin/libbin.a(boneshell.o)
+                0x00004000000023f1                key_press
+                0x000040000000245d                key_release
+                0x00004000000024d1                kbd_early_init
+                0x000040000000257b                wait_until_enter
+                0x00004000000025f1                key_handler_util
+                0x0000400000002757                key_handler_util_backspace
+                0x00004000000027e6                tab_util
+                0x0000400000002845                key_handler_util_tab
+                0x0000400000002a34                key_handler
+                0x0000400000002e13                kbd_handler
+                0x0000400000002ea6                init_kbd
+                0x0000400000002eda                uninit_kbd
+                0x0000400000002efa                removeSpaces
+                0x0000400000002f4d                loop_terminal
+                0x00004000000032e1                boneshell_handler
+ .text          0x0000400000003466      0x180 sbin/libsbin.a(reboot.o)
+                0x0000400000003466                cmd_reboot_handler
+ .text          0x00004000000035e6      0x180 sbin/libsbin.a(poweroff.o)
+                0x00004000000035e6                cmd_poweroff_handler
+ .text          0x0000400000003766       0x15 arch/shared/x86/libshared_arch.a(asm_util.o)
+                0x0000400000003766                sti
+                0x000040000000376d                cli
+                0x0000400000003774                hlt
+ .text          0x000040000000377b      0x230 arch/shared/x86/libshared_arch.a(irq.o)
+                0x000040000000377b                init_irq
+                0x000040000000396b                install_irq_handler
+                0x000040000000398d                uninstall_irq_handler
+ .text          0x00004000000039ab       0x75 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+                0x00004000000039ab                root_sys_reboot
+ .text          0x0000400000003a20       0x3c arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+                0x0000400000003a20                root_sys_poweroff
+ .text          0x0000400000003a5c        0x0 platform/pc/libplatform.a(video.o)
+ .text          0x0000400000003a5c      0x19a platform/pc/libplatform.a(vga.o)
+                0x0000400000003a5c                set_mode_util
+                0x0000400000003ac1                uninit_vga_driver
+                0x0000400000003af6                init_vga_driver
+ .text          0x0000400000003bf6       0x4b platform/pc/libplatform.a(vga_textmode.o)
+                0x0000400000003bf6                init_vga_textmode
+ .text          0x0000400000003c41       0xce platform/pc/libplatform.a(update_cursor.o)
+                0x0000400000003c41                update_cursor_textmode
+ .text          0x0000400000003d0f      0x132 platform/pc/libplatform.a(driver.o)
+                0x0000400000003d0f                setup_driver_handler
+                0x0000400000003d65                device_initalized
+                0x0000400000003d83                init_device_driver
+                0x0000400000003da9                uninit_device_driver
+                0x0000400000003dcf                init_all_drivers
+                0x0000400000003e08                uninit_all_drivers
+ .text          0x0000400000003e41        0x0 platform/pc/libplatform.a(scancodes.o)
+ .text          0x0000400000003e41        0x0 platform/pc/libplatform.a(scancodes_usa.o)
+ .text          0x0000400000003e41      0x139 platform/pc/libplatform.a(utils.o)
+                0x0000400000003e41                kbd_ctrl_read_status_reg
+                0x0000400000003e51                kbd_ctrl_send_cmd
+                0x0000400000003e85                kbd_enc_read_input_buf
+                0x0000400000003e95                kbd_enc_send_cmd
+                0x0000400000003ec9                bat_test
+                0x0000400000003efd                led_light
+ .text          0x0000400000003f7a       0x9c platform/pc/libplatform.a(pic.o)
+                0x0000400000003f7a                remap_pic_irq
+ .text          0x0000400000004016       0x9c platform/pc/libplatform.a(io.o)
+                0x0000400000004016                inb
+                0x0000400000004030                inw
+                0x000040000000404c                ind
+                0x0000400000004065                outb
+                0x000040000000407f                outw
+                0x000040000000409b                outd
+ .text          0x00004000000040b2      0x13a platform/pc/libplatform.a(putch.o)
+                0x00004000000040b2                putch_vga_textmode
+ .text          0x00004000000041ec      0x159 platform/pc/libplatform.a(clear.o)
+                0x00004000000041ec                term_zero
+                0x0000400000004210                clear_vga_textmode
+ .text          0x0000400000004345      0x102 platform/pc/libplatform.a(term_scroll.o)
+                0x0000400000004345                term_scroll_vga_textmode
+ .text          0x0000400000004447      0x15b platform/pc/libplatform.a(pit.o)
+                0x0000400000004544                init_pit
+                0x0000400000004582                uninit_pit
+ .text          0x00004000000045a2       0x3d platform/pc/libplatform.a(utils.o)
+                0x00004000000045a2                make_color
+                0x00004000000045c1                make_vgaentry
+ .text          0x00004000000045df       0x30 libc/libc.a(strlen.o)
+                0x00004000000045df                strlen
+ .text          0x000040000000460f       0x3f libc/libc.a(strcpy.o)
+                0x000040000000460f                strcpy
+ .text          0x000040000000464e       0x41 libc/libc.a(memset.o)
+                0x000040000000464e                memset
+ .text          0x000040000000468f       0x4f libc/libc.a(strcmp.o)
+                0x000040000000468f                strcmp
+ .text          0x00004000000046de       0xfb libc/libc.a(printck.o)
+                0x00004000000046de                printck
+                0x0000400000004789                vprintck
+ .text          0x00004000000047d9       0x87 libc/libc.a(atoi.o)
+                0x00004000000047d9                atoi
+ .text          0x0000400000004860      0x125 libc/libc.a(strtoi.o)
+                0x0000400000004860                strtoi
+ .text          0x0000400000004985      0x91a libc/libc.a(printk.o)
+                0x0000400000004985                printk
+                0x0000400000004a26                vprintk
+ .text          0x000040000000529f      0x3e4 libc/libc.a(scank.o)
+                0x000040000000529f                scank
+                0x000040000000534f                vscank
+ .text          0x0000400000005683       0x33 libc/libc.a(getchar.o)
+                0x0000400000005683                getchar
+ .text          0x00004000000056b6       0x99 libc/libc.a(sleep.o)
+                0x00004000000056b6                sleep
+ .text          0x000040000000574f       0x8a libc/libc.a(get_opt_count.o)
+                0x000040000000574f                get_opt_count
+ .text          0x00004000000057d9      0x11a libc/libc.a(get_opt.o)
+                0x00004000000057d9                get_opt
+ .text          0x00004000000058f3       0xa2 libc/libc.a(panik.o)
+                0x00004000000058f3                panik
+ .text          0x0000400000005995       0x42 libc/libc.a(powk.o)
+                0x0000400000005995                powk
+ .text          0x00004000000059d7       0x20 libc/libc.a(toupper.o)
+                0x00004000000059d7                toupper
+ .text          0x00004000000059f7       0x21 libc/libc.a(isdigit.o)
+                0x00004000000059f7                isdigit
+ .text          0x0000400000005a18       0x2d libc/libc.a(isalpha.o)
+                0x0000400000005a18                isalpha
+ .text          0x0000400000005a45       0x36 libc/libc.a(eat_front_whitespace.o)
+                0x0000400000005a45                eat_front_whitespace
+ .text          0x0000400000005a7b       0x2f libc/libc.a(validate_char.o)
+                0x0000400000005a7b                validate_char
+ .text          0x0000400000005aaa      0x16e libc/libc.a(itoa.o)
+                0x0000400000005aaa                __itoa
+                0x0000400000005b8a                itoa
+ *fill*         0x0000400000005c18        0x8 
+ .text          0x0000400000005c20      0x22b arch/amd64/libarch.a(interrupts-asm.o)
+                0x0000400000005c83                int0
+                0x0000400000005c8a                int1
+                0x0000400000005c91                int2
+                0x0000400000005c98                int3
+                0x0000400000005c9f                int4
+                0x0000400000005ca9                int5
+                0x0000400000005cb3                int6
+                0x0000400000005cbd                int7
+                0x0000400000005cc7                int8
+                0x0000400000005ccf                int9
+                0x0000400000005cd9                int10
+                0x0000400000005ce1                int11
+                0x0000400000005ce9                int12
+                0x0000400000005cf1                int13
+                0x0000400000005cf9                int14
+                0x0000400000005d01                int15
+                0x0000400000005d0b                int16
+                0x0000400000005d15                int17
+                0x0000400000005d1f                int18
+                0x0000400000005d29                int19
+                0x0000400000005d33                int20
+                0x0000400000005d3d                int21
+                0x0000400000005d47                int22
+                0x0000400000005d51                int23
+                0x0000400000005d5b                int24
+                0x0000400000005d65                int25
+                0x0000400000005d6f                int26
+                0x0000400000005d79                int27
+                0x0000400000005d83                int28
+                0x0000400000005d8d                int29
+                0x0000400000005d97                int30
+                0x0000400000005da1                int31
+                0x0000400000005dab                int32
+                0x0000400000005db5                int33
+                0x0000400000005dbf                int34
+                0x0000400000005dc9                int35
+                0x0000400000005dd3                int36
+                0x0000400000005ddd                int37
+                0x0000400000005de7                int38
+                0x0000400000005df1                int39
+                0x0000400000005dfb                int40
+                0x0000400000005e05                int41
+                0x0000400000005e0f                int42
+                0x0000400000005e19                int43
+                0x0000400000005e23                int44
+                0x0000400000005e2d                int45
+                0x0000400000005e37                int46
+                0x0000400000005e41                int47
+ .text          0x0000400000005e4b       0xf5 arch/amd64/libarch.a(interrupts.o)
+                0x0000400000005e4b                interupt_handler
+ .text          0x0000400000005f40        0x0 apps/libapps.a(values.o)
+ .text          0x0000400000005f40      0x412 apps/libapps.a(utils.o)
+                0x0000400000005f40                termcmp
+                0x0000400000006085                is_contain_equal
+                0x00004000000060bb                term_assignment_return_variable
+                0x00004000000061f7                term_assignment_return_value
+ .text          0x0000400000006352      0x3c6 arch/shared/x86/libshared_arch.a(isr.o)
+                0x0000400000006352                init_isr
+ *(.rodata*)
+ .rodata        0x0000400000006718        0xc arch/amd64/libarch.a(main.o)
+ *fill*         0x0000400000006724        0x4 
+ .rodata        0x0000400000006728       0x7d apps/libapps.a(shell.o)
+ *fill*         0x00004000000067a5        0x3 
+ .rodata        0x00004000000067a8       0xf1 apps/libapps.a(exit.o)
+ *fill*         0x0000400000006899        0x7 
+ .rodata        0x00004000000068a0      0x21b bin/libbin.a(clear.o)
+ *fill*         0x0000400000006abb        0x5 
+ .rodata        0x0000400000006ac0      0x350 bin/libbin.a(color.o)
+ .rodata        0x0000400000006e10       0x14 bin/libbin.a(main_clear.o)
+ *fill*         0x0000400000006e24        0x4 
+ .rodata        0x0000400000006e28      0x3cf bin/libbin.a(boneos_logo.o)
+ *fill*         0x00004000000071f7        0x1 
+ .rodata        0x00004000000071f8      0x1b4 bin/libbin.a(main_boneos_logo.o)
+ *fill*         0x00004000000073ac        0x4 
+ .rodata        0x00004000000073b0      0x4f6 bin/libbin.a(boneos_logo_color.o)
+ *fill*         0x00004000000078a6        0x2 
+ .rodata        0x00004000000078a8      0x201 bin/libbin.a(help.o)
+ *fill*         0x0000400000007aa9        0x7 
+ .rodata        0x0000400000007ab0      0x1ec bin/libbin.a(help_cmd_opt.o)
+ .rodata        0x0000400000007c9c        0xc bin/libbin.a(main_help.o)
+ .rodata        0x0000400000007ca8      0x223 bin/libbin.a(sleep.o)
+ .rodata        0x0000400000007ecb        0x3 bin/libbin.a(main_sleep.o)
+ *fill*         0x0000400000007ece        0x2 
+ .rodata        0x0000400000007ed0       0xe1 bin/libbin.a(echo.o)
+ .rodata        0x0000400000007fb1       0x12 bin/libbin.a(main_echo.o)
+ *fill*         0x0000400000007fc3        0x5 
+ .rodata        0x0000400000007fc8      0x21d bin/libbin.a(cursor.o)
+ .rodata        0x00004000000081e5       0x1d bin/libbin.a(main_cursor.o)
+ *fill*         0x0000400000008202        0x6 
+ .rodata        0x0000400000008208       0xd7 bin/libbin.a(pwd.o)
+ .rodata        0x00004000000082df        0xb bin/libbin.a(main_pwd.o)
+ *fill*         0x00004000000082ea        0x6 
+ .rodata        0x00004000000082f0       0xd7 bin/libbin.a(logname.o)
+ .rodata        0x00004000000083c7        0xb bin/libbin.a(main_logname.o)
+ *fill*         0x00004000000083d2        0x6 
+ .rodata        0x00004000000083d8      0x25b bin/libbin.a(boneshell.o)
+ *fill*         0x0000400000008633        0x5 
+ .rodata        0x0000400000008638       0xed sbin/libsbin.a(reboot.o)
+ *fill*         0x0000400000008725        0x3 
+ .rodata        0x0000400000008728      0x101 sbin/libsbin.a(poweroff.o)
+ .rodata        0x0000400000008829        0xb arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .rodata        0x0000400000008834        0xf arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .rodata        0x0000400000008843       0x22 platform/pc/libplatform.a(video.o)
+ .rodata        0x0000400000008865        0x9 platform/pc/libplatform.a(vga.o)
+ *fill*         0x000040000000886e        0x2 
+ .rodata        0x0000400000008870       0x64 platform/pc/libplatform.a(driver.o)
+ .rodata        0x00004000000088d4        0xf platform/pc/libplatform.a(scancodes.o)
+ *fill*         0x00004000000088e3       0x1d 
+ .rodata        0x0000400000008900      0x2e8 platform/pc/libplatform.a(scancodes_usa.o)
+                0x0000400000008900                QWERTY_USA_NOSHIFT_VAL
+                0x0000400000008a80                QWERTY_USA_SHIFT_VAL
+ .rodata        0x0000400000008be8       0x1b platform/pc/libplatform.a(pit.o)
+ .rodata        0x0000400000008c03        0xa libc/libc.a(printk.o)
+ .rodata        0x0000400000008c0d        0x3 libc/libc.a(getchar.o)
+ .rodata        0x0000400000008c10       0x67 libc/libc.a(sleep.o)
+ .rodata        0x0000400000008c77       0x22 arch/amd64/libarch.a(interrupts.o)
+ .rodata        0x0000400000008c99        0x7 apps/libapps.a(values.o)
+ .rodata        0x0000400000008ca0      0x137 arch/shared/x86/libshared_arch.a(isr.o)
+                0x0000400000008dd7                start_ctors = .
+ *(.init_array)
+ *(SORT(.init_array.*))
+                0x0000400000008dd7                end_ctors = .
+                0x0000400000008dd7                start_dtors = .
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x0000400000008dd7                end_dtors = .
+                0x0000400000009000                . = ALIGN (0x1000)
+ *fill*         0x0000400000008dd7      0x229 
+
+.iplt           0x0000400000009000        0x0 load address 0x0000000000109000
+ .iplt          0x0000000000000000        0x0 arch/amd64/libarch.a(boot.o)
+
+.data           0x0000400000009000     0x1000 load address 0x0000000000109000
+                0x0000400000009000                _data = .
+ *(.data)
+ .data          0x0000400000009000        0x0 arch/amd64/libarch.a(main.o)
+ .data          0x0000400000009000        0x0 arch/amd64/libarch.a(cpu.o)
+ .data          0x0000400000009000        0x0 arch/amd64/libarch.a(idt.o)
+ .data          0x0000400000009000       0x28 arch/amd64/libarch.a(gdt.o)
+                0x0000400000009000                gdt
+ .data          0x0000400000009028        0x0 apps/libapps.a(shell.o)
+ .data          0x0000400000009028        0x0 apps/libapps.a(exit.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(clear.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(color.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_clear.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(boneos_logo.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_boneos_logo.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(boneos_logo_color.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(help.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(help_cmd_opt.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_help.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(sleep.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_sleep.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(echo.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_echo.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(cursor.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_cursor.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(pwd.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_pwd.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(logname.o)
+ .data          0x0000400000009028        0x0 bin/libbin.a(main_logname.o)
+ .data          0x0000400000009028        0x1 bin/libbin.a(boneshell.o)
+                0x0000400000009028                UP_KEY_ACTIVE
+ .data          0x0000400000009029        0x0 sbin/libsbin.a(reboot.o)
+ .data          0x0000400000009029        0x0 sbin/libsbin.a(poweroff.o)
+ .data          0x0000400000009029        0x0 arch/shared/x86/libshared_arch.a(asm_util.o)
+ .data          0x0000400000009029        0x0 arch/shared/x86/libshared_arch.a(irq.o)
+ .data          0x0000400000009029        0x0 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .data          0x0000400000009029        0x0 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ *fill*         0x0000400000009029        0x7 
+ .data          0x0000400000009030       0x10 platform/pc/libplatform.a(video.o)
+                0x0000400000009030                video_driver_width
+                0x0000400000009038                video_driver_height
+ .data          0x0000400000009040        0x0 platform/pc/libplatform.a(vga.o)
+ .data          0x0000400000009040        0x0 platform/pc/libplatform.a(vga_textmode.o)
+ .data          0x0000400000009040        0x2 platform/pc/libplatform.a(update_cursor.o)
+                0x0000400000009040                __crsr_start
+                0x0000400000009041                __crsr_end
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(driver.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(scancodes.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(scancodes_usa.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(utils.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(pic.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(io.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(putch.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(clear.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(term_scroll.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(pit.o)
+ .data          0x0000400000009042        0x0 platform/pc/libplatform.a(utils.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(strlen.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(strcpy.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(memset.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(strcmp.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(printck.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(atoi.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(strtoi.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(printk.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(scank.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(getchar.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(sleep.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(get_opt_count.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(get_opt.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(panik.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(powk.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(toupper.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(isdigit.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(isalpha.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(eat_front_whitespace.o)
+ .data          0x0000400000009042        0x0 libc/libc.a(validate_char.o)
+ *fill*         0x0000400000009042        0xe 
+ .data          0x0000400000009050       0x10 libc/libc.a(itoa.o)
+                0x0000400000009050                bchars
+ .data          0x0000400000009060        0x0 arch/amd64/libarch.a(interrupts.o)
+ .data          0x0000400000009060        0x0 apps/libapps.a(values.o)
+ .data          0x0000400000009060        0x0 apps/libapps.a(utils.o)
+ .data          0x0000400000009060        0x0 arch/shared/x86/libshared_arch.a(isr.o)
+                0x000040000000a000                . = ALIGN (0x1000)
+ *fill*         0x0000400000009060      0xfa0 
+
+.igot.plt       0x000040000000a000        0x0 load address 0x000000000010a000
+ .igot.plt      0x0000000000000000        0x0 arch/amd64/libarch.a(boot.o)
+
+.got            0x000040000000a000       0x50 load address 0x000000000010a000
+ .got           0x000040000000a000       0x50 arch/amd64/libarch.a(boot.o)
+
+.got.plt        0x000040000000a050       0x18 load address 0x000000000010a050
+ .got.plt       0x000040000000a050       0x18 arch/amd64/libarch.a(boot.o)
+                0x000040000000a050                _GLOBAL_OFFSET_TABLE_
+
+.data.rel       0x000040000000a080      0x610 load address 0x000000000010a068
+ .data.rel      0x000040000000a080       0x68 apps/libapps.a(shell.o)
+                0x000040000000a080                cmds
+ *fill*         0x000040000000a0e8       0x18 
+ .data.rel      0x000040000000a100       0x38 apps/libapps.a(exit.o)
+                0x000040000000a100                cmd_exit
+ *fill*         0x000040000000a138        0x8 
+ .data.rel      0x000040000000a140       0x58 bin/libbin.a(clear.o)
+                0x000040000000a140                cmd_clear_opts
+                0x000040000000a160                cmd_clear
+ *fill*         0x000040000000a198        0x8 
+ .data.rel      0x000040000000a1a0       0x20 bin/libbin.a(color.o)
+                0x000040000000a1a0                cmd_clear_opt_color
+ .data.rel      0x000040000000a1c0       0x58 bin/libbin.a(boneos_logo.o)
+                0x000040000000a1c0                cmd_boneos_logo_opts
+                0x000040000000a1e0                cmd_boneos_logo
+ *fill*         0x000040000000a218        0x8 
+ .data.rel      0x000040000000a220       0x20 bin/libbin.a(boneos_logo_color.o)
+                0x000040000000a220                cmd_boneos_logo_opt_color
+ .data.rel      0x000040000000a240       0x58 bin/libbin.a(help.o)
+                0x000040000000a240                cmd_help_opts
+                0x000040000000a260                cmd_help
+ *fill*         0x000040000000a298        0x8 
+ .data.rel      0x000040000000a2a0       0x20 bin/libbin.a(help_cmd_opt.o)
+                0x000040000000a2a0                cmd_help_opt_cmd
+ .data.rel      0x000040000000a2c0       0x38 bin/libbin.a(sleep.o)
+                0x000040000000a2c0                cmd_sleep
+ *fill*         0x000040000000a2f8        0x8 
+ .data.rel      0x000040000000a300       0x38 bin/libbin.a(echo.o)
+                0x000040000000a300                cmd_echo
+ *fill*         0x000040000000a338        0x8 
+ .data.rel      0x000040000000a340       0x38 bin/libbin.a(cursor.o)
+                0x000040000000a340                cmd_cursor
+ *fill*         0x000040000000a378        0x8 
+ .data.rel      0x000040000000a380       0x38 bin/libbin.a(pwd.o)
+                0x000040000000a380                cmd_pwd
+ *fill*         0x000040000000a3b8        0x8 
+ .data.rel      0x000040000000a3c0       0x38 bin/libbin.a(logname.o)
+                0x000040000000a3c0                cmd_logname
+ *fill*         0x000040000000a3f8        0x8 
+ .data.rel      0x000040000000a400       0x38 bin/libbin.a(boneshell.o)
+                0x000040000000a400                cmd_boneshell
+ *fill*         0x000040000000a438        0x8 
+ .data.rel      0x000040000000a440       0x38 sbin/libsbin.a(reboot.o)
+                0x000040000000a440                cmd_reboot
+ *fill*         0x000040000000a478        0x8 
+ .data.rel      0x000040000000a480       0x38 sbin/libsbin.a(poweroff.o)
+                0x000040000000a480                cmd_poweroff
+ *fill*         0x000040000000a4b8        0x8 
+ .data.rel      0x000040000000a4c0       0x10 platform/pc/libplatform.a(video.o)
+                0x000040000000a4c0                video_drivers
+ *fill*         0x000040000000a4d0       0x10 
+ .data.rel      0x000040000000a4e0       0x68 platform/pc/libplatform.a(vga.o)
+                0x000040000000a4e0                vga_driver
+ *fill*         0x000040000000a548       0x18 
+ .data.rel      0x000040000000a560       0x50 platform/pc/libplatform.a(vga_textmode.o)
+                0x000040000000a560                __textmode
+                0x000040000000a5a0                vga_textmodes_arr
+ *fill*         0x000040000000a5b0       0x10 
+ .data.rel      0x000040000000a5c0       0xa0 platform/pc/libplatform.a(driver.o)
+                0x000040000000a5c0                pit_driver
+                0x000040000000a600                kbd_driver
+                0x000040000000a640                drivers
+ .data.rel      0x000040000000a660       0x30 platform/pc/libplatform.a(scancodes.o)
+                0x000040000000a660                QWERTY_USA
+                0x000040000000a680                kbd_layouts
+
+.data.rel.local
+                0x000040000000a6a0      0x160 load address 0x000000000010a678
+ .data.rel.local
+                0x000040000000a6a0       0x18 platform/pc/libplatform.a(video.o)
+                0x000040000000a6a0                video_driver_name
+                0x000040000000a6a8                video_driver_mode
+                0x000040000000a6b0                video_driver_fullname
+ *fill*         0x000040000000a6b8        0x8 
+ .data.rel.local
+                0x000040000000a6c0       0x28 platform/pc/libplatform.a(driver.o)
+                0x000040000000a6c0                video_driver
+ .data.rel.local
+                0x000040000000a6e8       0x10 apps/libapps.a(values.o)
+                0x000040000000a6e8                VAR_USER
+                0x000040000000a6f0                VAR_PWD
+ *fill*         0x000040000000a6f8        0x8 
+ .data.rel.local
+                0x000040000000a700      0x100 arch/shared/x86/libshared_arch.a(isr.o)
+                0x000040000000a700                exception_messages
+
+.eh_frame       0x000040000000a800     0x1800 load address 0x000000000010a7d8
+                0x000040000000a800                _ehframe = .
+ *(.eh_frame)
+ .eh_frame      0x000040000000a800       0x78 arch/amd64/libarch.a(main.o)
+ .eh_frame      0x000040000000a878       0x20 arch/amd64/libarch.a(cpu.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000a898       0x40 arch/amd64/libarch.a(idt.o)
+                                         0x58 (size before relaxing)
+ .eh_frame      0x000040000000a8d8       0x20 arch/amd64/libarch.a(gdt.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000a8f8       0x20 apps/libapps.a(shell.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000a918       0x30 apps/libapps.a(exit.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000a948       0x20 bin/libbin.a(clear.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000a968       0x30 bin/libbin.a(color.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000a998       0x30 bin/libbin.a(main_clear.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000a9c8       0x20 bin/libbin.a(boneos_logo.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000a9e8       0x30 bin/libbin.a(main_boneos_logo.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aa18       0x30 bin/libbin.a(boneos_logo_color.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aa48       0x20 bin/libbin.a(help.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000aa68       0x30 bin/libbin.a(help_cmd_opt.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aa98       0x30 bin/libbin.a(main_help.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aac8       0x30 bin/libbin.a(sleep.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aaf8       0x30 bin/libbin.a(main_sleep.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000ab28       0x20 bin/libbin.a(echo.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000ab48       0x30 bin/libbin.a(main_echo.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000ab78       0x20 bin/libbin.a(cursor.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000ab98       0x30 bin/libbin.a(main_cursor.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000abc8       0x20 bin/libbin.a(pwd.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000abe8       0x30 bin/libbin.a(main_pwd.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000ac18       0x20 bin/libbin.a(logname.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000ac38       0x30 bin/libbin.a(main_logname.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000ac68      0x210 bin/libbin.a(boneshell.o)
+                                        0x228 (size before relaxing)
+ .eh_frame      0x000040000000ae78       0x30 sbin/libsbin.a(reboot.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aea8       0x30 sbin/libsbin.a(poweroff.o)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x000040000000aed8       0x60 arch/shared/x86/libshared_arch.a(asm_util.o)
+                                         0x78 (size before relaxing)
+ .eh_frame      0x000040000000af38       0x60 arch/shared/x86/libshared_arch.a(irq.o)
+                                         0x78 (size before relaxing)
+ .eh_frame      0x000040000000af98       0x20 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000afb8       0x20 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000afd8       0x60 platform/pc/libplatform.a(vga.o)
+                                         0x78 (size before relaxing)
+ .eh_frame      0x000040000000b038       0x20 platform/pc/libplatform.a(vga_textmode.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b058       0x20 platform/pc/libplatform.a(update_cursor.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b078       0xc0 platform/pc/libplatform.a(driver.o)
+                                         0xd8 (size before relaxing)
+ .eh_frame      0x000040000000b138       0xc0 platform/pc/libplatform.a(utils.o)
+                                         0xd8 (size before relaxing)
+ .eh_frame      0x000040000000b1f8       0x20 platform/pc/libplatform.a(pic.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b218       0xc0 platform/pc/libplatform.a(io.o)
+                                         0xd8 (size before relaxing)
+ .eh_frame      0x000040000000b2d8       0x28 platform/pc/libplatform.a(putch.o)
+                                         0x40 (size before relaxing)
+ .eh_frame      0x000040000000b300       0x48 platform/pc/libplatform.a(clear.o)
+                                         0x60 (size before relaxing)
+ .eh_frame      0x000040000000b348       0x20 platform/pc/libplatform.a(term_scroll.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b368       0xe0 platform/pc/libplatform.a(pit.o)
+                                         0xf8 (size before relaxing)
+ .eh_frame      0x000040000000b448       0x40 platform/pc/libplatform.a(utils.o)
+                                         0x58 (size before relaxing)
+ .eh_frame      0x000040000000b488       0x20 libc/libc.a(strlen.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b4a8       0x20 libc/libc.a(strcpy.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b4c8       0x20 libc/libc.a(memset.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b4e8       0x20 libc/libc.a(strcmp.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b508       0x40 libc/libc.a(printck.o)
+                                         0x58 (size before relaxing)
+ .eh_frame      0x000040000000b548       0x20 libc/libc.a(atoi.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b568       0x20 libc/libc.a(strtoi.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b588       0x40 libc/libc.a(printk.o)
+                                         0x58 (size before relaxing)
+ .eh_frame      0x000040000000b5c8       0x40 libc/libc.a(scank.o)
+                                         0x58 (size before relaxing)
+ .eh_frame      0x000040000000b608       0x20 libc/libc.a(getchar.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b628       0x20 libc/libc.a(sleep.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b648       0x20 libc/libc.a(get_opt_count.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b668       0x20 libc/libc.a(get_opt.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b688       0x20 libc/libc.a(panik.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b6a8       0x20 libc/libc.a(powk.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b6c8       0x20 libc/libc.a(toupper.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b6e8       0x20 libc/libc.a(isdigit.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b708       0x20 libc/libc.a(isalpha.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b728       0x20 libc/libc.a(eat_front_whitespace.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b748       0x20 libc/libc.a(validate_char.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b768       0x40 libc/libc.a(itoa.o)
+                                         0x58 (size before relaxing)
+ .eh_frame      0x000040000000b7a8       0x20 arch/amd64/libarch.a(interrupts.o)
+                                         0x38 (size before relaxing)
+ .eh_frame      0x000040000000b7c8       0x90 apps/libapps.a(utils.o)
+                                         0xa8 (size before relaxing)
+ .eh_frame      0x000040000000b858       0x20 arch/shared/x86/libshared_arch.a(isr.o)
+                                         0x38 (size before relaxing)
+                0x000040000000c000                . = ALIGN (0x1000)
+ *fill*         0x000040000000b878      0x788 
+
+.rela.dyn       0x000040000000c000        0x0 load address 0x000000000010c000
+ .rela.iplt     0x0000000000000000        0x0 arch/amd64/libarch.a(boot.o)
+ .rela.text     0x0000000000000000        0x0 arch/amd64/libarch.a(boot.o)
+ .rela.got      0x0000000000000000        0x0 arch/amd64/libarch.a(boot.o)
+ .rela.data.rel
+                0x0000000000000000        0x0 arch/amd64/libarch.a(boot.o)
+
+.bss            0x000040000000c000   0x203000 load address 0x000000000010bfd8
+                0x000040000000c000                _bss = .
+ *(.bss)
+ .bss           0x000040000000c000   0x200000 arch/amd64/libarch.a(boot.o)
+ .bss           0x000040000020c000        0x0 arch/amd64/libarch.a(main.o)
+ .bss           0x000040000020c000        0x0 arch/amd64/libarch.a(cpu.o)
+ .bss           0x000040000020c000        0x0 arch/amd64/libarch.a(idt.o)
+ .bss           0x000040000020c000        0x0 arch/amd64/libarch.a(gdt.o)
+ .bss           0x000040000020c000        0xc apps/libapps.a(shell.o)
+                0x000040000020c000                shell_instance_cnt
+                0x000040000020c004                TERMINAL_MODE
+                0x000040000020c008                cmd_active_index
+ *fill*         0x000040000020c00c        0x4 
+ .bss           0x000040000020c010        0x8 apps/libapps.a(exit.o)
+                0x000040000020c010                cmd_exit_opts
+ .bss           0x000040000020c018        0x0 bin/libbin.a(clear.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(color.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(main_clear.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(boneos_logo.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(main_boneos_logo.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(boneos_logo_color.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(help.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(help_cmd_opt.o)
+ .bss           0x000040000020c018        0x0 bin/libbin.a(main_help.o)
+ .bss           0x000040000020c018        0x8 bin/libbin.a(sleep.o)
+                0x000040000020c018                cmd_sleep_opts
+ .bss           0x000040000020c020        0x4 bin/libbin.a(main_sleep.o)
+ *fill*         0x000040000020c024        0x4 
+ .bss           0x000040000020c028        0x8 bin/libbin.a(echo.o)
+                0x000040000020c028                cmd_echo_opts
+ .bss           0x000040000020c030        0x0 bin/libbin.a(main_echo.o)
+ .bss           0x000040000020c030        0x8 bin/libbin.a(cursor.o)
+                0x000040000020c030                cmd_cursor_opts
+ .bss           0x000040000020c038        0x0 bin/libbin.a(main_cursor.o)
+ .bss           0x000040000020c038        0x8 bin/libbin.a(pwd.o)
+                0x000040000020c038                cmd_pwd_opts
+ .bss           0x000040000020c040        0x0 bin/libbin.a(main_pwd.o)
+ .bss           0x000040000020c040        0x8 bin/libbin.a(logname.o)
+                0x000040000020c040                cmd_logname_opts
+ .bss           0x000040000020c048        0x0 bin/libbin.a(main_logname.o)
+ .bss           0x000040000020c048       0x20 bin/libbin.a(boneshell.o)
+                0x000040000020c048                INDEX_CURSOR_POSITION
+                0x000040000020c04c                TAB_PREVIOUS_VALUE_SET
+                0x000040000020c050                TAB_PREVIOUS_VALUE
+                0x000040000020c058                cmd_boneshell_opts
+                0x000040000020c060                __found
+                0x000040000020c064                exit_set__shell
+                0x000040000020c065                tab_multiple_opts
+                0x000040000020c066                tab_one_opt
+                0x000040000020c067                executed_internally
+ .bss           0x000040000020c068        0x8 sbin/libsbin.a(reboot.o)
+                0x000040000020c068                cmd_reboot_opts
+ .bss           0x000040000020c070        0x8 sbin/libsbin.a(poweroff.o)
+                0x000040000020c070                cmd_poweroff_opts
+ .bss           0x000040000020c078        0x0 arch/shared/x86/libshared_arch.a(asm_util.o)
+ *fill*         0x000040000020c078        0x8 
+ .bss           0x000040000020c080       0x80 arch/shared/x86/libshared_arch.a(irq.o)
+                0x000040000020c080                irq_routines
+ .bss           0x000040000020c100        0x0 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .bss           0x000040000020c100        0x0 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(video.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(vga.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(vga_textmode.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(update_cursor.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(driver.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(scancodes.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(scancodes_usa.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(utils.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(pic.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(io.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(putch.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(clear.o)
+ .bss           0x000040000020c100        0x0 platform/pc/libplatform.a(term_scroll.o)
+ .bss           0x000040000020c100        0x4 platform/pc/libplatform.a(pit.o)
+                0x000040000020c100                pit_ticks
+ .bss           0x000040000020c104        0x0 platform/pc/libplatform.a(utils.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(strlen.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(strcpy.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(memset.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(strcmp.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(printck.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(atoi.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(strtoi.o)
+ .bss           0x000040000020c104        0x0 libc/libc.a(printk.o)
+ .bss           0x000040000020c104        0x5 libc/libc.a(scank.o)
+                0x000040000020c104                LENGTH_INPUT
+                0x000040000020c108                __backspace_count_active
+ .bss           0x000040000020c109        0x2 libc/libc.a(getchar.o)
+                0x000040000020c109                __get_char_set
+                0x000040000020c10a                __get_char_chr
+ .bss           0x000040000020c10b        0x0 libc/libc.a(sleep.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(get_opt_count.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(get_opt.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(panik.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(powk.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(toupper.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(isdigit.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(isalpha.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(eat_front_whitespace.o)
+ .bss           0x000040000020c10b        0x0 libc/libc.a(validate_char.o)
+ *fill*         0x000040000020c10b        0x5 
+ .bss           0x000040000020c110       0x10 libc/libc.a(itoa.o)
+ .bss           0x000040000020c120        0x0 arch/amd64/libarch.a(interrupts.o)
+ .bss           0x000040000020c120        0x0 apps/libapps.a(values.o)
+ .bss           0x000040000020c120        0x0 apps/libapps.a(utils.o)
+ .bss           0x000040000020c120        0x0 arch/shared/x86/libshared_arch.a(isr.o)
+ *(COMMON)
+ COMMON         0x000040000020c120        0x0 arch/amd64/libarch.a(main.o)
+ COMMON         0x000040000020c120        0xa arch/amd64/libarch.a(cpu.o)
+                0x000040000020c120                gp
+ *fill*         0x000040000020c12a       0x16 
+ COMMON         0x000040000020c140     0x1000 arch/amd64/libarch.a(idt.o)
+                0x000040000020c140                idt
+ COMMON         0x000040000020d140        0x8 apps/libapps.a(shell.o)
+                0x000040000020d140                cmd_active
+ *fill*         0x000040000020d148       0x18 
+ COMMON         0x000040000020d160      0x414 bin/libbin.a(boneshell.o)
+                0x000040000020d160                tab__
+                0x000040000020d560                kbd_info
+ *fill*         0x000040000020d574        0xc 
+ COMMON         0x000040000020d580     0x1020 libc/libc.a(scank.o)
+                0x000040000020d580                index_scank
+                0x000040000020d584                print_scank
+                0x000040000020d585                active_scank
+                0x000040000020d5a0                buffer_scank
+ COMMON         0x000040000020e5a0       0x20 libc/libc.a(itoa.o)
+                0x000040000020e5a0                tbuf
+                0x000040000020f000                . = ALIGN (0x1000)
+ *fill*         0x000040000020e5c0      0xa40 
+                0x000040000020f000                _end = .
+
+/DISCARD/
+ *(.comment)
+START GROUP
+LOAD libc/libc.a
+LOAD arch/amd64/libarch.a
+LOAD apps/libapps.a
+LOAD bin/libbin.a
+LOAD sbin/libsbin.a
+LOAD arch/shared/x86/libshared_arch.a
+LOAD platform/pc/libplatform.a
+END GROUP
+LOAD /usr/lib/gcc/x86_64-linux-gnu/4.8//libgcc.a
+OUTPUT(BoneOS.bin elf64-x86-64)
+
+.debug_info     0x0000000000000000     0xa12d
+ .debug_info    0x0000000000000000      0x16b arch/amd64/libarch.a(main.o)
+ .debug_info    0x000000000000016b       0xe3 arch/amd64/libarch.a(cpu.o)
+ .debug_info    0x000000000000024e      0x217 arch/amd64/libarch.a(idt.o)
+ .debug_info    0x0000000000000465      0x16f arch/amd64/libarch.a(gdt.o)
+ .debug_info    0x00000000000005d4      0x2bd apps/libapps.a(shell.o)
+ .debug_info    0x0000000000000891      0x27c apps/libapps.a(exit.o)
+ .debug_info    0x0000000000000b0d      0x458 bin/libbin.a(clear.o)
+ .debug_info    0x0000000000000f65      0x40f bin/libbin.a(color.o)
+ .debug_info    0x0000000000001374      0x47f bin/libbin.a(main_clear.o)
+ .debug_info    0x00000000000017f3      0x21a bin/libbin.a(boneos_logo.o)
+ .debug_info    0x0000000000001a0d      0x47f bin/libbin.a(main_boneos_logo.o)
+ .debug_info    0x0000000000001e8c      0x42d bin/libbin.a(boneos_logo_color.o)
+ .debug_info    0x00000000000022b9      0x254 bin/libbin.a(help.o)
+ .debug_info    0x000000000000250d      0x299 bin/libbin.a(help_cmd_opt.o)
+ .debug_info    0x00000000000027a6      0x241 bin/libbin.a(main_help.o)
+ .debug_info    0x00000000000029e7      0x284 bin/libbin.a(sleep.o)
+ .debug_info    0x0000000000002c6b      0x17f bin/libbin.a(main_sleep.o)
+ .debug_info    0x0000000000002dea      0x20f bin/libbin.a(echo.o)
+ .debug_info    0x0000000000002ff9      0x320 bin/libbin.a(main_echo.o)
+ .debug_info    0x0000000000003319      0x20f bin/libbin.a(cursor.o)
+ .debug_info    0x0000000000003528      0x4a4 bin/libbin.a(main_cursor.o)
+ .debug_info    0x00000000000039cc      0x1f6 bin/libbin.a(pwd.o)
+ .debug_info    0x0000000000003bc2      0x241 bin/libbin.a(main_pwd.o)
+ .debug_info    0x0000000000003e03      0x1f6 bin/libbin.a(logname.o)
+ .debug_info    0x0000000000003ff9      0x241 bin/libbin.a(main_logname.o)
+ .debug_info    0x000000000000423a      0xe01 bin/libbin.a(boneshell.o)
+ .debug_info    0x000000000000503b      0x265 sbin/libsbin.a(reboot.o)
+ .debug_info    0x00000000000052a0      0x265 sbin/libsbin.a(poweroff.o)
+ .debug_info    0x0000000000005505       0x79 arch/shared/x86/libshared_arch.a(asm_util.o)
+ .debug_info    0x000000000000557e      0x312 arch/shared/x86/libshared_arch.a(irq.o)
+ .debug_info    0x0000000000005890       0xc0 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .debug_info    0x0000000000005950       0xaa arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .debug_info    0x00000000000059fa      0x34f platform/pc/libplatform.a(video.o)
+ .debug_info    0x0000000000005d49      0x491 platform/pc/libplatform.a(vga.o)
+ .debug_info    0x00000000000061da      0x1e4 platform/pc/libplatform.a(vga_textmode.o)
+ .debug_info    0x00000000000063be      0x13e platform/pc/libplatform.a(update_cursor.o)
+ .debug_info    0x00000000000064fc      0x4d5 platform/pc/libplatform.a(driver.o)
+ .debug_info    0x00000000000069d1      0x132 platform/pc/libplatform.a(scancodes.o)
+ .debug_info    0x0000000000006b03       0xb6 platform/pc/libplatform.a(scancodes_usa.o)
+ .debug_info    0x0000000000006bb9      0x292 platform/pc/libplatform.a(utils.o)
+ .debug_info    0x0000000000006e4b       0x9b platform/pc/libplatform.a(pic.o)
+ .debug_info    0x0000000000006ee6      0x1eb platform/pc/libplatform.a(io.o)
+ .debug_info    0x00000000000070d1      0x341 platform/pc/libplatform.a(putch.o)
+ .debug_info    0x0000000000007412      0x39b platform/pc/libplatform.a(clear.o)
+ .debug_info    0x00000000000077ad      0x37f platform/pc/libplatform.a(term_scroll.o)
+ .debug_info    0x0000000000007b2c      0x422 platform/pc/libplatform.a(pit.o)
+ .debug_info    0x0000000000007f4e      0x109 platform/pc/libplatform.a(utils.o)
+ .debug_info    0x0000000000008057       0xac libc/libc.a(strlen.o)
+ .debug_info    0x0000000000008103       0x92 libc/libc.a(strcpy.o)
+ .debug_info    0x0000000000008195       0xe9 libc/libc.a(memset.o)
+ .debug_info    0x000000000000827e       0xc2 libc/libc.a(strcmp.o)
+ .debug_info    0x0000000000008340      0x3ff libc/libc.a(printck.o)
+ .debug_info    0x000000000000873f       0x81 libc/libc.a(atoi.o)
+ .debug_info    0x00000000000087c0       0xc3 libc/libc.a(strtoi.o)
+ .debug_info    0x0000000000008883      0x501 libc/libc.a(printk.o)
+ .debug_info    0x0000000000008d84      0x2c8 libc/libc.a(scank.o)
+ .debug_info    0x000000000000904c       0xeb libc/libc.a(getchar.o)
+ .debug_info    0x0000000000009137       0xf3 libc/libc.a(sleep.o)
+ .debug_info    0x000000000000922a       0xf0 libc/libc.a(get_opt_count.o)
+ .debug_info    0x000000000000931a      0x15c libc/libc.a(get_opt.o)
+ .debug_info    0x0000000000009476      0x12f libc/libc.a(panik.o)
+ .debug_info    0x00000000000095a5       0xe1 libc/libc.a(powk.o)
+ .debug_info    0x0000000000009686       0x63 libc/libc.a(toupper.o)
+ .debug_info    0x00000000000096e9       0x63 libc/libc.a(isdigit.o)
+ .debug_info    0x000000000000974c       0x63 libc/libc.a(isalpha.o)
+ .debug_info    0x00000000000097af       0x6e libc/libc.a(eat_front_whitespace.o)
+ .debug_info    0x000000000000981d       0x6a libc/libc.a(validate_char.o)
+ .debug_info    0x0000000000009887      0x1b6 libc/libc.a(itoa.o)
+ .debug_info    0x0000000000009a3d      0x30c arch/amd64/libarch.a(interrupts.o)
+ .debug_info    0x0000000000009d49       0xc7 apps/libapps.a(values.o)
+ .debug_info    0x0000000000009e10      0x252 apps/libapps.a(utils.o)
+ .debug_info    0x000000000000a062       0xcb arch/shared/x86/libshared_arch.a(isr.o)
+
+.debug_abbrev   0x0000000000000000     0x3f14
+ .debug_abbrev  0x0000000000000000       0xc7 arch/amd64/libarch.a(main.o)
+ .debug_abbrev  0x00000000000000c7       0x7e arch/amd64/libarch.a(cpu.o)
+ .debug_abbrev  0x0000000000000145       0xf4 arch/amd64/libarch.a(idt.o)
+ .debug_abbrev  0x0000000000000239       0x8e arch/amd64/libarch.a(gdt.o)
+ .debug_abbrev  0x00000000000002c7       0xd7 apps/libapps.a(shell.o)
+ .debug_abbrev  0x000000000000039e      0x120 apps/libapps.a(exit.o)
+ .debug_abbrev  0x00000000000004be      0x15c bin/libbin.a(clear.o)
+ .debug_abbrev  0x000000000000061a      0x174 bin/libbin.a(color.o)
+ .debug_abbrev  0x000000000000078e      0x165 bin/libbin.a(main_clear.o)
+ .debug_abbrev  0x00000000000008f3       0xfb bin/libbin.a(boneos_logo.o)
+ .debug_abbrev  0x00000000000009ee      0x165 bin/libbin.a(main_boneos_logo.o)
+ .debug_abbrev  0x0000000000000b53      0x174 bin/libbin.a(boneos_logo_color.o)
+ .debug_abbrev  0x0000000000000cc7      0x118 bin/libbin.a(help.o)
+ .debug_abbrev  0x0000000000000ddf      0x13d bin/libbin.a(help_cmd_opt.o)
+ .debug_abbrev  0x0000000000000f1c      0x120 bin/libbin.a(main_help.o)
+ .debug_abbrev  0x000000000000103c      0x127 bin/libbin.a(sleep.o)
+ .debug_abbrev  0x0000000000001163       0xc9 bin/libbin.a(main_sleep.o)
+ .debug_abbrev  0x000000000000122c       0xea bin/libbin.a(echo.o)
+ .debug_abbrev  0x0000000000001316      0x143 bin/libbin.a(main_echo.o)
+ .debug_abbrev  0x0000000000001459       0xea bin/libbin.a(cursor.o)
+ .debug_abbrev  0x0000000000001543      0x16e bin/libbin.a(main_cursor.o)
+ .debug_abbrev  0x00000000000016b1       0xdb bin/libbin.a(pwd.o)
+ .debug_abbrev  0x000000000000178c      0x120 bin/libbin.a(main_pwd.o)
+ .debug_abbrev  0x00000000000018ac       0xdb bin/libbin.a(logname.o)
+ .debug_abbrev  0x0000000000001987      0x120 bin/libbin.a(main_logname.o)
+ .debug_abbrev  0x0000000000001aa7      0x2cc bin/libbin.a(boneshell.o)
+ .debug_abbrev  0x0000000000001d73      0x10f sbin/libsbin.a(reboot.o)
+ .debug_abbrev  0x0000000000001e82      0x10f sbin/libsbin.a(poweroff.o)
+ .debug_abbrev  0x0000000000001f91       0x2c arch/shared/x86/libshared_arch.a(asm_util.o)
+ .debug_abbrev  0x0000000000001fbd      0x113 arch/shared/x86/libshared_arch.a(irq.o)
+ .debug_abbrev  0x00000000000020d0       0x60 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .debug_abbrev  0x0000000000002130       0x51 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .debug_abbrev  0x0000000000002181      0x112 platform/pc/libplatform.a(video.o)
+ .debug_abbrev  0x0000000000002293      0x15a platform/pc/libplatform.a(vga.o)
+ .debug_abbrev  0x00000000000023ed       0xe2 platform/pc/libplatform.a(vga_textmode.o)
+ .debug_abbrev  0x00000000000024cf       0xa9 platform/pc/libplatform.a(update_cursor.o)
+ .debug_abbrev  0x0000000000002578      0x199 platform/pc/libplatform.a(driver.o)
+ .debug_abbrev  0x0000000000002711       0x8d platform/pc/libplatform.a(scancodes.o)
+ .debug_abbrev  0x000000000000279e       0x50 platform/pc/libplatform.a(scancodes_usa.o)
+ .debug_abbrev  0x00000000000027ee      0x11e platform/pc/libplatform.a(utils.o)
+ .debug_abbrev  0x000000000000290c       0x40 platform/pc/libplatform.a(pic.o)
+ .debug_abbrev  0x000000000000294c       0xa3 platform/pc/libplatform.a(io.o)
+ .debug_abbrev  0x00000000000029ef      0x132 platform/pc/libplatform.a(putch.o)
+ .debug_abbrev  0x0000000000002b21      0x151 platform/pc/libplatform.a(clear.o)
+ .debug_abbrev  0x0000000000002c72      0x14e platform/pc/libplatform.a(term_scroll.o)
+ .debug_abbrev  0x0000000000002dc0      0x131 platform/pc/libplatform.a(pit.o)
+ .debug_abbrev  0x0000000000002ef1       0x71 platform/pc/libplatform.a(utils.o)
+ .debug_abbrev  0x0000000000002f62       0x81 libc/libc.a(strlen.o)
+ .debug_abbrev  0x0000000000002fe3       0x78 libc/libc.a(strcpy.o)
+ .debug_abbrev  0x000000000000305b       0x81 libc/libc.a(memset.o)
+ .debug_abbrev  0x00000000000030dc       0x65 libc/libc.a(strcmp.o)
+ .debug_abbrev  0x0000000000003141      0x155 libc/libc.a(printck.o)
+ .debug_abbrev  0x0000000000003296       0x74 libc/libc.a(atoi.o)
+ .debug_abbrev  0x000000000000330a       0x92 libc/libc.a(strtoi.o)
+ .debug_abbrev  0x000000000000339c      0x17f libc/libc.a(printk.o)
+ .debug_abbrev  0x000000000000351b      0x11f libc/libc.a(scank.o)
+ .debug_abbrev  0x000000000000363a       0x6d libc/libc.a(getchar.o)
+ .debug_abbrev  0x00000000000036a7       0x87 libc/libc.a(sleep.o)
+ .debug_abbrev  0x000000000000372e       0x90 libc/libc.a(get_opt_count.o)
+ .debug_abbrev  0x00000000000037be       0xd4 libc/libc.a(get_opt.o)
+ .debug_abbrev  0x0000000000003892       0xbb libc/libc.a(panik.o)
+ .debug_abbrev  0x000000000000394d       0x87 libc/libc.a(powk.o)
+ .debug_abbrev  0x00000000000039d4       0x4a libc/libc.a(toupper.o)
+ .debug_abbrev  0x0000000000003a1e       0x4a libc/libc.a(isdigit.o)
+ .debug_abbrev  0x0000000000003a68       0x4a libc/libc.a(isalpha.o)
+ .debug_abbrev  0x0000000000003ab2       0x5a libc/libc.a(eat_front_whitespace.o)
+ .debug_abbrev  0x0000000000003b0c       0x4a libc/libc.a(validate_char.o)
+ .debug_abbrev  0x0000000000003b56       0xd5 libc/libc.a(itoa.o)
+ .debug_abbrev  0x0000000000003c2b      0x10d arch/amd64/libarch.a(interrupts.o)
+ .debug_abbrev  0x0000000000003d38       0x54 apps/libapps.a(values.o)
+ .debug_abbrev  0x0000000000003d8c      0x115 apps/libapps.a(utils.o)
+ .debug_abbrev  0x0000000000003ea1       0x73 arch/shared/x86/libshared_arch.a(isr.o)
+
+.debug_aranges  0x0000000000000000      0xd40
+ .debug_aranges
+                0x0000000000000000       0x30 arch/amd64/libarch.a(main.o)
+ .debug_aranges
+                0x0000000000000030       0x30 arch/amd64/libarch.a(cpu.o)
+ .debug_aranges
+                0x0000000000000060       0x30 arch/amd64/libarch.a(idt.o)
+ .debug_aranges
+                0x0000000000000090       0x30 arch/amd64/libarch.a(gdt.o)
+ .debug_aranges
+                0x00000000000000c0       0x30 apps/libapps.a(shell.o)
+ .debug_aranges
+                0x00000000000000f0       0x30 apps/libapps.a(exit.o)
+ .debug_aranges
+                0x0000000000000120       0x30 bin/libbin.a(clear.o)
+ .debug_aranges
+                0x0000000000000150       0x30 bin/libbin.a(color.o)
+ .debug_aranges
+                0x0000000000000180       0x30 bin/libbin.a(main_clear.o)
+ .debug_aranges
+                0x00000000000001b0       0x30 bin/libbin.a(boneos_logo.o)
+ .debug_aranges
+                0x00000000000001e0       0x30 bin/libbin.a(main_boneos_logo.o)
+ .debug_aranges
+                0x0000000000000210       0x30 bin/libbin.a(boneos_logo_color.o)
+ .debug_aranges
+                0x0000000000000240       0x30 bin/libbin.a(help.o)
+ .debug_aranges
+                0x0000000000000270       0x30 bin/libbin.a(help_cmd_opt.o)
+ .debug_aranges
+                0x00000000000002a0       0x30 bin/libbin.a(main_help.o)
+ .debug_aranges
+                0x00000000000002d0       0x30 bin/libbin.a(sleep.o)
+ .debug_aranges
+                0x0000000000000300       0x30 bin/libbin.a(main_sleep.o)
+ .debug_aranges
+                0x0000000000000330       0x30 bin/libbin.a(echo.o)
+ .debug_aranges
+                0x0000000000000360       0x30 bin/libbin.a(main_echo.o)
+ .debug_aranges
+                0x0000000000000390       0x30 bin/libbin.a(cursor.o)
+ .debug_aranges
+                0x00000000000003c0       0x30 bin/libbin.a(main_cursor.o)
+ .debug_aranges
+                0x00000000000003f0       0x30 bin/libbin.a(pwd.o)
+ .debug_aranges
+                0x0000000000000420       0x30 bin/libbin.a(main_pwd.o)
+ .debug_aranges
+                0x0000000000000450       0x30 bin/libbin.a(logname.o)
+ .debug_aranges
+                0x0000000000000480       0x30 bin/libbin.a(main_logname.o)
+ .debug_aranges
+                0x00000000000004b0       0x30 bin/libbin.a(boneshell.o)
+ .debug_aranges
+                0x00000000000004e0       0x30 sbin/libsbin.a(reboot.o)
+ .debug_aranges
+                0x0000000000000510       0x30 sbin/libsbin.a(poweroff.o)
+ .debug_aranges
+                0x0000000000000540       0x30 arch/shared/x86/libshared_arch.a(asm_util.o)
+ .debug_aranges
+                0x0000000000000570       0x30 arch/shared/x86/libshared_arch.a(irq.o)
+ .debug_aranges
+                0x00000000000005a0       0x30 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .debug_aranges
+                0x00000000000005d0       0x30 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .debug_aranges
+                0x0000000000000600       0x20 platform/pc/libplatform.a(video.o)
+ .debug_aranges
+                0x0000000000000620       0x30 platform/pc/libplatform.a(vga.o)
+ .debug_aranges
+                0x0000000000000650       0x30 platform/pc/libplatform.a(vga_textmode.o)
+ .debug_aranges
+                0x0000000000000680       0x30 platform/pc/libplatform.a(update_cursor.o)
+ .debug_aranges
+                0x00000000000006b0       0x30 platform/pc/libplatform.a(driver.o)
+ .debug_aranges
+                0x00000000000006e0       0x20 platform/pc/libplatform.a(scancodes.o)
+ .debug_aranges
+                0x0000000000000700       0x20 platform/pc/libplatform.a(scancodes_usa.o)
+ .debug_aranges
+                0x0000000000000720       0x30 platform/pc/libplatform.a(utils.o)
+ .debug_aranges
+                0x0000000000000750       0x30 platform/pc/libplatform.a(pic.o)
+ .debug_aranges
+                0x0000000000000780       0x30 platform/pc/libplatform.a(io.o)
+ .debug_aranges
+                0x00000000000007b0       0x30 platform/pc/libplatform.a(putch.o)
+ .debug_aranges
+                0x00000000000007e0       0x30 platform/pc/libplatform.a(clear.o)
+ .debug_aranges
+                0x0000000000000810       0x30 platform/pc/libplatform.a(term_scroll.o)
+ .debug_aranges
+                0x0000000000000840       0x30 platform/pc/libplatform.a(pit.o)
+ .debug_aranges
+                0x0000000000000870       0x30 platform/pc/libplatform.a(utils.o)
+ .debug_aranges
+                0x00000000000008a0       0x30 libc/libc.a(strlen.o)
+ .debug_aranges
+                0x00000000000008d0       0x30 libc/libc.a(strcpy.o)
+ .debug_aranges
+                0x0000000000000900       0x30 libc/libc.a(memset.o)
+ .debug_aranges
+                0x0000000000000930       0x30 libc/libc.a(strcmp.o)
+ .debug_aranges
+                0x0000000000000960       0x30 libc/libc.a(printck.o)
+ .debug_aranges
+                0x0000000000000990       0x30 libc/libc.a(atoi.o)
+ .debug_aranges
+                0x00000000000009c0       0x30 libc/libc.a(strtoi.o)
+ .debug_aranges
+                0x00000000000009f0       0x30 libc/libc.a(printk.o)
+ .debug_aranges
+                0x0000000000000a20       0x30 libc/libc.a(scank.o)
+ .debug_aranges
+                0x0000000000000a50       0x30 libc/libc.a(getchar.o)
+ .debug_aranges
+                0x0000000000000a80       0x30 libc/libc.a(sleep.o)
+ .debug_aranges
+                0x0000000000000ab0       0x30 libc/libc.a(get_opt_count.o)
+ .debug_aranges
+                0x0000000000000ae0       0x30 libc/libc.a(get_opt.o)
+ .debug_aranges
+                0x0000000000000b10       0x30 libc/libc.a(panik.o)
+ .debug_aranges
+                0x0000000000000b40       0x30 libc/libc.a(powk.o)
+ .debug_aranges
+                0x0000000000000b70       0x30 libc/libc.a(toupper.o)
+ .debug_aranges
+                0x0000000000000ba0       0x30 libc/libc.a(isdigit.o)
+ .debug_aranges
+                0x0000000000000bd0       0x30 libc/libc.a(isalpha.o)
+ .debug_aranges
+                0x0000000000000c00       0x30 libc/libc.a(eat_front_whitespace.o)
+ .debug_aranges
+                0x0000000000000c30       0x30 libc/libc.a(validate_char.o)
+ .debug_aranges
+                0x0000000000000c60       0x30 libc/libc.a(itoa.o)
+ .debug_aranges
+                0x0000000000000c90       0x30 arch/amd64/libarch.a(interrupts.o)
+ .debug_aranges
+                0x0000000000000cc0       0x20 apps/libapps.a(values.o)
+ .debug_aranges
+                0x0000000000000ce0       0x30 apps/libapps.a(utils.o)
+ .debug_aranges
+                0x0000000000000d10       0x30 arch/shared/x86/libshared_arch.a(isr.o)
+
+.debug_line     0x0000000000000000     0x4f08
+ .debug_line    0x0000000000000000       0xd5 arch/amd64/libarch.a(main.o)
+ .debug_line    0x00000000000000d5       0xbc arch/amd64/libarch.a(cpu.o)
+ .debug_line    0x0000000000000191       0xf4 arch/amd64/libarch.a(idt.o)
+ .debug_line    0x0000000000000285       0xc2 arch/amd64/libarch.a(gdt.o)
+ .debug_line    0x0000000000000347      0x3c1 apps/libapps.a(shell.o)
+ .debug_line    0x0000000000000708      0x11a apps/libapps.a(exit.o)
+ .debug_line    0x0000000000000822      0x182 bin/libbin.a(clear.o)
+ .debug_line    0x00000000000009a4      0x18e bin/libbin.a(color.o)
+ .debug_line    0x0000000000000b32      0x225 bin/libbin.a(main_clear.o)
+ .debug_line    0x0000000000000d57      0x132 bin/libbin.a(boneos_logo.o)
+ .debug_line    0x0000000000000e89      0x25b bin/libbin.a(main_boneos_logo.o)
+ .debug_line    0x00000000000010e4      0x1b3 bin/libbin.a(boneos_logo_color.o)
+ .debug_line    0x0000000000001297      0x127 bin/libbin.a(help.o)
+ .debug_line    0x00000000000013be      0x12a bin/libbin.a(help_cmd_opt.o)
+ .debug_line    0x00000000000014e8      0x19c bin/libbin.a(main_help.o)
+ .debug_line    0x0000000000001684      0x12e bin/libbin.a(sleep.o)
+ .debug_line    0x00000000000017b2      0x13e bin/libbin.a(main_sleep.o)
+ .debug_line    0x00000000000018f0       0xc6 bin/libbin.a(echo.o)
+ .debug_line    0x00000000000019b6      0x1fa bin/libbin.a(main_echo.o)
+ .debug_line    0x0000000000001bb0       0xca bin/libbin.a(cursor.o)
+ .debug_line    0x0000000000001c7a      0x1f4 bin/libbin.a(main_cursor.o)
+ .debug_line    0x0000000000001e6e       0xb3 bin/libbin.a(pwd.o)
+ .debug_line    0x0000000000001f21      0x15d bin/libbin.a(main_pwd.o)
+ .debug_line    0x000000000000207e       0xbb bin/libbin.a(logname.o)
+ .debug_line    0x0000000000002139      0x16d bin/libbin.a(main_logname.o)
+ .debug_line    0x00000000000022a6      0x56a bin/libbin.a(boneshell.o)
+ .debug_line    0x0000000000002810      0x111 sbin/libsbin.a(reboot.o)
+ .debug_line    0x0000000000002921      0x115 sbin/libsbin.a(poweroff.o)
+ .debug_line    0x0000000000002a36       0x4b arch/shared/x86/libshared_arch.a(asm_util.o)
+ .debug_line    0x0000000000002a81       0xfc arch/shared/x86/libshared_arch.a(irq.o)
+ .debug_line    0x0000000000002b7d       0x8e arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .debug_line    0x0000000000002c0b       0x86 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .debug_line    0x0000000000002c91      0x13c platform/pc/libplatform.a(video.o)
+ .debug_line    0x0000000000002dcd      0x1cc platform/pc/libplatform.a(vga.o)
+ .debug_line    0x0000000000002f99      0x149 platform/pc/libplatform.a(vga_textmode.o)
+ .debug_line    0x00000000000030e2       0xf8 platform/pc/libplatform.a(update_cursor.o)
+ .debug_line    0x00000000000031da      0x186 platform/pc/libplatform.a(driver.o)
+ .debug_line    0x0000000000003360       0x85 platform/pc/libplatform.a(scancodes.o)
+ .debug_line    0x00000000000033e5       0x48 platform/pc/libplatform.a(scancodes_usa.o)
+ .debug_line    0x000000000000342d      0x11f platform/pc/libplatform.a(utils.o)
+ .debug_line    0x000000000000354c       0x53 platform/pc/libplatform.a(pic.o)
+ .debug_line    0x000000000000359f       0x89 platform/pc/libplatform.a(io.o)
+ .debug_line    0x0000000000003628      0x180 platform/pc/libplatform.a(putch.o)
+ .debug_line    0x00000000000037a8      0x1a8 platform/pc/libplatform.a(clear.o)
+ .debug_line    0x0000000000003950      0x199 platform/pc/libplatform.a(term_scroll.o)
+ .debug_line    0x0000000000003ae9      0x13a platform/pc/libplatform.a(pit.o)
+ .debug_line    0x0000000000003c23       0x91 platform/pc/libplatform.a(utils.o)
+ .debug_line    0x0000000000003cb4       0x91 libc/libc.a(strlen.o)
+ .debug_line    0x0000000000003d45       0x57 libc/libc.a(strcpy.o)
+ .debug_line    0x0000000000003d9c       0x8b libc/libc.a(memset.o)
+ .debug_line    0x0000000000003e27       0x5c libc/libc.a(strcmp.o)
+ .debug_line    0x0000000000003e83      0x13d libc/libc.a(printck.o)
+ .debug_line    0x0000000000003fc0       0x6d libc/libc.a(atoi.o)
+ .debug_line    0x000000000000402d       0x89 libc/libc.a(strtoi.o)
+ .debug_line    0x00000000000040b6      0x288 libc/libc.a(printk.o)
+ .debug_line    0x000000000000433e      0x188 libc/libc.a(scank.o)
+ .debug_line    0x00000000000044c6       0x50 libc/libc.a(getchar.o)
+ .debug_line    0x0000000000004516       0xe2 libc/libc.a(sleep.o)
+ .debug_line    0x00000000000045f8       0xa0 libc/libc.a(get_opt_count.o)
+ .debug_line    0x0000000000004698       0xe8 libc/libc.a(get_opt.o)
+ .debug_line    0x0000000000004780       0x98 libc/libc.a(panik.o)
+ .debug_line    0x0000000000004818       0x9b libc/libc.a(powk.o)
+ .debug_line    0x00000000000048b3       0x56 libc/libc.a(toupper.o)
+ .debug_line    0x0000000000004909       0x62 libc/libc.a(isdigit.o)
+ .debug_line    0x000000000000496b       0x6c libc/libc.a(isalpha.o)
+ .debug_line    0x00000000000049d7       0x7b libc/libc.a(eat_front_whitespace.o)
+ .debug_line    0x0000000000004a52       0x64 libc/libc.a(validate_char.o)
+ .debug_line    0x0000000000004ab6       0xc3 libc/libc.a(itoa.o)
+ .debug_line    0x0000000000004b79      0x14b arch/amd64/libarch.a(interrupts.o)
+ .debug_line    0x0000000000004cc4       0x9f apps/libapps.a(values.o)
+ .debug_line    0x0000000000004d63      0x11c apps/libapps.a(utils.o)
+ .debug_line    0x0000000000004e7f       0x89 arch/shared/x86/libshared_arch.a(isr.o)
+
+.debug_str      0x0000000000000000     0x18ac
+ .debug_str     0x0000000000000000      0x173 arch/amd64/libarch.a(main.o)
+                                        0x19a (size before relaxing)
+ .debug_str     0x0000000000000173       0x39 arch/amd64/libarch.a(cpu.o)
+                                        0x13a (size before relaxing)
+ .debug_str     0x00000000000001ac       0x82 arch/amd64/libarch.a(idt.o)
+                                        0x1bd (size before relaxing)
+ .debug_str     0x000000000000022e       0x6a arch/amd64/libarch.a(gdt.o)
+                                        0x19e (size before relaxing)
+ .debug_str     0x0000000000000298      0x148 apps/libapps.a(shell.o)
+                                        0x269 (size before relaxing)
+ .debug_str     0x00000000000003e0       0x59 apps/libapps.a(exit.o)
+                                        0x1f4 (size before relaxing)
+ .debug_str     0x0000000000000439      0x129 bin/libbin.a(clear.o)
+                                        0x2d7 (size before relaxing)
+ .debug_str     0x0000000000000562       0x2b bin/libbin.a(color.o)
+                                        0x2a2 (size before relaxing)
+ .debug_str     0x000000000000058d       0x2f bin/libbin.a(main_clear.o)
+                                        0x2e2 (size before relaxing)
+ .debug_str     0x00000000000005bc       0x5d bin/libbin.a(boneos_logo.o)
+                                        0x203 (size before relaxing)
+ .debug_str     0x0000000000000619       0x3c bin/libbin.a(main_boneos_logo.o)
+                                        0x2fb (size before relaxing)
+ .debug_str     0x0000000000000655       0x59 bin/libbin.a(boneos_logo_color.o)
+                                        0x2d6 (size before relaxing)
+ .debug_str     0x00000000000006ae       0x3c bin/libbin.a(help.o)
+                                        0x1e0 (size before relaxing)
+ .debug_str     0x00000000000006ea       0x44 bin/libbin.a(help_cmd_opt.o)
+                                        0x206 (size before relaxing)
+ .debug_str     0x000000000000072e       0x2c bin/libbin.a(main_help.o)
+                                        0x1e7 (size before relaxing)
+ .debug_str     0x000000000000075a       0x21 bin/libbin.a(sleep.o)
+                                        0x1da (size before relaxing)
+ .debug_str     0x000000000000077b       0x5a bin/libbin.a(main_sleep.o)
+                                        0x190 (size before relaxing)
+ .debug_str     0x00000000000007d5       0x2b bin/libbin.a(echo.o)
+                                        0x1ca (size before relaxing)
+ .debug_str     0x0000000000000800       0x39 bin/libbin.a(main_echo.o)
+                                        0x1e3 (size before relaxing)
+ .debug_str     0x0000000000000839       0x33 bin/libbin.a(cursor.o)
+                                        0x1d4 (size before relaxing)
+ .debug_str     0x000000000000086c       0x48 bin/libbin.a(main_cursor.o)
+                                        0x2e8 (size before relaxing)
+ .debug_str     0x00000000000008b4       0x27 bin/libbin.a(pwd.o)
+                                        0x1b5 (size before relaxing)
+ .debug_str     0x00000000000008db       0x31 bin/libbin.a(main_pwd.o)
+                                        0x1da (size before relaxing)
+ .debug_str     0x000000000000090c       0x37 bin/libbin.a(logname.o)
+                                        0x1c9 (size before relaxing)
+ .debug_str     0x0000000000000943       0x3e bin/libbin.a(main_logname.o)
+                                        0x1eb (size before relaxing)
+ .debug_str     0x0000000000000981      0x37d bin/libbin.a(boneshell.o)
+                                        0x6af (size before relaxing)
+ .debug_str     0x0000000000000cfe       0x56 sbin/libsbin.a(reboot.o)
+                                        0x1e0 (size before relaxing)
+ .debug_str     0x0000000000000d54       0x3b sbin/libsbin.a(poweroff.o)
+                                        0x1ea (size before relaxing)
+ .debug_str     0x0000000000000d8f       0x3e arch/shared/x86/libshared_arch.a(asm_util.o)
+                                         0x94 (size before relaxing)
+ .debug_str     0x0000000000000dcd       0x54 arch/shared/x86/libshared_arch.a(irq.o)
+                                        0x1c7 (size before relaxing)
+ .debug_str     0x0000000000000e21       0x29 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+                                        0x142 (size before relaxing)
+ .debug_str     0x0000000000000e4a       0x25 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+                                        0x139 (size before relaxing)
+ .debug_str     0x0000000000000e6f       0x9d platform/pc/libplatform.a(video.o)
+                                        0x28e (size before relaxing)
+ .debug_str     0x0000000000000f0c       0x97 platform/pc/libplatform.a(vga.o)
+                                        0x316 (size before relaxing)
+ .debug_str     0x0000000000000fa3       0x43 platform/pc/libplatform.a(vga_textmode.o)
+                                        0x1e2 (size before relaxing)
+ .debug_str     0x0000000000000fe6       0x5f platform/pc/libplatform.a(update_cursor.o)
+                                        0x19c (size before relaxing)
+ .debug_str     0x0000000000001045       0x67 platform/pc/libplatform.a(driver.o)
+                                        0x2ea (size before relaxing)
+ .debug_str     0x00000000000010ac       0x4f platform/pc/libplatform.a(scancodes.o)
+                                        0x1a3 (size before relaxing)
+ .debug_str     0x00000000000010fb       0x28 platform/pc/libplatform.a(scancodes_usa.o)
+                                        0x15c (size before relaxing)
+ .debug_str     0x0000000000001123       0x7c platform/pc/libplatform.a(utils.o)
+                                        0x22b (size before relaxing)
+ .debug_str     0x000000000000119f       0x23 platform/pc/libplatform.a(pic.o)
+                                        0x12a (size before relaxing)
+ .debug_str     0x00000000000011c2       0x2c platform/pc/libplatform.a(io.o)
+                                        0x125 (size before relaxing)
+ .debug_str     0x00000000000011ee       0x4d platform/pc/libplatform.a(putch.o)
+                                        0x287 (size before relaxing)
+ .debug_str     0x000000000000123b       0x3c platform/pc/libplatform.a(clear.o)
+                                        0x291 (size before relaxing)
+ .debug_str     0x0000000000001277       0x45 platform/pc/libplatform.a(term_scroll.o)
+                                        0x280 (size before relaxing)
+ .debug_str     0x00000000000012bc       0x76 platform/pc/libplatform.a(pit.o)
+                                        0x240 (size before relaxing)
+ .debug_str     0x0000000000001332       0x38 platform/pc/libplatform.a(utils.o)
+                                        0x14d (size before relaxing)
+ .debug_str     0x000000000000136a       0x41 libc/libc.a(strlen.o)
+                                         0xd8 (size before relaxing)
+ .debug_str     0x00000000000013ab       0x23 libc/libc.a(strcpy.o)
+                                         0xa8 (size before relaxing)
+ .debug_str     0x00000000000013ce       0x1e libc/libc.a(memset.o)
+                                        0x125 (size before relaxing)
+ .debug_str     0x00000000000013ec       0x1e libc/libc.a(strcmp.o)
+                                        0x115 (size before relaxing)
+ .debug_str     0x000000000000140a       0x72 libc/libc.a(printck.o)
+                                        0x28b (size before relaxing)
+ .debug_str     0x000000000000147c       0x18 libc/libc.a(atoi.o)
+                                         0x96 (size before relaxing)
+ .debug_str     0x0000000000001494       0x2b libc/libc.a(strtoi.o)
+                                         0xae (size before relaxing)
+ .debug_str     0x00000000000014bf       0x77 libc/libc.a(printk.o)
+                                        0x2fe (size before relaxing)
+ .debug_str     0x0000000000001536       0x6f libc/libc.a(scank.o)
+                                        0x22b (size before relaxing)
+ .debug_str     0x00000000000015a5       0x20 libc/libc.a(getchar.o)
+                                        0x144 (size before relaxing)
+ .debug_str     0x00000000000015c5       0x25 libc/libc.a(sleep.o)
+                                        0x14c (size before relaxing)
+ .debug_str     0x00000000000015ea       0x34 libc/libc.a(get_opt_count.o)
+                                        0x13f (size before relaxing)
+ .debug_str     0x000000000000161e       0x50 libc/libc.a(get_opt.o)
+                                        0x164 (size before relaxing)
+ .debug_str     0x000000000000166e       0x20 libc/libc.a(panik.o)
+                                        0x179 (size before relaxing)
+ .debug_str     0x000000000000168e       0x1d libc/libc.a(powk.o)
+                                        0x118 (size before relaxing)
+ .debug_str     0x00000000000016ab       0x20 libc/libc.a(toupper.o)
+                                         0x99 (size before relaxing)
+ .debug_str     0x00000000000016cb       0x20 libc/libc.a(isdigit.o)
+                                         0x99 (size before relaxing)
+ .debug_str     0x00000000000016eb       0x20 libc/libc.a(isalpha.o)
+                                         0x99 (size before relaxing)
+ .debug_str     0x000000000000170b       0x48 libc/libc.a(eat_front_whitespace.o)
+                                         0xc6 (size before relaxing)
+ .debug_str     0x0000000000001753       0x33 libc/libc.a(validate_char.o)
+                                         0xb7 (size before relaxing)
+ .debug_str     0x0000000000001786       0x32 libc/libc.a(itoa.o)
+                                        0x144 (size before relaxing)
+ .debug_str     0x00000000000017b8       0x40 arch/amd64/libarch.a(interrupts.o)
+                                        0x1ca (size before relaxing)
+ .debug_str     0x00000000000017f8        0xc apps/libapps.a(values.o)
+                                        0x139 (size before relaxing)
+ .debug_str     0x0000000000001804       0x8a apps/libapps.a(utils.o)
+                                        0x1ac (size before relaxing)
+ .debug_str     0x000000000000188e       0x1e arch/shared/x86/libshared_arch.a(isr.o)
+                                        0x13c (size before relaxing)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/amd64/libarch.a(main.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/amd64/libarch.a(cpu.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/amd64/libarch.a(idt.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/amd64/libarch.a(gdt.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 apps/libapps.a(shell.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 apps/libapps.a(exit.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(clear.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(color.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_clear.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(boneos_logo.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_boneos_logo.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(boneos_logo_color.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(help.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(help_cmd_opt.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_help.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(sleep.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_sleep.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(echo.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_echo.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(cursor.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_cursor.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(pwd.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_pwd.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(logname.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(main_logname.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 bin/libbin.a(boneshell.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 sbin/libsbin.a(reboot.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 sbin/libsbin.a(poweroff.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/shared/x86/libshared_arch.a(asm_util.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/shared/x86/libshared_arch.a(irq.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/shared/x86/libshared_arch.a(sys_reboot.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/shared/x86/libshared_arch.a(sys_poweroff.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(video.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(vga.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(vga_textmode.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(update_cursor.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(driver.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(scancodes.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(scancodes_usa.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(utils.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(pic.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(io.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(putch.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(clear.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(term_scroll.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(pit.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 platform/pc/libplatform.a(utils.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(strlen.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(strcpy.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(memset.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(strcmp.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(printck.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(atoi.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(strtoi.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(printk.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(scank.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(getchar.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(sleep.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(get_opt_count.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(get_opt.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(panik.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(powk.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(toupper.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(isdigit.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(isalpha.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(eat_front_whitespace.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(validate_char.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 libc/libc.a(itoa.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/amd64/libarch.a(interrupts.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 apps/libapps.a(values.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 apps/libapps.a(utils.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 arch/shared/x86/libshared_arch.a(isr.o)

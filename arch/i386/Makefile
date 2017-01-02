@@ -8,9 +8,9 @@ NSRCS = \
 CSRCS = \
 	init/main.c \
 	cpu/gdt/gdt.c \
-	cpu/interrupts/interrupts.c \
 	cpu/interrupts/idt.c \
 	cpu/cpu.c \
+	cpu/interrupts/interrupts.c \
 	mm/pmm.c
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/

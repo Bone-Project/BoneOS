@@ -1,14 +1,17 @@
 ENTRY(loader)
 OUTPUT_FORMAT(elf64-x86-64)
+
+KERNEL_VMA = 0x400000000000;
+KERNEL_PMA = 0x100000;
  
 SECTIONS
 {
-    KERNEL_VMA = 0x400000000000;
     . = KERNEL_VMA;
 
-    .text : AT(ADDR(.text) - KERNEL_VMA)
+    .text . : AT(ADDR(.text) - KERNEL_VMA + KERNEL_PMA)
     {
         _code = .;
+        *(.multiboot)
         *(.text)
         *(.rodata*)
 
@@ -25,21 +28,22 @@ SECTIONS
         . = ALIGN(4096);
     }
 
-   .data : AT(ADDR(.data) - KERNEL_VMA)
+   .data . : AT(ADDR(.data) - KERNEL_VMA + KERNEL_PMA)
    {
         _data = .;
         *(.data)
         . = ALIGN(4096);
    }
 
-   .eh_frame : AT(ADDR(.eh_frame) - KERNEL_VMA)
+   .eh_frame . : AT(ADDR(.eh_frame) - KERNEL_VMA + KERNEL_PMA)
    {
-       _ehframe = .;
-       *(.eh_frame)
+        _ehframe = .;
+        *(.eh_frame)
+ 
         . = ALIGN(4096);
    }
 
-   .bss : AT(ADDR(.bss) - KERNEL_VMA)
+   .bss . : AT(ADDR(.bss) - KERNEL_VMA + KERNEL_PMA)
    {
        _bss = .;
        *(.bss)
@@ -50,7 +54,8 @@ SECTIONS
         */
 
         *(COMMON)
-       . = ALIGN(4096);
+
+        . = ALIGN(4096);
    }
 
    _end = .;

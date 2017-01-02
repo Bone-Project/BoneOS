@@ -8,6 +8,7 @@ CSRCS = \
 	init/main.c \
 	cpu/cpu.c \
 	cpu/interrupts/idt.c \
+	cpu/interrupts/interrupts.c \
 	cpu/gdt/gdt.c
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/

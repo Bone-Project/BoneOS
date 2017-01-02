@@ -39,6 +39,7 @@ global loader
 
 loader:
     xor rbp,rbp
+    add rbp,1
 wait_debugger:
     test rbp,rbp
     jz wait_debugger
