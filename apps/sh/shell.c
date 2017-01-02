@@ -20,7 +20,6 @@
 
  **     Amanuel Bogale <amanuel2> : start
  **     Ashish Ahuja
- **     Muhammad Rifqi Priyo Susanto
  **/
 
 
@@ -39,7 +38,6 @@
 #include <uname/uname.h>
 #include <sleep/sleep.h>
 #include <echo/echo.h>
-#include <time/time.h>
 #include <string/string.h>
 #include <cursor/cursor.h>
 #include <reboot/sbin_cmd_reboot.h>
@@ -76,7 +74,6 @@ struct cmd_t *cmds[] =
   &cmd_exit,
   &cmd_pwd,
   &cmd_logname,
-  &cmd_time,
   &cmd_uname
   ,0
 };
@@ -85,9 +82,8 @@ void init_terminal()
 {
   assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
   TERMINAL_MODE=true;
-  rtc_t rtc = rtc_get();
   //cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
-  printk ("%s release %s started at %x:%x:%x UTC.\n", VAR_OSNAME, VAR_RELEASE, rtc.hour, rtc.minute, rtc.second);
+  printk ("%s release %s started at %x:%x:%x UTC.\n", VAR_OSNAME, VAR_RELEASE, rtc_get_hour(), rtc_get_minute(), rtc_get_second());
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
   TERMINAL_MODE=false;
 }
