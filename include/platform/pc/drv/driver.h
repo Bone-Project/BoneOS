@@ -7,8 +7,8 @@
  * @struct device_driver:
  *      Prototype for a device
  *      driver. Used to initalize
- *      a driver, and unintalize 
- *      a driver. 
+ *      a driver, and unintalize
+ *      a driver.
  */
 struct  device_driver_t
 {
@@ -37,9 +37,6 @@ extern bool device_initalized(int index);
 /*
  * Drivers
  */
-extern struct device_driver_t pit_driver;
-extern struct device_driver_t kbd_driver;
-extern struct device_driver_t video_driver;
 extern struct device_driver_t *drivers[];
 
 #endif /*_ARCH_DRV_DRIVER_H_*/

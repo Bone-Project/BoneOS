@@ -8,10 +8,12 @@
 
 
 extern size_t video_driver_width;
-extern size_t video_driver_height; 
+extern size_t video_driver_height;
 extern char*  video_driver_name;
 extern char*  video_driver_mode;
 extern char*  video_driver_fullname;
+
+extern struct device_driver_t video_driver;
 
 
 
@@ -30,7 +32,7 @@ typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
  *      Prototype for a video
  *      driver. used as a basis
  *      for what video driver the
- *      current running OS Is 
+ *      current running OS Is
  *      running
  */
 
@@ -38,8 +40,8 @@ struct video_driver_t
 {
   enum
   {
-    GRAPHICS_MODE, 
-    TEXT_MODE 
+    GRAPHICS_MODE,
+    TEXT_MODE
   }mode;
 
   uint8_t fg;
@@ -60,7 +62,7 @@ struct video_driver_t
     int w;
     int h;
   }res;
-  
+
   uint16_t status;
   char* name;
 };

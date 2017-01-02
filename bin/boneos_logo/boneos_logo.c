@@ -70,7 +70,7 @@ struct cmd_t cmd_boneos_logo =
                 "\tonto terminal. use the -color command\n "
                 "\tto have a specific Foreground and Background Color\n"
                 "MORE HELP : \n "
-                "\t[boneos_logo -color--help] for help on -color option\n",   
+                "\t[boneos_logo -color --help] for help on -color option\n",
   .cmd_opts =  cmd_boneos_logo_opts,
   .handler = &boneos_logo_handler,
   .invalid_use_msg = "Invalid use of boneos_logo command.\n"

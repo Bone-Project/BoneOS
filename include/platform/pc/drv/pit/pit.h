@@ -4,21 +4,21 @@
 #include <stdbool.h>
 
 /*
- * Operation Control Words 
- * Commands Available for 
+ * Operation Control Words
+ * Commands Available for
  * the PIT.
  */
 //START
 #define I386_PIT_OCW_BINCOUNT_BINARY 0x0 //0
 #define I386_PIT_OCW_BINCOUNT_BCD    0x1 //1
 
-#define I386_PIT_OCW_MODE_TERMINALCOUNT  0x0 //0000 
+#define I386_PIT_OCW_MODE_TERMINALCOUNT  0x0 //0000
 #define I386_PIT_OCW_MODE_ONESHOT        0x2 //0010
 #define I386_PIT_OCW_MODE_RATEGEN        0x4 //0100
 #define I386_PIT_OCW_MODE_SQUAREWAVEGEN  0x6 //0110
 #define I386_PIT_OCW_MODE_SOFTWARETRIG   0x8 //1000
 
-#define I386_PIT_OCW_RL_LATCH   0       //000000    
+#define I386_PIT_OCW_RL_LATCH   0       //000000
 #define I386_PIT_OCW_RL_LSBONLY 0x10    //010000
 #define I386_PIT_OCW_RL_MSBONLY 0x20    //100000
 #define I386_PIT_OCW_RL_DATA    0x30    //110000
@@ -46,6 +46,8 @@ extern volatile uint32_t pit_ticks;
 
 extern int init_pit();
 extern int uninit_pit();
+
+extern struct device_driver_t pit_driver;
 
 #endif /*_DRV_PIT_H_*/
 

@@ -13,6 +13,22 @@ do
 		ENVS="$ENVS CC=${option#*=}"
 	;;
 
+	--ar=*)
+		ENVS="$ENVS AR=${option#*=}"
+	;;
+
+	--as=*)
+		ENVS="$ENVS AS=${option#*=}"
+	;;
+
+	--ld=*)
+		ENVS="$ENVS LD=${option#*=}"
+	;;
+
+	--grub-mkrescue=*)
+		ENVS="$ENVS GRUB_MKRESCUE=${option#*=}"
+	;;
+
 	--arch=*)
 		ENVS="$ENVS ARCH=${option#*=}"
 	;;
@@ -27,4 +43,3 @@ do
 done
 
 (eval "$ENVS make configure-set" && make clean >/dev/null)
-

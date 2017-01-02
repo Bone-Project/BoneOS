@@ -2,6 +2,7 @@
 #define _LIBC_STRING_H_
 
 #include "memset/memset.h"
+#include "memcmp/memcmp.h"
 #include "strchr/strchr.h"
 #include "strcpy/strcpy.h"
 #include "strlen/strlen.h"

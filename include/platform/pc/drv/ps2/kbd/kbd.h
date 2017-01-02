@@ -85,33 +85,35 @@ extern bool led_light(bool scroll, bool num, bool caps);
 struct
 kbd_info_t
 {
-    struct 
+    struct
     {
         bool num_lock;
         bool caps_lock;
         bool scroll_lock;
     }led;
-    
+
     struct
     {
         bool shift;
         bool alt;
         bool ctrl;
     }spec_keys;
-    
+
     struct
     {
         bool bat_test;
     }tests;
-    
+
     uint8_t scancode;
     bool is_shift;
     bool is_enter;
     bool is_caps;
     uint32_t current_kbd_layout_index;
     int key;
-    
+
 };
+
+extern struct device_driver_t kbd_driver;
 
 extern volatile struct kbd_info_t kbd_info;
 

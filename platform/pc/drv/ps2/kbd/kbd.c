@@ -63,6 +63,15 @@ extern volatile bool TERMINAL_MODE;
 extern volatile bool __get_char_set;
 extern volatile char __get_char_chr;
 
+//Keyboard Driver Handler
+struct device_driver_t kbd_driver =
+{
+   .name = "8042 Keyboard PS/2 Driver",
+   .init = &init_kbd,
+   .uninit = &uninit_kbd,
+   .version = "8042"
+};
+
 
 /*
  * @function key_press:

@@ -20,6 +20,8 @@ CSRCS = \
 	pwd/opts/main_pwd.c \
 	logname/logname.c \
 	logname/opts/main_logname.c \
+	uname/uname.c \
+	uname/opts/main_uname.c \
 	boneshell/boneshell.c
 
 LIBNAME := bin
