@@ -215,7 +215,8 @@ no_vnc:
 # Launch and debug
 
 gdb_q: $(BONEOS_BIN)
-	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -s -S
+	$(QEMU) -kernel $(BONEOS_BIN) -display sdl -s -S \
+		-no-shutdown -no-reboot -d cpu_reset
 
 debug_q:
 	$(GDB) --symbols=$(BONEOS_BIN) --tui \

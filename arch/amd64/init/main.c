@@ -56,7 +56,7 @@ static inline void kernel_init_early(void)
  *      calls when Loading the kernel.
  *
  */
-void kernelMain(uint32_t multiboot,uint32_t magicnumber)
+void kernelMain(uint64_t multiboot,uint32_t magicnumber)
 {
    if(multiboot && magicnumber){};
    init_cpu();
@@ -64,7 +64,6 @@ void kernelMain(uint32_t multiboot,uint32_t magicnumber)
    sti();
    kernel_init_early();
    printk("Hello World");
-//init_terminal();
    while(1)
         hlt();
 }
