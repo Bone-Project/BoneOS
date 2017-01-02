@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
+ **/
 
 #include <ctype/ctype.h>
 
@@ -38,7 +38,7 @@
 
 int isxdigit(int c)
 {
-  return (isdigit(c) || (c >= 65 && c <= 70 ) ? 1 : 0);
+  return (isdigit(c) || (c >= 'A' && c <= 'F' ) ? 1 : 0);
 }
 
 

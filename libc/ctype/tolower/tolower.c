@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Muhammad Rifqi Priyo Susanto
- **  
+ **
  **  @contributors:
 
  **     Muhammad Rifqi Priyo Susanto <srifqi> : start
- **/ 
+ **/
 
 /*
  * @function tolower:
@@ -31,15 +31,15 @@
  *
  *          @return int:
  *                Returns the lowercase
- *                of the character specified.  
+ *                of the character specified.
  */
 
 int tolower(int c)
 {
-   if(c>=65 && c<=90)
-        return(c+32);
+   if(c >= 'A' && c <= 'Z')
+        return(c + 32);
    else
-        return c; 
+        return c;
 }
 
 
