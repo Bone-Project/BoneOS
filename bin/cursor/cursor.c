@@ -51,12 +51,12 @@ int cmd_cursor_handler(char* cmd)
 struct cmd_t cmd_cursor = 
 {
   .name = "cursor",
-  .usage ="cursor [-t <CRSR_START> <CRSR_END>] [-t block] [-t def]",
+  .usage ="cursor [-t <CRSR_START> <CRSR_END>] [-t block] [-t def] [--help]",
   .help = "cursor(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tcursor\n"
                 "SYNOPSIS : \n "
-                "\tcursor [-t <CRSR_START> <CRSR_END>]\n"
+                "\tcursor [-t <CRSR_START> <CRSR_END>] [-t block] [-t def] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tOptions to change cursor attributes.\n"
                 "OPTIONS : \n "

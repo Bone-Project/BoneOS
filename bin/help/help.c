@@ -57,12 +57,12 @@ int cmd_help_handler(char* cmd)
 struct cmd_t cmd_help = 
 {
   .name = "help",
-  .usage ="help [-cmd <cmd_name>]",
+  .usage ="help [-cmd <cmd_name>] [--help]",
   .help = "help(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\thelp\n"
                 "SYNOPSIS : \n "
-                "\thelp [-cmd <cmd_name>]\n"
+                "\thelp [-cmd <cmd_name>] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tLists out all commands if called with no options\n "
                 "\tbut if called with -cmd option calls help handler\n "

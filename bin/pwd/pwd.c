@@ -45,12 +45,12 @@ int cmd_pwd_handler (char *cmd)
 struct cmd_t cmd_pwd =
 {
   .name = "pwd",
-  .usage ="pwd",
+  .usage ="pwd [--help]",
   .help = "pwd(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tpwd\n"
                 "SYNOPSIS : \n "
-                "\tpwd [option]\n"
+                "\tpwd [option] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tPrints out the current working directory.\n",
   .cmd_opts =  cmd_pwd_opts,

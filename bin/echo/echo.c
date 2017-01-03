@@ -54,12 +54,12 @@ int cmd_echo_handler(char* cmd)
 struct cmd_t cmd_echo = 
 {
   .name = "echo",
-  .usage ="echo [value]",
+  .usage ="echo [value] [--help]",
   .help = "echo(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\techo\n"
                 "SYNOPSIS : \n "
-                "\techo [value]\n"
+                "\techo [value] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tPrints out the VALUE listed by option\n",
   .cmd_opts =  cmd_echo_opts,

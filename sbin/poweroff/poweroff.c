@@ -68,7 +68,7 @@ struct cmd_t cmd_poweroff =
                 "SYNOPSIS : \n "
                 "\tpoweroff [--help]\n"
                 "DESCRIPTION : \n "
-                "\tShuts down the Operating System.\n",
+                "\tShuts down the Operating System. Currently only working in Bochs and Qemu.\n",
   .cmd_opts =  cmd_poweroff_opts,
   .handler = &cmd_poweroff_handler,    
   .invalid_use_msg = "Invalid use of poweroff command.\n"

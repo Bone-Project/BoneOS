@@ -45,12 +45,12 @@ int cmd_logname_handler (char *cmd)
 struct cmd_t cmd_logname =
 {
   .name = "logname",
-  .usage ="logname",
+  .usage ="logname [--help]",
   .help = "logname(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tlogname\n"
                 "SYNOPSIS : \n "
-                "\tlogname [option]\n"
+                "\tlogname [option] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tPrints out the current user.\n",
   .cmd_opts =  cmd_logname_opts,

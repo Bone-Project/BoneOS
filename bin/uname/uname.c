@@ -45,12 +45,12 @@ int cmd_uname_handler (char *cmd)
 struct cmd_t cmd_uname =
 {
   .name = "uname",
-  .usage ="uname",
+  .usage ="uname [option] [--help]",
   .help = "uname(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tuname\n"
                 "SYNOPSIS : \n "
-                "\tuname [option]\n"
+                "\tuname [option] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tPrints out information about the OS.\n"
                 "OPTIONS : \n "
