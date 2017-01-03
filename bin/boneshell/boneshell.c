@@ -67,10 +67,9 @@ void removeSpaces(char* source)
 void loop_terminal()
 {
   shell_instance_cnt+=1;
-  if (shell_instance_cnt != 1)
-  {
-    printk("New shell instance #%d\n",shell_instance_cnt);
-  }
+  printk("Shell #%d\n" , shell_instance_cnt);
+  printk ("%s release %s\nStarted at : ", VAR_OSNAME, VAR_RELEASE);
+  cmds[CMD_DATE_INDEX]->handler("date");
   while(1)
   {
     start_shell:;
