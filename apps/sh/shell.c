@@ -45,7 +45,7 @@
 #include <boneshell/boneshell.h>
 #include <assertk.h>
 #include <drv/driver.h>
-#include <drv/rtc/rtc.h>
+#include <drv/cmos/rtc/rtc.h>
 #include <sh/built-in/exit/exit.h>
 
 
@@ -84,6 +84,7 @@ void init_terminal()
   TERMINAL_MODE=true;
   //cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
   printk ("%s release %s started at %x:%x:%x UTC.\n", VAR_OSNAME, VAR_RELEASE, rtc_get_hour(), rtc_get_minute(), rtc_get_second());
+  rtc_print_time();
   cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
   TERMINAL_MODE=false;
 }

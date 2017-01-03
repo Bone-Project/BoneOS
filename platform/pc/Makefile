@@ -18,7 +18,7 @@ CSRCS = \
 	drv/ps2/kbd/kbd_layouts/scancodes_usa.c \
 	drv/ps2/kbd/utils.c  \
 	cpu/interrupts/pic.c \
-	drv/rtc/rtc.c \
+	drv/cmos/rtc/rtc.c \
 	io/io.c
 
 
