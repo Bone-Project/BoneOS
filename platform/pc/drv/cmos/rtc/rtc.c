@@ -38,7 +38,7 @@
 
 uint8_t rtc_get_second()
 {
-    outb(CMOS_REGISTER_SECONDS, CMOS_REGISTER_SECONDS);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_SECONDS);
     return inb(CMOS_REGiSTER_DATA);
 }
 
@@ -76,19 +76,37 @@ uint8_t rtc_get_month()
 	return inb(CMOS_REGiSTER_DATA);
 }
 
-static char* month_to_text(uint8_t num)
+static const char* month_to_text(uint8_t num)
 {
-	char* month;
+	const char* month;
 	if(num < 1 || num > 12)
-		panik("NOT CORRECT MONTH");
-	switch(num)
-	{
-		case 1:
-			month = "Jan";
-			break;	
-	}
+		panik("INVALID MONTH");
+		
+	const char* months_str[12] = 
+	{ 
+		"Jan", "Feb" , "Mar", "Apr" , "May",
+		"Jun", "Jul", "Aug" , "Sep", "Oct",
+		"Nov", "Dec"
+	};
 	
+	month = months_str[num-1];
 	return month;
+}
+
+static const char* date_to_text(uint8_t num)
+{
+	const char* date;
+	if(num < 1 || num > 7)
+		panik("INVALID MONTH");
+		
+	const char* dates_str[7] = 
+	{ 
+		"Mon", "Tue" , "Wen", "Thu" , "Fri",
+		"Sat", "Sun"
+	};
+	
+	date = dates_str[num-2];
+	return date;
 }
 
 
@@ -104,11 +122,26 @@ uint8_t rtc_get_century()
 	return inb(CMOS_REGiSTER_DATA);
 }
 
+// static void add_0(uint8_t test)
+// {
+// 	char* test_str=0;
+// 	for(int i=0; test_str[i]; i++)
+// 		test_str[i]=0;
+// 	sprintk(test_str,"%c", test);
+// 	printk(test_str);
+// }
 
 
-
-void rtc_print_time ()
+void rtc_print_date_cmd ()
 {
-    printk("Tue %s 3 %x:%x:%x UTC %x%x\n",  month_to_text(rtc_get_month()), rtc_get_hour(), rtc_get_minute(), rtc_get_second()  ,rtc_get_century(),rtc_get_year());
-    //Tue Jan  3 03:24:37 UTC 2017
+    printk("%s %s %x %x:%x:%x UTC %x%x\n", 
+    								  date_to_text(rtc_get_day_month()),
+    								  month_to_text(rtc_get_month()),
+    								  rtc_get_day_month(),
+    								  rtc_get_hour(),
+    								  rtc_get_minute(),
+    								  rtc_get_second() ,
+    								  rtc_get_century(),
+    								  rtc_get_year());
+    //Tue Jan  3 16:06:48 UTC 2017
 }

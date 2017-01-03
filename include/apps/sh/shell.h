@@ -35,6 +35,8 @@ struct typed_cmd
   char* value;
 };
 
+
+
 #define CMD_CLEAR_INDEX 0
 #define CMD_BONEOS_LOGO_INDEX 1
 #define CMD_HELP_INDEX 2
@@ -44,6 +46,11 @@ struct typed_cmd
 #define CMD_REBOOT_INDEX 6
 #define CMD_POWEROFF_INDEX 7
 #define CMD_BONESHELL_INDEX 8
+#define CMD_EXIT_INDEX 9
+#define CMD_INDEX_PWD 10
+#define CMD_LOGNAME_INDEX 11
+#define CMD_UNAME_INDEX 12
+#define CMD_DATE_INDEX 13
 
 extern void init_terminal();
 extern struct cmd_t *cmds[];
