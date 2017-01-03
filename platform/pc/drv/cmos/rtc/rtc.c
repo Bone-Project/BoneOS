@@ -34,7 +34,7 @@
 #include <io/io.h>
 #include <stdint.h>
 #include <stddef.h>
-
+#include <stdlib/stdlib.h>
 
 uint8_t rtc_get_second()
 {
@@ -76,6 +76,21 @@ uint8_t rtc_get_month()
 	return inb(CMOS_REGiSTER_DATA);
 }
 
+static char* month_to_text(uint8_t num)
+{
+	char* month;
+	if(num < 1 || num > 12)
+		panik("NOT CORRECT MONTH");
+	switch(num)
+	{
+		case 1:
+			month = "Jan";
+			break;	
+	}
+	
+	return month;
+}
+
 
 uint8_t rtc_get_year()
 {
@@ -94,6 +109,6 @@ uint8_t rtc_get_century()
 
 void rtc_print_time ()
 {
-    printk("Tue Jan 3 %x:%x:%x UTC %x%x\n",  rtc_get_hour(), rtc_get_minute(), rtc_get_second()  ,rtc_get_century(),rtc_get_year());
+    printk("Tue %s 3 %x:%x:%x UTC %x%x\n",  month_to_text(rtc_get_month()), rtc_get_hour(), rtc_get_minute(), rtc_get_second()  ,rtc_get_century(),rtc_get_year());
     //Tue Jan  3 03:24:37 UTC 2017
 }
