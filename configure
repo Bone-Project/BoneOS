@@ -36,6 +36,11 @@ do
 	--plat=*)
 		ENVS="$ENVS PLAT=${option#*=}"
 	;;
+	
+	--m=*)
+		ENVS="$ENVS MEMORY_USE_RAM=${option#*=}"
+	;;
+	
 	*)
 		echo "Unknown option $option"
 	;;
