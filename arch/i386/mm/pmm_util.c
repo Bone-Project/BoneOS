@@ -58,3 +58,4 @@ double pmm_mmap_util(multiboot_info_t* multiboot_structure, memory_type_t mem)
 }
 
 void pmm_memory_print_debug(){}
+

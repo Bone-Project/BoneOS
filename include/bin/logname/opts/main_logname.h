@@ -4,3 +4,5 @@
 int main_logname_opt_handler (char *cmd);
 
 #endif /*_BIN_LOGNAME_MAINOPT_H_*/
+
+

@@ -72,3 +72,5 @@ struct cmd_t cmd_exit =
                      "Type in exit --help for more help.\n",
   .privilege = USER
 };
+
+

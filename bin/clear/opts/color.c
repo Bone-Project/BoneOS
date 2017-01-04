@@ -90,3 +90,5 @@ struct cmd_opt_t cmd_clear_opt_color =
   5 = Purple      D = Light Purple
   6 = Yellow      E = Light Yellow
   7 = White       F = Bright White*/
+
+

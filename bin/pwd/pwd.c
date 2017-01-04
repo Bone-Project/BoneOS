@@ -59,3 +59,5 @@ struct cmd_t cmd_pwd =
                      "Type in pwd --help for more help.\n",
   .privilege = USER
 };
+
+

@@ -16,3 +16,5 @@ extern uint8_t rtc_get_century();
 extern void rtc_print_date_cmd ();
 
 #endif // _DRV_CMOS_RTC_H_
+
+

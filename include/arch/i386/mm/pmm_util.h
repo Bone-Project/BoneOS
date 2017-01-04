@@ -16,3 +16,4 @@ extern double pmm_mmap_util(multiboot_info_t* multiboot_structure, memory_type_t
 
 
 #endif /*_ARCH_MM_PMM_UTIL_H_*/
+

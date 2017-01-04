@@ -59,3 +59,5 @@ struct cmd_t cmd_logname =
                      "Type in logname --help for more help.\n",
   .privilege = USER
 };
+
+

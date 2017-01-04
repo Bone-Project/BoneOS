@@ -7,7 +7,15 @@
 
 #define HIGHER_KERNEL_ADDRESS_LOAD 0x0
 
-extern double _mmngr_mem_size;
+typedef struct
+{
+    double GiB;
+    double MiB;
+    double KiB;
+    double B;
+}mem_size_t;
+
+extern mem_size_t _mmngr_mem_size;
 
 typedef struct 
 {
@@ -16,5 +24,10 @@ typedef struct
 
 extern int pmm_init(multiboot_info_t* multiboot_structure);
 
+#ifdef DEBUG
+   extern void __debug_print_memory_size();
+#endif   
+
 
 #endif /*_ARCH_MM_PMM_H_*/
+

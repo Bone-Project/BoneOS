@@ -65,3 +65,5 @@ struct cmd_t cmd_uname =
                      "Type in uname --help for more help.\n",
   .privilege = USER
 };
+
+

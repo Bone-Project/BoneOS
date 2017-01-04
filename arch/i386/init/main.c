@@ -21,7 +21,10 @@
  **		Amanuel Bogale <amanuel2> : start
  **/
 
-#define DEBUG 1 /*DEBUG_MODE*/
+/*DEBUG Defined by -DDEBUG Flag*/
+#ifndef DEBUG
+    #error "THIS OPERATING SYSTEM IS NOT UP FOR PRODUCTION."
+#endif
 
 #include <stdarg.h>
 #include <stdint.h>
@@ -43,6 +46,10 @@
 #include <sh/shell.h>
 #include <drv/video/video.h>
 #include <mm/pmm.h>
+#include <misc/status_codes.h>
+#include <stdlib/stdlib.h>
+
+
 
 
 /*
@@ -94,11 +101,14 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
    //init_terminal();
-   pmm_init(multiboot_structure);
-
+   if(pmm_init(multiboot_structure)!=STATUS_OK)
+        panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
+   __debug_print_memory_size();
    while(1)
       hlt();
 }
+
+
 
 
 
