@@ -54,11 +54,10 @@ void __debug_print_memory_size()
   #ifdef DEBUG
     printk("MEMORY SIZE\n");
     printk("-----------\n");
-    printk("GiB : %.4f\n",_mmngr_mem_size.GiB);
-    printk("KiB : %.4f\n",_mmngr_mem_size.KiB);
-    printk("MiB : %.4f\n",_mmngr_mem_size.MiB);
-    printk("B   : %.4f\n",_mmngr_mem_size.B);
-    
+    printk("GiB : %.7f\n",_mmngr_mem_size.GiB);
+    printk("KiB : %.7f\n",_mmngr_mem_size.KiB);
+    printk("MiB : %.7f\n",_mmngr_mem_size.MiB);
+    printk("B   : %.7f\n",_mmngr_mem_size.B);
   #endif
 }
 
