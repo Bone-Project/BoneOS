@@ -24,7 +24,7 @@
 /*
  * @function toupper:
  *      Converts specified character
- *      to an upper case caracter
+ *      to an upper case character
  *
  *         @param c:
  *              Specified Character

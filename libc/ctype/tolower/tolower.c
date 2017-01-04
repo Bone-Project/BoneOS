@@ -24,7 +24,7 @@
 /*
  * @function tolower:
  *      Converts specified character
- *      to a lower case caracter
+ *      to a lower case character
  *
  *         @param c:
  *              Specified Character
