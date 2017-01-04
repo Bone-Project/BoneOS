@@ -36,6 +36,7 @@
 #include <drv/ps2/kbd/kbd.h>
 #include <libc/math/math.h>
 #include <libc/stdio/printck/printck.h>
+#include <libc/stdio/printk/printk.h>
 #include <libc/unistd/unistd.h>
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
@@ -43,7 +44,7 @@
 #include <sh/shell.h>
 #include <drv/video/video.h>
 #include <mm/pmm.h>
-
+#include <cpu/cpuid.h>
 
 /*
  * Calling all Global C Objects
@@ -93,7 +94,10 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
+   init_cpuid();
+
    init_terminal();
+   
    //pmm_init(multiboot_structure);
 
    while(1)
