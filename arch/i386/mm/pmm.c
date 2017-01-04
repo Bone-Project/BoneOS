@@ -26,6 +26,7 @@
 #include <stdio/stdio.h>
 #include <stdbool.h>
 #include <mm/pmm.h>
+#include <mm/pmm_util.h>
 
 static bool pmm_initalized = false;
 static multiboot_info_pmm_t mb_info;
@@ -37,39 +38,12 @@ int pmm_init(multiboot_info_t* multiboot_structure)
 {
   pmm_initalized=true;
   mb_info.multiboot_structure = multiboot_structure;
-  /*
-   * 0xC0100000  -  0xFFFFFFFF
-   * NO.  ADDRESS  LENGTH  SIZE  TYPE
-   */
 
-  //mb_info.multiboot_structure->mmap_addr += 0xD0000000;
-  multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) mb_info.multiboot_structure->mmap_addr ;
-  printk("********RAM INFO*********\n");
-  printk("No.\t\tADDRESS\t\tLENGTH\t\t\t\tTYPE\t\tSIZE\n");
-  for(
-      size_t i=0 ;
-      i<mb_info.multiboot_structure->mmap_length/(sizeof(multiboot_memory_map_t));
-      i++)
-  {
-              uintptr_t addr = ((uintptr_t)mmap[i].addr);
-              uintptr_t length=((uintptr_t)mmap[i].len);
-              //uintptr_t size=((uintptr_t)mmap[i].size);
-              uintptr_t type=((uintptr_t)mmap[i].type);
-
-               printk("#%d" , i);
-               printk("\t\t0x%x",addr);
-               printk("\t\t%x"  ,length);
-               printk("\t\t\t\t\t\t%d\n"  ,type);
-               //printk("\t\t\t\t\t\t\t\t%d\n"  ,type);
-               _mmngr_mem_size+=length;
-          }
-          printk("**************************\n");
-
-
-          printk("%d MB Of Usable RAM" , _mmngr_mem_size/(1024*1024));
-
-
+  mb_info.multiboot_structure->mmap_addr += HIGHER_KERNEL_ADDRESS_LOAD; //Higher hakf
+  
+  _mmngr_mem_size = pmm_mmap_util(mb_info.multiboot_structure,2);
+  
+  printk("SIZE IN MiB IS : %d" , _mmngr_mem_size);
+  
   return STATUS_OK;
 }
-
-void pmm_memory_print_debug(){}

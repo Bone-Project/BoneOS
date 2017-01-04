@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <boot/multiboot/multiboot.h>
 
+#define HIGHER_KERNEL_ADDRESS_LOAD 0x0
+
 extern uint32_t _mmngr_mem_size;
 
 typedef struct 
