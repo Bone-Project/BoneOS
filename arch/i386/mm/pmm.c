@@ -32,7 +32,7 @@ static bool pmm_initalized = false;
 static multiboot_info_pmm_t mb_info;
 
 
-uint32_t _mmngr_mem_size = 0;
+double _mmngr_mem_size = 0;
 
 int pmm_init(multiboot_info_t* multiboot_structure)
 {
@@ -41,9 +41,9 @@ int pmm_init(multiboot_info_t* multiboot_structure)
 
   mb_info.multiboot_structure->mmap_addr += HIGHER_KERNEL_ADDRESS_LOAD; //Higher hakf
   
-  _mmngr_mem_size = pmm_mmap_util(mb_info.multiboot_structure,2);
-  
-  printk("SIZE IN MiB IS : %d" , _mmngr_mem_size);
+  _mmngr_mem_size = (double)pmm_mmap_util(mb_info.multiboot_structure,GiB);
+   
+  printk("SIZE IN MiB IS : %.4f" , _mmngr_mem_size);
   
   return STATUS_OK;
 }
