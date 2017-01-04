@@ -14,31 +14,32 @@
  **   You should have received a copy of the GNU General Public License
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
- **  @main_author : Amanuel Bogale
+ **  @main_author : Muhammad Rifqi Priyo Susanto
  **
  **  @contributors:
 
- **     Amanuel Bogale <amanuel2> : start
+ **     Muhammad Rifqi Priyo Susanto <srifqi> : start
  **/
 
-#include <ctype/ctype.h>
-
 /*
- * @function isxdigit:
- *      Checks if specified character
- *      is a hexadecimal digit
+ * @function tolower:
+ *      Converts specified character
+ *      to a lower case character
  *
  *         @param c:
  *              Specified Character
  *
  *          @return int:
- *             Returns 1 if it is a hexadecimal digit
- *             0 otherwise
+ *                Returns the lowercase
+ *                of the character specified.
  */
 
-int isxdigit(int c)
+int tolower(int c)
 {
-  return (isdigit(c) || (c >= 'A' && c <= 'F' ) ? 1 : 0);
+   if(c >= 'A' && c <= 'Z')
+        return(c + 32);
+   else
+        return c;
 }
 
 

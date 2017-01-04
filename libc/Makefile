@@ -28,6 +28,7 @@ CSRCS = \
 	math/powk/powk.c \
 	math/sqrtk/sqrtk.c \
 	ctype/toupper/toupper.c\
+	ctype/tolower/tolower.c\
 	ctype/isdigit/isdigit.c \
 	ctype/isalpha/isalpha.c \
 	ctype/isalnum/isalnum.c \

@@ -206,7 +206,10 @@ void key_handler_util(int key)
       else if(kbd_info.is_caps == true && print_scank == true && active_scank == true)
       {
         inc_al();
-        printk("%c", toupper(key));
+        if(kbd_info.is_shift == true)
+           printk("%c", tolower(key));
+        else
+           printk("%c", toupper(key));
         wait_until_enter(key);
       }
 
@@ -291,6 +294,7 @@ void key_handler()
             kbd_info.is_shift = true;
             break;
        case KBD_CAPS_PRESS_ID:
+            kbd_info.is_caps = !kbd_info.is_caps;
             break;
        case KBD_UP_KEY_ID:
             if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)

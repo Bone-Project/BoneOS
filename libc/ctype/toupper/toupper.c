@@ -15,31 +15,31 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
+ **/
 
 /*
  * @function toupper:
  *      Converts specified character
- *      to an upper case caracter
+ *      to an upper case character
  *
  *         @param c:
  *              Specified Character
  *
  *          @return int:
  *                Returns the uppercase
- *                of the character specified.  
+ *                of the character specified.
  */
 
 int toupper(int c)
 {
-   if(c>=97 && c<=127)
-        return(c-32);
+   if(c >= 'a' && c <= 'z')
+        return(c - 32);
    else
-        return c; 
+        return c;
 }
 
 
