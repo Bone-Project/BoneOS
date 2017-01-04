@@ -40,3 +40,6 @@ config/GENERATED-CONFIG.mk
 
 #Map files for OBJ Dump Debugging
 *.map
+
+#Gedit generated files
+*~

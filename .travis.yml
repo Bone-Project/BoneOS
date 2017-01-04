@@ -11,6 +11,7 @@ branches:
   - doug_dev
   - ashish_dev
   - travis_testing
+  - sajad_dev
 
 env:
   matrix:

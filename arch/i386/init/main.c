@@ -39,6 +39,7 @@
 #include <drv/ps2/kbd/kbd.h>
 #include <libc/math/math.h>
 #include <libc/stdio/printck/printck.h>
+#include <libc/stdio/printk/printk.h>
 #include <libc/unistd/unistd.h>
 #include <libc/assertk.h>
 #include <libc/stdio/scank/scank.h>
@@ -48,9 +49,7 @@
 #include <mm/pmm.h>
 #include <misc/status_codes.h>
 #include <stdlib/stdlib.h>
-
-
-
+#include <cpu/cpuid.h>
 
 /*
  * Calling all Global C Objects
@@ -104,6 +103,13 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    if(pmm_init(multiboot_structure)!=STATUS_OK)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
    __debug_print_memory_size();
+   
+
+   init_terminal();
+   
+   //pmm_init(multiboot_structure);
+
+>>>>>>> 85452d2210a5a6c9264910e3b3c518a8667f77f1
    while(1)
       hlt();
 }

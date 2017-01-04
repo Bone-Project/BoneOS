@@ -7,7 +7,8 @@ CSRCS = \
 		cpu/interrupts/irq.c \
 		cpu/interrupts/isr.c \
 		sys/sys_reboot.c \
-		sys/sys_poweroff.c 
+		sys/sys_poweroff.c \
+
 
 LIBNAME := shared_arch
 
