@@ -95,9 +95,24 @@ struct {
 	uint32_t signature;
 } cpu_id;
 
+/*
+ * checks if the cpu supports feature
+ */
 #define cpu_has_feature(f) _Generic(f,enum CPU_FEATURES_EDX : cpu_has_feature_edx,enum CPU_FEATURES_ECX : cpu_has_feature_ecx)
 
 bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f);
 bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f);
+
+
+/*
+ * cpuid for more dependent purpose
+ */
+inline void _cpuid(uint32_t a,uint32_t out[3]){
+	__asm__ __volatile__ ("cpuid\n\t" 
+	                      : "=b"(out[0]), "=c"(out[1]), "=d"(out[2])
+	                      :	"a"(a) 
+	                     
+	);
+}
 
 #endif //_ARCH_CPU_CPUID_H_
