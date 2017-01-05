@@ -107,9 +107,6 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
    init_terminal();
    
-   //pmm_init(multiboot_structure);
-
->>>>>>> 85452d2210a5a6c9264910e3b3c518a8667f77f1
    while(1)
       hlt();
 }

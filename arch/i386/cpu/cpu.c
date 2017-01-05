@@ -33,6 +33,7 @@
   #include <cpu/interrupts/irq.h>
 #undef KERNEL_CALL
 #include <libc/string/string.h>
+#include <cpu/cpuid.h>
 
 void init_cpu(void)
 {
@@ -40,6 +41,8 @@ void init_cpu(void)
    init_idt();
    init_isr();
    init_irq();
+   
+  init_cpuid();
 }
 
 
