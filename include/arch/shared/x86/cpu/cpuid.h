@@ -107,10 +107,13 @@ typedef struct {
 
 extern cpuid_t cpu_id;
 
+
 /*
  * checks if the cpu supports feature
  */
-#define cpu_has_feature(f) _Generic(f,enum CPU_FEATURES_EDX : cpu_has_feature_edx,enum CPU_FEATURES_ECX : cpu_has_feature_ecx)
+#define cpu_has_feature(f) \
+            _Generic(f,enum CPU_FEATURES_EDX : cpu_has_feature_edx , \
+            enum CPU_FEATURES_ECX : cpu_has_feature_ecx)
 
 extern bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f);
 extern bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f);

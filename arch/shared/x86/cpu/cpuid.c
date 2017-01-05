@@ -50,13 +50,7 @@ void init_cpuid(){
   if (!has_cpuid_ins()){ /* return if cpuid is not supported */
     return;
   }
-  __asm__ __volatile__ (".intel_syntax\n\t"
-              "xor %%eax,%%eax\n\t"
-              "cpuid\n\t"
-              ".att_syntax\n\t"
-              :"=a"(cpuid_highest_function),"=b"(cpu_id.vendorID[0]),"=d"(cpu_id.vendorID[1]),"=c"(cpu_id.vendorID[2])
-              );
-              
+  _cpuid(CPUID_GETVENDORSTRING, cpu_id.vendorID);
   __asm__ __volatile__ (".intel_syntax\n\t"
                         "mov %%eax,1\n\t"
                         "cpuid\n\t"

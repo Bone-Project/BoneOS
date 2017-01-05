@@ -103,10 +103,15 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    if(pmm_init(multiboot_structure)!=STATUS_OK)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
    __debug_print_memory_size();
-   
+     if(cpu_has_feature(CPU_FEATURE_FPU))
+     {
+         printk("FPU IS INSTALLED");
+     }
+     else
+        printk("NO FPU!");
 //cpu_id
    // printk("VENDOR : %x %x %x %x" , cpu_id.vendorID[0], cpu_id.vendorID[1], cpu_id.vendorID[2], cpu_id.vendorID[3]);
-   init_terminal();
+   //init_terminal();
    
    while(1)
       hlt();
