@@ -31,7 +31,9 @@
 /**
  * stores the highest supported function parameter and vendorID
  */
-void init_cpuid();
+extern void init_cpuid();
+extern bool has_cpuid_ins();
+
 
 /*Functions available for CPUID*/
 enum CPU_FUNCTIONS_EAX{
@@ -110,7 +112,7 @@ extern cpuid_t cpu_id;
  */
 #define cpu_has_feature(f) _Generic(f,enum CPU_FEATURES_EDX : cpu_has_feature_edx,enum CPU_FEATURES_ECX : cpu_has_feature_ecx)
 
-bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f);
-bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f);
+extern bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f);
+extern bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f);
 
 #endif //_ARCH_CPU_CPUID_H_

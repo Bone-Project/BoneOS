@@ -25,29 +25,10 @@
 
 
 /**
- * the highest function cpuid supports
- */
-static uint32_t cpuid_highest_function;
-
-cpuid_t cpu_id;
-
-/*
- * cpuid for more dependent purpose
- */
-static inline void _cpuid(uint32_t a,uint32_t out[3]){
-	__asm__ __volatile__ ("cpuid\n\t" 
-	                      : "=b"(out[0]), "=c"(out[1]), "=d"(out[2])
-	                      :	"a"(a) 
-	                     
-	);
-}
-
-
-/**
  * checks if the cpuid instruction is available
  * returns true if available
  */
-static bool has_cpuid_ins(){
+bool has_cpuid_ins(){
 	int res;
 	__asm__ __volatile__ (".intel_syntax\n\t"
 	                      "pushfd\n\t"
@@ -63,34 +44,3 @@ static bool has_cpuid_ins(){
 	                      :"=a"(res));
 	return res;
 }
-
-/**
- * stores the highest supported function parameter and vendorID
- */
-void init_cpuid(){
-	if (!has_cpuid_ins()){ /* return if cpuid is not supported */
-		return;
-	}
-	__asm__ __volatile__ (".intel_syntax\n\t"
-						  "xor %%eax,%%eax\n\t"
-						  "cpuid\n\t"
-						  ".att_syntax\n\t"
-						  :"=a"(cpuid_highest_function),"=b"(cpu_id.vendorID[0]),"=d"(cpu_id.vendorID[1]),"=c"(cpu_id.vendorID[2])
-						  );
-						  
-	__asm__ __volatile__ (".intel_syntax\n\t"
-	                      "mov %%eax,1\n\t"
-	                      "cpuid\n\t"
-	                      ".att_syntax\n\t"
-	                      :"=a"(cpu_id.signature),"=d"(cpu_id.features_edx),"=c"(cpu_id.features_ecx));
-}
-
-
-bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f){
-	return cpu_id.features_edx & ((uint32_t) f);
-}
-bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f){
-	return cpu_id.features_ecx & ((uint32_t) f);
-}
-
-
