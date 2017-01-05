@@ -2,15 +2,16 @@
 
 echo "SETTING UP DEPENDENCIES"
 if [ "$(uname)" == "Darwin" ]; then
-  echo "RUNNING UNDER Max OSX"
-   brew install nasm
-   brew install gcc
-   brew install gcc-multilib
-   brew install qemu
-   brew install grub-common
-   brew install xorriso
-   brew install grub-pc-bin   
-   brew install supervisor
+   if hash brew 2>/dev/null; then
+		brew tap xrisk/i686-toolchain
+		brew install --HEAD i686-elf-grub
+		curl -s -o ~/cross-dev.sh https://raw.githubusercontent.com/xrisk/homebrew-i686-toolchain/master/setenv.sh
+		echo "The cross compiler has been installed and a config file has been created at $HOME/cross-dev.sh"
+		echo "Please run: 'source $HOME/cross-dev.sh' before using the cross-compiler."
+	else
+		echo "Please install Homebrew from http://brew.sh."
+		echo "BoneOS uses Homebrew to manage dependencies."
+	fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    echo pwd
    echo "RUNNING UNDER a linux distro"
