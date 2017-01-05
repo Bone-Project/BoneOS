@@ -33,6 +33,14 @@
  */
 void init_cpuid();
 
+/*Functions available for CPUID*/
+enum CPU_FUNCTIONS_EAX{
+  CPUID_GETVENDORSTRING, //Function #0x0
+  CPUID_GETFEATURES, //Function #0x1
+  CPUID_GETTLB,
+  CPUID_GETSERIAL
+};
+
 
 enum CPU_FEATURES_EDX{
 	CPU_FEATURE_FPU  = 1 >> 0, // Floating-point unit onChip
@@ -87,13 +95,15 @@ enum CPU_FEATURES_ECX{
 	CPU_FEATURE_F16C = 1 >> 29,
 };
 
-struct {
+typedef struct {
  	// contains the vendor ID for the cpu
 	uint32_t vendorID[4];
 	uint32_t features_edx;
 	uint32_t features_ecx;
 	uint32_t signature;
-} cpu_id;
+} cpuid_t;
+
+extern cpuid_t cpu_id;
 
 /*
  * checks if the cpu supports feature
@@ -102,17 +112,5 @@ struct {
 
 bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f);
 bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f);
-
-
-/*
- * cpuid for more dependent purpose
- */
-inline void _cpuid(uint32_t a,uint32_t out[3]){
-	__asm__ __volatile__ ("cpuid\n\t" 
-	                      : "=b"(out[0]), "=c"(out[1]), "=d"(out[2])
-	                      :	"a"(a) 
-	                     
-	);
-}
 
 #endif //_ARCH_CPU_CPUID_H_

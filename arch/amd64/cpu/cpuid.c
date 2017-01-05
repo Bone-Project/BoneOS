@@ -29,6 +29,17 @@
  */
 static uint32_t cpuid_highest_function;
 
+/*
+ * cpuid for more dependent purpose
+ */
+static inline void _cpuid(uint32_t a,uint32_t out[3]){
+	__asm__ __volatile__ ("cpuid\n\t" 
+	                      : "=b"(out[0]), "=c"(out[1]), "=d"(out[2])
+	                      :	"a"(a) 
+	                     
+	);
+}
+
 /**
  * checks if the cpuid instruction is available
  * returns true if available

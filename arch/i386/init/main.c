@@ -104,7 +104,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
    __debug_print_memory_size();
    
-
+//cpu_id
+   // printk("VENDOR : %x %x %x %x" , cpu_id.vendorID[0], cpu_id.vendorID[1], cpu_id.vendorID[2], cpu_id.vendorID[3]);
    init_terminal();
    
    while(1)
