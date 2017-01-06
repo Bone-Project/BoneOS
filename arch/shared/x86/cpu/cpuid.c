@@ -23,19 +23,20 @@
  **/ 
 
 #include <cpu/cpuid.h>
+#include <stdio/stdio.h>
 
 
 /**
  * the highest function cpuid supports
  */
-static uint32_t cpuid_highest_function;
+//static uint32_t cpuid_highest_function;
 
 cpuid_t cpu_id;
 
 /*
  * cpuid for more dependent purpose
  */
-static inline void _cpuid(uint32_t a,uint32_t out[3]){
+static inline void _cpuid(uint32_t a,uint32_t out[]){
   __asm__ __volatile__ ("cpuid\n\t" 
                         : "=b"(out[0]), "=c"(out[1]), "=d"(out[2])
                         : "a"(a) 
@@ -56,6 +57,14 @@ void init_cpuid(){
                         "cpuid\n\t"
                         ".att_syntax\n\t"
                         :"=a"(cpu_id.signature),"=d"(cpu_id.features_edx),"=c"(cpu_id.features_ecx));
+}
+
+bool cpu_has_feature(void* cpu_has, cpu_features_t feat)
+{
+  if(feat==ECX_CPU_FEATURE)
+    return ( cpu_has_feature_ecx(* (enum CPU_FEATURES_ECX *)(cpu_has) ) );
+  else
+    return ( cpu_has_feature_edx(* (enum CPU_FEATURES_EDX *)(cpu_has) ) ); 
 }
 
 

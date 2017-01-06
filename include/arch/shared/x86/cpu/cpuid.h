@@ -97,6 +97,12 @@ enum CPU_FEATURES_ECX{
 	CPU_FEATURE_F16C = 1 >> 29,
 };
 
+typedef enum 
+{
+	ECX_CPU_FEATURE,
+	EDX_CPU_FEATURE
+}cpu_features_t;
+
 typedef struct {
  	// contains the vendor ID for the cpu
 	uint32_t vendorID[4];
@@ -109,13 +115,21 @@ extern cpuid_t cpu_id;
 
 
 /*
- * checks if the cpu supports feature
- */
-#define cpu_has_feature(f) \
+Generics not good with Enumerations
+since enum's default valuse to int.
+ 
+//   checks if the cpu supports feature
+  
+ #define cpu_has_feature(f) \
             _Generic(f,enum CPU_FEATURES_EDX : cpu_has_feature_edx , \
             enum CPU_FEATURES_ECX : cpu_has_feature_ecx)
+ */
+
 
 extern bool cpu_has_feature_edx(enum CPU_FEATURES_EDX f);
 extern bool cpu_has_feature_ecx(enum CPU_FEATURES_ECX f);
+
+extern bool cpu_has_feature(void* cpu_has, cpu_features_t feat);
+
 
 #endif //_ARCH_CPU_CPUID_H_
