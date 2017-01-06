@@ -35,9 +35,9 @@ cpuid_t cpu_id;
 /*
  * cpuid for more dependent purpose
  */
-static inline void _cpuid_bcd(uint32_t a,uint32_t out[]){
+static inline void _vendor_string_cpuid(uint32_t a,uint32_t out[]){
   __asm__ __volatile__ ("cpuid\n\t" 
-                        : "=b"(out[0]), "=c"(out[1]), "=d"(out[2])
+                        : "=b"(out[0]), "=c"(out[2]), "=d"(out[1])
                         : "a"(a) 
                        
   );
@@ -50,7 +50,7 @@ void init_cpuid(){
   if (!has_cpuid_ins()){ /* return if cpuid is not supported */
     return;
   }
-  _cpuid_bcd(CPUID_GETVENDORSTRING, cpu_id.vendorID);
+  _vendor_string_cpuid(CPUID_GETVENDORSTRING, cpu_id.vendorID);
   __asm__ __volatile__ (".intel_syntax\n\t"
                         "mov %%eax,1\n\t"
                         "cpuid\n\t"
