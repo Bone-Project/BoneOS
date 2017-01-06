@@ -110,7 +110,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
      else
         printk("NO FPU!");
         
-     printk("\n VENDOR_ID : %s", (char*)cpu_id.vendorID);
+     printk("\n VENDOR_ID : %s \n SIGNATURE : %s", (char*)cpu_id.vendorID, (char*) cpu_id.signature);
 //cpu_id
    // printk("VENDOR : %x %x %x %x" , cpu_id.vendorID[0], cpu_id.vendorID[1], cpu_id.vendorID[2], cpu_id.vendorID[3]);
    //init_terminal();
