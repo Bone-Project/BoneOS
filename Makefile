@@ -131,9 +131,11 @@ libraries = \
 	arch/$(ARCH)/libarch.a \
 	apps/libapps.a \
 	bin/libbin.a \
+	var/libvar.a \
 	sbin/libsbin.a \
 	arch/shared/$(ARCH_FAMILY)/libshared_arch.a \
-	platform/$(PLAT)/libplatform.a
+	platform/$(PLAT)/libplatform.a 
+	
 export libraries
 
 # -----------------------------------------------
@@ -162,6 +164,7 @@ subdirs:
 	(cd apps && $(MAKE))
 	(cd bin  && $(MAKE))
 	(cd sbin && $(MAKE))
+	(cd var  && $(MAKE))
 	(cd platform && $(MAKE))
 
 clean-subdirs:
@@ -170,6 +173,7 @@ clean-subdirs:
 	(cd apps && $(MAKE) clean)
 	(cd bin  && $(MAKE) clean)
 	(cd sbin && $(MAKE) clean)
+	(cd var  && $(MAKE) clean)
 	(cd platform && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs

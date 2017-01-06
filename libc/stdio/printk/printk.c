@@ -26,7 +26,6 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#include <GlobalDefintions.h>
 #include <libc/stdio/printk/printk.h>
 #include <drv/video/video.h>
 #include <libc/stdlib/itoa/itoa.h>

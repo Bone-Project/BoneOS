@@ -21,7 +21,6 @@
  **     Amanuel Bogale <amanuel2> : start
  **/  
 
-#include <GlobalDefintions.h>
 #include <libc/stdio/printk/printk.h>
 #include <libc/stdio/printck/printck.h>
 #include <drv/video/video.h>

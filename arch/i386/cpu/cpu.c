@@ -34,6 +34,7 @@
 #undef KERNEL_CALL
 #include <libc/string/string.h>
 #include <cpu/cpuid.h>
+#include <var/cpu/cpu_info.h>
 
 void init_cpu(void)
 {
@@ -43,6 +44,7 @@ void init_cpu(void)
    init_irq();
    
    init_cpuid();
+   init_cpu_info();
 }
 
 

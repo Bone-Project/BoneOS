@@ -29,7 +29,6 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <GlobalDefintions.h>
 #include <libc/stdio/stdio.h>
 #include <misc/asm_util.h>
 #include <boot/multiboot/multiboot.h>
@@ -49,7 +48,7 @@
 #include <mm/pmm.h>
 #include <misc/status_codes.h>
 #include <stdlib/stdlib.h>
-#include <cpu/cpuid.h>
+#include <var/cpu/cpu_info.h>
 
 /*
  * Calling all Global C Objects
@@ -102,18 +101,12 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
    //init_terminal();
    if(pmm_init(multiboot_structure)!=STATUS_OK)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
-   __debug_print_memory_size();
-     if(cpu_has_feature(  (int *)CPU_FEATURE_FPU , EDX_CPU_FEATURE ))
-     {
-         printk("FPU IS INSTALLED");
-     }
-     else
-        printk("NO FPU!");
         
-     printk("\n VENDOR_ID : %s \n SIGNATURE : %s", (char*)cpu_id.vendorID, (char*) cpu_id.signature);
-//cpu_id
-   // printk("VENDOR : %x %x %x %x" , cpu_id.vendorID[0], cpu_id.vendorID[1], cpu_id.vendorID[2], cpu_id.vendorID[3]);
-   //init_terminal();
+   __debug_print_memory_size();
+    printk("\n");
+    __debug_print_cpu_info();
+    
+    //init_terminal();
    
    while(1)
       hlt();
