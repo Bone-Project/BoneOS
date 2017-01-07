@@ -24,6 +24,11 @@
 
 #include <cpu/cpuid.h>
 
+#define __cpuid(in, a, b, c, d) \
+         __asm__("cpuid\n\t" \
+                 :"=a" (a), "=b" (b), "=c" (c), "=d" (d) \
+                 : "a" (in)); 
+
 
 /**
  * the highest function cpuid supports
@@ -32,16 +37,6 @@
 
 cpuid_t cpu_id;
 
-/*
- * cpuid for more dependent purpose
- */
-static inline void _vendor_string_cpuid(uint32_t a,uint32_t out[]){
-  __asm__ __volatile__ ("cpuid\n\t" 
-                        : "=b"(out[0]), "=c"(out[2]), "=d"(out[1])
-                        : "a"(a) 
-                       
-  );
-}
 
 /**
  * stores the highest supported function parameter and vendorID
@@ -50,12 +45,9 @@ void init_cpuid(){
   if (!has_cpuid_ins()){ /* return if cpuid is not supported */
     return;
   }
-  _vendor_string_cpuid(CPUID_GETVENDORSTRING, cpu_id.vendorID);
-  __asm__ __volatile__ (".intel_syntax\n\t"
-                        "mov %%eax,1\n\t"
-                        "cpuid\n\t"
-                        ".att_syntax\n\t"
-                        :"=a"(cpu_id.signature),"=d"(cpu_id.features_edx),"=c"(cpu_id.features_ecx));
+  int res;
+  __cpuid(CPUID_GETVENDORSTRING,res,cpu_id.vendorID[0],cpu_id.vendorID[2],cpu_id.vendorID[1]);
+  __cpuid(CPUID_GETFEATURES,cpu_id.signature,res,cpu_id.features_ecx,cpu_id.features_edx);
 }
 
 bool cpu_has_feature(void* cpu_has, cpu_features_t feat)

@@ -109,6 +109,7 @@ typedef struct {
 	uint32_t features_edx;
 	uint32_t features_ecx;
 	uint32_t signature;
+	uint32_t padding;
 } cpuid_t;
 
 extern cpuid_t cpu_id;

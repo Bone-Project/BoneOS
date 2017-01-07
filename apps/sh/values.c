@@ -30,9 +30,5 @@ char* VAR_PWD = "/";
 char* VAR_RELEASE = "0.0.1";
 char* VAR_OSNAME = "BoneOS";
 char* VAR_PLATFORM = "x86_32";
-uint8_t CLOCK_CTL_ADDR = 0x70;
-uint8_t CLOCK_DATA_ADDR = 0x71;
-
-
 
 

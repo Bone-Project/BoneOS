@@ -29,54 +29,63 @@
  
 cpu_info_t cpu_info;
 
+static const char* vendor_id_strings[] = {
+    "GenuineIntel",
+    "AMDisbetter!",
+    "AuthenticAMD",
+    "CentaurHauls",
+    "CyrixInstead",
+    "TransmetaCPU",
+    "GenuineTMx86",
+    "Geode by NSC",
+    "NexGenDriven",
+    "RiseRiseRise",
+    "SiS SiS SiS ",
+    "UMC UMC UMC ",
+    "VIA VIA VIA ",
+    "Vortex86 SoC",
+    "KVMKVMKVM",
+    "Microsoft Hv",
+    "VIA VIA VIA ",
+    "VMwareVMware",
+    " lrpepyh vr"
+};
+
+static const char* vendor_company_strings[] = {
+    "Intel",
+    "K5-AMD",
+    "AMD",
+    "Centaur",
+    "Cyrix",
+    "Transmeta",
+    "Transmetax86",
+    "National Semiconductor",
+    "NexGen",
+    "Rise",
+    "SiS",
+    "UMC ",
+    "VIA ",
+    "Vortex86",
+    "KVM",
+    "Microsoft Hypervisor",
+    "VIA",
+    "VMware",
+    "Parrelels"
+};
+
+
+
 static inline void find_comp(char* ID)
 {
-    if(strcmp(ID,"GenuineIntel")==0)
-        cpu_info.companyName = "Intel";
-    else if(strcmp(ID,"AMDisbetter!")==0)
-        cpu_info.companyName = "K5-AMD";
-    else if(strcmp(ID,"AuthenticAMD")==0)
-        cpu_info.companyName = "AMD";
-    else if(strcmp(ID,"CentaurHauls")==0)
-        cpu_info.companyName = "Centaur";  
-    else if(strcmp(ID,"CyrixInstead")==0)
-        cpu_info.companyName = "Cyrix";  
-    else if(strcmp(ID,"TransmetaCPU")==0)
-        cpu_info.companyName = "Transmeta";  
-    else if(strcmp(ID,"GenuineTMx86")==0)
-        cpu_info.companyName = "Transmetax86";  
-    else if(strcmp(ID,"Geode by NSC")==0)
-        cpu_info.companyName = "National Semiconductor";  
-    else if(strcmp(ID,"NexGenDriven")==0)
-        cpu_info.companyName = "NexGen";  
-    else if(strcmp(ID,"RiseRiseRise")==0)
-        cpu_info.companyName = "Rise";  
-    else if(strcmp(ID,"SiS SiS SiS ")==0)
-        cpu_info.companyName = "SiS";  
-    else if(strcmp(ID,"UMC UMC UMC ")==0)
-        cpu_info.companyName = "UMC";  
-    else if(strcmp(ID,"VIA VIA VIA ")==0)
-        cpu_info.companyName = "VIA";
-    else if(strcmp(ID,"Vortex86 SoC")==0)
-        cpu_info.companyName = "Vortex86";
-    else if(strcmp(ID,"KVMKVMKVM")==0)
-        cpu_info.companyName = "KVM";
-    else if(strcmp(ID,"Microsoft Hv")==0)
-        cpu_info.companyName = "Vortex86";
-    else if(strcmp(ID,"Vortex86 SoC")==0)
-        cpu_info.companyName = "Vortex86";  
-    else if(strcmp(ID,"VIA VIA VIA ")==0)
-        cpu_info.companyName = "Via";
-    else if(strcmp(ID,"VMwareVMware")==0)
-        cpu_info.companyName = "VMWare";
-    else if(strcmp(ID,"XenVMMXenVMM")==0)
-        cpu_info.companyName="XenVMMX";
-    else if(strcmp(ID,"Microsoft Hv")==0)
-        cpu_info.companyName = "Microsoft Hypervisor";
-    else if(strcmp(ID," lrpepyh vr")==0)
-        cpu_info.companyName = "Parrelels";
-    else
-        cpu_info.companyName = "Unknown";
+    for(int i=0; vendor_id_strings[i]; i++)
+    {
+        if(strcmp(ID,vendor_id_strings[i])==0)
+        {
+          cpu_info.companyName = (char*)vendor_company_strings[i];
+          return;
+        }
+    }
+    cpu_info.companyName = "Unknown";
 }
 
 static void signature_proccessing(uint32_t sig)
@@ -85,7 +94,6 @@ static void signature_proccessing(uint32_t sig)
     {
         int bit_twelve = (sig >> 12) & 1;  
         int bit_thirteen = (sig >> 13) & 1;
-        
         if(bit_twelve == 0 && bit_thirteen == 0)
             cpu_info.proccecor_type = "Original OEM Proccecor";
         else if(bit_twelve == 0 && bit_thirteen == 1)
@@ -111,6 +119,9 @@ int init_cpu_info()
         
     return STATUS_OK;
 }
+
+
+
 
 void __debug_print_cpu_info()
 {
