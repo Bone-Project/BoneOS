@@ -74,7 +74,6 @@ static const char* vendor_company_strings[] = {
 };
 
 
-
 static inline void find_comp(char* ID)
 {
     for(int i=0; vendor_id_strings[i]; i++)

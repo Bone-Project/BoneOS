@@ -26,11 +26,18 @@
 #include <stdio/stdio.h>
 #include <stdbool.h>
 #include <mm/pmm.h>
+#include <mm/bitmap.h>
 #include <mm/pmm_util.h>
+#include <stdlib/stdlib.h>
 
 static bool pmm_initalized = false;
 static multiboot_info_pmm_t mb_info;
 
+
+ allocation_scheme_t *alloc_schemes[] = 
+ {
+   &bitmap_pmm_allocation
+ };
 
 mem_size_t _mmngr_mem_size = {0,0,0,0};
 
@@ -45,6 +52,9 @@ int pmm_init(multiboot_info_t* multiboot_structure)
   _mmngr_mem_size.GiB = pmm_mmap_util(mb_info.multiboot_structure,GiB);
   _mmngr_mem_size.KiB = pmm_mmap_util(mb_info.multiboot_structure,KiB);
   _mmngr_mem_size.B = pmm_mmap_util(mb_info.multiboot_structure,B);
+  
+  if(alloc_schemes[_BITMAP_PAGE_FRAME_ALLOCATION_SCHEME]->init())
+      panik("Error Initalizing bitmap allocation system");
   
   return STATUS_OK;
 }

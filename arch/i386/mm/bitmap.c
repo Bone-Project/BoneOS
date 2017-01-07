@@ -25,4 +25,49 @@
 // |  | -> |  |
 
 
+#include <mm/bitmap.h>
+#include <misc/status_codes.h>
+#include <stdbool.h>
 
+static uint32_t _bitmap_used_blocks = 0;
+static uint32_t _bitmap_max_blocks  = 1000; /*TODO : CHANGE THIS TO RELIABLE*/
+static uint32_t *_bitmap_blocks=0;
+
+allocation_scheme_t bitmap_pmm_allocation = 
+{
+  .init = init_bitmap_alloc,
+  .allocate_block_ff = _bitmap_find_first_free_bit
+};
+
+//Block -> 4KB OF Data
+//4Bytes holy 32 Blocks or 4KiB * 32 or 128 MiB
+//[0] Corresponds to first #0->#32 Blocks. [1] corresponds to Blocks #32->#64.
+
+static inline void _bitmap_set_block_bit(int bit)
+{
+  _bitmap_blocks[bit/32] |= 1 << (bit % 32);
+  _bitmap_used_blocks+=1;
+}
+
+static inline void _bitmap_clear_block_bit(int bit)
+{
+  _bitmap_blocks[bit/32] &= ~(1<<(bit%32));
+  _bitmap_used_blocks-=1;
+}
+static inline bool _bitmap_test_block_bit(int bit)
+{
+  return ( (_bitmap_blocks[bit/32] >> (bit%32)) & 1 );
+}
+
+int _bitmap_find_first_free_bit()
+{
+  for(uint32_t i=0; i<_bitmap_max_blocks; i++)
+    if(_bitmap_test_block_bit(i)==false) //Notset
+      return i;
+  return -1;  
+}
+
+int init_bitmap_alloc()
+{
+  return STATUS_OK;
+}
