@@ -28,9 +28,12 @@
 #include <mm/bitmap.h>
 #include <misc/status_codes.h>
 #include <stdbool.h>
+#include <string/string.h>
+#include <mm/pmm_util.h>
+#include <stdio/stdio.h>
 
 static uint32_t _bitmap_used_blocks = 0;
-static uint32_t _bitmap_max_blocks  = 1000; /*TODO : CHANGE THIS TO RELIABLE*/
+static uint32_t _bitmap_max_blocks  = 0; /*TODO : CHANGE THIS TO RELIABLE*/
 static uint32_t *_bitmap_blocks=0;
 
 allocation_scheme_t bitmap_pmm_allocation = 
@@ -67,7 +70,12 @@ int _bitmap_find_first_free_bit()
   return -1;  
 }
 
-int init_bitmap_alloc()
+int init_bitmap_alloc(multiboot_info_t* multiboot_structure)
 {
+  _bitmap_max_blocks = (pmm_mmap_util(multiboot_structure,B)*8)/_PMM_MNGR_BLOCK_SIZE /*Get each 4096KB's ;)*/;
+  memset(_bitmap_blocks,0xFFFFFFFF,_bitmap_max_blocks);
+  _bitmap_set_block_bit(0); //First block set to return NULL Block pointers
+
+  printk("MAX_BLOCKS : %d",_bitmap_max_blocks);
   return STATUS_OK;
 }

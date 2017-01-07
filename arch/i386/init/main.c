@@ -103,8 +103,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
         
    __debug_print_memory_size();
-    printk("\n");
-    __debug_print_cpu_info();
+    //printk("\n");
+    //__debug_print_cpu_info();
     
     //init_terminal();
    

@@ -38,7 +38,7 @@ extern int pmm_init(multiboot_info_t* multiboot_structure);
 
 typedef struct
 {
-   int  (*init)();
+   int  (*init)(multiboot_info_t* multiboot_structure);
    int (*allocate_block_ff)(); //ff -> first free @return first free bit
 }allocation_scheme_t;
 
