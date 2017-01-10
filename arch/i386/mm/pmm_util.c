@@ -30,22 +30,25 @@
 
 
 
-double pmm_mmap_util(multiboot_info_t* multiboot_structure, memory_type_t mem)
+double mem_amt(multiboot_info_t* multiboot_structure, memory_type_t mem, bool mmap)
 {
+    multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) multiboot_structure->mmap_addr;
+  
+    double amt_mem=0;
+          
+  	while(mmap < (multiboot_memory_map_t*) (multiboot_structure->mmap_addr + multiboot_structure->mmap_length)) 
+  	{
+  	  mmap = (multiboot_memory_map_t*) ( (unsigned int)mmap + mmap->size + sizeof(mmap->size) );
+  	  if(mmap==true)
+  	  {
+  	     if(mmap->type == MULTIBOOT_MEMORY_AVAILABLE)
+  	       amt_mem+=mmap->len;
+  	  }
+  	  else
+  	      amt_mem+=mmap->len;
 
-  multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) multiboot_structure->mmap_addr ;
-  double amt_mem=0;
-      
-      for(
-          size_t i=0;
-          i<multiboot_structure->mmap_length/(sizeof(multiboot_memory_map_t));
-          i++
-         )
-         
-          {
-              uintptr_t length=((uintptr_t)mmap[i].len);
-               amt_mem+=length;
-          }
+  	}
+  	
     if(mem == KiB)
         return (amt_mem/(1024));
     else if (mem == MiB)
@@ -54,6 +57,7 @@ double pmm_mmap_util(multiboot_info_t* multiboot_structure, memory_type_t mem)
         return (amt_mem/(1024*1024*1024));
     else 
         return (amt_mem);
+        
         
 }
 

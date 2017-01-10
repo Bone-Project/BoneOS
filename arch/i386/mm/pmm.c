@@ -68,6 +68,20 @@ void __debug_print_memory_size()
     printk("KiB : %.7f\n",_mmngr_mem_size.KiB);
     printk("MiB : %.7f\n",_mmngr_mem_size.MiB);
     printk("B   : %.7f\n",_mmngr_mem_size.B);
+    
+    // multiboot_memory_map_t* cur_mmap = (multiboot_memory_map_t*) mb_info.multiboot_structure->mmap_addr;
+    // multiboot_memory_map_t* end_mmap = (multiboot_memory_map_t*) cur_mmap + mb_info.multiboot_structure->mmap_length;
+    // while(cur_mmap < end_mmap)
+    // {
+    //   cur_mmap = (multiboot_memory_map_t*) ( (unsigned int)cur_mmap + cur_mmap->size + sizeof(cur_mmap->size) );
+      
+    //   if(cur_mmap->type == MULTIBOOT_MEMORY_AVAILABLE)
+    //     printk("AVAILABLE");
+    // }
+    
+    
+	
+	
   #endif
 }
 

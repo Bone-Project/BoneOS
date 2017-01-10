@@ -12,7 +12,7 @@ typedef enum
     GiB
 }memory_type_t;
 
-extern double pmm_mmap_util(multiboot_info_t* multiboot_structure, memory_type_t mem);
+extern double mem_amt(multiboot_info_t* multiboot_structure, memory_type_t mem, bool mmap);
 
 
 #endif /*_ARCH_MM_PMM_UTIL_H_*/
