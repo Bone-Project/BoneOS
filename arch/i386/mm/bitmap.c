@@ -16,11 +16,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **   Amanuel Bogale <amanuel2> : start
- **/   
+ **/
 
 // |  | -> |  |
 
@@ -36,7 +36,7 @@ static uint32_t _bitmap_used_blocks = 0;
 static uint32_t _bitmap_max_blocks  = 0; /*TODO : CHANGE THIS TO RELIABLE*/
 static uint32_t *_bitmap_blocks=0;
 
-allocation_scheme_t bitmap_pmm_allocation = 
+allocation_scheme_t bitmap_pmm_allocation =
 {
   .init = init_bitmap_alloc,
   .allocate_block_ff = _bitmap_find_first_free_bit
@@ -67,23 +67,24 @@ int _bitmap_find_first_free_bit()
   for(uint32_t i=0; i<_bitmap_max_blocks; i++)
     if(_bitmap_test_block_bit(i)==false) //Notset
       return i;
-  return -1;  
+  return -1;
 }
 
 //Initalize a region in memory
 //|  | -> | 1 |
-bool init_region(uint32_t base_adress, size_t size)
+bool init_region(uint32_t base_address, size_t size)
 {
-
+    size = size; //Removing a warning temporarily
+    base_address = base_address;
   return STATUS_OK;
 }
 
 int init_bitmap_alloc(multiboot_info_t* multiboot_structure)
 {
   _bitmap_max_blocks = (mem_amt(multiboot_structure,KiB,true))/_PMM_MNGR_BLOCK_SIZE /*Get each 4096KB's ;)*/;
-  
+
   memset(_bitmap_blocks,0xFFFFFFFF,_bitmap_max_blocks);
-  
+
   _bitmap_set_block_bit(0); //First block set to return NULL Block pointers
 
   printk("MAX_BLOCKS : %d\n",_bitmap_max_blocks);
