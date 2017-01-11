@@ -30,3 +30,27 @@
 #include <string/string.h>
 #include <sh/values.h>
 #include <date/date.h>
+#include <drv/cmos/rtc/rtc.h>
+
+int main_date_opt_handler (char *cmd)
+{
+    size_t num_opts = get_opt_count(cmd);
+    str_t opts[num_opts];
+    get_opt(cmd,opts);
+
+    if (!strcmp (opts [1].str, "--help"))
+    {
+        printk (cmd_date.help);
+        return STATUS_OK;
+    }
+    else if (num_opts == 1)
+    {
+        rtc_print_date();
+        return STATUS_OK;
+    }
+    else
+    {
+        printk (cmd_date.invalid_use_msg);
+        return STATUS_OK;
+    }
+}

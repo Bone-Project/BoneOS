@@ -23,7 +23,8 @@ CSRCS = \
 	uname/uname.c \
 	uname/opts/main_uname.c \
 	boneshell/boneshell.c \
-	date/date.c
+	date/date.c \
+	date/opts/main_date.c
 
 LIBNAME := bin
 
