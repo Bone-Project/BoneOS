@@ -70,12 +70,19 @@ int _bitmap_find_first_free_bit()
   return -1;  
 }
 
+void init_region()
+{
+  
+}
+
 int init_bitmap_alloc(multiboot_info_t* multiboot_structure)
 {
-  _bitmap_max_blocks = (pmm_mmap_util(multiboot_structure,B)*8)/_PMM_MNGR_BLOCK_SIZE /*Get each 4096KB's ;)*/;
+  _bitmap_max_blocks = (mem_amt(multiboot_structure,KiB,true))/_PMM_MNGR_BLOCK_SIZE /*Get each 4096KB's ;)*/;
+  
   memset(_bitmap_blocks,0xFFFFFFFF,_bitmap_max_blocks);
+  
   _bitmap_set_block_bit(0); //First block set to return NULL Block pointers
 
-  printk("MAX_BLOCKS : %d",_bitmap_max_blocks);
+  printk("MAX_BLOCKS : %d\n",_bitmap_max_blocks);
   return STATUS_OK;
 }

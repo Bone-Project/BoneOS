@@ -30,7 +30,7 @@
 
 
 
-double mem_amt(multiboot_info_t* multiboot_structure, memory_type_t mem, bool mmap)
+double mem_amt(multiboot_info_t* multiboot_structure, memory_type_t mem, bool mmap_avail)
 {
     multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) multiboot_structure->mmap_addr;
   
@@ -39,7 +39,7 @@ double mem_amt(multiboot_info_t* multiboot_structure, memory_type_t mem, bool mm
   	while(mmap < (multiboot_memory_map_t*) (multiboot_structure->mmap_addr + multiboot_structure->mmap_length)) 
   	{
   	  mmap = (multiboot_memory_map_t*) ( (unsigned int)mmap + mmap->size + sizeof(mmap->size) );
-  	  if(mmap==true)
+  	  if(mmap_avail==true)
   	  {
   	     if(mmap->type == MULTIBOOT_MEMORY_AVAILABLE)
   	       amt_mem+=mmap->len;
