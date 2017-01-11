@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <misc/status_codes.h>
@@ -27,8 +28,8 @@
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
+#include <date/opts/main_date.h>
 #include <date/date.h>
-
 
 struct cmd_opt_t* cmd_date_opts[] =
 {
@@ -38,10 +39,10 @@ struct cmd_opt_t* cmd_date_opts[] =
 int cmd_date_handler(char* cmd)
 {
    size_t num_opts = get_opt_count(cmd);
-   if(num_opts == 1)
+   if(num_opts >= 1)
    {
-  //   print_date_default();
-     return STATUS_OK;
+        main_date_opt_handler (cmd);
+        return STATUS_OK;
    }
    return STATUS_OK;
 }
