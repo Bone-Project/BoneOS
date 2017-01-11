@@ -59,7 +59,7 @@ static inline void _bitmap_clear_block_bit(int bit)
 }
 static inline bool _bitmap_test_block_bit(int bit)
 {
-  return ( (_bitmap_blocks[bit/32] >> (bit%32)) & 1 );
+  return ((_bitmap_blocks[bit/32]>>(bit%32)) & 1 );
 }
 
 int _bitmap_find_first_free_bit()
@@ -70,9 +70,12 @@ int _bitmap_find_first_free_bit()
   return -1;  
 }
 
-void init_region()
+//Initalize a region in memory
+//|  | -> | 1 |
+bool init_region(uint32_t base_adress, size_t size)
 {
-  
+
+  return STATUS_OK;
 }
 
 int init_bitmap_alloc(multiboot_info_t* multiboot_structure)

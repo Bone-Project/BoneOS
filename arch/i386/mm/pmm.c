@@ -51,7 +51,7 @@ int pmm_init(multiboot_info_t* multiboot_structure)
   _mmngr_mem_size.MiB = mem_amt(mb_info.multiboot_structure,MiB,false);
   _mmngr_mem_size.GiB = mem_amt(mb_info.multiboot_structure,GiB,false);
   _mmngr_mem_size.KiB = mem_amt(mb_info.multiboot_structure,KiB,false);
-  _mmngr_mem_size.B = mem_amt(mb_info.multiboot_structure,B,false);
+  _mmngr_mem_size.B   = mem_amt(mb_info.multiboot_structure,B,false);
   
   if(alloc_schemes[_BITMAP_PAGE_FRAME_ALLOCATION_SCHEME]->init(multiboot_structure))
       panik("Error Initalizing bitmap allocation system");
