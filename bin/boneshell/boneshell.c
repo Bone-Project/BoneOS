@@ -32,6 +32,7 @@
 #include <drv/video/VGA/vga.h>
 #include <libc/stdio/scank/scank.h>
 #include <drv/ps2/kbd/kbd.h>
+#include <drv/cmos/rtc/rtc.h>
 #include <../platform/pc/drv/ps2/kbd/kbd.c>
 
 extern volatile bool TAB_PREVIOUS_VALUE_SET;
@@ -67,9 +68,10 @@ void removeSpaces(char* source)
 void loop_terminal()
 {
   shell_instance_cnt+=1;
-  printk("Shell #%d\n" , shell_instance_cnt);
-  printk ("%s release %s\nStarted at : ", VAR_OSNAME, VAR_RELEASE);
-  cmds[CMD_DATE_INDEX]->handler("date");
+  if (shell_instance_cnt != 1)
+    printk("Shell #%d\n" , shell_instance_cnt);
+  printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
+  rtc_print_date();
   while(1)
   {
     start_shell:;
