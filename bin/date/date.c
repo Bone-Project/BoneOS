@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <misc/status_codes.h>
 #include <drv/cmos/rtc/rtc.h>
@@ -30,31 +30,24 @@
 #include <date/date.h>
 
 
-struct cmd_opt_t* cmd_date_opts[] = 
+struct cmd_opt_t* cmd_date_opts[] =
 {
     0
 };
-
-
-void print_date_default()
-{
-   rtc_print_date_cmd();
-   //Tue Jan  3 16:06:48 UTC 2017
-}
 
 int cmd_date_handler(char* cmd)
 {
    size_t num_opts = get_opt_count(cmd);
    if(num_opts == 1)
    {
-     print_date_default();
-     return STATUS_OK;    
+  //   print_date_default();
+     return STATUS_OK;
    }
    return STATUS_OK;
 }
 
 
-struct cmd_t cmd_date = 
+struct cmd_t cmd_date =
 {
   .name = "date",
   .usage ="date [--help]",
@@ -66,7 +59,7 @@ struct cmd_t cmd_date =
                 "DESCRIPTION : \n "
                 "\tPrints out the Date with specific format\n",
   .cmd_opts =  cmd_date_opts,
-  .handler = &cmd_date_handler,    
+  .handler = &cmd_date_handler,
   .invalid_use_msg = "Invalid use of date command.\n"
                      "Type in date --help for more help.\n",
   .privilege = USER

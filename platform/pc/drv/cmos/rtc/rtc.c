@@ -76,40 +76,6 @@ uint8_t rtc_get_month()
 	return inb(CMOS_REGiSTER_DATA);
 }
 
-static const char* month_to_text(uint8_t num)
-{
-	const char* month;
-	if(num < 1 || num > 12)
-		panik("INVALID MONTH");
-		
-	const char* months_str[12] = 
-	{ 
-		"Jan", "Feb" , "Mar", "Apr" , "May",
-		"Jun", "Jul", "Aug" , "Sep", "Oct",
-		"Nov", "Dec"
-	};
-	
-	month = months_str[num-1];
-	return month;
-}
-
-static const char* date_to_text(uint8_t num)
-{
-	const char* date;
-	if(num < 1 || num > 7)
-		panik("INVALID MONTH");
-		
-	const char* dates_str[7] = 
-	{ 
-		"Mon", "Tue" , "Wen", "Thu" , "Fri",
-		"Sat", "Sun"
-	};
-	
-	date = dates_str[num-2];
-	return date;
-}
-
-
 uint8_t rtc_get_year()
 {
 	outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_YEAR);
@@ -122,20 +88,44 @@ uint8_t rtc_get_century()
 	return inb(CMOS_REGiSTER_DATA);
 }
 
-// static void add_0(uint8_t test)
-// {
-// 	char* test_str=0;
-// 	for(int i=0; test_str[i]; i++)
-// 		test_str[i]=0;
-// 	sprintk(test_str,"%c", test);
-// 	printk(test_str);
-// }
-
-
-void rtc_print_date_cmd ()
+static const char* month_to_text(uint8_t num)
 {
-    printk("%s %s %x %x:%x:%x UTC %x%x\n", 
-    								  date_to_text(rtc_get_day_month()),
+	const char* month;
+	if(num < 1 || num > 12)
+		panik("INVALID MONTH");
+
+	const char* months_str[12] =
+	{
+		"Jan", "Feb" , "Mar", "Apr" , "May",
+		"Jun", "Jul", "Aug" , "Sep", "Oct",
+		"Nov", "Dec"
+	};
+
+	month = months_str[num-1];
+	return month;
+}
+
+static const char* date_to_text(uint8_t num)
+{
+	const char* date;
+	if(num < 1 || num > 7)
+		panik("INVALID MONTH");
+
+	const char* dates_str[7] =
+	{
+		"Mon", "Tue" , "Wed", "Thu" , "Fri",
+		"Sat", "Sun"
+	};
+
+	date = dates_str[num-2];
+	return date;
+}
+
+
+void rtc_print_date ()
+{
+    printk("%s %s %x %x:%x:%x UTC %x%x\n",
+    								  date_to_text(rtc_get_weekday()),
     								  month_to_text(rtc_get_month()),
     								  rtc_get_day_month(),
     								  rtc_get_hour(),
