@@ -200,16 +200,26 @@ void key_handler_util(int key)
       if(kbd_info.is_caps == false && print_scank == true && active_scank == true)
       {
         inc_al();
-        printk("%c", key);
+        if (kbd_info.is_shift == true) {
+            printk("%c", toupper(key));
+        }
+        else if (kbd_info.is_shift == false) {
+            printk ("%c", tolower (key));
+        }
         wait_until_enter(key);
       }
       else if(kbd_info.is_caps == true && print_scank == true && active_scank == true)
       {
         inc_al();
         if(kbd_info.is_shift == true)
-           printk("%c", tolower(key));
+        {
+            key = tolower (key);
+        }
         else
-           printk("%c", toupper(key));
+        {
+            key = toupper (key);
+        }
+        printk ("%c", key);
         wait_until_enter(key);
       }
 
