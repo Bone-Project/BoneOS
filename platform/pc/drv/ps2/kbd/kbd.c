@@ -241,38 +241,42 @@ void key_handler_util_backspace()
 
  void key_handler_util_tab()
  {
-
-   printk("\n");
-   //char tab__ [1024];
-   int index_tab=0;
-   int num_cmds=0;
-   for(int i=0; cmds[i]; i++)
-   {
-     if(tab_util(buffer_scank, cmds[i]->name) == true)
-     {
-       num_cmds++;
-       for(int j=0; cmds[i]->name[j]; j++)
-       {
-         tab__[index_tab] = cmds[i]->name[j];
-         index_tab++;
+    int index_tab=0;
+    int num_cmds=0;
+    for(int i=0; cmds[i]; i++)
+    {
+        if(tab_util(buffer_scank, cmds[i]->name) == true)
+        {
+            num_cmds++;
+            for(int j=0; cmds[i]->name[j]; j++)
+            {
+                tab__[index_tab] = cmds[i]->name[j];
+                index_tab++;
+            }
+            for(int rep=0; rep<4; rep++)tab__[index_tab++] = ' ';
         }
-      for(int rep=0; rep<4; rep++)tab__[index_tab++] = ' ';
-     }
-   }
-   tab__[index_tab] = 0;
-   if(num_cmds==1)
-   {
-       for(int i = 0; tab__[i]; i ++) {
-          printk("%c", tab__[i]);
-          cmd_active.value [i] = tab__ [i];
+    }
+    tab__[index_tab] = 0;
+    if(num_cmds==1)
+    {
+        printk ("\n");
+        for(int i = 0; tab__[i]; i ++) {
+            printk("%c", tab__[i]);
+            cmd_active.value [i] = tab__ [i];
         }
         tab_one_opt=true;
-       return;
-   }
+        return;
+    }
 
-   for(int i=0; tab__[i]; i++)
-      printk("%c", tab__[i]);
-   tab_multiple_opts=true;
+    if (num_cmds > 1) {
+        tab_multiple_opts=true;
+        printk ("\n");
+        for(int i=0; tab__[i]; i++)
+            printk("%c", tab__[i]);
+    }
+    else {
+        tab_zero_opt = true;
+    }
 }
 
 
@@ -336,7 +340,7 @@ void key_handler()
                 key_handler_util_tab();
                 active_scank = false;
                 buffer_scank[index_scank] = 0;
-                if(print_scank == true) printk("\n");
+                if(print_scank == true && tab_zero_opt == false) printk("\n");
                 UP_KEY_ACTIVE = true; //Reset Up Key
                 TAB_PREVIOUS_VALUE_SET = true;
                 TAB_PREVIOUS_VALUE = buffer_scank;

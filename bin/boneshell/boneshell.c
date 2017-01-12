@@ -49,6 +49,7 @@ int __found = 0;
 volatile bool exit_set__shell = false;
 volatile bool tab_multiple_opts = false;
 volatile bool tab_one_opt = false;
+volatile bool tab_zero_opt = false;
 bool executed_internally=false;
 
 void removeSpaces(char* source)
@@ -94,6 +95,7 @@ void loop_terminal()
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
 
 
+    //continue_read:
     scank(true,true, "%s" , cmd_active.value);
 
     if(tab_multiple_opts==true)
@@ -107,6 +109,12 @@ void loop_terminal()
       strcpy (cmd_active.value, tab__);
       executed_internally = true;
       removeSpaces (cmd_active.value);
+    }
+    else if (tab_zero_opt == true)
+    {
+        key_handler_util_backspace();
+        tab_zero_opt = false;
+        scank (true, true, "%s", cmd_active.value + (strlen (cmd_active.value)));
     }
 
 

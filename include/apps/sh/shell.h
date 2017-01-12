@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-typedef enum 
+typedef enum
 {
   ROOT,
   USER
@@ -25,7 +25,7 @@ struct cmd_t
   char*  usage;
   char*  help;
   char*  invalid_use_msg;
-  exec_prv privilege; 
+  exec_prv privilege;
   struct cmd_opt_t** cmd_opts;
   int(*handler)(char* cmd);
 };
@@ -59,6 +59,7 @@ extern volatile struct typed_cmd cmd_active;
 extern volatile uint32_t cmd_active_index;
 extern volatile bool tab_multiple_opts;
 extern volatile bool tab_one_opt;
+extern volatile bool tab_zero_opt;
 volatile uint32_t shell_instance_cnt;
 
 #endif /*_APPS_TERM_TERMINAL_H_*/
