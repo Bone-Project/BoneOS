@@ -66,10 +66,10 @@ extern volatile char __get_char_chr;
 //Keyboard Driver Handler
 struct device_driver_t kbd_driver =
 {
-   .name = "8042 Keyboard PS/2 Driver",
-   .init = &init_kbd,
-   .uninit = &uninit_kbd,
-   .version = "8042"
+    .name = "8042 Keyboard PS/2 Driver",
+    .init = &init_kbd,
+    .uninit = &uninit_kbd,
+    .version = "8042"
 };
 
 
@@ -88,9 +88,9 @@ struct device_driver_t kbd_driver =
 int key_press(uint8_t scancode)
 {
     if(kbd_info.is_shift)
-       return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_shift[scancode]);
+        return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_shift[scancode]);
     else
-       return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode]);
+        return (kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode]);
 }
 
 /*
@@ -104,11 +104,11 @@ int key_press(uint8_t scancode)
  */
 void key_release(uint8_t scancode)
 {
-  if (
-      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID ||
-      kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_RIGHT_SHIFT_PRESS_ID
-     )
-        kbd_info.is_shift = false;
+    if (
+        kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID ||
+        kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_RIGHT_SHIFT_PRESS_ID
+       )
+            kbd_info.is_shift = false;
 }
 
 /*
@@ -185,72 +185,75 @@ void key_handler_util(int key)
 {
     if(isalpha(key)==0)
     {
-      if(print_scank == true && active_scank == true)
-      {
-          inc_al();
-          printk("%c", key);
-          wait_until_enter(key);
-      }
+        if(print_scank == true && active_scank == true)
+        {
+            inc_al();
+            printk("%c", key);
+            wait_until_enter(key);
+        }
 
-      else if(active_scank == true)
-          wait_until_enter(key);
+        else if(active_scank == true)
+            wait_until_enter(key);
     }
     else
     {
-      if(kbd_info.is_caps == false && print_scank == true && active_scank == true)
-      {
-        inc_al();
-        if (kbd_info.is_shift == true) {
-            printk("%c", toupper(key));
-        }
-        else if (kbd_info.is_shift == false) {
-            printk ("%c", tolower (key));
-        }
-        wait_until_enter(key);
-      }
-      else if(kbd_info.is_caps == true && print_scank == true && active_scank == true)
-      {
-        inc_al();
-        if(kbd_info.is_shift == true)
+        if(kbd_info.is_caps == false && print_scank == true && active_scank == true)
         {
-            key = tolower (key);
+            inc_al();
+            if (kbd_info.is_shift == true) {
+                printk("%c", toupper(key));
+            }
+            else if (kbd_info.is_shift == false) {
+                printk ("%c", tolower (key));
+            }
+            wait_until_enter(key);
         }
-        else
+        else if(kbd_info.is_caps == true && print_scank == true && active_scank == true)
         {
-            key = toupper (key);
+            inc_al();
+            if(kbd_info.is_shift == true)
+            {
+                key = tolower (key);
+            }
+            else
+            {
+                key = toupper (key);
+            }
+            printk ("%c", key);
+            wait_until_enter(key);
         }
-        printk ("%c", key);
-        wait_until_enter(key);
-      }
-
-      else if(active_scank == true)
-        wait_until_enter(key);
+        else if(active_scank == true)
+            wait_until_enter(key);
     }
 }
 
 void key_handler_util_backspace()
 {
-  if(!((LENGTH_INPUT-1) < 0))
-  {
-    if(active_scank)
-      buffer_scank[index_scank--] = 0;
-    if(print_scank == true) printk("\b");
-      INDEX_CURSOR_POSITION-=1;
-      LENGTH_INPUT-=1;
-  }
+    if(!((LENGTH_INPUT-1) < 0))
+    {
+        if(active_scank)
+            buffer_scank[index_scank--] = 0;
+
+        if(print_scank == true)
+            printk("\b");
+
+        INDEX_CURSOR_POSITION-=1;
+        LENGTH_INPUT-=1;
+    }
 }
 
 
- bool tab_util(volatile char* buf_scan, volatile char* _cmd)
- {
-     for(int i=0; buf_scan[i]; i++)
-         if(buf_scan[i] != _cmd[i])
-             return false;
-     return true;
- }
+bool tab_util(volatile char* buf_scan, volatile char* _cmd)
+{
+    for(int i=0; buf_scan[i]; i++)
+        if(buf_scan[i] != _cmd[i])
+            return false;
 
- void key_handler_util_tab()
- {
+    return true;
+}
+
+void key_handler_util_tab()
+{
     int index_tab=0;
     int num_cmds=0;
     for(int i=0; cmds[i]; i++)
@@ -300,80 +303,90 @@ void key_handler_util_backspace()
  */
 void key_handler()
 {
-   switch(kbd_info.key)
-   {
-       //Is shift pressed
-       case KBD_LEFT_SHIFT_PRESS_ID:
-       case KBD_RIGHT_SHIFT_PRESS_ID:
-            kbd_info.is_shift = true;
-            break;
-       case KBD_CAPS_PRESS_ID:
-            kbd_info.is_caps = !kbd_info.is_caps;
-            break;
-       case KBD_UP_KEY_ID:
-            if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
-            {
-               UP_KEY_ACTIVE = false;
-               int LENGTH_INPUT_STORE = LENGTH_INPUT;
-               for (int i=0; i<LENGTH_INPUT_STORE; i++)
-                   key_handler_util_backspace();
-               for(int i=0; cmd_active.value[i]; i++)
-               {
-                 if(active_scank == true && print_scank == true)
-                 {
-                    wait_until_enter(cmd_active.value[i]);
-                    LENGTH_INPUT++;
-                 }
-               }
-              printk("%s" , cmd_active.value);
-            }
-            break;
+    switch(kbd_info.key)
+    {
+        //Is shift pressed
+        case KBD_LEFT_SHIFT_PRESS_ID:
+        case KBD_RIGHT_SHIFT_PRESS_ID:
+                kbd_info.is_shift = true;
+                break;
+        case KBD_CAPS_PRESS_ID:
+                kbd_info.is_caps = !kbd_info.is_caps;
+                break;
+        case KBD_UP_KEY_ID:
+                if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
+                {
+                    UP_KEY_ACTIVE = false;
+                    int LENGTH_INPUT_STORE = LENGTH_INPUT;
+
+                    for (int i=0; i<LENGTH_INPUT_STORE; i++)
+                        key_handler_util_backspace();
+
+                    for(int i=0; cmd_active.value[i]; i++)
+                    {
+                        if(active_scank == true && print_scank == true)
+                        {
+                            wait_until_enter(cmd_active.value[i]);
+                            LENGTH_INPUT++;
+                        }
+                    }
+                    printk("%s" , cmd_active.value);
+                }
+                break;
         case KBD_ENTER_PRESS_ID:
-            kbd_info.is_enter = true;
-            active_scank = false;
-            buffer_scank[index_scank] = 0;
-            if(print_scank == true) printk("\n");
-            UP_KEY_ACTIVE = true; //Reset Up Key
-            break;
-        case '\b':
-           key_handler_util_backspace();
-         break;
-        case '\t':
-            if(TERMINAL_MODE==false)
-            {
-                printk("\t");
-                LENGTH_INPUT+=4;
-                INDEX_CURSOR_POSITION+=4;
-            }
-            else
-            {
-                key_handler_util_tab();
+                kbd_info.is_enter = true;
                 active_scank = false;
                 buffer_scank[index_scank] = 0;
-                if(print_scank == true && tab_zero_opt == false) printk("\n");
+
+                if(print_scank == true)
+                    printk("\n");
+
                 UP_KEY_ACTIVE = true; //Reset Up Key
-                TAB_PREVIOUS_VALUE_SET = true;
-                TAB_PREVIOUS_VALUE = buffer_scank;
-            }
-            break;
+                break;
+        case '\b':
+                key_handler_util_backspace();
+                break;
+        case '\t':
+                if(TERMINAL_MODE==false)
+                {
+                    printk("\t");
+                    LENGTH_INPUT+=4;
+                    INDEX_CURSOR_POSITION+=4;
+                }
+                else
+                {
+                    key_handler_util_tab();
+                    active_scank = false;
+                    buffer_scank[index_scank] = 0;
+
+                    if(print_scank == true && tab_zero_opt == false)
+                        printk("\n");
+
+                    UP_KEY_ACTIVE = true; //Reset Up Key
+                    TAB_PREVIOUS_VALUE_SET = true;
+                    TAB_PREVIOUS_VALUE = buffer_scank;
+                }
+                break;
         case '\n':
-            if(print_scank == true) printk("\n");
-            break;
-       default:
-         if(isalpha(kbd_info.key)!=0)
-             key_handler_util(kbd_info.key);
-         else if(isdigit(kbd_info.key)!=0)
-             key_handler_util(kbd_info.key);
-         else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)
-             key_handler_util(kbd_info.key);
-         else if(((int)kbd_info.key) >= 58 && ((int)kbd_info.key) <=64)
-             key_handler_util(kbd_info.key);
-         else if(((int)kbd_info.key) >= 91 && ((int)kbd_info.key) <=96)
-             key_handler_util(kbd_info.key);
-         else if(((int)kbd_info.key) >= 123 && ((int)kbd_info.key) <=126)
-             key_handler_util(kbd_info.key);
-         break;
-   }
+                if(print_scank == true)
+                    printk("\n");
+
+                break;
+        default:
+                if(isalpha(kbd_info.key)!=0)
+                    key_handler_util(kbd_info.key);
+                else if(isdigit(kbd_info.key)!=0)
+                    key_handler_util(kbd_info.key);
+                else if(((int)kbd_info.key) >= 32 && ((int)kbd_info.key) <=47)
+                    key_handler_util(kbd_info.key);
+                else if(((int)kbd_info.key) >= 58 && ((int)kbd_info.key) <=64)
+                    key_handler_util(kbd_info.key);
+                else if(((int)kbd_info.key) >= 91 && ((int)kbd_info.key) <=96)
+                    key_handler_util(kbd_info.key);
+                else if(((int)kbd_info.key) >= 123 && ((int)kbd_info.key) <=126)
+                    key_handler_util(kbd_info.key);
+                break;
+    }
 }
 
 
@@ -388,9 +401,10 @@ void key_handler()
  */
 void kbd_handler(int_regs *r)
 {
-  if(r){};
-  kbd_info.scancode =kbd_enc_read_input_buf();
-  if(kbd_info.scancode & 0x80)
+    if(r){};
+    kbd_info.scancode =kbd_enc_read_input_buf();
+
+    if(kbd_info.scancode & 0x80)
         key_release(kbd_info.scancode & ~0x80);
     else
     {
@@ -412,10 +426,10 @@ void kbd_handler(int_regs *r)
  */
 int init_kbd()
 {
-  kbd_driver.initalized = true;
-  kbd_early_init();
-  install_irq_handler(IRQ_NUM_KBD,kbd_handler);
-  return STATUS_OK;
+    kbd_driver.initalized = true;
+    kbd_early_init();
+    install_irq_handler(IRQ_NUM_KBD,kbd_handler);
+    return STATUS_OK;
 }
 
 /*
@@ -429,9 +443,9 @@ int init_kbd()
  */
 int uninit_kbd()
 {
-  kbd_driver.initalized = false;
-  uninstall_irq_handler(IRQ_NUM_KBD);
-  return STATUS_OK;
+    kbd_driver.initalized = false;
+    uninstall_irq_handler(IRQ_NUM_KBD);
+    return STATUS_OK;
 }
 
 
