@@ -157,16 +157,16 @@ int boneshell_handler(char* cmd)
     else if(num_opts==1)
        loop_terminal();
     else
-        printk(cmd_boneshell.invalid_use_msg);
+       printk(cmd_boneshell.invalid_use_msg);
 
     return STATUS_OK;
 }
 
 struct cmd_t cmd_boneshell =
 {
-  .name = "boneshell",
-  .usage = "boneshell [--help] ",
-  .help = "boneshell(1) \t\t\t\t BoneOS Terminal Manual \n"
+    .name = "boneshell",
+    .usage = "boneshell [--help] ",
+    .help = "boneshell(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tboneshell\n"
                 "SYNOPSIS : \n "
@@ -176,11 +176,11 @@ struct cmd_t cmd_boneshell =
                 "\tthe child of the previous parent shell process.\n "
                 "\tcommand exit used to stop this child shell process.\n "
                 "\ttype exit --help for more on exit command\n ",
-  .cmd_opts =  cmd_boneshell_opts,
-  .handler = &boneshell_handler,
-  .invalid_use_msg = "Invalid use of boneshell command.\n"
-                     "Type in boneshell --help for more help.\n",
-  .privilege = USER
+    .cmd_opts =  cmd_boneshell_opts,
+    .handler = &boneshell_handler,
+    .invalid_use_msg = "Invalid use of boneshell command.\n"
+                        "Type in boneshell --help for more help.\n",
+    .privilege = USER
 };
 
 
