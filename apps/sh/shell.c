@@ -48,6 +48,7 @@
 #include <drv/cmos/rtc/rtc.h>
 #include <sh/built-in/exit/exit.h>
 #include <date/date.h>
+#include <whoami/whoami.h>
 
 
 
@@ -77,6 +78,7 @@ struct cmd_t *cmds[] =
     &cmd_logname,
     &cmd_uname,
     &cmd_date,
+    &cmd_whoami,
     0
 };
 

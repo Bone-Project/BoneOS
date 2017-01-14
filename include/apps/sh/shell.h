@@ -49,6 +49,7 @@ struct typed_cmd
 #define CMD_LOGNAME_INDEX 11
 #define CMD_UNAME_INDEX 12
 #define CMD_DATE_INDEX 13
+#define CMD_WHOAMI_INDEX 14
 
 extern void init_terminal();
 extern struct cmd_t *cmds[];
