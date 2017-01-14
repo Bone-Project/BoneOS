@@ -35,6 +35,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib/stdlib.h>
+#include <string/string.h>
 
 uint8_t rtc_get_second()
 {
@@ -121,10 +122,29 @@ static const char* date_to_text(uint8_t num)
 	return date;
 }
 
+rtc_t rtc_get_time()
+{
+    rtc_t curr;
+    rtc_t last; //Keep reading time until we get the same values twice
+
+    memset(&last, 0xFF, sizeof(last));
+    for (curr.year = 0;memcmp(&curr,&last,sizeof(curr)); last = curr)
+    {
+        curr.century = rtc_get_century();
+        curr.year = rtc_get_year();
+        curr.month = rtc_get_month();
+        curr.day = rtc_get_day_month();
+        curr.hour = rtc_get_hour();
+        curr.minute = rtc_get_minute();
+        curr.second = rtc_get_second();
+        curr.weekday = rtc_get_weekday();
+    }
+    return curr;
+}
 
 void rtc_print_date ()
 {
-    printk("%s %s %x %x:%x:%x UTC %x%x\n",
+    /*printk("%s %s %x %x:%x:%x UTC %x%x\n",
     								  date_to_text(rtc_get_weekday()),
     								  month_to_text(rtc_get_month()),
     								  rtc_get_day_month(),
@@ -132,8 +152,19 @@ void rtc_print_date ()
     								  rtc_get_minute(),
     								  rtc_get_second() ,
     								  rtc_get_century(),
-    								  rtc_get_year());
+    								  rtc_get_year());*/
+
+    rtc_t current_time = rtc_get_time();
+
+    printk("%s %s %x %x:%x:%x UTC %x%x\n",
+    								  date_to_text(current_time.weekday),
+    								  month_to_text(current_time.month),
+    								  current_time.day,
+    								  current_time.hour,
+    								  current_time.minute,
+    								  current_time.second,
+    								  current_time.century,
+    								  current_time.year);
     //Tue Jan  3 16:06:48 UTC 2017
 }
-
 

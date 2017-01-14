@@ -73,6 +73,7 @@ void loop_terminal()
         printk("Shell #%d\n" , shell_instance_cnt);
     printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
     rtc_print_date();
+    start_time = rtc_get_time();
     while(1)
     {
         start_shell:;
