@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <stddef.h>
 #include <stdint.h>
@@ -37,29 +37,51 @@ int cmd_boneos_logo_color_handler(char* cmd)
    size_t num_opts = get_opt_count(cmd);
    str_t opts[num_opts];
    get_opt(cmd,opts);
-   
+
    int _FG = strtoi((char*)opts[2].str, 0, 16);
    int _BG = strtoi((char*)opts[3].str, 0, 16);
    int __STORE_FG = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
    int __STORE_BG = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = _FG;
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = _BG;
-   
-    printk("*********** ********** *      * *******      **********  *********\n");
+
+    /*printk("*********** ********** *      * *******      **********  *********\n");
     printk("*         * *        * * *    * *            *        *  *\n");
     printk("*         * *        * *  *   * *            *        *  *\n");
     printk("*   ******* *        * *   *  * *******      *        *  *********\n");
     printk("*         * *        * *    * * *            *        *          *\n");
     printk("*         * *        * *     ** *            *        *          *\n");
-    printk("*********** ********** *      * *******      **********  *********\n");
-    
+    printk("*********** ********** *      * *******      **********  *********\n");*/
+    printk ("MMMMMMMMmysyNMMMMMMMMNNNNNNNNMMMMMMMMNysymMMMMMMMM\n"
+                "MMMMMMmyooooohhyso++//////////++osyhhoooooymMMMMMM\n"
+                "MMMMmyoooooooo//////////////////////ooooooooymMMMM\n"
+                "MMmyooooooooo////////////////////////oooooooooymMM\n"
+                "Nyoooooooooo+////////////////////////+ooooooooooyN"
+                "soooooooooo+//////////////////////////+oooooooooos\n"
+                "hooooooooo+////////////////////////////+oooooooooh\n"
+                "Mdoooooooo////+sso//////////////oss+////oooooooodM\n"
+                "MMdsooooo////+ddddo////////////odddd+////ooooosdMM\n"
+                "MMMmsooo+/////shhy////:----:////yhhs/////+ooosmMMM\n"
+                "MMMMNysd////////////:-......-:////////////dsyNMMMM\n"
+                "MMMMMMMM+//////////:..........://////////+MMMMMMMM\n"
+                "MMMMMMMMy/////////-..-:++++:-..-/////////yMMMMMMMM\n"
+                "MMMMMMMds-..-://:-...yddddddy...-://:-...ohNMMMMMM\n"
+                "MMMMMN/`      `:.....ohddddh+.....:.`     `-dMMMMM\n"
+                "MMMMMh         `......-:oo:-......`         /MMMMM\n"
+                "MMMMMM/         ..................`````````-mMMMMM\n"
+                "MMMMMm.````````````.....`.......```````````.yMMMMM\n"
+                "MMMMMh``````````````````````````````````````+MMMMM\n"
+                "MMMMMMy-``````:dNNmyo++++++++oymNNNo.`````.oNMMMMM\n"
+                "MMMMMMMMmhyydNMMMMMMMMMMMMMMMMMMMMMMNdhyydNMMMMMMM\n"
+                "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n");
+
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = __STORE_FG;
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = __STORE_BG;
-    
+
    return STATUS_OK;
 }
 
-struct cmd_opt_t cmd_boneos_logo_opt_color = 
+struct cmd_opt_t cmd_boneos_logo_opt_color =
 {
     .help =  "boneos_logo(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
@@ -81,7 +103,7 @@ struct cmd_opt_t cmd_boneos_logo_opt_color =
                 "\t\t 5 = Purple\t D = Light Purple\n "
                 "\t\t 6 = Yellow\t E = Light Yellow\n "
                 "\t\t 7 = White \t F = Bright White\n "
-                "\t\t--def : Clears to default (BG : 0x7 , FG : 0x0)\n ", 
+                "\t\t--def : Clears to default (BG : 0x7 , FG : 0x0)\n ",
         .cmd_opt_name = "-color" ,
         .handler = &cmd_boneos_logo_color_handler,
         .invalid_use_msg = "Invalid Use of -color option. Use command boneos_logo -color --help for\n"

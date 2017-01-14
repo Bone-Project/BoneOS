@@ -15,12 +15,12 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
- 
+ **/
+
 #include <misc/status_codes.h>
 #include <string/string.h>
 #include <unistd/unistd.h>
@@ -37,7 +37,7 @@ int main_boneos_opt_handler(char *cmd)
   size_t num_opts = get_opt_count(cmd);
   str_t opts[num_opts];
   get_opt(cmd,opts);
-   
+
    if(strcmp(opts[1].str, "-color")==0)
    {
      if(strcmp(opts[2].str, "--help")==0)
@@ -48,19 +48,41 @@ int main_boneos_opt_handler(char *cmd)
      {
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = 0x7;
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = 0x0;
-        printk("*********** ********** *      * *******      **********  *********\n");
+        /*printk("*********** ********** *      * *******      **********  *********\n");
         printk("*         * *        * * *    * *            *        *  *\n");
         printk("*         * *        * *  *   * *            *        *  *\n");
         printk("*   ******* *        * *   *  * *******      *        *  *********\n");
         printk("*         * *        * *    * * *            *        *          *\n");
         printk("*         * *        * *     ** *            *        *          *\n");
-        printk("*********** ********** *      * *******      **********  *********\n");
+        printk("*********** ********** *      * *******      **********  *********\n");*/
+        printk ("MMMMMMMMmysyNMMMMMMMMNNNNNNNNMMMMMMMMNysymMMMMMMMM\n"
+                "MMMMMMmyooooohhyso++//////////++osyhhoooooymMMMMMM\n"
+                "MMMMmyoooooooo//////////////////////ooooooooymMMMM\n"
+                "MMmyooooooooo////////////////////////oooooooooymMM\n"
+                "Nyoooooooooo+////////////////////////+ooooooooooyN"
+                "soooooooooo+//////////////////////////+oooooooooos\n"
+                "hooooooooo+////////////////////////////+oooooooooh\n"
+                "Mdoooooooo////+sso//////////////oss+////oooooooodM\n"
+                "MMdsooooo////+ddddo////////////odddd+////ooooosdMM\n"
+                "MMMmsooo+/////shhy////:----:////yhhs/////+ooosmMMM\n"
+                "MMMMNysd////////////:-......-:////////////dsyNMMMM\n"
+                "MMMMMMMM+//////////:..........://////////+MMMMMMMM\n"
+                "MMMMMMMMy/////////-..-:++++:-..-/////////yMMMMMMMM\n"
+                "MMMMMMMds-..-://:-...yddddddy...-://:-...ohNMMMMMM\n"
+                "MMMMMN/`      `:.....ohddddh+.....:.`     `-dMMMMM\n"
+                "MMMMMh         `......-:oo:-......`         /MMMMM\n"
+                "MMMMMM/         ..................`````````-mMMMMM\n"
+                "MMMMMm.````````````.....`.......```````````.yMMMMM\n"
+                "MMMMMh``````````````````````````````````````+MMMMM\n"
+                "MMMMMMy-``````:dNNmyo++++++++oymNNNo.`````.oNMMMMM\n"
+                "MMMMMMMMmhyydNMMMMMMMMMMMMMMMMMMMMMMNdhyydNMMMMMMM\n"
+                "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n");
      }
      else if(opts[2].str[0] == '\0' || opts[3].str[0] == '\0')
      {
        printk(cmd_boneos_logo_opt_color.invalid_use_msg);
      }
-     else 
+     else
      {
         cmd_boneos_logo_opt_color.handler(cmd);
      }

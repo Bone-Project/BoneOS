@@ -15,11 +15,12 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
 
 #include <stdio/stdio.h>
 #include <misc/status_codes.h>
@@ -29,7 +30,7 @@
 #include <boneos_logo/opts/main_boneos_logo.h>
 #include <boneos_logo/opts/boneos_logo_color.h>
 
-struct cmd_opt_t* cmd_boneos_logo_opts[] = 
+struct cmd_opt_t* cmd_boneos_logo_opts[] =
 {
   &cmd_boneos_logo_opt_color
   ,0
@@ -40,23 +41,44 @@ int boneos_logo_handler(char* cmd)
     size_t num_opts = get_opt_count(cmd);
     if(num_opts == 1)
     {
-      printk("*********** ********** *      * *******      **********  *********\n");
+      /*printk("*********** ********** *      * *******      **********  *********\n");
       printk("*         * *        * * *    * *            *        *  *\n");
       printk("*         * *        * *  *   * *            *        *  *\n");
       printk("*   ******* *        * *   *  * *******      *        *  *********\n");
       printk("*         * *        * *    * * *            *        *          *\n");
       printk("*         * *        * *     ** *            *        *          *\n");
-      printk("*********** ********** *      * *******      **********  *********\n"); 
+      printk("*********** ********** *      * *******      **********  *********\n"); */
+      printk   (
+                "      myooooohhyso++//////////++osyhhoooooym\n"
+                "    myoooooooo//////////////////////ooooooooy\n"
+                "  myooooooooo////////////////////////oooooooooym\n"
+                " yoooooooooo+////////////////////////+ooooooooooy\n"
+                "soooooooooo+//////////////////////////+oooooooooos\n"
+                "hooooooooo+////////////////////////////+oooooooooh\n"
+                " doooooooo////####//////////////####////ooooooood\n"
+                "  dsooooo////######////////////######////ooooosd\n"
+                "   msooo+/////####////:----:////####/////+ooosm\n"
+                "     ysd////////////:-......-:////////////dsy\n"
+                "        +//////////:..........://////////+\n"
+                "        y/////////-..-:####:-..-/////////y\n"
+                "         /(....)/:-...########...-://(...)\n"
+                "        /      /:.....########.....:/     /   \n"
+                "       |       /......-####-....../       |  \n"
+                "      |        |..................|        |\n"
+                "     |         //..................//       | \n"
+                "      |                                    | \n"
+                "       |      .######++++++++#######.      |\n"
+                "       (______)                     (______)\n");
       return STATUS_OK;
     }
-    
-    
+
+
     main_boneos_opt_handler(cmd);
-    
+
     return STATUS_OK;
 }
 
-struct cmd_t cmd_boneos_logo = 
+struct cmd_t cmd_boneos_logo =
 {
   .name = "boneos_logo",
   .usage = "boneos_logo [--help]  [-color <fg-color> <bg-color>] [-color --def] [-color <--help>] ",

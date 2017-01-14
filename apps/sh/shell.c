@@ -63,31 +63,30 @@ volatile struct typed_cmd cmd_active;
 
 struct cmd_t *cmds[] =
 {
-  &cmd_clear,
-  &cmd_boneos_logo,
-  &cmd_help,
-  &cmd_sleep,
-  &cmd_echo,
-  &cmd_cursor,
-  &cmd_reboot,
-  &cmd_poweroff,
-  &cmd_boneshell,
-  &cmd_exit,
-  &cmd_pwd,
-  &cmd_logname,
-  &cmd_uname,
-  &cmd_date
-  ,0
+    &cmd_clear,
+    &cmd_boneos_logo,
+    &cmd_help,
+    &cmd_sleep,
+    &cmd_echo,
+    &cmd_cursor,
+    &cmd_reboot,
+    &cmd_poweroff,
+    &cmd_boneshell,
+    &cmd_exit,
+    &cmd_pwd,
+    &cmd_logname,
+    &cmd_uname,
+    &cmd_date,
+    0
 };
 
 void init_terminal()
 {
-  assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
-  TERMINAL_MODE=true;
-  //cmds[CMD_BONEOS_LOGO_INDEX]->handler("boneos_logo");
-  cmds [CMD_CLEAR_INDEX]->handler("clear");
-  cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
-  TERMINAL_MODE=false;
+    assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
+    TERMINAL_MODE=true;
+    cmds [CMD_CLEAR_INDEX]->handler("clear");
+    cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
+    TERMINAL_MODE=false;
 }
 
 
