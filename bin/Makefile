@@ -26,7 +26,9 @@ CSRCS = \
 	date/date.c \
 	date/opts/main_date.c \
 	whoami/whoami.c \
-	whoami/opts/main_whoami.c
+	whoami/opts/main_whoami.c \
+	uptime/uptime.c \
+	uptime/opts/main_uptime.c
 
 LIBNAME := bin
 

@@ -144,16 +144,6 @@ rtc_t rtc_get_time()
 
 void rtc_print_date ()
 {
-    /*printk("%s %s %x %x:%x:%x UTC %x%x\n",
-    								  date_to_text(rtc_get_weekday()),
-    								  month_to_text(rtc_get_month()),
-    								  rtc_get_day_month(),
-    								  rtc_get_hour(),
-    								  rtc_get_minute(),
-    								  rtc_get_second() ,
-    								  rtc_get_century(),
-    								  rtc_get_year());*/
-
     rtc_t current_time = rtc_get_time();
 
     printk("%s %s %x %x:%x:%x UTC %x%x\n",
@@ -165,6 +155,5 @@ void rtc_print_date ()
     								  current_time.second,
     								  current_time.century,
     								  current_time.year);
-    //Tue Jan  3 16:06:48 UTC 2017
 }
 

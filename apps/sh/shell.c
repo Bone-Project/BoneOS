@@ -49,6 +49,7 @@
 #include <sh/built-in/exit/exit.h>
 #include <date/date.h>
 #include <whoami/whoami.h>
+#include <uptime/uptime.h>
 
 
 
@@ -78,6 +79,7 @@ struct cmd_t *cmds[] =
     &cmd_uname,
     &cmd_date,
     &cmd_whoami,
+    &cmd_uptime,
     0
 };
 
