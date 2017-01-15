@@ -333,6 +333,9 @@ void key_handler()
                     printk("%s" , cmd_active.value);
                 }
                 break;
+        case KBD_CONTROL_PRESS_ID:
+            printk ("CONTROL!");
+            break;
         case KBD_ENTER_PRESS_ID:
                 kbd_info.is_enter = true;
                 active_scank = false;
