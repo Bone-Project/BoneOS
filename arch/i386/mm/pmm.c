@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **   Amanuel Bogale <amanuel2> : start
- **/   
+ **/
 
 #include <misc/status_codes.h>
 #include <boot/multiboot/multiboot.h>
@@ -34,7 +34,7 @@ static bool pmm_initalized = false;
 static multiboot_info_pmm_t mb_info;
 
 
- allocation_scheme_t *alloc_schemes[] = 
+ allocation_scheme_t *alloc_schemes[] =
  {
    &bitmap_pmm_allocation
  };
@@ -47,15 +47,15 @@ int pmm_init(multiboot_info_t* multiboot_structure)
   mb_info.multiboot_structure = multiboot_structure;
 
   mb_info.multiboot_structure->mmap_addr += HIGHER_KERNEL_ADDRESS_LOAD; //Higher half
-  
+
   _mmngr_mem_size.MiB = mem_amt(mb_info.multiboot_structure,MiB,false);
   _mmngr_mem_size.GiB = mem_amt(mb_info.multiboot_structure,GiB,false);
   _mmngr_mem_size.KiB = mem_amt(mb_info.multiboot_structure,KiB,false);
   _mmngr_mem_size.B   = mem_amt(mb_info.multiboot_structure,B,false);
-  
+
   if(alloc_schemes[_BITMAP_PAGE_FRAME_ALLOCATION_SCHEME]->init(multiboot_structure))
       panik("Error Initalizing bitmap allocation system");
-  
+
   return STATUS_OK;
 }
 
@@ -68,7 +68,6 @@ void __debug_print_memory_size()
     printk("KiB : %.7f\n",_mmngr_mem_size.KiB);
     printk("MiB : %.7f\n",_mmngr_mem_size.MiB);
     printk("B   : %.7f\n",_mmngr_mem_size.B);
-	
   #endif
 }
 
