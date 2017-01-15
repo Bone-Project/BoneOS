@@ -37,6 +37,8 @@ notifications:
   slack:
     rooms:
     - boneos:mo6es1CK4x5OpDJzWvCR9p21#github
+  email:
+    - shivashish.ahuja@gmail.com
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
