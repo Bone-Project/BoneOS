@@ -28,7 +28,9 @@ CSRCS = \
 	whoami/whoami.c \
 	whoami/opts/main_whoami.c \
 	uptime/uptime.c \
-	uptime/opts/main_uptime.c
+	uptime/opts/main_uptime.c \
+	watch/watch.c \
+	watch/opts/main_watch.c
 
 LIBNAME := bin
 

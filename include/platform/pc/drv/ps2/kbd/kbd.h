@@ -76,6 +76,7 @@ extern int uninit_kbd();
  */
 extern const char QWERTY_EN_NOSHIFT[] ;
 extern const char QWERTY_EN_SHIFT[];
+extern int key_press(uint8_t scancode);
 extern uint8_t kbd_ctrl_read_status_reg();
 extern void kbd_ctrl_send_cmd(uint8_t cmd);
 extern uint8_t kbd_enc_read_input_buf();
@@ -107,6 +108,7 @@ kbd_info_t
 
     uint8_t scancode;
     bool is_shift;
+    bool is_ctrl;
     bool is_enter;
     bool is_caps;
     uint32_t current_kbd_layout_index;

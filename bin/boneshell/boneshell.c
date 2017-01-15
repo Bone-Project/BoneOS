@@ -72,8 +72,8 @@ void loop_terminal()
     if (shell_instance_cnt != 1)
         printk("Shell #%d\n" , shell_instance_cnt);
     printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
-    rtc_print_date();
     start_time = rtc_get_time();
+    rtc_print_struct(start_time);
     while(1)
     {
         start_shell:;
@@ -118,7 +118,7 @@ void loop_terminal()
 
         if(strcmp(cmd_active.value, "exit")==0)
         {
-            shell_instance_cnt-=1;
+            shell_instance_cnt--;
             printk("Exited shell instance #%d\n",shell_instance_cnt+1);
             goto end_shell;
         }

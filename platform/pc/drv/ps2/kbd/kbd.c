@@ -334,7 +334,7 @@ void key_handler()
                 }
                 break;
         case KBD_CONTROL_PRESS_ID:
-            printk ("CONTROL!");
+            kbd_info.is_ctrl = true;
             break;
         case KBD_ENTER_PRESS_ID:
                 kbd_info.is_enter = true;

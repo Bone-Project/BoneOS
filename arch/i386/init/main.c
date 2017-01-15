@@ -19,6 +19,7 @@
  **  @contributors:
 
  **		Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 /*DEBUG Defined by -DDEBUG Flag*/
@@ -89,27 +90,26 @@ static inline void kernel_init_early()
  */
 void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 {
-   if(multiboot_structure && magicnumber){};
-   init_cpu();
-   setup_driver_handler();
-   sti();
-   kernel_init_early();
+    if(multiboot_structure && magicnumber){};
+    init_cpu();
+    setup_driver_handler();
+    sti();
+    kernel_init_early();
 
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
-   video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
-
-   //init_terminal();
-   if(pmm_init(multiboot_structure)!=STATUS_OK)
+    //init_terminal();
+    if(pmm_init(multiboot_structure)!=STATUS_OK)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
 
-   __debug_print_memory_size();
+    __debug_print_memory_size();
     //printk("\n");
     //__debug_print_cpu_info();
 
     init_terminal();
 
-   while(1)
-      hlt();
+    while(1)
+        hlt();
 }
 
 

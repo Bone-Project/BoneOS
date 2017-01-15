@@ -50,12 +50,10 @@
 #include <date/date.h>
 #include <whoami/whoami.h>
 #include <uptime/uptime.h>
-
-
+#include <watch/watch.h>
 
 volatile bool TERMINAL_MODE = false;
 volatile uint32_t cmd_active_index=0;
-
 
 volatile uint32_t shell_instance_cnt = 0;
 
@@ -80,6 +78,7 @@ struct cmd_t *cmds[] =
     &cmd_date,
     &cmd_whoami,
     &cmd_uptime,
+    &cmd_watch,
     0
 };
 

@@ -52,6 +52,7 @@ struct typed_cmd
 #define CMD_DATE_INDEX 13
 #define CMD_WHOAMI_INDEX 14
 #define CMD_UPTIME_INDEX 15
+#define CMD_WATCH_INDEX 16
 
 extern void init_terminal();
 extern struct cmd_t *cmds[];

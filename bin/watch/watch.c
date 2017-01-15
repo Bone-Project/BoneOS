@@ -23,34 +23,49 @@
 
 #include <misc/status_codes.h>
 #include <sh/shell.h>
-#include <sh/values.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
 #include <string/string.h>
 #include <sh/values.h>
-#include <date/date.h>
-#include <drv/cmos/rtc/rtc.h>
+#include <watch/watch.h>
+#include <watch/opts/main_watch.h>
 
-int main_date_opt_handler (char *cmd)
+struct cmd_opt_t* cmd_watch_opts[] =
+{
+    0
+};
+
+int cmd_watch_handler (char *cmd)
 {
     size_t num_opts = get_opt_count(cmd);
-    str_t opts[num_opts];
-    get_opt(cmd,opts);
-
-    if (!strcmp (opts [1].str, "--help"))
+    if (num_opts == 1)
     {
-        printk (cmd_date.help);
+        printk (cmd_watch.invalid_use_msg);
         return STATUS_OK;
     }
-    else if (num_opts == 1)
-    {
-        rtc_print_struct (rtc_get_time());
-        return STATUS_OK;
-    }
-    else
-    {
-        printk (cmd_date.invalid_use_msg);
-        return STATUS_OK;
-    }
+    main_watch_opt_handler (cmd);
+    return STATUS_OK;
 }
+
+struct cmd_t cmd_watch =
+{
+  .name = "watch",
+  .usage ="watch [--help]",
+  .help = "watch(1) \t\t\t\t BoneOS Terminal Manual \n"
+                "NAME : \n "
+                "\twatch\n"
+                "SYNOPSIS : \n "
+                "\twatch [option] [command]\n"
+                "DESCRIPTION : \n "
+                "\tPrints out the current user.\n"
+                "OPTIONS : \n "
+                "[-n <seconds>] Sets the interval to the number of seconds specified.\n",
+  .cmd_opts =  cmd_watch_opts,
+  .handler = &cmd_watch_handler,
+  .invalid_use_msg = "Invalid use of watch command.\n"
+                     "Type in watch --help for more help.\n",
+  .privilege = USER
+};
+
+

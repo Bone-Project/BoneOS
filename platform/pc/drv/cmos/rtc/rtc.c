@@ -157,3 +157,16 @@ void rtc_print_date ()
     								  current_time.year);
 }
 
+void rtc_print_struct (rtc_t current_time)
+{
+    printk("%s %s %x %x:%x:%x UTC %x%x\n",
+    								  date_to_text(current_time.weekday),
+    								  month_to_text(current_time.month),
+    								  current_time.day,
+    								  current_time.hour,
+    								  current_time.minute,
+    								  current_time.second,
+    								  current_time.century,
+    								  current_time.year);
+}
+
