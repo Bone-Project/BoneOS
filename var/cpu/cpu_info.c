@@ -15,18 +15,18 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
- 
+ **/
+
 #include <cpu/cpuid.h>
 #include <var/cpu/cpu_info.h>
-#include <misc/status_codes.h> 
+#include <misc/status_codes.h>
 #include <string/string.h>
 #include <stdio/stdio.h>
- 
+
 cpu_info_t cpu_info;
 
 static const char* vendor_id_strings[] = {
@@ -91,7 +91,7 @@ static void signature_proccessing(uint32_t sig)
 {
     if(strcmp(cpu_info.companyName, "Intel")==0)
     {
-        int bit_twelve = (sig >> 12) & 1;  
+        int bit_twelve = (sig >> 12) & 1;
         int bit_thirteen = (sig >> 13) & 1;
         if(bit_twelve == 0 && bit_thirteen == 0)
             cpu_info.proccecor_type = "Original OEM Proccecor";
@@ -115,7 +115,7 @@ int init_cpu_info()
     find_comp(cpu_info.vendorID);
     signature_proccessing(cpu_info.signature);
 
-        
+
     return STATUS_OK;
 }
 
@@ -127,8 +127,8 @@ void __debug_print_cpu_info()
     #ifdef DEBUG
      printk("CPU\n");
      printk("---\n");
-     printk("COMPANY : %s\n", cpu_info.companyName);    
+     printk("COMPANY : %s\n", cpu_info.companyName);
      printk("VENDOR_ID : %s\n", cpu_info.vendorID);
      printk("PROCCECOR TYPE : %s\n", cpu_info.proccecor_type);
-   #endif     
+   #endif
 }

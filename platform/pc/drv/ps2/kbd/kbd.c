@@ -27,6 +27,7 @@
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
 #include <libc/stdio/stdio.h>
+#include <boneshell/boneshell.h>
 #include <string/string.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -196,12 +197,21 @@ void key_handler_util(int key)
             printk (" ");
             kbd_info.key = KBD_ENTER_PRESS_ID;
             key_handler();
+            kbd_info.key = ' ';
             cmds [CMD_CLEAR_INDEX]->handler ("clear");
             return;
         }
         else if (key == 'h' || key == 'H')
         {
             key_handler_util_backspace();
+            return;
+        }
+        else if (key == 'd' || key == 'D')
+        {
+            cmds [CMD_EXIT_INDEX]->handler ("exit");
+            kbd_info.key = KBD_ENTER_PRESS_ID;
+            key_handler();
+            kbd_info.key = ' ';
             return;
         }
     }
