@@ -47,52 +47,46 @@ struct device_driver_t *drivers[] =
  */
 void setup_driver_handler(void)
 {
+    /*Initalize and Uninitalize functions for Video Driver*/
+    video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
+    video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
+    video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
 
-  /*Initalize and Uninitalize functions for Video Driver*/
-  video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
-  video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
-  video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
-
-  init_all_drivers();
+    init_all_drivers();
 }
 
 //check if device is initalized
 bool device_initalized(int index)
 {
-  return (drivers[index]->initalized);
+    return (drivers[index]->initalized);
 }
 
 //initalize device driver
 int init_device_driver(uint32_t index)
 {
-  drivers[index]->init();
-  return 0;
+    drivers[index]->init();
+    return 0;
 }
 
 //uninitalize device driver
 int uninit_device_driver(uint32_t index)
 {
-  drivers[index]->uninit();
-  return 0;
+    drivers[index]->uninit();
+    return 0;
 }
 
 //initalize all device drivers
 int init_all_drivers(void)
 {
-  for(uint32_t i=0; drivers[i]; i++)
-    init_device_driver(i);
-  return 0;
+    for(uint32_t i = 0; drivers[i]; i++)
+        init_device_driver(i);
+    return 0;
 }
 
 //unintalize all device drivers
 int uninit_all_drivers(void)
 {
-  for(uint32_t i=0; drivers[i]; i++)
-    uninit_device_driver(i);
-  return 0;
+    for(uint32_t i = 0; drivers[i]; i++)
+        uninit_device_driver(i);
+    return 0;
 }
-
-
-
-
-

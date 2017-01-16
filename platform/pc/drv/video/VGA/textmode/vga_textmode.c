@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <io/io.h>
 #include <misc/status_codes.h>
@@ -33,32 +33,25 @@
 #include <stddef.h>
 #include <stdint.h>
 
-
-
-
 int init_vga_textmode()
 {
-  __textmode.w = video_driver_width;
-  __textmode.h = video_driver_height;
-  __textmode.name = video_driver_fullname;
-  return STATUS_OK;
+    __textmode.w = video_driver_width;
+    __textmode.h = video_driver_height;
+    __textmode.name = video_driver_fullname;
+    return STATUS_OK;
 }
 
-vga_textmode_t __textmode = 
+vga_textmode_t __textmode =
 {
-  .clear = &clear_vga_textmode,
-  .putch = &putch_vga_textmode,
-  .update_cursor = &update_cursor_textmode,
-  .scroll = &term_scroll_vga_textmode,
-  .init = &init_vga_textmode
+    .clear = &clear_vga_textmode,
+    .putch = &putch_vga_textmode,
+    .update_cursor = &update_cursor_textmode,
+    .scroll = &term_scroll_vga_textmode,
+    .init = &init_vga_textmode
 };
 
-vga_textmode_t *vga_textmodes_arr[] = 
+vga_textmode_t *vga_textmodes_arr[] =
 {
-  &__textmode,
-  0
+    &__textmode,
+    0
 };
-
-
-
-
