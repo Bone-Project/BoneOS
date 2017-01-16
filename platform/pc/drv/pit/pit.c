@@ -33,12 +33,11 @@
 //Timer Driver Handler
 struct device_driver_t pit_driver =
 {
-   .name = "8253 Programmable Interval Timer",
-   .init = &init_pit,
-   .uninit = &uninit_pit,
-   .version = "8253"
+    .name = "8253 Programmable Interval Timer",
+    .init = &init_pit,
+    .uninit = &uninit_pit,
+    .version = "8253"
 };
-
 
 volatile uint32_t pit_ticks = 0;
 
@@ -49,7 +48,7 @@ volatile uint32_t pit_ticks = 0;
  */
 static void send_pit_command(uint8_t cmd)
 {
-  outb(I386_PIT_CONTROL_WORD_REG, cmd);
+    outb(I386_PIT_CONTROL_WORD_REG, cmd);
 }
 
 /*
@@ -59,7 +58,7 @@ static void send_pit_command(uint8_t cmd)
  */
 static void send_msg_counter_0(uint8_t cmd)
 {
-  outb(I386_PIT_COUNTER_0_REG,cmd);
+    outb(I386_PIT_COUNTER_0_REG, cmd);
 }
 
 /*
@@ -70,18 +69,18 @@ static void send_msg_counter_0(uint8_t cmd)
  */
 static void pit_phase(int htz)
 {
-  //1.19MHz / htz
-  //dictates how any times
-  //the IRQ Should fire
-  int divisor = 1193180 / htz;
+    //1.19MHz / htz
+    //dictates how any times
+    //the IRQ Should fire
+    int divisor = 1193180 / htz;
 
-  send_pit_command( I386_PIT_OCW_BINCOUNT_BINARY     |
-                    I386_PIT_OCW_MODE_SQUAREWAVEGEN  |
-                    I386_PIT_OCW_RL_DATA             |
-                    I386_PIT_OCW_SCO_COUNTER_0);
+    send_pit_command(I386_PIT_OCW_BINCOUNT_BINARY |
+            I386_PIT_OCW_MODE_SQUAREWAVEGEN |
+            I386_PIT_OCW_RL_DATA |
+            I386_PIT_OCW_SCO_COUNTER_0);
 
-  send_msg_counter_0(divisor & 0xFF);
-  send_msg_counter_0(divisor >> 8);
+    send_msg_counter_0(divisor & 0xFF);
+    send_msg_counter_0(divisor >> 8);
 }
 
 /*
@@ -95,9 +94,9 @@ static void pit_phase(int htz)
  */
 static int pit_handler_nest()
 {
-  //printk("%d SECONDS\n", (pit_ticks/IRQ_SEC_HIT));
+    //printk("%d SECONDS\n", (pit_ticks/IRQ_SEC_HIT));
 
-  return 0;
+    return 0;
 }
 
 /*
@@ -108,11 +107,11 @@ static int pit_handler_nest()
  */
 static void pit_handler(int_regs *r)
 {
-  if(r){};
-  pit_ticks++;
-  if (pit_ticks % IRQ_SEC_HIT == 0)
-       if(pit_handler_nest()!=0)
-              panik("PIT Handler Nest Exception");
+    if(r){};
+    pit_ticks++;
+    if(pit_ticks % IRQ_SEC_HIT == 0)
+        if(pit_handler_nest() != 0)
+            panik("PIT Handler Nest Exception");
 }
 
 /*
@@ -123,22 +122,16 @@ static void pit_handler(int_regs *r)
  */
 int init_pit()
 {
-  pit_driver.initalized = true;
-  pit_driver.status = STATUS_DRIVER_OK;
-  pit_phase(IRQ_SEC_HIT);
-  install_irq_handler(IRQ_NUM_PIT,pit_handler);
-  return STATUS_OK;
+    pit_driver.initalized = true;
+    pit_driver.status = STATUS_DRIVER_OK;
+    pit_phase(IRQ_SEC_HIT);
+    install_irq_handler(IRQ_NUM_PIT, pit_handler);
+    return STATUS_OK;
 }
 
 int uninit_pit()
 {
-  pit_driver.initalized = false;
-  uninstall_irq_handler(IRQ_NUM_PIT);
-  return STATUS_OK;
+    pit_driver.initalized = false;
+    uninstall_irq_handler(IRQ_NUM_PIT);
+    return STATUS_OK;
 }
-
-
-
-
-
-
