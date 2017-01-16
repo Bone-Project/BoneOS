@@ -28,6 +28,8 @@
 #include <stdio/stdio.h>
 #include <stdlib/stdlib.h>
 #include <string/string.h>
+#include <stdint.h>
+#include <ctype/ctype.h>
 #include <sh/values.h>
 #include <watch/watch.h>
 #include <strcmp/strcmp.h>
@@ -46,6 +48,7 @@ int main_watch_opt_handler (char *cmd)
     char command [125];
     command [0] = '\0';
     int actual_command_index = 0;
+    bool no_title = false;
 
     if (num_opts == 1)
     {
@@ -72,10 +75,24 @@ int main_watch_opt_handler (char *cmd)
                     }
                     else
                     {
+                        if (isalpha (opts [i + 1].str [0]))
+                        {
+                            printk (cmd_watch.invalid_use_msg);
+                            return STATUS_OK;
+                        }
                         interval = atoi (opts [i + 1].str);
                         interval *= 1000;
                         i ++;
                     }
+                }
+                else if (!strcmp (opts [i].str, "-t"))
+                {
+                    if (no_title == true)
+                    {
+                        printk (cmd_watch.invalid_use_msg);
+                        return STATUS_OK;
+                    }
+                    no_title = true;
                 }
                 else
                 {
@@ -99,8 +116,16 @@ int main_watch_opt_handler (char *cmd)
             {
                 if(termcmp(cmds[i]->name, opts [actual_command_index].str)==0)
                 {
-                    again: cmds[i]->handler(command);
-                    printk (command);
+                    again:
+
+                    cmds[CMD_CLEAR_INDEX]->handler ("clear");
+
+                    if (no_title == false)
+                    {
+                        printk ("Every %ds: %s \n\n", interval / 1000, command);
+                    }
+
+                    cmds[i]->handler(command);
                     assertkm(device_initalized(PIT_DRIVER_INDEX) , "PIT NOT INITALIZED FOR SLEEP()");
                     int64_t expiry = pit_ticks + ((uint64_t)interval * IRQ_SEC_HIT) / 1000;
 
@@ -113,6 +138,7 @@ int main_watch_opt_handler (char *cmd)
                             kbd_info.key = key_press(kbd_info.scancode);
                             if (kbd_info.key == 'q')
                             {
+                                cmds[CMD_CLEAR_INDEX]->handler ("clear");
                                 return STATUS_OK;
                             }
                         }
