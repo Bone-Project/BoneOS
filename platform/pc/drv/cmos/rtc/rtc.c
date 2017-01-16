@@ -43,83 +43,79 @@ uint8_t rtc_get_second()
     return inb(CMOS_REGiSTER_DATA);
 }
 
-
 uint8_t rtc_get_minute()
 {
     outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_MINUTES);
     return inb (CMOS_REGiSTER_DATA);
 }
 
-
 uint8_t rtc_get_hour()
 {
-	outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_HOURS);
-	return inb(CMOS_REGiSTER_DATA);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_HOURS);
+    return inb(CMOS_REGiSTER_DATA);
 }
 
 uint8_t rtc_get_weekday()
 {
-	outb(CMOS_REGISTER_SELECT,CMOS_REGISTER_WEEKDAY);
-	return inb(CMOS_REGiSTER_DATA);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_WEEKDAY);
+    return inb(CMOS_REGiSTER_DATA);
 }
-
 
 uint8_t rtc_get_day_month()
 {
-	outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_DAYMONTH);
-	return inb(CMOS_REGiSTER_DATA);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_DAYMONTH);
+    return inb(CMOS_REGiSTER_DATA);
 }
-
 
 uint8_t rtc_get_month()
 {
-	outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_MONTH);
-	return inb(CMOS_REGiSTER_DATA);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_MONTH);
+    return inb(CMOS_REGiSTER_DATA);
 }
 
 uint8_t rtc_get_year()
 {
-	outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_YEAR);
-	return inb(CMOS_REGiSTER_DATA);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_YEAR);
+    return inb(CMOS_REGiSTER_DATA);
 }
 
 uint8_t rtc_get_century()
 {
-	outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_CENTURY);
-	return inb(CMOS_REGiSTER_DATA);
+    outb(CMOS_REGISTER_SELECT, CMOS_REGISTER_CENTURY);
+    return inb(CMOS_REGiSTER_DATA);
 }
 
 static const char* month_to_text(uint8_t num)
 {
-	const char* month;
-	if(num < 1 || num > 12)
-		panik("INVALID MONTH");
+    const char* month;
+    if(num < 1 || num > 12)
+        panik("INVALID MONTH");
 
-	const char* months_str[12] =
-	{
-		"Jan", "Feb" , "Mar", "Apr" , "May",
-		"Jun", "Jul", "Aug" , "Sep", "Oct",
-		"Nov", "Dec"
-	};
+    const char* months_str[12] =
+    {
+        "Jan", "Feb" , "Mar", "Apr" , "May",
+        "Jun", "Jul", "Aug" , "Sep", "Oct",
+        "Nov", "Dec"
+    };
 
-	month = months_str[num-1];
-	return month;
+    month = months_str[num - 1];
+    return month;
 }
 
 static const char* date_to_text(uint8_t num)
 {
-	const char* date;
-	if(num < 1 || num > 7)
-		panik("INVALID MONTH");
+    const char* date;
+    if(num < 1 || num > 7)
+        panik("INVALID MONTH");
 
-	const char* dates_str[7] =
-	{
-		"Mon", "Tue" , "Wed", "Thu" , "Fri",
-		"Sat", "Sun"
-	};
+    const char* dates_str[7] =
+    {
+        "Mon", "Tue" , "Wed", "Thu" , "Fri",
+        "Sat", "Sun"
+    };
 
-	date = dates_str[num-2];
-	return date;
+    date = dates_str[num - 2];
+    return date;
 }
 
 rtc_t rtc_get_time()
@@ -128,7 +124,7 @@ rtc_t rtc_get_time()
     rtc_t last; //Keep reading time until we get the same values twice
 
     memset(&last, 0xFF, sizeof(last));
-    for (curr.year = 0;memcmp(&curr,&last,sizeof(curr)); last = curr)
+    for (curr.year = 0; memcmp(&curr, &last, sizeof(curr)); last = curr)
     {
         curr.century = rtc_get_century();
         curr.year = rtc_get_year();
@@ -142,31 +138,30 @@ rtc_t rtc_get_time()
     return curr;
 }
 
-void rtc_print_date ()
+void rtc_print_date()
 {
     rtc_t current_time = rtc_get_time();
 
     printk("%s %s %x %x:%x:%x UTC %x%x\n",
-    								  date_to_text(current_time.weekday),
-    								  month_to_text(current_time.month),
-    								  current_time.day,
-    								  current_time.hour,
-    								  current_time.minute,
-    								  current_time.second,
-    								  current_time.century,
-    								  current_time.year);
+            date_to_text(current_time.weekday),
+            month_to_text(current_time.month),
+            current_time.day,
+            current_time.hour,
+            current_time.minute,
+            current_time.second,
+            current_time.century,
+            current_time.year);
 }
 
-void rtc_print_struct (rtc_t current_time)
+void rtc_print_struct(rtc_t current_time)
 {
     printk("%s %s %x %x:%x:%x UTC %x%x\n",
-    								  date_to_text(current_time.weekday),
-    								  month_to_text(current_time.month),
-    								  current_time.day,
-    								  current_time.hour,
-    								  current_time.minute,
-    								  current_time.second,
-    								  current_time.century,
-    								  current_time.year);
+            date_to_text(current_time.weekday),
+            month_to_text(current_time.month),
+            current_time.day,
+            current_time.hour,
+            current_time.minute,
+            current_time.second,
+            current_time.century,
+            current_time.year);
 }
-

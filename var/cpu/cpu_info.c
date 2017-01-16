@@ -73,15 +73,14 @@ static const char* vendor_company_strings[] = {
     "Parrelels"
 };
 
-
 static inline void find_comp(char* ID)
 {
-    for(int i=0; vendor_id_strings[i]; i++)
+    for(int i = 0; vendor_id_strings[i]; i++)
     {
-        if(strcmp(ID,vendor_id_strings[i])==0)
+        if(strcmp(ID,vendor_id_strings[i]) == 0)
         {
-          cpu_info.companyName = (char*)vendor_company_strings[i];
-          return;
+            cpu_info.companyName = (char*) vendor_company_strings[i];
+            return;
         }
     }
     cpu_info.companyName = "Unknown";
@@ -89,7 +88,7 @@ static inline void find_comp(char* ID)
 
 static void signature_proccessing(uint32_t sig)
 {
-    if(strcmp(cpu_info.companyName, "Intel")==0)
+    if(strcmp(cpu_info.companyName, "Intel") == 0)
     {
         int bit_twelve = (sig >> 12) & 1;
         int bit_thirteen = (sig >> 13) & 1;
@@ -108,27 +107,23 @@ static void signature_proccessing(uint32_t sig)
 
 int init_cpu_info()
 {
-    cpu_info.vendorID =(char*) cpu_id.vendorID;
+    cpu_info.vendorID = (char*) cpu_id.vendorID;
     cpu_info.ecx_features = cpu_id.features_ecx;
     cpu_info.edx_features = cpu_id.features_edx;
     cpu_info.signature = cpu_id.signature;
     find_comp(cpu_info.vendorID);
     signature_proccessing(cpu_info.signature);
-
-
+  
     return STATUS_OK;
 }
-
-
-
 
 void __debug_print_cpu_info()
 {
     #ifdef DEBUG
-     printk("CPU\n");
-     printk("---\n");
-     printk("COMPANY : %s\n", cpu_info.companyName);
-     printk("VENDOR_ID : %s\n", cpu_info.vendorID);
-     printk("PROCCECOR TYPE : %s\n", cpu_info.proccecor_type);
-   #endif
+        printk("CPU\n");
+        printk("---\n");
+        printk("COMPANY : %s\n", cpu_info.companyName);
+        printk("VENDOR_ID : %s\n", cpu_info.vendorID);
+        printk("PROCCECOR TYPE : %s\n", cpu_info.proccecor_type);
+    #endif
 }

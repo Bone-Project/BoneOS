@@ -1,3 +1,4 @@
+
 /**
  ** This file is part of BoneOS.
  **
@@ -483,9 +484,3 @@ int uninit_kbd()
     uninstall_irq_handler(IRQ_NUM_KBD);
     return STATUS_OK;
 }
-
-
-
-
-
-

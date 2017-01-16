@@ -22,7 +22,6 @@
  **     Ashish Ahuja
  **/
 
-
 #include <sh/values.h>
 #include <clear/clear.h>
 #include <boneos_logo/boneos_logo.h>
@@ -53,7 +52,7 @@
 #include <watch/watch.h>
 
 volatile bool TERMINAL_MODE = false;
-volatile uint32_t cmd_active_index=0;
+volatile uint32_t cmd_active_index = 0;
 
 volatile uint32_t shell_instance_cnt = 0;
 
@@ -84,16 +83,9 @@ struct cmd_t *cmds[] =
 
 void init_terminal()
 {
-    assertkm(device_initalized(KBD_DRIVER_INDEX) , "Keyboard not intalized for starting shell!");
-    TERMINAL_MODE=true;
+    assertkm(device_initalized(KBD_DRIVER_INDEX), "Keyboard not intalized for starting shell!");
+    TERMINAL_MODE = true;
     cmds [CMD_CLEAR_INDEX]->handler("clear");
     cmds[CMD_BONESHELL_INDEX]->handler("boneshell");
-    TERMINAL_MODE=false;
+    TERMINAL_MODE = false;
 }
-
-
-
-
-
-
-
