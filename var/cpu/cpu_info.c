@@ -113,7 +113,7 @@ int init_cpu_info()
     cpu_info.signature = cpu_id.signature;
     find_comp(cpu_info.vendorID);
     signature_proccessing(cpu_info.signature);
-
+  
     return STATUS_OK;
 }
 

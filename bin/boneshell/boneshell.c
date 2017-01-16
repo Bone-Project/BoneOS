@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <stdio/stdio.h>
@@ -34,6 +35,7 @@
 #include <drv/ps2/kbd/kbd.h>
 #include <drv/cmos/rtc/rtc.h>
 #include <../platform/pc/drv/ps2/kbd/kbd.c>
+#include <var/cpu/cpu_info.h>
 
 extern volatile bool TAB_PREVIOUS_VALUE_SET;
 extern volatile char* TAB_PREVIOUS_VALUE;
@@ -50,6 +52,7 @@ volatile bool exit_set__shell = false;
 volatile bool tab_multiple_opts = false;
 volatile bool tab_one_opt = false;
 volatile bool tab_zero_opt = false;
+volatile bool exit_shell = false;
 bool executed_internally=false;
 
 void removeSpaces(char* source)
@@ -74,6 +77,7 @@ void loop_terminal()
     printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
     start_time = rtc_get_time();
     rtc_print_struct(start_time);
+    //__debug_print_cpu_info();
     while(1)
     {
         start_shell:;
@@ -116,9 +120,12 @@ void loop_terminal()
             scank (true, true, "%s", cmd_active.value + (strlen (cmd_active.value)));
         }
 
-        if(strcmp(cmd_active.value, "exit")==0)
+        if(strcmp(cmd_active.value, "exit")==0 || exit_set__shell == true)
+        //if (exit_set__shell == true)
         {
             shell_instance_cnt--;
+            exit_set__shell = false;
+            strcpy (cmd_active.value, " ");
             printk("Exited shell instance #%d\n",shell_instance_cnt+1);
             goto end_shell;
         }
