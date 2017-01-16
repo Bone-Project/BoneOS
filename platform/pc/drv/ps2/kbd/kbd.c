@@ -107,8 +107,11 @@ void key_release(uint8_t scancode)
     if (
         kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_LEFT_SHIFT_PRESS_ID ||
         kbd_layouts[kbd_info.current_kbd_layout_index]->scancode_no_shift[scancode] == KBD_RIGHT_SHIFT_PRESS_ID
-       )
+       ) {
             kbd_info.is_shift = false;
+        }
+
+    kbd_info.is_ctrl = false;
 }
 
 /*
@@ -183,6 +186,20 @@ static inline void inc_al()
  */
 void key_handler_util(int key)
 {
+    //First checking for shortcut commands
+    if (kbd_info.is_ctrl == true)
+    {
+        if (key == 'l' || key == 'L')
+        {
+            cmds [CMD_CLEAR_INDEX]->handler ("clear");
+            printk (" ");
+            kbd_info.key = KBD_ENTER_PRESS_ID;
+            key_handler();
+            cmds [CMD_CLEAR_INDEX]->handler ("clear");
+            return;
+        }
+    }
+
     if(isalpha(key)==0)
     {
         if(print_scank == true && active_scank == true)
