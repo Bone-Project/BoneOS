@@ -78,6 +78,7 @@ extern const char QWERTY_EN_NOSHIFT[] ;
 extern const char QWERTY_EN_SHIFT[];
 extern int key_press(uint8_t scancode);
 extern void key_handler();
+extern void key_handler_util_backspace();
 extern uint8_t kbd_ctrl_read_status_reg();
 extern void kbd_ctrl_send_cmd(uint8_t cmd);
 extern uint8_t kbd_enc_read_input_buf();

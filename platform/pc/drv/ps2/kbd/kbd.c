@@ -111,7 +111,8 @@ void key_release(uint8_t scancode)
             kbd_info.is_shift = false;
         }
 
-    kbd_info.is_ctrl = false;
+    if ((int)(scancode) == 29) //Scancode of "Control" key
+        kbd_info.is_ctrl = false;
 }
 
 /*
@@ -196,6 +197,11 @@ void key_handler_util(int key)
             kbd_info.key = KBD_ENTER_PRESS_ID;
             key_handler();
             cmds [CMD_CLEAR_INDEX]->handler ("clear");
+            return;
+        }
+        else if (key == 'h' || key == 'H')
+        {
+            key_handler_util_backspace();
             return;
         }
     }
@@ -422,7 +428,7 @@ void key_handler()
 void kbd_handler(int_regs *r)
 {
     if(r){};
-    kbd_info.scancode =kbd_enc_read_input_buf();
+    kbd_info.scancode = kbd_enc_read_input_buf();
 
     if(kbd_info.scancode & 0x80)
         key_release(kbd_info.scancode & ~0x80);
