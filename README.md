@@ -24,15 +24,25 @@
     <th>Github Releases</th>
     <th>SourceForge</th>
   </tr>
-  
+
   <tr>
    <td>V 0.0.1</td>
    <td>Dec/29/2016</td>
    <td>
-   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.1/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/BoneOS.iso.svg"/></a>
+   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.1/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/v0.0.1/BoneOS.iso.svg"/></a>
    </td>
    <td>
    <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20V%200.0.1/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
+   </td>
+  </tr>
+  <tr>
+   <td>V 0.0.2</td>
+   <td>Jan/16/2016</td>
+   <td>
+   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.2/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/v0.0.2/BoneOS.iso.svg"/></a>
+   </td>
+   <td>
+   <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20v0.0.2/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
    </td>
   </tr>
 </table>
@@ -43,7 +53,7 @@
     <th>Status</th>
     <th>Main Developer</th>
   </tr>
-  
+
    <tr>
     <td>master</td>
     <td>
@@ -51,7 +61,7 @@
     </td>
     <td><strong><a href="https://github.com/Bone-Project">BoneOS Community</a></strong></td>
   </tr>
-  
+
   <tr>
     <td>amanuel_dev</td>
     <td>
@@ -82,7 +92,7 @@
 
 
 
-<h3 color="red"> Current BoneOS Version : V 0.0.1 </h3>
+<h3 color="red"> Current BoneOS Version : V 0.0.2 </h3>
 
 
 
@@ -96,12 +106,12 @@
 ### [BoneOS Meta](https://meta.boneos.org/)
 
 
-Welcome! This is the official and main repository of BoneOS. This project is currently in high active development , 
+Welcome! This is the official and main repository of BoneOS. This project is currently in high active development ,
 and is predominately written in C ofcourse some parts such as  hardware communication, scripting, building, etc ...will use
-other languages. 
+other languages.
 If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)!
-If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request 
-[**here**](https://github.com/Bone-Project/BoneOS/pulls)! 
+If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request
+[**here**](https://github.com/Bone-Project/BoneOS/pulls)!
 
 #WARNINGS
 
@@ -115,45 +125,45 @@ Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up on the 
 # Installation
 ---
 
-There are two ways to install BoneOS: one for the normal user to get it into his Virtual Machine and the other for the developer who want to contribute (building from source). 
+There are two ways to install BoneOS: one for the normal user to get it into his Virtual Machine and the other for the developer who want to contribute (building from source).
 
 #### Normal Installation (For user)
-  To install a spsecific version , go to the top of readme where you will see the version number listed as well as installing the Image File via SourceForge or Github Releases. Choose whichever you would like and when you finish installing the ISO(Image File) plug it into your Virtual Machine. [**here**](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be) is a video showing how to do this using VirtualBox as the Virtual Machine Emulator. You can download Virtual Box [**here**](https://www.virtualbox.org/). [Here](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be) is a video showing how to get it in VMWare. VMWare is paid , there if a free trial though. You can get more Information at our Offical Download Page [here](https://boneos.org/download.html). 
- 
+  To install a spsecific version , go to the top of readme where you will see the version number listed as well as installing the Image File via SourceForge or Github Releases. Choose whichever you would like and when you finish installing the ISO(Image File) plug it into your Virtual Machine. [**here**](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be) is a video showing how to do this using VirtualBox as the Virtual Machine Emulator. You can download Virtual Box [**here**](https://www.virtualbox.org/). [Here](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be) is a video showing how to get it in VMWare. VMWare is paid , there if a free trial though. You can get more Information at our Offical Download Page [here](https://boneos.org/download.html).
+
 #### Nightly Builds (For Developer Or Normal User)
 
-You can  get the nightly builds for the latest updated iso for the master branch [here](https://bintray.com/boneos/BoneOS/download_file?file_path=BoneOS-master.iso) . 
+You can  get the nightly builds for the latest updated iso for the master branch [here](https://bintray.com/boneos/BoneOS/download_file?file_path=BoneOS-master.iso) .
 
 #### Building From Source (For developer)
 
  First make sure you have a Ubuntu Terminal (If you are on Windows, use the new Linux Subsystem Feature). Then download the dependencies using `bash setup.sh`. Then compile BoneOS using `make`. Now that you have qemu after you executed `setup.sh` , you can go ahead and run on qemu using `make qemu_compile` for running the binary or `make qemu_iso` to run the actual Image File(.ISO).
- 
-#### Cloud9 Collaboration (For Developer) 
- 
+
+#### Cloud9 Collaboration (For Developer)
+
  You can collaborate with the Main BoneOS Developer in Cloud9. Cloud9 Is an Online IDE , with an Ubuntu Terminal. We use Cloud9IDE Terminal + NoVNC to make this possible.
  the workspace is located [here](https://ide.c9.io/amanuel2/osdev) . You can learn more [here](https://community.c9.io/t/cant-install-grub/11653/5?u=phpcoder231).
- 
- If you want to setup NoVNC Server once you are in an Cloud9IDE You can use the command 
- 
+
+ If you want to setup NoVNC Server once you are in an Cloud9IDE You can use the command
+
  ```sh
  make no_vnc
  ```
- 
+
 #### Extra Options (For Developer)
 
  There are extra options when building(`make`ing) , this OS. You can set the compiler instead of the default
- gcc(`$(CC)`) like so : 
- 
+ gcc(`$(CC)`) like so :
+
  ```sh
   $ CC=clang make #If you want to run via clang
   $ CC=gcc-5 make #If you want to run via GCC Version 5
  ```
- 
+
  You can see more in [Docs](https://amanuel2.gitbooks.io/boneos/content/)
 
 #### More Info(For Developer)
 For more information, go [here](https://amanuel2.gitbooks.io/boneos/content/) for documentation.
- 
+
 Directory Structure
 ----
 Our firectory structure currently is as follows:
@@ -163,10 +173,10 @@ Our firectory structure currently is as follows:
    - ***term*** : Terminal
 - ***arch*** : Architecture Dependant Codes
    - ***@(ARCH)*** : Architecture name.
-     - ***boot***: GRUB Bootloader information 
+     - ***boot***: GRUB Bootloader information
        - ***multiboot***: Grub Multiboot information
      - ***drv***  : Device Drivers for @(ARCH) are located here.
-     - ***io*** : I/O Software Code 
+     - ***io*** : I/O Software Code
      - ***link***: Where the linker is located.
      - ***init***: Main kernel function getting called by GRUB Bootloader
   - ***shared*** : Shared piece of code between Proccecor Families
@@ -181,7 +191,7 @@ Our firectory structure currently is as follows:
 - ***utils***: Utilities for devs.
    - ***cross_compiler***: Script for installing the cross compiler
    - ***no_vnc***: Setup No_vnc server in Cloud9IDE
-   - ***watch.sh*** : Nodemon like script 
+   - ***watch.sh*** : Nodemon like script
 - ***include***: All Include Files(.h).
 
 Documentation
@@ -198,7 +208,7 @@ PowerPC| Unavailable  |   Yes, in later releases       |
 Arm| Unavailable   |    Yes, in later releases       |
 MIPS | Unavailable|     Yes, in later releases     |
 
-if there are architectures you want BoneOS to support , please request an issue to talk about it. 
+if there are architectures you want BoneOS to support , please request an issue to talk about it.
 
 
 FAQ
