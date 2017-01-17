@@ -48,7 +48,6 @@ int main_echo_opt_handler(char *cmd)
       {
           for(size_t i=1; i<num_opts; i++)
           {
-
             for(size_t j=0; opts[i].str[j]; j++)
             {
               if(i==1 && j==0) j++;

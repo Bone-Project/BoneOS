@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/ 
+ **/
 
 #include <cpu/cpuid.h>
 
@@ -31,14 +31,14 @@
 bool has_cpuid_ins(){
 	int res;
 	__asm__ __volatile__ (".intel_syntax\n\t"
-	                      "pushfd\n\t"
-	                      "pushfd\n\t"
+	                      "pushfq\n\t"
+	                      "pushfq\n\t"
 	                      "xor dword ptr [%%rsp],0x200000\n\t"
-	                      "popfd\n\t"
-	                      "pushfd\n\t"
+	                      "popfq\n\t"
+	                      "pushfq\n\t"
 	                      "pop %%eax\n\t"
 	                      "xor %%eax,[%%rsp]\n\t"
-	                      "popfd\n\t"
+	                      "popfq\n\t"
 	                      "and %%eax,0x200000\n\t"
 	                      ".att_syntax"
 	                      :"=a"(res));

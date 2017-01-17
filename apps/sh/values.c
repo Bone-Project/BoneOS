@@ -27,6 +27,6 @@
 
 char* VAR_USER = "root";
 char* VAR_PWD = "/";
-char* VAR_RELEASE = "0.0.1";
+char* VAR_RELEASE = "0.0.2";
 char* VAR_OSNAME = "BoneOS";
 char* VAR_PLATFORM = "x86_32";
