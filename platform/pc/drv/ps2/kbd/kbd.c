@@ -215,6 +215,14 @@ void key_handler_util(int key)
             kbd_info.key = ' ';
             return;
         }
+        else if (key == 'n' || key == 'N')
+        {
+            new_set__shell = true;
+            kbd_info.key = KBD_ENTER_PRESS_ID;
+            key_handler();
+            kbd_info.key = ' ';
+            return;
+        }
     }
 
     if(isalpha(key)==0)

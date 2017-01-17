@@ -3,6 +3,7 @@
 
 #include <unistd/unistd.h>
 
+extern volatile bool new_set__shell;
 extern struct cmd_t cmd_boneshell;
 extern volatile bool exit_shell;
 
