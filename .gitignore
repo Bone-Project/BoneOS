@@ -1,6 +1,9 @@
 #Cross Compiler Folder
 cross/
 
+#github templates
+.github/
+
 #Binary File
 *.bin
 *.iso
