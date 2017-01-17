@@ -49,10 +49,10 @@ struct cmd_opt_t* cmd_boneshell_opts[] =
 
 int __found = 0;
 volatile bool exit_set__shell = false;
+volatile bool new_set__shell = false;
 volatile bool tab_multiple_opts = false;
 volatile bool tab_one_opt = false;
 volatile bool tab_zero_opt = false;
-volatile bool exit_shell = false;
 bool executed_internally=false;
 
 void removeSpaces(char* source)
@@ -120,7 +120,7 @@ void loop_terminal()
             scank (true, true, "%s", cmd_active.value + (strlen (cmd_active.value)));
         }
 
-        if(strcmp(cmd_active.value, "exit")==0 || exit_set__shell == true)
+        if(strcmp(cmd_active.value, "exit") == 0 || exit_set__shell == true)
         //if (exit_set__shell == true)
         {
             shell_instance_cnt--;
@@ -128,6 +128,13 @@ void loop_terminal()
             strcpy (cmd_active.value, " ");
             printk("Exited shell instance #%d\n",shell_instance_cnt+1);
             goto end_shell;
+        }
+
+        if (new_set__shell == true)
+        {
+            new_set__shell = false;
+            loop_terminal();
+            goto start_shell;
         }
 
         for(int i=0; cmds[i]; i++)
