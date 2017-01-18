@@ -122,8 +122,8 @@ void vprintk(const char* fmt, va_list arg)
               __itoa(integer_format, 16, result_pt);
               for(int x=0;result_pt[x]!='\0';x++)
               {
-                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column,__crsr_start,__crsr_end);
                 video_drivers[VGA_VIDEO_DRIVER_INDEX]->putch(result_pt[x]);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor(video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column,__crsr_start,__crsr_end);
               }
               i+=1;
               break;
