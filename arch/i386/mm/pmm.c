@@ -48,12 +48,12 @@ int pmm_init(multiboot_info_t* multiboot_structure)
 
   mb_info.multiboot_structure->mmap_addr += HIGHER_KERNEL_ADDRESS_LOAD; //Higher half
 
-  _mmngr_mem_size.MiB = mem_amt(mb_info.multiboot_structure,MiB,false);
-  _mmngr_mem_size.GiB = mem_amt(mb_info.multiboot_structure,GiB,false);
-  _mmngr_mem_size.KiB = mem_amt(mb_info.multiboot_structure,KiB,false);
-  _mmngr_mem_size.B   = mem_amt(mb_info.multiboot_structure,B,false);
+  _mmngr_mem_size.MiB = mem_amt(mb_info.multiboot_structure,MiB,true);
+  _mmngr_mem_size.GiB = mem_amt(mb_info.multiboot_structure,GiB,true);
+  _mmngr_mem_size.KiB = mem_amt(mb_info.multiboot_structure,KiB,true);
+  _mmngr_mem_size.B   = mem_amt(mb_info.multiboot_structure,B,true);
 
-  if(alloc_schemes[_BITMAP_PAGE_FRAME_ALLOCATION_SCHEME]->init(multiboot_structure))
+  if(alloc_schemes[_BITMAP_PAGE_FRAME_ALLOCATION_SCHEME]->init(multiboot_structure) != STATUS_OK)
       panik("Error Initalizing bitmap allocation system");
 
   return STATUS_OK;
@@ -70,4 +70,3 @@ void __debug_print_memory_size()
     printk("B   : %.7f\n",_mmngr_mem_size.B);
   #endif
 }
-

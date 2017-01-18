@@ -98,16 +98,15 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
-    init_terminal();
     if(pmm_init(multiboot_structure)!=STATUS_OK)
         panik("PHYSICAL MEMORY NOT INITALIZED CORRECTLY");
 
-    __debug_print_memory_size();
-    //printk("\n");
-    //__debug_print_cpu_info();
-
+    #ifdef DEBUG
+      __debug_print_memory_size();
+      __debug_print_cpu_info();
+    #endif
+    
    // init_terminal();
-   printk("%s %x", "9", 1);
 
     while(1)
         hlt();
