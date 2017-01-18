@@ -43,3 +43,6 @@ config/GENERATED-CONFIG.mk
 
 #Gedit generated files
 *~
+
+#Atom Generated Files
+*.gch

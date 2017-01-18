@@ -45,7 +45,7 @@ int main_date_opt_handler (char *cmd)
     }
     else if (num_opts == 1)
     {
-        rtc_print_struct (rtc_get_time());
+        rtc_print_date();
         return STATUS_OK;
     }
     else

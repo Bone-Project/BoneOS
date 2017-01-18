@@ -26,8 +26,6 @@ extern uint8_t rtc_get_century();
 
 extern rtc_t rtc_get_time();
 extern void rtc_print_date ();
-void rtc_print_struct (rtc_t current_time);
+extern void rtc_print_struct (rtc_t current_time);
 
 #endif // _DRV_CMOS_RTC_H_
-
-

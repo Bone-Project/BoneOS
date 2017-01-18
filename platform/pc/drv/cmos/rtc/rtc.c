@@ -36,6 +36,21 @@
 #include <stddef.h>
 #include <stdlib/stdlib.h>
 #include <string/string.h>
+#include <str_t.h>
+
+
+static char* months_str[12] =
+{
+    "Jan", "Feb" , "Mar", "Apr" , "May",
+    "Jun", "Jul", "Aug" , "Sep", "Oct",
+    "Nov", "Dec"
+};
+
+static char* dates_str[7] =
+{
+    "Mon", "Tue" , "Wed", "Thu" , "Fri",
+    "Sat", "Sun"
+};
 
 uint8_t rtc_get_second()
 {
@@ -85,36 +100,24 @@ uint8_t rtc_get_century()
     return inb(CMOS_REGiSTER_DATA);
 }
 
-static const char* month_to_text(uint8_t num)
+static str_t month_to_text(uint8_t num)
 {
-    const char* month;
+    str_t month;
+
     if(num < 1 || num > 12)
         panik("INVALID MONTH");
 
-    const char* months_str[12] =
-    {
-        "Jan", "Feb" , "Mar", "Apr" , "May",
-        "Jun", "Jul", "Aug" , "Sep", "Oct",
-        "Nov", "Dec"
-    };
-
-    month = months_str[num - 1];
+    strcpy(month.str,months_str[num-1]);
     return month;
 }
 
-static const char* date_to_text(uint8_t num)
+static str_t date_to_text(uint8_t num)
 {
-    const char* date;
+    str_t date;
     if(num < 1 || num > 7)
         panik("INVALID MONTH");
 
-    const char* dates_str[7] =
-    {
-        "Mon", "Tue" , "Wed", "Thu" , "Fri",
-        "Sat", "Sun"
-    };
-
-    date = dates_str[num - 2];
+    strcpy(date.str,dates_str[num-2]);
     return date;
 }
 
@@ -141,10 +144,11 @@ rtc_t rtc_get_time()
 void rtc_print_date()
 {
     rtc_t current_time = rtc_get_time();
-
+    str_t _month = month_to_text(current_time.month);
+    str_t _weekday = date_to_text(current_time.weekday);
     printk("%s %s %x %x:%x:%x UTC %x%x\n",
-            date_to_text(current_time.weekday),
-            month_to_text(current_time.month),
+            (_weekday.str),
+            (_month.str),
             current_time.day,
             current_time.hour,
             current_time.minute,
@@ -155,9 +159,11 @@ void rtc_print_date()
 
 void rtc_print_struct(rtc_t current_time)
 {
+    str_t _month = month_to_text(current_time.month);
+    str_t _weekday = date_to_text(current_time.weekday);
     printk("%s %s %x %x:%x:%x UTC %x%x\n",
-            date_to_text(current_time.weekday),
-            month_to_text(current_time.month),
+            (_month.str),
+            (_weekday.str),
             current_time.day,
             current_time.hour,
             current_time.minute,

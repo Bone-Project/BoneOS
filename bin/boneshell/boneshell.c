@@ -77,7 +77,6 @@ void loop_terminal()
     printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
     start_time = rtc_get_time();
     rtc_print_struct(start_time);
-    //__debug_print_cpu_info();
     while(1)
     {
         start_shell:;
@@ -197,8 +196,3 @@ struct cmd_t cmd_boneshell =
                         "Type in boneshell --help for more help.\n",
     .privilege = USER
 };
-
-
-
-
-

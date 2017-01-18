@@ -107,14 +107,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     //__debug_print_cpu_info();
 
    // init_terminal();
+   printk("%s %x", "9", 1);
 
     while(1)
         hlt();
 }
-
-
-
-
-
-
-
