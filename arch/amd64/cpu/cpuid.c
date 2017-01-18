@@ -36,7 +36,7 @@ bool has_cpuid_ins(){
 	                      "xor dword ptr [%%rsp],0x200000\n\t"
 	                      "popfq\n\t"
 	                      "pushfq\n\t"
-	                      "pop %%eax\n\t"
+	                      "pop %%rax\n\t"
 	                      "xor %%eax,[%%rsp]\n\t"
 	                      "popfq\n\t"
 	                      "and %%eax,0x200000\n\t"
