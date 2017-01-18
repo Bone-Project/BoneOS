@@ -37,7 +37,7 @@
   </tr>
   <tr>
    <td>V 0.0.2</td>
-   <td>Jan/16/2016</td>
+   <td>Jan/16/2017</td>
    <td>
    <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.2/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/v0.0.2/BoneOS.iso.svg"/></a>
    </td>
