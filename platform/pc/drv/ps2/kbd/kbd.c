@@ -355,6 +355,16 @@ void key_handler()
         case KBD_CAPS_PRESS_ID:
                 kbd_info.is_caps = !kbd_info.is_caps;
                 break;
+        case KBD_LEFT_KEY_ID:
+                if (LENGTH_INPUT > 0)
+                {
+                    virtual_cursor_pos ++;
+                    video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+                    (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+                    ,__crsr_start,__crsr_end);
+                    index_scank --;
+                }
+                break;
         case KBD_UP_KEY_ID:
                 if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
                 {
