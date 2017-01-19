@@ -63,6 +63,7 @@ extern volatile bool tab_multiple_opts;
 extern volatile bool tab_one_opt;
 extern volatile bool tab_zero_opt;
 volatile uint32_t shell_instance_cnt;
+extern int virtual_cursor_pos;
 extern rtc_t start_time;
 
 #endif /*_APPS_TERM_TERMINAL_H_*/

@@ -98,6 +98,8 @@ void loop_terminal()
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
 
+        virtual_cursor_pos = 0;
+
         scank(true,true, "%s" , cmd_active.value);
 
         if(tab_multiple_opts==true)
