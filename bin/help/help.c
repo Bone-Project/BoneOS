@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <misc/status_codes.h>
 #include <sh/shell.h>
@@ -29,7 +29,7 @@
 #include <help/opts/help_cmd_opt.h>
 #include <help/opts/main_help.h>
 
-struct cmd_opt_t* cmd_help_opts[] = 
+struct cmd_opt_t* cmd_help_opts[] =
 {
   &cmd_help_opt_cmd
   ,0
@@ -44,17 +44,17 @@ int cmd_help_handler(char* cmd)
       printk("or \"help -cmd <cmd_name>\"\n\n");
       printk("Commands\n");
       printk("--------\n");
-      for(int i=0; cmds[i]; i++)
-        printk("%d : %s\n",i,cmds[i]->name);
+      for(int i=0; cmds[i]; i+=3)
+        printk("%d : %s \t %d : %s \t %d : %s \n",i,cmds[i]->name, (i+1),cmds[i+1]->name, (i+2), cmds[i+2]->name);
       return STATUS_OK;
    }
-   
+
    main_help_opt_handler(cmd);
-   
+
    return STATUS_OK;
 }
 
-struct cmd_t cmd_help = 
+struct cmd_t cmd_help =
 {
   .name = "help",
   .usage ="help [-cmd <cmd_name>] [--help]",
@@ -68,16 +68,10 @@ struct cmd_t cmd_help =
                 "\tbut if called with -cmd option calls help handler\n "
                 "\tfor that command.\n"
                 "MORE HELP : \n "
-                "\t[help -cmd --help] for help on -cmd option\n",   
+                "\t[help -cmd --help] for help on -cmd option\n",
   .cmd_opts =  cmd_help_opts,
-  .handler = &cmd_help_handler,    
+  .handler = &cmd_help_handler,
   .invalid_use_msg = "Invalid use of help command.\n"
                      "Type in help --help for more help.\n",
   .privilege = USER
 };
-
-
-
-
-
-

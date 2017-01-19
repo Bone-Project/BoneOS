@@ -19,7 +19,8 @@ CSRCS = \
 	drv/ps2/kbd/utils.c  \
 	cpu/interrupts/pic.c \
 	drv/cmos/rtc/rtc.c \
-	io/io.c
+	io/io.c \
+	drv/pcspkr/pcspkr.c
 
 
 LIBNAME := platform

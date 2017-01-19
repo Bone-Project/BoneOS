@@ -30,7 +30,10 @@ CSRCS = \
 	uptime/uptime.c \
 	uptime/opts/main_uptime.c \
 	watch/watch.c \
-	watch/opts/main_watch.c
+	watch/opts/main_watch.c \
+	beep/beep.c \
+	beep/opts/main_beep.c \
+	beep/opts/main_beep_count.c
 
 LIBNAME := bin
 

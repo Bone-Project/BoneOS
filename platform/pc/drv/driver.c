@@ -27,8 +27,10 @@
 #include <drv/pit/pit.h>
 #include <drv/video/video.h>
 #include <drv/ps2/kbd/kbd.h>
+#include <drv/pcspkr/pcspkr.h>
 #include <misc/status_codes.h>
 #include <assertk.h>
+
 
 //All Drivers
 struct device_driver_t *drivers[] =
@@ -36,6 +38,7 @@ struct device_driver_t *drivers[] =
     &pit_driver,
     &kbd_driver,
     &video_driver,
+    &pcspkr_driver,
     0
 };
 
@@ -51,6 +54,9 @@ void setup_driver_handler(void)
     video_driver.init = video_drivers[VGA_VIDEO_DRIVER_INDEX]->init;
     video_driver.uninit = video_drivers[VGA_VIDEO_DRIVER_INDEX]->uninit;
     video_driver.status = video_drivers[VGA_VIDEO_DRIVER_INDEX]->status;
+
+    /*Functions for PC Speaker Driver(Depends on PIT)*/
+    pcspkr_driver.status = pit_driver.status;
 
     init_all_drivers();
 }

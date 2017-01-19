@@ -50,6 +50,7 @@
 #include <whoami/whoami.h>
 #include <uptime/uptime.h>
 #include <watch/watch.h>
+#include <beep/beep.h>
 
 volatile bool TERMINAL_MODE = false;
 volatile uint32_t cmd_active_index = 0;
@@ -78,6 +79,7 @@ struct cmd_t *cmds[] =
     &cmd_whoami,
     &cmd_uptime,
     &cmd_watch,
+    &cmd_beep,
     0
 };
 

@@ -105,8 +105,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
       __debug_print_memory_size();
       __debug_print_cpu_info();
     #endif
-    
-   // init_terminal();
+
+    init_terminal();
 
     while(1)
         hlt();

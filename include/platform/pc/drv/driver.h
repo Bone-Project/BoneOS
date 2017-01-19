@@ -23,6 +23,7 @@ struct  device_driver_t
 #define PIT_DRIVER_INDEX 0
 #define KBD_DRIVER_INDEX 1
 #define VIDEO_DRIVER_INDEX 2
+#define PCSPKR_DRIVER_INDEX 3
 
 /*
  * Common Functions
@@ -40,9 +41,3 @@ extern bool device_initalized(int index);
 extern struct device_driver_t *drivers[];
 
 #endif /*_ARCH_DRV_DRIVER_H_*/
-
-
-
-
-
-

@@ -3,6 +3,4 @@
 
 extern struct cmd_t cmd_pwd;
 
-#endif
-
-
+#endif /*_BIN_PWD_H_*/
