@@ -23,10 +23,11 @@
 
 #include <misc/status_codes.h>
 #include <sh/shell.h>
+#include <string/string.h>
+#include <stdlib/stdlib.h>
 #include <drv/video/video.h>
 #include <unistd/unistd.h>
 #include <stdio/stdio.h>
-#include <string/string.h>
 #include <help/opts/help_cmd_opt.h>
 #include <help/opts/main_help.h>
 
@@ -39,41 +40,20 @@ struct cmd_opt_t* cmd_help_opts[] =
 int cmd_help_handler(char* cmd)
 {
     size_t num_opts = get_opt_count(cmd);
-    if(num_opts == 1)
+    if (num_opts == 1)
     {
         printk("BoneOS Shell. Type in \"<cmd_name> --help\" for more help on that command\n");
         printk("or \"help -cmd <cmd_name>\"\n\n");
         printk("Commands\n");
         printk("--------\n");
-      /*for(int i=0; cmds[i]; i+=3)
-        printk("%d : %s \t %d : %s \t %d : %s ]\n",i,cmds[i]->name,(i+1),cmds[i+1]->name,(i+2), cmds[i+2]->name);*/
-
-        char to_print [128];
-        to_print [0] = '\0';
-        char main_print [512];
-        int max_length = 20;
-        int len = 0;
-
-        for (int i = 0; cmds [i]; i+=3)
-        {
-            sprintk (to_print, "%d  %s\n", i, cmds [i]->name);
-            printk ("%s\n", to_print);
-            len = strlen (to_print);
-            printk ("len = %d\n", len);
-            for (int j = 0; j < max_length; j ++)
-            {
-                if (j >= len)
-                {
-                    sprintk (main_print, " ");
-                }
-                else if (j < len)
-                {
-                    sprintk (main_print, "%c", to_print [j]);
-                }
-            }
-            printk ("%s\n", main_print);
+        for (int i = 0; cmds[i]; i += 2) {
+            printk("%d : %s", i, cmds[i]->name);
+            for (unsigned int o = 0;
+                    o < video_driver_width / 2 - 5 - strlen(itoa(i)) - strlen(cmds[i]->name);
+                    o ++)
+                printk(" ");
+            printk("%d : %s\n", i + 1, cmds[i + 1]->name);
         }
-
         return STATUS_OK;
     }
 
@@ -87,19 +67,19 @@ struct cmd_t cmd_help =
     .name = "help",
     .usage ="help [-cmd <cmd_name>] [--help]",
     .help = "help(1) \t\t\t\t BoneOS Terminal Manual \n"
-                "NAME : \n "
-                "\thelp\n"
-                "SYNOPSIS : \n "
-                "\thelp [-cmd <cmd_name>] [--help]\n"
-                "DESCRIPTION : \n "
-                "\tLists out all commands if called with no options\n "
-                "\tbut if called with -cmd option calls help handler\n "
-                "\tfor that command.\n"
-                "MORE HELP : \n "
-                "\t[help -cmd --help] for help on -cmd option\n",
+            "NAME : \n "
+            "\thelp\n"
+            "SYNOPSIS : \n "
+            "\thelp [-cmd <cmd_name>] [--help]\n"
+            "DESCRIPTION : \n "
+            "\tLists out all commands if called with no options\n "
+            "\tbut if called with -cmd option calls help handler\n "
+            "\tfor that command.\n"
+            "MORE HELP : \n "
+            "\t[help -cmd --help] for help on -cmd option\n",
     .cmd_opts =  cmd_help_opts,
     .handler = &cmd_help_handler,
     .invalid_use_msg = "Invalid use of help command.\n"
-                     "Type in help --help for more help.\n",
+            "Type in help --help for more help.\n",
     .privilege = USER
 };
