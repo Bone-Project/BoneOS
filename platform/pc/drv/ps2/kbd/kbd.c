@@ -156,8 +156,19 @@ void kbd_early_init()
  */
 void wait_until_enter(char key)
 {
-    buffer_scank[index_scank++] = key;
-    buffer_scank[index_scank] = 0;
+    if (index_scank == (unsigned)virtual_index_scank)
+    {
+        buffer_scank[index_scank++] = key;
+        buffer_scank[index_scank] = 0;
+        virtual_index_scank ++;
+    }
+    else if ((unsigned)virtual_index_scank < index_scank)
+    {
+        buffer_scank [index_scank] = buffer_scank [index_scank - virtual_cursor_pos];
+        buffer_scank [index_scank - virtual_cursor_pos] = key;
+        buffer_scank [++index_scank] = 0;
+        virtual_index_scank ++;
+    }
 }
 
 /*
@@ -274,7 +285,10 @@ void key_handler_util_backspace()
     if(!((LENGTH_INPUT-1) < 0))
     {
         if(active_scank)
+        {
             buffer_scank[index_scank--] = 0;
+            virtual_index_scank --;
+        }
 
         if(print_scank == true)
             printk("\b");
@@ -362,7 +376,7 @@ void key_handler()
                     video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
                     (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
                     ,__crsr_start,__crsr_end);
-                    index_scank --;
+                    virtual_index_scank --;
                 }
                 break;
         case KBD_UP_KEY_ID:

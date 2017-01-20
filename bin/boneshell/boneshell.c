@@ -99,6 +99,7 @@ void loop_terminal()
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
 
         virtual_cursor_pos = 0;
+        virtual_index_scank = 0;
 
         scank(true,true, "%s" , cmd_active.value);
 
