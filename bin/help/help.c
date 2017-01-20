@@ -45,7 +45,7 @@ int cmd_help_handler(char* cmd)
       printk("Commands\n");
       printk("--------\n");
       for(int i=0; cmds[i]; i+=3)
-        printk("%d : %s \t %d : %s \t %d : %s \n",i,cmds[i]->name, (i+1),cmds[i+1]->name, (i+2), cmds[i+2]->name);
+        printk("%d : %s \t %d : %s \t %d : %s ]\n",i,cmds[i]->name,(i+1),cmds[i+1]->name,(i+2), cmds[i+2]->name);
       return STATUS_OK;
    }
 

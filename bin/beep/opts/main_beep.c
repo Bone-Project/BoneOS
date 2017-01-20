@@ -30,6 +30,7 @@
 #include <sh/values.h>
 #include <beep/beep.h>
 #include <beep/opts/main_beep_count.h>
+#include <drv/pcspkr/pcspkr.h>
 
 int main_beep_opt_handler (char *cmd)
 {
@@ -42,6 +43,7 @@ int main_beep_opt_handler (char *cmd)
   else if(strcmp(opts[1].str, "--help")==0)
     printk(cmd_beep.help);
   else
-    printk (cmd_beep.invalid_use_msg);
+    pcspkr_beep();
+
   return STATUS_OK;
 }
