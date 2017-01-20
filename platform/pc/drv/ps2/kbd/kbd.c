@@ -164,9 +164,21 @@ void wait_until_enter(char key)
     }
     else if ((unsigned)virtual_index_scank < index_scank)
     {
-        buffer_scank [index_scank] = buffer_scank [index_scank - virtual_cursor_pos];
-        buffer_scank [index_scank - virtual_cursor_pos] = key;
-        buffer_scank [++index_scank] = 0;
+        if (virtual_cursor_pos > 1)
+        {
+            for (int i = 0; i < virtual_cursor_pos; i ++)
+            {
+                buffer_scank [index_scank - i] = buffer_scank [index_scank - (i + 1)];
+            }
+            buffer_scank [index_scank - virtual_cursor_pos] = key;
+            buffer_scank [++index_scank] = 0;
+        }
+        else
+        {
+            buffer_scank [index_scank] = buffer_scank [index_scank - virtual_cursor_pos];
+            buffer_scank [index_scank - virtual_cursor_pos] = key;
+            buffer_scank [++index_scank] = 0;
+        }
         virtual_index_scank ++;
     }
 }
@@ -370,7 +382,7 @@ void key_handler()
                 kbd_info.is_caps = !kbd_info.is_caps;
                 break;
         case KBD_LEFT_KEY_ID:
-                if (LENGTH_INPUT > 0)
+                if ((LENGTH_INPUT - virtual_cursor_pos) > 0)
                 {
                     virtual_cursor_pos ++;
                     video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
