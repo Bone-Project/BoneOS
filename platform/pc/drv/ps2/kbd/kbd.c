@@ -180,6 +180,11 @@ void wait_until_enter(char key)
             buffer_scank [++index_scank] = 0;
         }
         virtual_index_scank ++;
+        for (int i = 0; buffer_scank [i]; i ++)
+        {
+            printk ("\b");
+        }
+        printk ("%s", buffer_scank);
     }
 }
 
