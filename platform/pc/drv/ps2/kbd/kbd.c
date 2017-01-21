@@ -185,6 +185,9 @@ void wait_until_enter(char key)
             printk ("\b");
         }
         printk ("%s", buffer_scank);
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+        (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+        ,__crsr_start,__crsr_end);
     }
 }
 
