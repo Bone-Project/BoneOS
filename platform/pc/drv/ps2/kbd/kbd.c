@@ -180,11 +180,13 @@ void wait_until_enter(char key)
             buffer_scank [++index_scank] = 0;
         }
         virtual_index_scank ++;
+
         for (int i = 0; buffer_scank [i]; i ++)
         {
             printk ("\b");
         }
         printk ("%s", buffer_scank);
+
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
         (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
         ,__crsr_start,__crsr_end);
@@ -397,6 +399,16 @@ void key_handler()
                     (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
                     ,__crsr_start,__crsr_end);
                     virtual_index_scank --;
+                }
+                break;
+        case KBD_RIGHT_KEY_ID:
+                if ((LENGTH_INPUT - virtual_cursor_pos) > 0)
+                {
+                    virtual_cursor_pos --;
+                    video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+                    (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+                    ,__crsr_start,__crsr_end);
+                    virtual_index_scank ++;
                 }
                 break;
         case KBD_UP_KEY_ID:
