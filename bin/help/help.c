@@ -47,12 +47,12 @@ int cmd_help_handler(char* cmd)
         printk("Commands\n");
         printk("--------\n");
         for (int i = 0; cmds[i]; i += 2) {
-            printk("%d : %s", i, cmds[i]->name);
+            printk("%d : %s", i + 1, cmds[i]->name);
             for (unsigned int o = 0;
                     o < video_driver_width / 2 - 5 - strlen(itoa(i)) - strlen(cmds[i]->name);
                     o ++)
                 printk(" ");
-            printk("%d : %s\n", i + 1, cmds[i + 1]->name);
+            printk("%d : %s\n", i + 2, cmds[i + 1]->name);
         }
         return STATUS_OK;
     }
