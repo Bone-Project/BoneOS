@@ -307,13 +307,10 @@ void key_handler_util(int key)
 
 void key_handler_util_backspace()
 {
-    if(!((LENGTH_INPUT-1) < 0))
+    if(!((LENGTH_INPUT-1) < 0) && virtual_index_scank > 0)
     {
         if(active_scank == true)
         {
-            /*buffer_scank[virtual_index_scank--] = 0;
-            index_scank --;
-            //virtual_index_scank --;*/
             if (index_scank > (unsigned)virtual_index_scank)
             {
                 for (int i = virtual_index_scank; i < (int)index_scank; i ++)
@@ -332,8 +329,11 @@ void key_handler_util_backspace()
 
         if(print_scank == true)
         {
-            //printk ("\n%d\n", virtual_index_scank);
-            if ((unsigned)virtual_index_scank + 1 < index_scank)
+            if (virtual_index_scank < 0)
+            {
+                return;
+            }
+            else if ((unsigned)virtual_index_scank + 1 < index_scank)
             {
                 int temp = LENGTH_INPUT;
                 while (temp > 0) {printk ("\b"); temp --;}
