@@ -45,6 +45,9 @@
 #include <drv/video/VGA/vga.h>
 #include <sh/shell.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
+#include <drv/video/VGA/vga.h>
+#include <drv/video/video.h>
+#include <drv/video/VGA/textmode/utils.h>
 
 
 
@@ -306,14 +309,44 @@ void key_handler_util_backspace()
 {
     if(!((LENGTH_INPUT-1) < 0))
     {
-        if(active_scank)
+        if(active_scank == true)
         {
-            buffer_scank[index_scank--] = 0;
+            /*buffer_scank[virtual_index_scank--] = 0;
+            index_scank --;
+            //virtual_index_scank --;*/
+            if (index_scank > (unsigned)virtual_index_scank)
+            {
+                for (int i = virtual_index_scank; i < (int)index_scank; i ++)
+                {
+                    buffer_scank [i - 1] = buffer_scank [i];
+                }
+                buffer_scank [index_scank - 1] = 0;
+            }
+            else
+            {
+                buffer_scank [index_scank-1] = 0;
+            }
+            index_scank --;
             virtual_index_scank --;
         }
 
         if(print_scank == true)
-            printk("\b");
+        {
+            //printk ("\n%d\n", virtual_index_scank);
+            if ((unsigned)virtual_index_scank + 1 < index_scank)
+            {
+                int temp = LENGTH_INPUT;
+                while (temp > 0) {printk ("\b"); temp --;}
+                printk ("%s", buffer_scank);
+                video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+                (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+                ,__crsr_start,__crsr_end);
+            }
+            else
+            {
+                printk ("\b");
+            }
+        }
 
         INDEX_CURSOR_POSITION-=1;
         LENGTH_INPUT-=1;
@@ -402,7 +435,7 @@ void key_handler()
                 }
                 break;
         case KBD_RIGHT_KEY_ID:
-                if ((LENGTH_INPUT - virtual_cursor_pos) > 0)
+                if ((LENGTH_INPUT - virtual_cursor_pos) >= 0 && virtual_cursor_pos > 0)
                 {
                     virtual_cursor_pos --;
                     video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
