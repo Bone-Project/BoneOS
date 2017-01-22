@@ -115,6 +115,8 @@ kbd_info_t
     bool is_ctrl;
     bool is_enter;
     bool is_caps;
+    bool is_home;
+    bool is_end;
     uint32_t current_kbd_layout_index;
     int key;
 

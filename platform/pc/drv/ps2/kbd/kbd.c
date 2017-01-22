@@ -119,6 +119,8 @@ void key_release(uint8_t scancode)
 
     if ((int)(scancode) == 29) //Scancode of "Control" key
         kbd_info.is_ctrl = false;
+    if ((int)(scancode) == 71) //Scancode of "Home" key
+        kbd_info.is_home = false;
 }
 
 /*
@@ -226,6 +228,15 @@ static inline void inc_al()
  */
 void key_handler_util(int key)
 {
+    if (kbd_info.is_home == true)
+    {
+        virtual_index_scank = 0;
+        virtual_cursor_pos = LENGTH_INPUT;
+        video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+        (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+        ,__crsr_start,__crsr_end);
+        return;
+    }
     //First checking for shortcut commands
     if (kbd_info.is_ctrl == true)
     {
@@ -260,10 +271,19 @@ void key_handler_util(int key)
             kbd_info.key = ' ';
             return;
         }
-        else if (key == 'a' || key == 'A')
+        else if (key == 'a' || key == 'A' || kbd_info.is_home == true)
         {
             virtual_index_scank = 0;
             virtual_cursor_pos = LENGTH_INPUT;
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+            (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+            ,__crsr_start,__crsr_end);
+            return;
+        }
+        else if (key == 'e' || key == 'E')
+        {
+            virtual_index_scank = index_scank;
+            virtual_cursor_pos = 0;
             video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
             (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
             ,__crsr_start,__crsr_end);
@@ -422,7 +442,7 @@ void key_handler_util_tab()
  * @function key_handler:
  *      Handles key events.
  *      called by primary
- *      keyborad handler
+ *      keyboard handler
  *      @kbd_handler.
  *
  */
@@ -478,6 +498,13 @@ void key_handler()
                     printk("%s" , cmd_active.value);
                 }
                 break;
+        case KBD_HOME_KEY_ID:
+            //printk ("HOME");
+            kbd_info.is_home = true;
+            break;
+        case KBD_END_KEY_ID:
+            kbd_info.is_end = true;
+            break;
         case KBD_CONTROL_PRESS_ID:
             kbd_info.is_ctrl = true;
             break;
