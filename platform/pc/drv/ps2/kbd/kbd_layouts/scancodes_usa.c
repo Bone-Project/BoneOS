@@ -46,7 +46,7 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     0, /* < ... F10 */
     0, /* 69 - Num lock*/
     0, /* Scroll Lock */
-    0, /* Home key */
+    KBD_HOME_KEY_ID, /* Home key */
     KBD_UP_KEY_ID, /* Up Arrow */
     0, /* Page Up */
     '-',
@@ -54,7 +54,7 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     0,
     KBD_RIGHT_KEY_ID, /* Right Arrow */
     '+',
-    0, /* 79 - End key*/
+    KBD_END_KEY_ID, /* 79 - End key*/
     KBD_DOWN_KEY_ID, /* Down Arrow */
     0, /* Page Down */
     0, /* Insert Key */

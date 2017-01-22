@@ -28,6 +28,7 @@
 #include <cpu/interrupts/interrupts.h>
 #include <cpu/interrupts/irq.h>
 #include <libc/stdio/stdio.h>
+#include <libc/stdlib/panik/panik.h>
 #include <boneshell/boneshell.h>
 #include <string/string.h>
 #include <stdint.h>
@@ -257,6 +258,19 @@ void key_handler_util(int key)
             kbd_info.key = KBD_ENTER_PRESS_ID;
             key_handler();
             kbd_info.key = ' ';
+            return;
+        }
+        else if (key == 'a' || key == 'A')
+        {
+            virtual_index_scank = 0;
+            virtual_cursor_pos = LENGTH_INPUT;
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+            (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+            ,__crsr_start,__crsr_end);
+            return;
+        }
+        else if (key == 'c' || key == 'C')
+        {
             return;
         }
     }
