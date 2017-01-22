@@ -6,14 +6,14 @@ SECTIONS
 {
   . = 0x0100000;
 
-  .text :
+  .text BLOCK(4K) : ALIGN(4K)
   {
     *(.multiboot)
     *(.text*)
     *(.rodata)
   }
 
-  .data  :
+  .data BLOCK(4K) : ALIGN(4K)
   {
     start_ctors = .;
     KEEP(*( .init_array ));
@@ -23,11 +23,12 @@ SECTIONS
     *(.data)
   }
 
-  .bss  :
+  .bss BLOCK(4K) : ALIGN(4K)
   {
     *(.bss)
   }
 
+  _kernel_end = .;
   /DISCARD/ : { *(.fini_array*) *(.comment) }
 }
 

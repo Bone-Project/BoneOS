@@ -11,9 +11,8 @@ CSRCS = \
 	cpu/interrupts/idt.c \
 	cpu/cpu.c \
 	cpu/interrupts/interrupts.c \
-	mm/pmm.c \
+	mm/page_frame.c \
 	mm/pmm_util.c \
-	mm/bitmap.c \
 	cpu/cpuid.c \
 
 cpu/interrupts/interrupts-asm.o: NASMFLAGS += -i cpu/interrupts/
