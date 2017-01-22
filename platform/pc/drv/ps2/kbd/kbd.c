@@ -289,6 +289,20 @@ void key_handler_util(int key)
             ,__crsr_start,__crsr_end);
             return;
         }
+        else if (key == 'u' || key == 'U')
+        {
+            while (index_scank != 0) {printk ("\b"); index_scank --;}
+            index_scank = 0;
+            virtual_index_scank = 0;
+            virtual_cursor_pos = 0;
+            buffer_scank [index_scank] = 0;
+
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+            (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+            ,__crsr_start,__crsr_end);
+            virtual_cursor_pos = 0;
+            return;
+        }
         else if (key == 'c' || key == 'C')
         {
             return;
