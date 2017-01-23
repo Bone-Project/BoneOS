@@ -59,6 +59,7 @@ volatile uint32_t shell_instance_cnt = 0;
 
 volatile struct typed_cmd cmd_active;
 int virtual_cursor_pos = 0;
+int virtual_index_scank = 0;
 rtc_t start_time;
 
 struct cmd_t *cmds[] =

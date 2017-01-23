@@ -92,7 +92,7 @@
 
 
 
-<h3 color="red"> Current BoneOS Version : V 0.0.2 </h3>
+<h3 color="red"> Latest BoneOS Version: V 0.0.2 </h3>
 
 
 
@@ -106,9 +106,9 @@
 ### [BoneOS Meta](https://meta.boneos.org/)
 
 
-Welcome! This is the official and main repository of BoneOS. This project is currently in high active development ,
-and is predominately written in C ofcourse some parts such as  hardware communication, scripting, building, etc ...will use
-other languages.
+This is the official and main repository of BoneOS. This project is currently in high development,
+and is predominately written in C.
+
 If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)!
 If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request
 [**here**](https://github.com/Bone-Project/BoneOS/pulls)!
@@ -130,7 +130,13 @@ Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up on the 
 There are two ways to install BoneOS: one for the normal user to get it into his Virtual Machine and the other for the developer who want to contribute (building from source).
 
 #### Normal Installation (For user)
-  To install a spsecific version , go to the top of readme where you will see the version number listed as well as installing the Image File via SourceForge or Github Releases. Choose whichever you would like and when you finish installing the ISO(Image File) plug it into your Virtual Machine. [**here**](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be) is a video showing how to do this using VirtualBox as the Virtual Machine Emulator. You can download Virtual Box [**here**](https://www.virtualbox.org/). [Here](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be) is a video showing how to get it in VMWare. VMWare is paid , there if a free trial though. You can get more Information at our Offical Download Page [here](https://boneos.org/download.html).
+
+To run a `.iso` of BoneOS, do the following steps:
+
+ - Download a specific version or the latest nightly build mentioned in the top of the Readme.
+ - Run it using a virtual machine ( [VirtualBox](https://www.youtube.com/watch?v=rBjlaEAzUZo&feature=youtu.be), [VMWare](https://www.youtube.com/watch?v=yDiwl6AxNrc&feature=youtu.be), or QEmu).
+ 
+You can find [more information over here.](https://boneos.org/download.html).
 
 #### Nightly Builds (For Developer Or Normal User)
 
