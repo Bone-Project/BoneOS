@@ -113,12 +113,14 @@ If you find any issue using this OS please request an issue [**here**](https://m
 If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request
 [**here**](https://github.com/Bone-Project/BoneOS/pulls)!
 
-#WARNINGS
+# WARNINGS
+---
 
  - Installing VirtualBox on Ubuntu may lead to problems.
 
 
 # Discussions
+---
 
 Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up on the [BoneOS Meta](https://meta.boneos.org/).
 
@@ -164,13 +166,15 @@ You can  get the nightly builds for the latest updated iso for the master branch
 #### More Info(For Developer)
 For more information, go [here](https://amanuel2.gitbooks.io/boneos/content/) for documentation.
 
-Directory Structure
+# Directory Structure
 ----
-Our firectory structure currently is as follows:
+Our directory structure currently is as follows:
 
 - ***Documentation*** : Documentation for BoneOS
 - ***apps*** : Applications
    - ***term*** : Terminal
+- ***.github*** : Github related files.
+   - ***ISSUE_TEMPLATE.md*** : Github Issues Template
 - ***arch*** : Architecture Dependant Codes
    - ***@(ARCH)*** : Architecture name.
      - ***boot***: GRUB Bootloader information
@@ -193,12 +197,13 @@ Our firectory structure currently is as follows:
    - ***no_vnc***: Setup No_vnc server in Cloud9IDE
    - ***watch.sh*** : Nodemon like script
 - ***include***: All Include Files(.h).
+- ***var*** : Common Variables used across the system.
 
-Documentation
----
+# Documentation
+ ---
 You can take a look at the Documentation online hosted by gitbook [**here**](https://amanuel2.gitbooks.io/boneos/content). Documentation are for presistant information , not code details.
 
-Architectures
+# Architectures
 ---
 Architecture          |   Status    | Plan to support |
 ------------- | ------------- | -----------|
@@ -211,7 +216,7 @@ MIPS | Unavailable|     Yes, in later releases     |
 if there are architectures you want BoneOS to support , please request an issue to talk about it.
 
 
-FAQ
+# FAQ
 ---
 
 1) **What is BoneOS Goal?**
@@ -227,7 +232,7 @@ FAQ
  Absolutely! Any help would be appreciated! To get to us, either request an
  issue or check ask a question in meta : https://meta.boneos.org
 
-License
+# License
 ---
 
 BoneOS is Licensed under the GPLv3 License.
