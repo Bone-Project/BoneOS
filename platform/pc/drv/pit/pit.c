@@ -52,7 +52,7 @@ static void send_pit_command(uint8_t cmd)
 }
 
 /*
- * @function send_pit_command:
+ * @function send_msg_counter_0:
  *    Sends Messages to Counter
  *    0 of PIT's Internal Registers.
  */
@@ -62,7 +62,7 @@ static void send_msg_counter_0(uint8_t cmd)
 }
 
 /*
- * @function send_pit_command:
+ * @function pit_phase:
  *    Initalizes the PIT Intenally
  *    with the number of IRQ's per
  *    second specified.
