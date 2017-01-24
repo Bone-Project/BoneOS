@@ -39,6 +39,8 @@
 #define I386_PIT_COUNTER_2_REG    0x42
 #define I386_PIT_CONTROL_WORD_REG 0x43
 
+#define I386_PIT_OSCILLATOR_CHIP_FREQ 1193180
+
 
 #define IRQ_SEC_HIT 19
 
@@ -47,12 +49,10 @@ extern volatile uint32_t pit_ticks;
 extern int init_pit();
 extern int uninit_pit();
 
+extern void send_pit_command(uint8_t cmd);
+extern void send_msg_counter_0(uint8_t cmd);
+
+
 extern struct device_driver_t pit_driver;
 
 #endif /*_DRV_PIT_H_*/
-
-
-
-
-
-
