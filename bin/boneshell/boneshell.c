@@ -53,6 +53,7 @@ volatile bool new_set__shell = false;
 volatile bool tab_multiple_opts = false;
 volatile bool tab_one_opt = false;
 volatile bool tab_zero_opt = false;
+volatile bool skip_prints = false;
 bool executed_internally=false;
 
 void removeSpaces(char* source)
@@ -72,14 +73,29 @@ void removeSpaces(char* source)
 void loop_terminal()
 {
     shell_instance_cnt+=1;
-    if (shell_instance_cnt != 1)
-        printk("Shell #%d\n" , shell_instance_cnt);
-    printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
-    start_time = rtc_get_time();
-    rtc_print_struct(start_time);
+    if (skip_prints == false)
+    {
+        if (shell_instance_cnt != 1)
+            printk("Shell #%d\n" , shell_instance_cnt);
+        printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
+        start_time = rtc_get_time();
+        rtc_print_struct(start_time);
+    }
+    else
+    {
+        //skip_prints = false;
+    }
+
     while(1)
     {
         start_shell:;
+
+        if (exit_set__shell == true)
+        {
+            exit_set__shell = false;
+            goto end_shell;
+        }
+
         int FG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
         int BG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
         if(video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg==0x7 && video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg==0x0)
@@ -95,6 +111,7 @@ void loop_terminal()
             printk("%s",VAR_PWD);
             printk(" $ ");
         }
+
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = FG__;
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = BG__;
 
@@ -123,7 +140,6 @@ void loop_terminal()
         }
 
         if(strcmp(cmd_active.value, "exit") == 0 || exit_set__shell == true)
-        //if (exit_set__shell == true)
         {
             shell_instance_cnt--;
             exit_set__shell = false;
@@ -163,6 +179,7 @@ void loop_terminal()
     }
     end_shell:;
 }
+
 int boneshell_handler(char* cmd)
 {
     size_t num_opts = get_opt_count(cmd);
