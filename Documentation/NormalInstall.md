@@ -10,6 +10,7 @@ First, you need to download a `.iso` file of BoneOS (Nightly builds is the lates
  
  - [Version 0.0.1](https://github.com/Bone-Project/BoneOS/releases/download/v0.0.1/BoneOS.iso)
  
+ 
  Download the file. After you have downloaded the file, go to the directory (normally it is in `~/Downloads`):
  
     cd path/to/dir
@@ -19,6 +20,10 @@ First, you need to download a `.iso` file of BoneOS (Nightly builds is the lates
 Now, copy the file to the home directory:
 
     cp BoneOS.iso ~/
+    
+and switch to the home directory:
+
+    cd ~/
     
 If you get an error above saying that the file does not exist, replace `BoneOS` with the name of the file you downloaded.
 
