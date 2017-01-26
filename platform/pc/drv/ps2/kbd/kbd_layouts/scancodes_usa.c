@@ -58,7 +58,7 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     KBD_DOWN_KEY_ID, /* Down Arrow */
     0, /* Page Down */
     0, /* Insert Key */
-    KBD_DELETE_KEY_ID, /* Delete Key */
+    0, /* Delete Key */
     0, 0, 0,
     0, /* F11 Key */
     0, /* F12 Key */
@@ -99,7 +99,7 @@ int const QWERTY_USA_NOSHIFT_VAL[]  =
     KBD_DOWN_KEY_ID, /* Down Arrow */
     0, /* Page Down */
     0, /* Insert Key */
-    KBD_DELETE_KEY_ID, /* Delete Key */
+    0, /* Delete Key */
     0, 0, 0,
     0, /* F11 Key */
     0, /* F12 Key */
