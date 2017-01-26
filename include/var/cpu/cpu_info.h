@@ -3,7 +3,7 @@
 
 #include <cpu/cpuid.h>
 
-typedef struct 
+typedef struct
 {
     char* companyName;
     char* vendorID;
