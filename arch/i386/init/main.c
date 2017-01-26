@@ -99,8 +99,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
-	pmm_util_init(multiboot_structure);
-    init_page_frame(multiboot_structure);
+	//pmm_util_init(multiboot_structure);
+    //init_page_frame(multiboot_structure);
 
     #ifdef DEBUG
       __debug_print_memory_size();
