@@ -35,7 +35,7 @@ Now, you need to run this in a virtual machine. In this page, I am going to cove
  
 **QEmu**
 
-I am assuming that you have QEmu installed. If not, google it and install QEmu for your OS.
+I am assuming that you have QEmu installed. If not, run `sudo apt-get install qemu` if you are on a Ubuntu/Debian based distribution. Otherwise, just google it and find out how to install QEmu in your specific Linux distribution. 
 
 I am going to be showing running the OS using the command line. If you are on Windows, use the new "Windows Subsystem for Linux" tool. You can run it even _without_ the terminal, but for this doc we need it. If you cannot use a terminal, go ahead and use VirtualBox or VMWare for now (**NOTE**: Installing Virtual Box and maybe even VM Ware is **known to cause some problems** on Linux distributions, so it is recommended that you do not install them on a Linux distribution).
 
