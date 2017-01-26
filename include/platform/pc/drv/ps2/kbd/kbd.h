@@ -1,18 +1,20 @@
 #ifndef _DRV_KBD_H_
 #define _DRV_KBD_H_
 
+
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
-/* PORTS */
+/*PORTS*/
 #define KBD_ENC_INPUT_BUF_REG 0x60
 #define KBD_ENC_CMD_REG       0x60
 
 #define KBD_CTRL_STATS_REG 0x64
 #define KBD_CTRL_CMD_REG   0x64
 
-/* STATUS */
+
+/*STATUS*/
 #define KBD_CTRL_STATS_MASK_OUT_BUF     0x1     //00000001
 #define KBD_CTRL_STATS_MASK_IN_BUF      0x2     //00000010
 #define KBD_CTRL_STATS_MASK_SYSTEM      0x4     //00000100
@@ -22,7 +24,7 @@
 #define KBD_CTRL_STATS_MASK_TIMEOUT     0x40    //01000000
 #define KBD_CTRL_STATS_MASK_PARITY      0x80    //10000000
 
-/* ENCODER COMMANDS */
+/*ENCODER COMMANDS*/
 #define KBD_ENCODER_CMD_SET_LED                        0xED
 #define KBD_ENCODER_CMD_ECHO                           0xEE
 #define KBD_ENCODER_CMD_SET_SCANCODE                   0xF0
@@ -41,18 +43,19 @@
 #define KBD_ENCODER_CMD_SEND_SYSTEM_RESET              0xFE
 #define KBD_ENCODER_CMD_RESET_KBD_SST                  0xFF
 
-/* CTRL COMMANDS */
+
+/*CTRL COMMANDS*/
 #define KBD_CTRL_CMD_SELF_TEST  0xAA
 
-/* RETURN CODES */
+/*RETURN CODES*/
 #define KBD_ENC_FAIL_BAT_TEST   0xFC
 
-/* LED LIGHT */
+/*LED LIGHT*/
 #define KBD_SCROLL_LED_ON 0x1
 #define KBD_NUM_LED_ON    0x2
 #define KBD_CAPS_LOCK_ON  0x4
 
-/* KEYS */
+/*KEYS*/
 #define KBD_LEFT_SHIFT_PRESS_ID  0x101000
 #define KBD_RIGHT_SHIFT_PRESS_ID 0x101001
 #define KBD_UP_KEY_ID 0x101002
@@ -63,8 +66,9 @@
 #define KBD_ENTER_PRESS_ID 0x101007
 #define KBD_CONTROL_PRESS_ID 0x101008
 #define KBD_HOME_KEY_ID 0x101009
-#define KBD_END_KEY_ID 0x10100A
-#define KBD_DELETE_KEY_ID 0x10100B
+#define KBD_END_KEY_ID 0x101010
+
+
 
 extern int init_kbd();
 extern int uninit_kbd();
@@ -72,7 +76,7 @@ extern int uninit_kbd();
 /*
  * Keyboard Utility Commands
  */
-extern const char QWERTY_EN_NOSHIFT[];
+extern const char QWERTY_EN_NOSHIFT[] ;
 extern const char QWERTY_EN_SHIFT[];
 extern int key_press(uint8_t scancode);
 extern void key_handler();
@@ -84,26 +88,27 @@ extern void kbd_enc_send_cmd(uint8_t cmd);
 extern bool bat_test(void);
 extern bool led_light(bool scroll, bool num, bool caps);
 
-struct kbd_info_t
+struct
+kbd_info_t
 {
     struct
     {
         bool num_lock;
         bool caps_lock;
         bool scroll_lock;
-    } led;
+    }led;
 
     struct
     {
         bool shift;
         bool alt;
         bool ctrl;
-    } spec_keys;
+    }spec_keys;
 
     struct
     {
         bool bat_test;
-    } tests;
+    }tests;
 
     uint8_t scancode;
     bool is_shift;
@@ -114,10 +119,20 @@ struct kbd_info_t
     bool is_end;
     uint32_t current_kbd_layout_index;
     int key;
+
 };
 
 extern struct device_driver_t kbd_driver;
 
 extern volatile struct kbd_info_t kbd_info;
 
+
+
 #endif
+
+
+
+
+
+
+
