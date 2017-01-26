@@ -3,8 +3,7 @@
 echo "SETTING UP DEPENDENCIES"
 if [ "$(uname)" == "Darwin" ]; then
    if hash brew 2>/dev/null; then
-   		brew install nasm
-		brew install supervisor #C9 -> NoVNC
+   		brew install nasm supervisor
 		brew tap xrisk/i686-toolchain
 		brew install --HEAD i686-elf-grub
 		curl -s -o ~/cross-dev.sh https://raw.githubusercontent.com/xrisk/homebrew-i686-toolchain/master/setenv.sh
