@@ -15,11 +15,11 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **/
 
 #include <stddef.h>
 #include <stdint.h>
@@ -34,6 +34,7 @@
 volatile uint32_t index_scank;
 volatile bool active_scank;
 volatile bool print_scank;
+volatile bool is_read = true;
 volatile char buffer_scank[4096];
 volatile int LENGTH_INPUT=0;
 volatile bool __backspace_count_active=false;
@@ -42,8 +43,8 @@ volatile bool __backspace_count_active=false;
  * @function scank:
  *     Asks for user input
  *     for each of the format
- *     specifiers  
- *    
+ *     specifiers
+ *
  *        @param fmt:
  *            orignial string with
  *            no formatting.
@@ -66,13 +67,13 @@ int scank(bool backspace_count,bool print , const char *fmt, ...)
  *     Asks for user input
  *     with `va_list` instead,
  *     also supplied to scank.
- *    
+ *
  *        @param fmt:
  *            orignial string with
  *            no formatting.
  *        @va_list arg:
  *            formatting conversion
- *            utility in form of 
+ *            utility in form of
  *            `va_list`
  */
 
@@ -101,6 +102,7 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
             break;
            case 's':
              string_format = va_arg(arg,char*);
+             //if (is_read == true)
              active_scank = true;
              index_scank=0 ;
              buffer_scank[0] = 0;
@@ -120,13 +122,13 @@ void vscank(bool backspace_count,bool print ,const char *fmt , va_list arg)
              index_scank = 0;
              while(active_scank == true) hlt();
              *hex_format = strtoi((char*)buffer_scank, 0, 16);
-              break;   
+              break;
         }
-      }  
+      }
   print_scank = false;
    LENGTH_INPUT=0;
   __backspace_count_active=false;
-  
+
 }
 
 

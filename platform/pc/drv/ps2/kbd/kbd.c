@@ -49,8 +49,8 @@
 #include <drv/video/VGA/vga.h>
 #include <drv/video/video.h>
 #include <drv/video/VGA/textmode/utils.h>
-
-
+#include <stdio/scank/scank.h>
+#include <bin/boneshell/boneshell.h>
 
 volatile struct kbd_info_t kbd_info;
 volatile int INDEX_CURSOR_POSITION=0;
@@ -305,6 +305,12 @@ void key_handler_util(int key)
         }
         else if (key == 'c' || key == 'C')
         {
+            skip_prints = true;
+            exit_set__shell = false;
+            is_read = false;
+            cmds [CMD_BONESHELL_INDEX]->handler ("boneshell");
+            kbd_info.key = KBD_ENTER_PRESS_ID;
+            key_handler();
             return;
         }
     }

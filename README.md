@@ -103,13 +103,13 @@
 
 
 
-### [BoneOS Meta](https://meta.boneos.org/)
+### [BoneOS Issues](https://github.com/Bone-Project/BoneOS/issues)
 
 
 Welcome! This is the official and main repository of BoneOS. This project is currently in high active development ,
 and is predominately written in C ofcourse some parts such as  hardware communication, scripting, building, etc ...will use
 other languages.
-If you find any issue using this OS please request an issue [**here**](https://meta.boneos.org/)!
+If you find any issue using this OS please request an issue [**here**](https://github.com/Bone-Project/BoneOS/issues)!
 If you have any contributions or pull requests, which will be highly appreciated, please issue a pull request
 [**here**](https://github.com/Bone-Project/BoneOS/pulls)!
 
@@ -122,7 +122,7 @@ If you have any contributions or pull requests, which will be highly appreciated
 # Discussions
 ---
 
-Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up on the [BoneOS Meta](https://meta.boneos.org/).
+Any Questions, Comments, Ideas, Feature Requests, etc. may be brought up [here](https://github.com/Bone-Project/BoneOS/issues).
 
 # Installation
 ---
@@ -231,7 +231,7 @@ if there are architectures you want BoneOS to support , please request an issue 
 
 3) **Need Help?**
  Absolutely! Any help would be appreciated! To get to us, either request an
- issue or check ask a question in meta : https://meta.boneos.org
+ issue or check ask a question: https://github.com/Bone-Project/BoneOS/issues
 
 # License
 ---
