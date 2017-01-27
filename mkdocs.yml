@@ -16,7 +16,6 @@ pages:
 	- 'Changing the Compiler': 'Configuration/ChangeCompiler.md'
 	- 'Changing the Linker': 'Configuration/ChangeLinker.md'
 	- 'Changing the Platform': 'Configuration/ChangePlatform.md'
-
  - Utilities:
 	- 'Utilities provided': 'AdditionalUtilities.md'
 	- 'Using Nodemon': 'Nodemon.md'
