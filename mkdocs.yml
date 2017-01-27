@@ -28,4 +28,5 @@ pages:
       - 'Using Nodemon': 'Utilities/Nodemon.md'
  - Shell:
       - 'Shell': 'Shell/Shell.md'
+      - 'Shortcuts': 'Shell/ShortcutKeys.md'
 
