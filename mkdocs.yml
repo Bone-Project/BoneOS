@@ -29,4 +29,7 @@ pages:
  - Shell:
       - 'Shell': 'Shell/Shell.md'
       - 'Shortcuts': 'Shell/ShortcutKeys.md'
+ - Commands:
+      - 'Commands': 'Commands/Commands.md'
+      - 'clear': 'Commands/clear.md'
 
