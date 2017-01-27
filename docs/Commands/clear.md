@@ -14,7 +14,7 @@
 
 **OPTIONS**
 
- - `--help`: prints the help for this command in the terminal
+> - `--help`: prints the help for this command in the terminal
 
 **SHORTCUTS**
 
