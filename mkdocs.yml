@@ -26,4 +26,6 @@ pages:
  - Utilities:
       - 'Utilities provided': 'Utilities/AdditionalUtilities.md'
       - 'Using Nodemon': 'Utilities/Nodemon.md'
+ - Shell:
+      - 'Shell': 'Shell/Shell.md'
 
