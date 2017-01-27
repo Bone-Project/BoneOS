@@ -18,6 +18,6 @@ pages:
       - 'Changing the Linker': 'Configuration/ChangeLinker.md'
       - 'Changing the Platform': 'Configuration/ChangePlatform.md'
  - Utilities:
-      - 'Utilities provided': 'AdditionalUtilities.md'
-      - 'Using Nodemon': 'Nodemon.md'
+      - 'Utilities provided': 'Utilities/AdditionalUtilities.md'
+      - 'Using Nodemon': 'Utilities/Nodemon.md'
 
