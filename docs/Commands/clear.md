@@ -1,16 +1,20 @@
-###`clear`
+###Command `clear` manual
 
 **NAME**
 
-> clear - clears the terminal screen
+> `clear` - clears the terminal screen
 
 **SYNOPSIS**
 
-> clear
+> `clear [option]`
     
 **DESCRIPTION**
 
 > `clear` clears the screen if this is possible.
+
+**OPTIONS**
+
+ - `--help`: prints the help for this command in the terminal
 
 **SHORTCUTS**
 
