@@ -3,6 +3,7 @@ site_url: https://boneos.org
 repo_url: https://github.com/Bone-Project/BoneOS
 repo_name: BoneOS
 site_description: BoneOS is an Operating System designed to be simple and at the same time powerful.
+site_favicon: BoneOS.png
 
 pages:
  - Home: 'index.md'
