@@ -1,10 +1,10 @@
 pages:
  - Home: 'index.md'
  - Installation:
-	- 'Installation': 'Installation/Installation.md'
-	- 'Running the iso file': 'Installation/NormalInstall.md'
-	- 'Building from source': 'Installation/SourceInstall.md'
-	- 'Troubleshooting': 'Issues/Troubleshooting.md'
+      - 'Installation': 'Installation/Installation.md'
+      - 'Running the iso file': 'Installation/NormalInstall.md'
+      - 'Building from source': 'Installation/SourceInstall.md'
+      - 'Troubleshooting': 'Issues/Troubleshooting.md'
  - Virtual Machines:
 	- 'Virtual Machines': 'Virtual-Machines/VirtualMachine.md'
 	- 'Using QEmu': 'Virtual-Machines/QEmu.md'
