@@ -15,7 +15,7 @@ pages:
 	- 'Changing the Architecture': 'ChangeArchitecture.md'
 	- 'Changing the Compiler': 'ChangeCompiler.md'
 	- 'Changing the Linker': 'ChangeLinker.md'
-	- 'Changing the Platform': 'ChangePlatform.md
+	- 'Changing the Platform': 'ChangePlatform.md'
  - Utilities:
 	- 'Utilities provided': 'AdditionalUtilities.md'
 	- 'Using Nodemon': 'Nodemon.md'
