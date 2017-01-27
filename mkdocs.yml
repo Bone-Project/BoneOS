@@ -1,4 +1,6 @@
 site_name: BoneOS
+site_url: https://boneos.org
+
 pages:
  - Home: 'index.md'
  - Installation:
