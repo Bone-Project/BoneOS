@@ -1,0 +1,22 @@
+pages:
+ - Home: 'index.md'
+ - Installation:
+	- 'Installation': 'Installation.md'
+	- 'Running the iso file': 'NormalInstall.md'
+	- 'Building from source': 'SourceInstall.md'
+	- 'Troubleshooting': 'Troubleshooting.md'
+ - Virtual Machines:
+	- 'Virtual Machines': 'VirtualMachine.md'
+	- 'Using QEmu': 'QEmu.md'
+	- 'Using Virtual Box': 'VirtualBox.md'
+ - Configuration:
+	- 'Configuration': 'Configuration.md'
+	- 'Changing the Assembler': 'ChangeAssembler.md'
+	- 'Changing the Architecture': 'ChangeArchitecture.md'
+	- 'Changing the Compiler': 'ChangeCompiler.md'
+	- 'Changing the Linker': 'ChangeLinker.md'
+	- 'Changing the Platform': 'ChangePlatform.md
+ - Utilities:
+	- 'Utilities provided': 'AdditionalUtilities.md'
+	- 'Using Nodemon': 'Nodemon.md'
+
