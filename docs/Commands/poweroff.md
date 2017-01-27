@@ -10,7 +10,7 @@
     
 **DESCRIPTION**
 
-> poweroff` allows a system administrator to stop the system using the command line.
+> `poweroff` allows a system administrator to stop the system using the command line.
 
 **OPTIONS**
 
@@ -18,4 +18,4 @@
 
 **ALSO SEE**
 
->- `poweroff`
+>- `reboot`
