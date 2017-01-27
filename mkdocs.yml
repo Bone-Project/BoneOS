@@ -32,4 +32,5 @@ pages:
  - Commands:
       - 'Commands': 'Commands/Commands.md'
       - 'clear': 'Commands/clear.md'
+      - 'poweroff': 'Commands/poweroff.md'
 
