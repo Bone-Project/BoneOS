@@ -2,11 +2,11 @@
 
 **NAME**
 
-    clear - clears the terminal screen
+> clear - clears the terminal screen
 
 **SYNOPSIS**
 
-    clear
+> clear
     
 **DESCRIPTION**
 
