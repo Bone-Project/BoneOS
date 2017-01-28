@@ -34,5 +34,5 @@ pages:
       - 'clear': 'Commands/clear.md'
       - 'poweroff': 'Commands/poweroff.md'
       - 'reboot': 'Commands/reboot.md'
-      - 'boneshell': 'Command/boneshell.md'
+      - 'boneshell': 'Commands/boneshell.md'
 
