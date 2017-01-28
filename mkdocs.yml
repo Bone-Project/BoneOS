@@ -41,3 +41,4 @@ pages:
       - 'logname': 'Commands/logname.md'
       - 'whoami': 'Commands/whoami.md'
       - 'cursor': 'Commands/cursor.md'
+      - 'pwd': 'Commands/pwd.md'
