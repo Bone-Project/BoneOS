@@ -25,6 +25,7 @@
 #include <stdio/stdio.h>
 #include <drv/pcspkr/pcspkr.h>
 #include <drv/driver.h>
+#include <drv/pit/pit.h>
 #include <io/io.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -39,6 +40,35 @@ struct device_driver_t pcspkr_driver =
 };
 
 /*
+ * @function send_msg_counter_2:
+ *   Send message to Counter 2(Channel) ,
+ *   where the PC Speaker is located ,
+ *   for the 8254 PIC Intel Microcontroller.
+ */
+void send_msg_counter_2 (uint8_t cmd)
+{
+  outb(I386_PIT_COUNTER_2_REG,cmd);
+}
+
+/*
+ * @function set_freq_pcspkr :
+ *    Set the frequency of the
+ *    PC Speaker.
+ */
+void set_freq_pcspkr (uint32_t freq)
+{
+  uint32_t __div;
+
+  __div = I386_PIT_OSCILLATOR_CHIP_FREQ / freq;
+ 	outb(0x43, I386_PIT_OCW_BINCOUNT_BINARY |
+             I386_PIT_OCW_MODE_SQUAREWAVEGEN |
+             I386_PIT_OCW_RL_DATA |
+             I386_PIT_OCW_SCO_COUNTER_2);
+ 	send_msg_counter_2((uint8_t)(__div));
+ 	send_msg_counter_2((uint8_t)(__div>>8));
+}
+
+/*
  * @function pcspkr_beep :
  *    Makes the PC Speaker
  *    beep.
@@ -47,7 +77,13 @@ int pcspkr_beep()
 {
   //TODO: IMPLEMENT
   if(pcspkr_driver.initalized == true)
-    printk("PC Speaker BEEP Fired\n");
+  {
+    set_freq_pcspkr(1000);
+    uint8_t tmp = inb(0x61);
+  	if (tmp != (tmp | 3)) {
+ 		   outb(0x61, tmp | 3);
+ 	  }
+  }
   else
     panik("PC SPEAKER Not Initalized or Uninitalized!");
   return STATUS_OK;

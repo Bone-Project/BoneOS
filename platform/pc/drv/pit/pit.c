@@ -46,23 +46,24 @@ volatile uint32_t pit_ticks = 0;
  *    Sends Operation Command Word
  *    to PIT.
  */
-static void send_pit_command(uint8_t cmd)
+void send_pit_command(uint8_t cmd)
 {
     outb(I386_PIT_CONTROL_WORD_REG, cmd);
 }
 
 /*
- * @function send_pit_command:
+ * @function send_msg_counter_0:
  *    Sends Messages to Counter
  *    0 of PIT's Internal Registers.
+ *    Counter 0 sets registers
  */
-static void send_msg_counter_0(uint8_t cmd)
+void send_msg_counter_0(uint8_t cmd)
 {
     outb(I386_PIT_COUNTER_0_REG, cmd);
 }
 
 /*
- * @function send_pit_command:
+ * @function pit_phase:
  *    Initalizes the PIT Intenally
  *    with the number of IRQ's per
  *    second specified.
@@ -72,7 +73,7 @@ static void pit_phase(int htz)
     //1.19MHz / htz
     //dictates how any times
     //the IRQ Should fire
-    int divisor = 1193180 / htz;
+    int divisor = I386_PIT_OSCILLATOR_CHIP_FREQ / htz;
 
     send_pit_command(I386_PIT_OCW_BINCOUNT_BINARY |
             I386_PIT_OCW_MODE_SQUAREWAVEGEN |
@@ -95,7 +96,6 @@ static void pit_phase(int htz)
 static int pit_handler_nest()
 {
     //printk("%d SECONDS\n", (pit_ticks/IRQ_SEC_HIT));
-
     return 0;
 }
 
