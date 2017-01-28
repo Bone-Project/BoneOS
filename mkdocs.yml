@@ -42,4 +42,4 @@ pages:
       - 'whoami': 'Commands/whoami.md'
       - 'cursor': 'Commands/cursor.md'
       - 'pwd': 'Commands/pwd.md'
-      - 'watch': 'Commands/watch.pwd'
+      - 'watch': 'Commands/watch.md'
