@@ -20,34 +20,34 @@
 
 **COLORS**
 
->- 0 = Black
+>- `0 = Black`
 
->- 1 = Blue
+>- `1 = Blue`
 
->- 2 = Green
+>- `2 = Green`
 
->- 3 = Aqua
+>- `3 = Aqua`
 
->- 4 = Red
+>- `4 = Red`
 
->- 5 = Purple
+>- `5 = Purple`
 
->- 6 = Yellow
+>- `6 = Yellow`
 
->- 7 = White
+>- `7 = White`
 
->- 8 = Gray
+>- `8 = Gray`
 
->- 9 = Light Blue
+>- `9 = Light Blue`
 
->- A = Light Green
+>- `A = Light Green`
 
->- B = Light Aqua
+>- `B = Light Aqua`
 
->- C = Light Red
+>- `C = Light Red`
 
->- D = Light Purple
+>- `D = Light Purple`
 
->- E = Light Yellow
+>- `E = Light Yellow`
 
->- F = Bright White
+>- `F = Bright White`
