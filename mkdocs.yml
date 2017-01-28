@@ -38,4 +38,6 @@ pages:
       - 'exit': 'Commands/exit.md'
       - 'beep': 'Commands/beep.md'
       - 'date': 'Commands/date.md'
-
+      - 'logname': 'Commands/logname.md'
+      - 'whoami': 'Commands/whoami.md'
+      - 'cursor': 'Commands/cursor.md'
