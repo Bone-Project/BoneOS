@@ -35,4 +35,7 @@ pages:
       - 'poweroff': 'Commands/poweroff.md'
       - 'reboot': 'Commands/reboot.md'
       - 'boneshell': 'Commands/boneshell.md'
+      - 'exit': 'Commands/exit.md'
+      - 'beep': 'Commands/beep.md'
+      - 'date': 'Commands/date.md'
 
