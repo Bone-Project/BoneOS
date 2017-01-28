@@ -33,35 +33,66 @@
 
 extern uint32_t _kernel_end;
 
-static int **buddy;
+static int *bitmap;
 
-static uint32_t buddy_size(){
-	uint32_t res = NUMBER_OF_BUDDIES;
-	for (size_t i = 0;i < NUMBER_OF_BUDDIES;i++){
-		res += (_mmngr_mem_size.size >> (i + PAGE_SHIFT));
-	}
-	return res;
+static void set_page(int bit,int value){
+	if (value == 1)
+		bitmap[bit / 32] |= (1 << (bit % 32));
+	else
+		bitmap[bit / 32] &= ~(1 << (bit % 32));
 }
 
-
+static uint8_t get_page(int bit){
+	return bitmap[bit / 32] & (1 << (bit % 32));
+}
 
 static void init_reigion(uint32_t base,uint32_t size){
-	base = base;
-	for (size_t i = 0;i < NUMBER_OF_BUDDIES;i++) {
-		for (size_t j = 0;j < size;j++){
-			
+	for (uint32_t page = (base >> PAGE_SHIFT);page <= ((base + size) >> PAGE_SHIFT);page++){
+		set_page(page,PAGE_FREE);	
+	}
+}
+
+static void deinit_reigion(uint32_t base,uint32_t size){
+	for (uint32_t page = (base >> PAGE_SHIFT);page <= (base + size) >> PAGE_SHIFT;page++){
+		set_page(page,PAGE_USED);
+	}
+}
+
+uint32_t find_free_pages(size_t num){
+	size_t free_pages_found = 0;
+	uint32_t tmp_free = 0;
+	bool free_founded = false;
+	for (int page = 0;page < (_mmngr_mem_size.size >> PAGE_SHIFT) / 32;page++){
+		if ((free_founded) && (get_page(page) == PAGE_FREE)){
+			free_pages_found++;
+			if (free_pages_found == num)
+				return tmp_free;
+		}
+		else if (get_page(page) == PAGE_FREE){
+			tmp_free = page;
+			free_founded = true;
 		}
 	}
+	return -1;
+}
+
+void *allocate_pages(size_t num){
+	uint32_t first = find_free_pages(num);
+	for (size_t i = 0;i < num;i++)
+		set_page(first + i,PAGE_USED);
+	return (void *) (first << PAGE_SHIFT);
+}
+
+void free_pages(void *first,size_t num){
+	for (size_t i = 0;i < num;i++)
+		set_page(((int) first >> PAGE_SHIFT) + i,PAGE_FREE);
 }
 
 void init_page_frame(multiboot_info_t *multiboot){
 	multiboot = multiboot;
-	buddy = (int **) (&_kernel_end);
-	memset(buddy,0,buddy_size());
-	buddy[0] = (int *) (&_kernel_end + NUMBER_OF_BUDDIES * 4);
-	for (size_t i = 1;i < NUMBER_OF_BUDDIES;i++){
-		buddy[i] = (int *) (&_kernel_end + NUMBER_OF_BUDDIES * 4 + (_mmngr_mem_size.size >> (i + PAGE_SHIFT - 1)));
-	}
+	bitmap = (int *) (&_kernel_end);
+	memset(bitmap,PAGE_USED * 0xFF,(_mmngr_mem_size.size >> PAGE_SHIFT) / 32);
+	
 	printk("0x%x\n",_mmngr_mem_size.size);
 	
 	multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) (multiboot->mmap_addr);
@@ -75,6 +106,10 @@ void init_page_frame(multiboot_info_t *multiboot){
   	  	printk("type: 0x%x\n",mmap->type);
   	  	mmap = (multiboot_memory_map_t*) ( (unsigned int)mmap + mmap->size + sizeof(mmap->size));
   	}
+  	deinit_reigion(0,0x10000);
+  	deinit_reigion(0x100000 + HIGHER_KERNEL_ADDRESS_LOAD,((int )&_kernel_end) - 0x100000 + HIGHER_KERNEL_ADDRESS_LOAD);
+
+  	printk("first free: 0x%x\n",find_free_pages(1));
 }
 
 

@@ -27,6 +27,8 @@
 
 #define PAGE_SIZE 4096
 #define PAGE_SHIFT 12
+#define PAGE_FREE 1
+#define PAGE_USED 0
 #define NUMBER_OF_BUDDIES 4
 
 extern void init_page_frame();
