@@ -16,7 +16,7 @@
 
 >- `--help`: prints the help for this command in the terminal
 
->- `-color [<fg-color> <bg-color>] [--def]`: customizes the foreground and background color while printing the ASCII art logo, while the `--def` argument prints in the default color (BG: 0x7, FG: 0x0)
+>- `-color [<fg-color> <bg-color>] [--def]`: customizes the foreground and background color while printing the ASCII art logo, while the `--def` argument prints in the default color (BG: `0x7`, FG: `0x0`)
 
 **COLORS**
 
