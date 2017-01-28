@@ -45,3 +45,5 @@ pages:
       - 'watch': 'Commands/watch.md'
       - 'sleep': 'Commands/sleep.md'
       - 'echo': 'Commands/echo.md'
+      - 'help': 'Commands/help.md'
+      - 'boneos_logo': 'Commands/logo.md'

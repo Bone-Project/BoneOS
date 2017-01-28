@@ -16,4 +16,4 @@
 
 >- `--help`: prints the help for this command in the terminal
 
->- `-cmd <command>`: prints out the help for the specified command
+>- `-cmd <command>`: prints out the help for the specified command 
