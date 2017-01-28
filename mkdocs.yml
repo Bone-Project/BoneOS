@@ -44,3 +44,4 @@ pages:
       - 'pwd': 'Commands/pwd.md'
       - 'watch': 'Commands/watch.md'
       - 'sleep': 'Commands/sleep.md'
+      - 'echo': 'Commands/echo.md'
