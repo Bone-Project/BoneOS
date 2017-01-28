@@ -4,7 +4,7 @@ BoneOS is an efficient yet powerful Operating System.
 
 **Table of Contents**
 
- - [Home](home.md)
+ - [Home](index.md)
  - Installation
     - [Installation](Installation/Installation.md)
     - [Running the iso file](Installation/NormalInstall.md)
