@@ -387,7 +387,7 @@ void key_handler_util_backspace()
             {
                 return;
             }
-            else if ((unsigned)virtual_index_scank + 1 < index_scank)
+            else if ((unsigned)virtual_index_scank < index_scank)
             {
                 int temp = LENGTH_INPUT;
                 while (temp > 0) {printk ("\b"); temp --;}
