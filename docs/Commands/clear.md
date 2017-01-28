@@ -14,8 +14,8 @@
 
 **OPTIONS**
 
-> - `--help`: prints the help for this command in the terminal
+>- `--help`: prints the help for this command in the terminal
 
 **SHORTCUTS**
 
-<kbd>Control</kbd> + <kbd>L</kbd> is a shortcut for this command.
+> <kbd>Control</kbd> + <kbd>L</kbd> is a shortcut for this command.
