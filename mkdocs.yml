@@ -43,3 +43,4 @@ pages:
       - 'cursor': 'Commands/cursor.md'
       - 'pwd': 'Commands/pwd.md'
       - 'watch': 'Commands/watch.md'
+      - 'sleep': 'Commands/sleep.md'
