@@ -107,7 +107,7 @@ struct cmd_opt_t cmd_boneos_logo_opt_color =
         .cmd_opt_name = "-color" ,
         .handler = &cmd_boneos_logo_color_handler,
         .invalid_use_msg = "Invalid Use of -color option. Use command boneos_logo -color --help for\n"
-                           "instructions on how to use the clear command\n"
+                           "instructions on how to use the boneos_logo -color command\n"
 };
 
 

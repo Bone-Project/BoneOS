@@ -45,15 +45,16 @@ int cmd_beep_handler (char *cmd)
 struct cmd_t cmd_beep =
 {
   .name = "beep",
-  .usage ="beep [-n count] [--help]",
+  .usage ="beep [-n count] [-f freq] [--help]",
   .help = "beep(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tbeep\n"
                 "SYNOPSIS : \n "
-                "\tbeep [-n count] [--help]\n"
+                "\tbeep [-n count] [-f freq] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tBeeps via the PC Speaker. if used without\n"
-                "\t-n option, defaults to beep 1 time.\n",
+                "\t-n option, defaults to beep 1 time. If freq not\n"
+                "\tset with -f then default if of 1000 htz.\n",
   .cmd_opts =  cmd_beep_opts,
   .handler = &cmd_beep_handler,
   .invalid_use_msg = "Invalid use of beep command.\n"

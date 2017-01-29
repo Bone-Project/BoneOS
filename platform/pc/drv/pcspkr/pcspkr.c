@@ -68,27 +68,36 @@ void set_freq_pcspkr (uint32_t freq)
  	send_msg_counter_2((uint8_t)(__div>>8));
 }
 
+void pc_speaker_silent()
+{
+  uint8_t pcspkr = inb(I86_PC_SPKR_STATUS_REG);
+  pcspkr |= 1 << 2;
+  outb(0x61,pcspkr);
+}
+
+
 /*
  * @function pcspkr_beep :
  *    Makes the PC Speaker
  *    beep.
+ *    
+ *    @param freq : Frequency given
+ *                  for speaker to beep.
  */
-int pcspkr_beep()
+int pcspkr_beep(uint32_t freq)
 {
   //TODO: IMPLEMENT
   if(pcspkr_driver.initalized == true)
   {
-    set_freq_pcspkr(1000);
-    uint8_t tmp = inb(0x61);
-  	if (tmp != (tmp | 3)) {
- 		   outb(0x61, tmp | 3);
- 	  }
+    set_freq_pcspkr(freq);
+    uint8_t pcspkr = inb(I86_PC_SPKR_STATUS_REG);
+  	if (pcspkr != (pcspkr | I86_PC_SPKR_ENABLE)) //If PC_Speaker is not already set at out
+ 		   outb(0x61, pcspkr | I86_PC_SPKR_ENABLE);
   }
   else
     panik("PC SPEAKER Not Initalized or Uninitalized!");
   return STATUS_OK;
 }
-
 int pcspkr_init()
 {
   pcspkr_driver.initalized = true;

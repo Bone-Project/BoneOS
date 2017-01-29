@@ -31,6 +31,9 @@
 #include <beep/beep.h>
 #include <beep/opts/main_beep_count.h>
 #include <drv/pcspkr/pcspkr.h>
+#include <string/string.h>
+#include <stdlib/stdlib.h>
+#include <stdio/stdio.h>
 
 int main_beep_opt_handler (char *cmd)
 {
@@ -40,10 +43,15 @@ int main_beep_opt_handler (char *cmd)
 
   if(strcmp(opts[1].str, "-n")==0)
     cmd_beep_opt_count.handler(cmd);
+  else if(strcmp(opts[1].str, "-f")==0)
+  {
+    int freq_set = strtoi((char*)opts[2].str, 0, 16);
+    pcspkr_beep(freq_set);
+  }
   else if(strcmp(opts[1].str, "--help")==0)
     printk(cmd_beep.help);
   else
-    pcspkr_beep();
+    pcspkr_beep(9000);
 
   return STATUS_OK;
 }
