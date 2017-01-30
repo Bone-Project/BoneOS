@@ -29,6 +29,8 @@
 #include <stdlib/stdlib.h>
 #include <stdio/stdio.h>
 #include <string/string.h>
+#include <beep/opts/main_beep_count.h>
+#include <drv/pcspkr/pcspkr.h>
 
 int cmd_beep_count_handler(char* cmd)
 {
@@ -36,36 +38,29 @@ int cmd_beep_count_handler(char* cmd)
    str_t opts[num_opts];
    get_opt(cmd,opts);
 
-   printk("Handling BEEP COUNT OPTION");
+   if(strcmp(opts[2].str,"--help")==0)
+        printk(cmd_beep_opt_count.help);
+   else if(strcmp(opts[2].str, "-f")==0)
+   {
+    printk("SILENCE");
+    pc_speaker_silent();
+    }
 
    return STATUS_OK;
 }
 
 struct cmd_opt_t cmd_beep_opt_count =
 {
-    .help =  "boneos_logo(1) \t\t\t\t BoneOS Terminal Manual \n"
+    .help =  "beep(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
-                "\tboneos_logo -color\n "
+                "\tbeep -n\n "
                 "SYNOPSIS : \n "
-                "\tboneos_logo [--help]  [-color <fg-color> <bg-color>] [-color --def]\n \t[-color <--help>]\n"
+                "\tbeep [-n count] [-f freq] [--help]\n"
                 "DESCRIPTION : \n "
-                "\tDraws the BoneOS Logo with accordance to the\n "
-                "\tcolor with the -color command and providing it\n "
-                "\tspecified foreground and background colors.\n "
-                "OPTIONS : \n "
-                "\t Option Summary \n "
-                "\t\t[-color <fg-color> <bg-color>] : Draws the BoneOS logo.\n "
-                "\t\t 0 = Black \t 8 = Gray\n "
-                "\t\t 1 = Blue  \t 9 = Light Blue\n "
-                "\t\t 2 = Green \t A = Light Green\n "
-                "\t\t 3 = Aqua  \t B = Light Aqua\n "
-                "\t\t 4 = Red   \t C = Light Red\n "
-                "\t\t 5 = Purple\t D = Light Purple\n "
-                "\t\t 6 = Yellow\t E = Light Yellow\n "
-                "\t\t 7 = White \t F = Bright White\n "
-                "\t\t--def : Clears to default (BG : 0x7 , FG : 0x0)\n ",
-        .cmd_opt_name = "-color" ,
+                "\tBeeps with a frequency of freq or default 1000\n "
+                "\tn times set by -n.\n",
+        .cmd_opt_name = "-n" ,
         .handler = &cmd_beep_count_handler,
-        .invalid_use_msg = "Invalid Use of -color option. Use command boneos_logo -color --help for\n"
-                           "instructions on how to use the clear command\n"
+        .invalid_use_msg = "Invalid Use of -n option. Use command beep -n --help for\n"
+                           "instructions on how to use the beep -n command\n"
 };

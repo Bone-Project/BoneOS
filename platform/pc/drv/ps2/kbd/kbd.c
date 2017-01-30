@@ -16,6 +16,7 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
+ **                 Ashish Ahuja
  **
  **  @contributors:
 
@@ -437,12 +438,30 @@ void key_handler_util_tab()
     tab__[index_tab] = 0;
     if(num_cmds==1)
     {
-        printk ("\n");
+        /*printk ("\n");
         for(int i = 0; tab__[i]; i ++) {
             printk("%c", tab__[i]);
             cmd_active.value [i] = tab__ [i];
         }
-        tab_one_opt=true;
+        tab_one_opt=true;*/
+
+        int temp = LENGTH_INPUT;
+        while (temp > 0) {printk ("\b"); temp --;}
+
+        for (int i = 0; tab__ [i] != '\0'; i ++)
+        {
+            buffer_scank [i] = (volatile char)tab__ [i];
+        }
+
+        int len = strlen (tab__);
+        buffer_scank [len - 4] = 0;
+        virtual_index_scank = len - 4;
+        index_scank = len - 4;
+        virtual_cursor_pos = 0;
+
+        LENGTH_INPUT = len;
+
+        printk ("%s", buffer_scank);
         return;
     }
 
@@ -498,6 +517,30 @@ void key_handler()
                     virtual_index_scank ++;
                 }
                 break;
+        case KBD_DELETE_KEY_ID:
+                if (virtual_index_scank >= 0 && virtual_index_scank != (int)index_scank)
+                {
+                    for (int i = virtual_index_scank; i < (int)index_scank; i ++)
+                    {
+                        buffer_scank [i] = buffer_scank [i + 1];
+                    }
+
+                    int temp = LENGTH_INPUT;
+                    while (temp > 0) {printk ("\b"); temp --;}
+                    buffer_scank [index_scank - 1] = 0;
+
+                    printk ("%s", buffer_scank);
+
+                    virtual_cursor_pos --;
+                    index_scank --;
+
+                    video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+                    (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+                    ,__crsr_start,__crsr_end);
+
+                    LENGTH_INPUT-=1;
+                }
+                break;
         case KBD_UP_KEY_ID:
                 if(TERMINAL_MODE == true && UP_KEY_ACTIVE == true)
                 {
@@ -551,7 +594,7 @@ void key_handler()
                 else
                 {
                     key_handler_util_tab();
-                    active_scank = false;
+                    /*active_scank = false;
                     buffer_scank[index_scank] = 0;
 
                     if(print_scank == true && tab_zero_opt == false)
@@ -559,7 +602,7 @@ void key_handler()
 
                     UP_KEY_ACTIVE = true; //Reset Up Key
                     TAB_PREVIOUS_VALUE_SET = true;
-                    TAB_PREVIOUS_VALUE = buffer_scank;
+                    TAB_PREVIOUS_VALUE = buffer_scank;*/
                 }
                 break;
         case '\n':

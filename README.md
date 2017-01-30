@@ -6,15 +6,13 @@
 
 <p align="center">
 
-<a href="https://amanuel2.gitbooks.io/boneos/content"><img src="https://img.shields.io/badge/Documentation-passing-brightgreen.svg"></a>
+<a href='http://docs.boneos.org/en/latest/?badge=latest'><img src='https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat' alt='Documentation Status' /></a>
 
 <a href="https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/amanuel2/BoneOS.svg"></a>
 
 <a href="https://BoneOS.slack.com"><img src="https://slack.boneos.org/badge.svg"></a>
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
-
-<a href="https://bintray.com/boneos/BoneOS/download_file?file_path=BoneOS-master.iso"><img src="https://api.bintray.com/packages/boneos/BoneOS/BoneOS.iso/images/download.svg?version=Nightly"/></a>
 
 <a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
 <table>

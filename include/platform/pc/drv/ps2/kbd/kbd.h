@@ -67,7 +67,7 @@
 #define KBD_CONTROL_PRESS_ID 0x101008
 #define KBD_HOME_KEY_ID 0x101009
 #define KBD_END_KEY_ID 0x101010
-
+#define KBD_DELETE_KEY_ID 0x101011
 
 
 extern int init_kbd();
