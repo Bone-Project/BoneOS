@@ -438,12 +438,30 @@ void key_handler_util_tab()
     tab__[index_tab] = 0;
     if(num_cmds==1)
     {
-        printk ("\n");
+        /*printk ("\n");
         for(int i = 0; tab__[i]; i ++) {
             printk("%c", tab__[i]);
             cmd_active.value [i] = tab__ [i];
         }
-        tab_one_opt=true;
+        tab_one_opt=true;*/
+
+        int temp = LENGTH_INPUT;
+        while (temp > 0) {printk ("\b"); temp --;}
+
+        for (int i = 0; tab__ [i] != '\0'; i ++)
+        {
+            buffer_scank [i] = (volatile char)tab__ [i];
+        }
+
+        int len = strlen (tab__);
+        buffer_scank [len - 4] = 0;
+        virtual_index_scank = len - 4;
+        index_scank = len - 4;
+        virtual_cursor_pos = 0;
+
+        LENGTH_INPUT = len;
+
+        printk ("%s", buffer_scank);
         return;
     }
 
@@ -576,7 +594,7 @@ void key_handler()
                 else
                 {
                     key_handler_util_tab();
-                    active_scank = false;
+                    /*active_scank = false;
                     buffer_scank[index_scank] = 0;
 
                     if(print_scank == true && tab_zero_opt == false)
@@ -584,7 +602,7 @@ void key_handler()
 
                     UP_KEY_ACTIVE = true; //Reset Up Key
                     TAB_PREVIOUS_VALUE_SET = true;
-                    TAB_PREVIOUS_VALUE = buffer_scank;
+                    TAB_PREVIOUS_VALUE = buffer_scank;*/
                 }
                 break;
         case '\n':
