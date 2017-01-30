@@ -70,8 +70,7 @@ void set_freq_pcspkr (uint32_t freq)
 
 void pc_speaker_silent()
 {
-  uint8_t pcspkr = inb(I86_PC_SPKR_STATUS_REG);
-  pcspkr |= 1 << 2;
+  uint8_t pcspkr = inb(I86_PC_SPKR_STATUS_REG)&I86_PC_SPKR_DISABLE;
   outb(0x61,pcspkr);
 }
 

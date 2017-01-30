@@ -4,6 +4,8 @@
 #define I86_PC_SPKR_STATUS_REG 0x61
 #define I86_PC_SPKR_ENABLE 3
 
+#define I86_PC_SPKR_DISABLE 0xFC
+
 extern int pcspkr_beep(uint32_t beep);
 extern int pcspkr_init();
 extern int pcspkr_uninit();
