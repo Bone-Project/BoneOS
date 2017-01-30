@@ -16,6 +16,7 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
+ **                 Ashish Ahuja
  **
  **  @contributors:
 
@@ -496,6 +497,30 @@ void key_handler()
                     (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
                     ,__crsr_start,__crsr_end);
                     virtual_index_scank ++;
+                }
+                break;
+        case KBD_DELETE_KEY_ID:
+                if (virtual_index_scank >= 0 && virtual_index_scank != (int)index_scank)
+                {
+                    for (int i = virtual_index_scank; i < (int)index_scank; i ++)
+                    {
+                        buffer_scank [i] = buffer_scank [i + 1];
+                    }
+
+                    int temp = LENGTH_INPUT;
+                    while (temp > 0) {printk ("\b"); temp --;}
+                    buffer_scank [index_scank - 1] = 0;
+
+                    printk ("%s", buffer_scank);
+
+                    virtual_cursor_pos --;
+                    index_scank --;
+
+                    video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+                    (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+                    ,__crsr_start,__crsr_end);
+
+                    LENGTH_INPUT-=1;
                 }
                 break;
         case KBD_UP_KEY_ID:
