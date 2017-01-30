@@ -6,7 +6,7 @@
 
 <p align="center">
 
-<a href="https://amanuel2.gitbooks.io/boneos/content"><img src="https://img.shields.io/badge/Documentation-passing-brightgreen.svg"></a>
+<a href='http://docs.boneos.org/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/boneos/badge/?version=latest' alt='Documentation Status' /></a>
 
 <a href="https://gitter.im/amanuel2/BoneOS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/amanuel2/BoneOS.svg"></a>
 
