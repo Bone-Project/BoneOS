@@ -46,3 +46,8 @@ config/GENERATED-CONFIG.mk
 
 #Atom Generated Files
 *.gch
+
+# Clion IDE files
+.idea/
+CMakeLists.txt
+cmake-build-debug/

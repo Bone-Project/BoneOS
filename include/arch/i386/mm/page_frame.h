@@ -29,8 +29,11 @@
 #define PAGE_SHIFT 12
 #define PAGE_FREE 1
 #define PAGE_USED 0
-#define NUMBER_OF_BUDDIES 4
 
-extern void init_page_frame();
+extern int init_page_frame(multiboot_info_t *);
+
+extern void *allocate_pages(size_t num);
+
+extern void free_pages(void *first,size_t num);
 
 #endif // _ARCH_MM_PAGE_FRAME_H_

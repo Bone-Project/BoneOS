@@ -54,7 +54,7 @@ void __debug_print_memory_size()
 }
 
 
-int mem_amt(multiboot_info_t* multiboot_structure, bool mmap_avail)
+uint32_t mem_amt(multiboot_info_t* multiboot_structure, bool mmap_avail)
 {
     multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) multiboot_structure->mmap_addr;
   

@@ -11,8 +11,8 @@
 
 typedef struct
 {
-    int available;
-    int size;
+    uint32_t available;
+    uint32_t size;
 } mem_size_t;
 
 extern mem_size_t _mmngr_mem_size;
@@ -28,6 +28,6 @@ extern int pmm_util_init(multiboot_info_t* multiboot_structure);
    extern void __debug_print_memory_size();
 #endif 
 
-extern int mem_amt(multiboot_info_t* multiboot_structure, bool mmap_avail);
+extern uint32_t mem_amt(multiboot_info_t* multiboot_structure, bool mmap_avail);
 
 #endif
