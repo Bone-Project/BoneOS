@@ -1,6 +1,6 @@
 ###Home
 
-BoneOS is an efficient yet powerful Operating System.
+BoneOS is an efficient yet powerful Operating System. Please report any issues on our Github repository.
 
 **Table of Contents**
 
