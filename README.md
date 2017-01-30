@@ -14,8 +14,6 @@
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
-<a href="https://bintray.com/boneos/BoneOS/download_file?file_path=BoneOS-master.iso"><img src="https://api.bintray.com/packages/boneos/BoneOS/BoneOS.iso/images/download.svg?version=Nightly"/></a>
-
 <a href="https://www.bountysource.com/teams/boneos"><img src="https://api.bountysource.com/badge/team?team_id=184475"></a>
 <table>
   <tr>
