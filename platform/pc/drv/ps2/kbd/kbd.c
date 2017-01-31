@@ -306,12 +306,37 @@ void key_handler_util(int key)
         }
         else if (key == 'c' || key == 'C')
         {
-            skip_prints = true;
-            exit_set__shell = false;
-            is_read = false;
-            cmds [CMD_BONESHELL_INDEX]->handler ("boneshell");
-            kbd_info.key = KBD_ENTER_PRESS_ID;
-            key_handler();
+            return;
+        }
+        else if (key == 't' || key == 'T')
+        {
+            if ((int)index_scank - virtual_cursor_pos < 2)
+                return;
+
+            if (virtual_index_scank == (int)index_scank)
+            {
+                volatile char temp_char = buffer_scank [index_scank - 1];
+                buffer_scank [index_scank - 1] = buffer_scank [index_scank - 2];
+                buffer_scank [index_scank - 2] = temp_char;
+
+                printk ("\b\b");
+                printk ("%c%c", buffer_scank [index_scank - 2], buffer_scank [index_scank - 1]);
+                return;
+            }
+
+            volatile char temp_char = buffer_scank [index_scank - (1 + virtual_cursor_pos)];
+            buffer_scank [index_scank - (1 + virtual_cursor_pos)] = buffer_scank [index_scank - (2 + virtual_cursor_pos)];
+            buffer_scank [index_scank - (2 + virtual_cursor_pos)] = temp_char;
+
+            int temp = LENGTH_INPUT;
+            while (temp > 0) {printk ("\b"); temp --;}
+
+            printk ("%s", buffer_scank);
+
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+            (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+            ,__crsr_start,__crsr_end);
+
             return;
         }
     }
