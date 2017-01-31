@@ -339,6 +339,49 @@ void key_handler_util(int key)
 
             return;
         }
+        else if (key == 'w' || key == 'W')
+        {
+            if (buffer_scank [0] == 0)
+            {
+                return;
+            }
+
+            bool is_space = false;
+            int loc_space = 0; loc_space ++;
+
+            //First see if there is a backspace in the variable `buffer_scank`
+            for (int i = 0; i < virtual_index_scank; i ++)
+            {
+                if (buffer_scank [i] == ' ')
+                {
+                    is_space = true;
+                    loc_space = i;
+                }
+            }
+
+            if (is_space == false)
+            {
+                buffer_scank [0] = 0;
+                virtual_cursor_pos = 0;
+                virtual_index_scank = 0;
+                index_scank = 0;
+
+                while (LENGTH_INPUT > 0) {printk ("\b"); LENGTH_INPUT --;}
+                return;
+            }
+
+            if (virtual_index_scank == (int) index_scank)
+            {
+                buffer_scank [loc_space] = 0;
+                int temp = (int)index_scank;
+                index_scank = index_scank - (index_scank - loc_space);
+                virtual_index_scank = index_scank;
+
+                while ((int)temp - loc_space >= 0) {printk ("\b"); loc_space ++;}
+
+                return;
+            }
+        }
     }
 
     if(isalpha(key)==0)
