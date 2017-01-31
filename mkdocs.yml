@@ -18,11 +18,12 @@ pages:
       - 'Using Virtual Box': 'Virtual-Machines/VirtualBox.md'
  - Configuration:
       - 'Configuration': 'Configuration/Configuration.md'
-      - 'Changing the Assembler': 'Configuration/ChangeAssembler.md'
-      - 'Changing the Architecture': 'Configuration/ChangeArchitecture.md'
-      - 'Changing the Compiler': 'Configuration/ChangeCompiler.md'
-      - 'Changing the Linker': 'Configuration/ChangeLinker.md'
-      - 'Changing the Platform': 'Configuration/ChangePlatform.md'
+      - 'Assembler': 'Configuration/Assembler.md'
+      - 'Architecture': 'Configuration/Architecture.md'
+      - 'Compiler': 'Configuration/Compiler.md'
+      - 'Linker': 'Configuration/Linker.md'
+      - 'Platform': 'Configuration/Platform.md'
+      - 'RAM' : 'Configuration/RAM.md'
  - Utilities:
       - 'Utilities provided': 'Utilities/AdditionalUtilities.md'
       - 'Using Nodemon': 'Utilities/Nodemon.md'
