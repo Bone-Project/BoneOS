@@ -16,11 +16,11 @@ BoneOS is an efficient yet powerful Operating System. Please report any issues o
     - [Using Virtual Box](Virtual-Machines/VirtualBox.md)
  - Configuration
     - [Configuration](Configuration/Configuration.md)
-    - [Assembler](Configuration/ChangeAssembler.md)
-    - [Architecture](Configuration/ChangeArchitecture.md)
-    - [Compiler](Configuration/ChangeCompiler.md)
-    - [Linker](Configuration/ChangeLinker.md)
-    - [Platform](Configuration/ChangePlatform.md)
+    - [Assembler](Configuration/Assembler.md)
+    - [Architecture](Configuration/Architecture.md)
+    - [Compiler](Configuration/Compiler.md)
+    - [Linker](Configuration/Linker.md)
+    - [Platform](Configuration/Platform.md)
     - [RAM](Configuration/RAM.md)
  - Utilities
     - [Utilities Provided](Utilities/AdditionalUtilities.md)
