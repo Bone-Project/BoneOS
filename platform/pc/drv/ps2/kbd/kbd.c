@@ -306,13 +306,81 @@ void key_handler_util(int key)
         }
         else if (key == 'c' || key == 'C')
         {
-            skip_prints = true;
-            exit_set__shell = false;
-            is_read = false;
-            cmds [CMD_BONESHELL_INDEX]->handler ("boneshell");
-            kbd_info.key = KBD_ENTER_PRESS_ID;
-            key_handler();
             return;
+        }
+        else if (key == 't' || key == 'T')
+        {
+            if ((int)index_scank - virtual_cursor_pos < 2)
+                return;
+
+            if (virtual_index_scank == (int)index_scank)
+            {
+                volatile char temp_char = buffer_scank [index_scank - 1];
+                buffer_scank [index_scank - 1] = buffer_scank [index_scank - 2];
+                buffer_scank [index_scank - 2] = temp_char;
+
+                printk ("\b\b");
+                printk ("%c%c", buffer_scank [index_scank - 2], buffer_scank [index_scank - 1]);
+                return;
+            }
+
+            volatile char temp_char = buffer_scank [index_scank - (1 + virtual_cursor_pos)];
+            buffer_scank [index_scank - (1 + virtual_cursor_pos)] = buffer_scank [index_scank - (2 + virtual_cursor_pos)];
+            buffer_scank [index_scank - (2 + virtual_cursor_pos)] = temp_char;
+
+            int temp = LENGTH_INPUT;
+            while (temp > 0) {printk ("\b"); temp --;}
+
+            printk ("%s", buffer_scank);
+
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+            (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+            ,__crsr_start,__crsr_end);
+
+            return;
+        }
+        else if (key == 'w' || key == 'W')
+        {
+            if (buffer_scank [0] == 0)
+            {
+                return;
+            }
+
+            bool is_space = false;
+            int loc_space = 0; loc_space ++;
+
+            //First see if there is a backspace in the variable `buffer_scank`
+            for (int i = 0; i < virtual_index_scank; i ++)
+            {
+                if (buffer_scank [i] == ' ')
+                {
+                    is_space = true;
+                    loc_space = i;
+                }
+            }
+
+            if (is_space == false)
+            {
+                buffer_scank [0] = 0;
+                virtual_cursor_pos = 0;
+                virtual_index_scank = 0;
+                index_scank = 0;
+
+                while (LENGTH_INPUT > 0) {printk ("\b"); LENGTH_INPUT --;}
+                return;
+            }
+
+            if (virtual_index_scank == (int) index_scank)
+            {
+                buffer_scank [loc_space] = 0;
+                int temp = (int)index_scank;
+                index_scank = index_scank - (index_scank - loc_space);
+                virtual_index_scank = index_scank;
+
+                while ((int)temp - loc_space >= 0) {printk ("\b"); loc_space ++;}
+
+                return;
+            }
         }
     }
 
@@ -459,17 +527,25 @@ void key_handler_util_tab()
         index_scank = len - 4;
         virtual_cursor_pos = 0;
 
-        LENGTH_INPUT = len;
+        LENGTH_INPUT = len - 4;
 
         printk ("%s", buffer_scank);
+
         return;
     }
 
     if (num_cmds > 1) {
         tab_multiple_opts=true;
+        int i;
+
         printk ("\n");
-        for(int i=0; tab__[i]; i++)
+
+        for(i=0; tab__[i]; i++)
             printk("%c", tab__[i]);
+
+        kbd_info.key = KBD_ENTER_PRESS_ID;
+        key_handler();
+        kbd_info.key = ' ';
     }
     else {
         tab_zero_opt = true;
