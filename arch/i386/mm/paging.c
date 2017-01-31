@@ -19,23 +19,9 @@
  **  @contributors:
  **   Amanuel Bogale <amanuel2> : start
  **/
- 
- 
-#ifndef _ARCH_MM_PAGE_FRAME_H_
-#define _ARCH_MM_PAGE_FRAME_H_
 
-typedef uint32_t page_t;
-typedef uint32_t phys_addr_t;
+#include <misc/status_codes.h>
 
-#define PAGE_SIZE 4096
-#define PAGE_SHIFT 12
-#define PAGE_FREE 1
-#define PAGE_USED 0
-
-extern int init_page_frame(multiboot_info_t *);
-
-extern void *allocate_pages(size_t num);
-
-extern void free_pages(void *first,size_t num);
-
-#endif // _ARCH_MM_PAGE_FRAME_H_
+int init_paging() {
+    return STATUS_OK;
+}

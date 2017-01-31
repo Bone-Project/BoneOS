@@ -17,16 +17,15 @@
  **  @main_author : Amanuel Bogale
  **
  **  @contributors:
-
  **   Amanuel Bogale <amanuel2> : start
  **/
 
 #include <misc/status_codes.h>
 #include <boot/multiboot/multiboot.h>
 #include <stdio/stdio.h>
-#include <stdbool.h>
 #include <mm/page_frame.h>
 #include <mm/pmm_util.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib/stdlib.h>
 #include <string/string.h>
@@ -35,34 +34,34 @@ extern uint32_t _kernel_end;
 
 static int *bitmap;
 
-static void set_page(uint32_t bit,int value){
+static void set_page(page_t bit,int value){
 	if (value == 1)
 		bitmap[bit / 32] |= (1 << (bit % 32));
 	else
 		bitmap[bit / 32] &= ~(1 << (bit % 32));
 }
 
-static uint8_t get_page(uint32_t bit){
+static uint8_t get_page(page_t bit){
 	return (uint8_t) (bitmap[bit / 32] & (1 << (bit % 32)));
 }
 
-static void init_reigion(uint32_t base,uint32_t size){
-	for (uint32_t page = (base >> PAGE_SHIFT);page <= ((base + size) >> PAGE_SHIFT);page++){
+static void init_reigion(phys_addr_t base,size_t size){
+	for (page_t page = (base >> PAGE_SHIFT);page <= ((base + size) >> PAGE_SHIFT);page++){
 		set_page(page,PAGE_FREE);	
 	}
 }
 
-static void deinit_reigion(uint32_t base,uint32_t size){
-	for (uint32_t page = (base >> PAGE_SHIFT);page <= (base + size) >> PAGE_SHIFT;page++){
+static void deinit_reigion(phys_addr_t base,size_t size){
+	for (page_t page = (base >> PAGE_SHIFT);page <= (base + size) >> PAGE_SHIFT;page++){
 		set_page(page,PAGE_USED);
 	}
 }
 
-static uint32_t find_free_pages(size_t num){
+static page_t find_free_pages(size_t num){
 	size_t free_pages_found = 0;
-	uint32_t tmp_free = 0;
+	page_t tmp_free = 0;
 	bool free_founded = false;
-	for (uint32_t page = 0;page < (_mmngr_mem_size.size >> PAGE_SHIFT) / 32;page++){
+	for (page_t page = 0;page < (_mmngr_mem_size.size >> PAGE_SHIFT) / 32;page++){
 		if ((free_founded) && (get_page(page) == PAGE_FREE)){
 			free_pages_found++;
 			if (free_pages_found == num)
@@ -73,19 +72,19 @@ static uint32_t find_free_pages(size_t num){
 			free_founded = true;
 		}
 	}
-	return (uint32_t) -1;
+	return (page_t) -1;
 }
 
 void *allocate_pages(size_t num) {
-	uint32_t first = find_free_pages(num);
+	page_t first = find_free_pages(num);
 	for (size_t i = 0;i < num;i++)
-		set_page((uint32_t) (first + i), PAGE_USED);
+		set_page((page_t) (first + i), PAGE_USED);
 	return (void *) (first << PAGE_SHIFT);
 }
 
 void free_pages(void *first, size_t num) {
 	for (size_t i = 0;i < num;i++)
-		set_page((uint32_t) (((uint32_t) first >> PAGE_SHIFT) + i), PAGE_FREE);
+		set_page((page_t) (((page_t) first >> PAGE_SHIFT) + i), PAGE_FREE);
 }
 
 int init_page_frame(multiboot_info_t *multiboot){
