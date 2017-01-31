@@ -169,7 +169,7 @@ For more information, go [here](https://amanuel2.gitbooks.io/boneos/content/) fo
 ----
 Our directory structure currently is as follows:
 
-- ***Documentation*** : Documentation for BoneOS
+- ***docs*** : Documentation for BoneOS
 - ***apps*** : Applications
    - ***term*** : Terminal
 - ***.github*** : Github related files.
