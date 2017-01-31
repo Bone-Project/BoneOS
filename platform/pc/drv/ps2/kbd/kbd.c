@@ -459,17 +459,25 @@ void key_handler_util_tab()
         index_scank = len - 4;
         virtual_cursor_pos = 0;
 
-        LENGTH_INPUT = len;
+        LENGTH_INPUT = len - 4;
 
         printk ("%s", buffer_scank);
+
         return;
     }
 
     if (num_cmds > 1) {
         tab_multiple_opts=true;
+        int i;
+
         printk ("\n");
-        for(int i=0; tab__[i]; i++)
+
+        for(i=0; tab__[i]; i++)
             printk("%c", tab__[i]);
+
+        kbd_info.key = KBD_ENTER_PRESS_ID;
+        key_handler();
+        kbd_info.key = ' ';
     }
     else {
         tab_zero_opt = true;
