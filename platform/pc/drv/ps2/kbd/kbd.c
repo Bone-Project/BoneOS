@@ -359,7 +359,7 @@ void key_handler_util(int key)
                 }
             }
 
-            if (is_space == false)
+            if (is_space == false && virtual_index_scank == (int)index_scank)
             {
                 buffer_scank [0] = 0;
                 virtual_cursor_pos = 0;
@@ -377,10 +377,42 @@ void key_handler_util(int key)
                 index_scank = index_scank - (index_scank - loc_space);
                 virtual_index_scank = index_scank;
 
-                while ((int)temp - loc_space >= 0) {printk ("\b"); loc_space ++;}
+                while ((int)temp - loc_space > 0) {printk ("\b"); loc_space ++;}
 
                 return;
             }
+
+            int index = virtual_index_scank - 1;
+            int total_deleted = 0;
+
+            for (int i = index; buffer_scank [i] != ' ' && i >= 0; i --)
+            {
+                total_deleted ++;
+
+                int j;
+                for (j = i; j < (int)index_scank; j ++)
+                {
+                    buffer_scank [j] = buffer_scank [j + 1];
+                }
+                buffer_scank [j + 1] = 0;
+            }
+
+            virtual_index_scank -= total_deleted;
+            index_scank -= total_deleted;
+
+            int length_input = LENGTH_INPUT;
+
+            while (length_input > 0) {printk ("\b"); length_input --;}
+
+            printk ("%s", buffer_scank);
+
+            LENGTH_INPUT -= total_deleted;
+
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->update_cursor
+            (video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_row,video_drivers[VGA_VIDEO_DRIVER_INDEX]->video_column - virtual_cursor_pos
+            ,__crsr_start,__crsr_end);
+
+            return;
         }
     }
 
