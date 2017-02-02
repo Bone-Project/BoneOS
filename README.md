@@ -160,10 +160,10 @@ You can  get the nightly builds for the latest updated iso for the master branch
   $ ./configure --cc=gcc-5 && make # Optionally use the configure script to store variable permanently
  ```
 
- You can see more in [Docs/Options](https://amanuel2.gitbooks.io/boneos/content/Options/)
+ You can see more in [Docs/Configuration](https://docs.boneos.org/en/latest/Configuration/Configuration/)
 
 #### More Info(For Developer)
-For more information, go [here](https://amanuel2.gitbooks.io/boneos/content/) for documentation.
+For more information, go [here](https://docs.boneos.org) for documentation.
 
 # Directory Structure
 ----
@@ -200,7 +200,7 @@ Our directory structure currently is as follows:
 
 # Documentation
  ---
-You can take a look at the Documentation online hosted by gitbook [**here**](https://amanuel2.gitbooks.io/boneos/content). Documentation are for presistant information , not code details.
+You can take a look at the Documentation online hosted by gitbook [**here**](https://docs.boneos.org). Documentation are for presistant information , not code details.
 
 # Architectures
 ---
