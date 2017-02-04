@@ -108,7 +108,7 @@ int cmd_shutdown_handler(char* cmd)
 
                     if (kbd_info.key == 'q')
                     {
-                        printk ("Shutdown has been aborted!\n");
+                        printk ("Reboot has been aborted!\n");
                         return STATUS_OK;
                     }
                 }
@@ -119,6 +119,65 @@ int cmd_shutdown_handler(char* cmd)
         else if (time == 0)
         {
             cmds [CMD_REBOOT_INDEX]->handler ("reboot");
+        }
+    }
+    else if (!strcmp (opts [1].str, "-h"))
+    {
+        if (num_opts == 2)
+        {
+            printk (cmd_shutdown.invalid_use_msg);
+            return STATUS_OK;
+        }
+
+        if (!strcmp (opts [2].str, "now"))
+        {
+            time = 0;
+        }
+        else
+        {
+            //First checking if the string contains an alphabet
+            for (int i = 0; i < (int)strlen (opts [2].str); i ++)
+            {
+                if (isalpha (opts [2].str [i]))
+                {
+                    printk (cmd_shutdown.invalid_use_msg);
+                    return STATUS_OK;
+                }
+            }
+
+            time = atoi (opts [2].str);
+        }
+
+        if (time)
+        {
+            printk ("This system is going to shutdown in %d seconds! Press 'q' to cancel.\n\n", time);
+
+            int to_sleep = time * 1000;
+
+            assertkm(device_initalized(PIT_DRIVER_INDEX) , "PIT NOT INITALIZED FOR SLEEP()");
+            int64_t expiry = pit_ticks + ((uint64_t)to_sleep * IRQ_SEC_HIT) / 1000;
+
+            while (pit_ticks < expiry)
+            {
+                kbd_info.scancode = kbd_enc_read_input_buf();
+
+                if (!(kbd_info.scancode & 0x80))
+                {
+                    kbd_info.key = key_press(kbd_info.scancode);
+
+                    if (kbd_info.key == 'q')
+                    {
+                        printk ("Shutdown has been aborted!\n");
+                        return STATUS_OK;
+                    }
+                }
+            }
+
+            cmds [CMD_POWEROFF_INDEX]->handler ("poweroff");
+        }
+        else if (time == 0)
+        {
+            cmds [CMD_POWEROFF_INDEX]->handler ("poweroff");
         }
     }
     else
