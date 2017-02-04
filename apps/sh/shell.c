@@ -15,6 +15,7 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
+ **                 Ashish Ahuja
  **
  **  @contributors:
 
@@ -41,6 +42,7 @@
 #include <cursor/cursor.h>
 #include <reboot/sbin_cmd_reboot.h>
 #include <poweroff/sbin_cmd_poweroff.h>
+#include <shutdown/sbin_cmd_shutdown.h>
 #include <boneshell/boneshell.h>
 #include <assertk.h>
 #include <drv/driver.h>
@@ -82,6 +84,7 @@ struct cmd_t *cmds[] =
     &cmd_uptime,
     &cmd_watch,
     &cmd_beep,
+    &cmd_shutdown,
     0
 };
 
