@@ -28,6 +28,7 @@
 #include <stdio/stdio.h>
 #include <stdlib/stdlib.h>
 #include <string/string.h>
+#include <ctype/ctype.h>
 #include <io/io.h>
 #include <misc/asm_util.h>
 #include <sys/sys_poweroff.h>
@@ -75,6 +76,16 @@ int cmd_shutdown_handler(char* cmd)
         }
         else
         {
+            //First checking if the string contains an alphabet
+            for (int i = 0; i < (int)strlen (opts [2].str); i ++)
+            {
+                if (isalpha (opts [2].str [i]))
+                {
+                    printk (cmd_shutdown.invalid_use_msg);
+                    return STATUS_OK;
+                }
+            }
+
             time = atoi (opts [2].str);
         }
 
@@ -103,6 +114,10 @@ int cmd_shutdown_handler(char* cmd)
                 }
             }
 
+            cmds [CMD_REBOOT_INDEX]->handler ("reboot");
+        }
+        else if (time == 0)
+        {
             cmds [CMD_REBOOT_INDEX]->handler ("reboot");
         }
     }
