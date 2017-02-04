@@ -45,3 +45,4 @@ BoneOS is an efficient yet powerful Operating System. Please report any issues o
     - [echo](Commands/echo.md)
     - [help](Commands/help.md)
     - [boneos_logo](Commands/logo.md)
+    - [shutdown](Commands/shutdown.md)

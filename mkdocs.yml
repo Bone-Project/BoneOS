@@ -47,3 +47,4 @@ pages:
       - 'echo': 'Commands/echo.md'
       - 'help': 'Commands/help.md'
       - 'boneos_logo': 'Commands/logo.md'
+      - 'shutdown': 'Commands/shutdown.md'
