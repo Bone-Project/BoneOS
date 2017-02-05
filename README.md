@@ -179,7 +179,7 @@ For more information, go [here](https://docs.boneos.org) for documentation.
 ----
 Our directory structure currently is as follows:
 
-- ***Documentation*** : Documentation for BoneOS
+- ***docs*** : Documentation for BoneOS
 - ***apps*** : Applications
    - ***term*** : Terminal
 - ***.github*** : Github related files.
