@@ -43,6 +43,16 @@
    <a href="https://sourceforge.net/projects/boneproject-boneos/files/Release%20v0.0.2/BoneOS.iso/download"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
    </td>
   </tr>
+  <tr>
+   <td>V 0.0.3</td>
+   <td>Feb/05/2017</td>
+   <td>
+   <a href="https://github.com/Bone-Project/BoneOS/releases/download/v0.0.3/BoneOS.iso"><img src="https://img.shields.io/github/downloads/Bone-Project/BoneOS/v0.0.3/BoneOS.iso.svg"/></a>
+   </td>
+   <td>
+   <a href="example.com"><img src="https://a.fsdn.com/con/app/sf-download-button"/></a>
+   </td>
+  </tr>
 </table>
 
 <table>
