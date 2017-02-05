@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale<amanuel2>: start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <misc/status_codes.h>
@@ -38,8 +39,7 @@ struct cmd_opt_t* cmd_beep_opts[] =
 
 int cmd_beep_handler (char *cmd)
 {
-    main_beep_opt_handler (cmd);
-    return STATUS_OK;
+    return main_beep_opt_handler (cmd);
 }
 
 struct cmd_t cmd_beep =

@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <stddef.h>
@@ -35,25 +36,27 @@
 
 int cmd_beep_count_handler(char* cmd)
 {
-   size_t num_opts = get_opt_count(cmd);
-   str_t opts[num_opts];
-   get_opt(cmd,opts);
+    size_t num_opts = get_opt_count(cmd);
+    str_t opts[num_opts];
+    get_opt(cmd,opts);
 
-   int __beep_milliseconds = atoi(opts[2].str);
+    int __beep_milliseconds = atoi(opts[2].str);
 
-   if(strcmp(opts[2].str,"--help")==0)
+    if(strcmp(opts[2].str,"--help") == 0)
         printk(cmd_beep_opt_count.help);
-   else
-   {
-    int freq_n_go = PCSPKR_DEFAULT_FREQ;
-    if(strcmp(opts[3].str, "-f")==0)
-        freq_n_go = atoi(opts[4].str);
-    pcspkr_beep(freq_n_go);
-    sleep(__beep_milliseconds);
-    pc_speaker_silent();
-   }
+    else
+    {
+        int freq_n_go = PCSPKR_DEFAULT_FREQ;
 
-   return STATUS_OK;
+        if(strcmp(opts[3].str, "-f") == 0)
+            freq_n_go = atoi(opts[4].str);
+
+        pcspkr_beep(freq_n_go);
+        sleep(__beep_milliseconds);
+        pc_speaker_silent();
+    }
+
+    return STATUS_OK;
 }
 
 struct cmd_opt_t cmd_beep_opt_count =

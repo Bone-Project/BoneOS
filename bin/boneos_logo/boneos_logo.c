@@ -41,13 +41,6 @@ int boneos_logo_handler(char* cmd)
     size_t num_opts = get_opt_count(cmd);
     if(num_opts == 1)
     {
-      /*printk("*********** ********** *      * *******      **********  *********\n");
-      printk("*         * *        * * *    * *            *        *  *\n");
-      printk("*         * *        * *  *   * *            *        *  *\n");
-      printk("*   ******* *        * *   *  * *******      *        *  *********\n");
-      printk("*         * *        * *    * * *            *        *          *\n");
-      printk("*         * *        * *     ** *            *        *          *\n");
-      printk("*********** ********** *      * *******      **********  *********\n"); */
       printk   (
                 "      myooooohhyso++//////////++osyhhoooooym\n"
                 "    myoooooooo//////////////////////ooooooooy\n"
@@ -73,9 +66,7 @@ int boneos_logo_handler(char* cmd)
     }
 
 
-    main_boneos_opt_handler(cmd);
-
-    return STATUS_OK;
+    return main_boneos_opt_handler(cmd);
 }
 
 struct cmd_t cmd_boneos_logo =

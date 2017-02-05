@@ -55,6 +55,7 @@ volatile bool tab_one_opt = false;
 volatile bool tab_zero_opt = false;
 volatile bool skip_prints = false;
 bool executed_internally=false;
+int total_cmd = 0;
 
 void removeSpaces(char* source)
 {
@@ -85,6 +86,8 @@ void loop_terminal()
     {
         //skip_prints = false;
     }
+
+    for (total_cmd = 0; cmds [total_cmd]; total_cmd ++);
 
     while(1)
     {
@@ -191,7 +194,10 @@ int boneshell_handler(char* cmd)
     else if(num_opts==1)
        loop_terminal();
     else
+    {
        printk(cmd_boneshell.invalid_use_msg);
+       return STATUS_FAIL;
+    }
 
     return STATUS_OK;
 }

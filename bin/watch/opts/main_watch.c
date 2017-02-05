@@ -53,7 +53,7 @@ int main_watch_opt_handler (char *cmd)
     if (num_opts == 1)
     {
         printk (cmd_watch.invalid_use_msg);
-        return STATUS_OK;
+        return STATUS_FAIL;
     }
     else if (num_opts > 1)
     {
@@ -71,14 +71,14 @@ int main_watch_opt_handler (char *cmd)
                     if (i == (num_opts - 1))
                     {
                         printk (cmd_watch.invalid_use_msg);
-                        return STATUS_OK;
+                        return STATUS_FAIL;
                     }
                     else
                     {
                         if (isalpha (opts [i + 1].str [0]))
                         {
                             printk (cmd_watch.invalid_use_msg);
-                            return STATUS_OK;
+                            return STATUS_FAIL;
                         }
                         interval = atoi (opts [i + 1].str);
                         interval *= 1000;
@@ -90,7 +90,7 @@ int main_watch_opt_handler (char *cmd)
                     if (no_title == true)
                     {
                         printk (cmd_watch.invalid_use_msg);
-                        return STATUS_OK;
+                        return STATUS_FAIL;
                     }
                     no_title = true;
                 }
@@ -149,11 +149,11 @@ int main_watch_opt_handler (char *cmd)
             }
 
             printk (cmd_watch.invalid_use_msg);
-            return STATUS_OK;
+            return STATUS_FAIL;
         }
     }
 
-    return STATUS_OK;
+    return STATUS_FAIL;
 }
 
 

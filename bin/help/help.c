@@ -30,6 +30,7 @@
 #include <stdio/stdio.h>
 #include <help/opts/help_cmd_opt.h>
 #include <help/opts/main_help.h>
+#include <bin/boneshell/boneshell.h>
 
 struct cmd_opt_t* cmd_help_opts[] =
 {
@@ -46,13 +47,19 @@ int cmd_help_handler(char* cmd)
         printk("or \"help -cmd <cmd_name>\"\n\n");
         printk("Commands\n");
         printk("--------\n");
-        for (int i = 0; cmds[i]; i += 2) {
+        for (int i = 0; i < total_cmd; i += 2) {
             printk("%d : %s", i + 1, cmds[i]->name);
-            for (unsigned int o = 0;
+
+            if (i + 1 < total_cmd)
+            {
+                for (unsigned int o = 0;
                     o < video_driver_width / 2 - 5 - strlen(itoa(i)) - strlen(cmds[i]->name);
                     o ++)
-                printk(" ");
-            printk("%d : %s\n", i + 2, cmds[i + 1]->name);
+                    printk(" ");
+                printk("%d : %s\n", i + 2, cmds[i + 1]->name);
+            }
+            else
+                printk ("\n");
         }
         return STATUS_OK;
     }

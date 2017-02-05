@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <stddef.h>
@@ -45,35 +46,27 @@ int cmd_boneos_logo_color_handler(char* cmd)
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = _FG;
    video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = _BG;
 
-    /*printk("*********** ********** *      * *******      **********  *********\n");
-    printk("*         * *        * * *    * *            *        *  *\n");
-    printk("*         * *        * *  *   * *            *        *  *\n");
-    printk("*   ******* *        * *   *  * *******      *        *  *********\n");
-    printk("*         * *        * *    * * *            *        *          *\n");
-    printk("*         * *        * *     ** *            *        *          *\n");
-    printk("*********** ********** *      * *******      **********  *********\n");*/
-    printk ("MMMMMMMMmysyNMMMMMMMMNNNNNNNNMMMMMMMMNysymMMMMMMMM\n"
-                "MMMMMMmyooooohhyso++//////////++osyhhoooooymMMMMMM\n"
-                "MMMMmyoooooooo//////////////////////ooooooooymMMMM\n"
-                "MMmyooooooooo////////////////////////oooooooooymMM\n"
-                "Nyoooooooooo+////////////////////////+ooooooooooyN"
+    printk   (
+                "      myooooohhyso++//////////++osyhhoooooym\n"
+                "    myoooooooo//////////////////////ooooooooy\n"
+                "  myooooooooo////////////////////////oooooooooym\n"
+                " yoooooooooo+////////////////////////+ooooooooooy\n"
                 "soooooooooo+//////////////////////////+oooooooooos\n"
                 "hooooooooo+////////////////////////////+oooooooooh\n"
-                "Mdoooooooo////+sso//////////////oss+////oooooooodM\n"
-                "MMdsooooo////+ddddo////////////odddd+////ooooosdMM\n"
-                "MMMmsooo+/////shhy////:----:////yhhs/////+ooosmMMM\n"
-                "MMMMNysd////////////:-......-:////////////dsyNMMMM\n"
-                "MMMMMMMM+//////////:..........://////////+MMMMMMMM\n"
-                "MMMMMMMMy/////////-..-:++++:-..-/////////yMMMMMMMM\n"
-                "MMMMMMMds-..-://:-...yddddddy...-://:-...ohNMMMMMM\n"
-                "MMMMMN/`      `:.....ohddddh+.....:.`     `-dMMMMM\n"
-                "MMMMMh         `......-:oo:-......`         /MMMMM\n"
-                "MMMMMM/         ..................`````````-mMMMMM\n"
-                "MMMMMm.````````````.....`.......```````````.yMMMMM\n"
-                "MMMMMh``````````````````````````````````````+MMMMM\n"
-                "MMMMMMy-``````:dNNmyo++++++++oymNNNo.`````.oNMMMMM\n"
-                "MMMMMMMMmhyydNMMMMMMMMMMMMMMMMMMMMMMNdhyydNMMMMMMM\n"
-                "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n");
+                " doooooooo////####//////////////####////ooooooood\n"
+                "  dsooooo////######////////////######////ooooosd\n"
+                "   msooo+/////####////:----:////####/////+ooosm\n"
+                "     ysd////////////:-......-:////////////dsy\n"
+                "        +//////////:..........://////////+\n"
+                "        y/////////-..-:####:-..-/////////y\n"
+                "         /(....)/:-...########...-://(...)\n"
+                "        /      /:.....########.....:/     /   \n"
+                "       |       /......-####-....../       |  \n"
+                "      |        |..................|        |\n"
+                "     |         //..................//       | \n"
+                "      |                                    | \n"
+                "       |      .######++++++++#######.      |\n"
+                "       (______)                     (______)\n");
 
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = __STORE_FG;
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = __STORE_BG;

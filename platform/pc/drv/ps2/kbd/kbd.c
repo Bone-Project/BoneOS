@@ -377,7 +377,7 @@ void key_handler_util(int key)
                 index_scank = index_scank - (index_scank - loc_space);
                 virtual_index_scank = index_scank;
 
-                while ((int)temp - loc_space > 0) {printk ("\b"); loc_space ++;}
+                while ((int)temp - loc_space > 0) {printk ("\b"); loc_space ++; LENGTH_INPUT --;}
 
                 return;
             }

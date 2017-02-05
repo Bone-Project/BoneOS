@@ -2,6 +2,7 @@
 #define  _MISC_STATUSCODES_H_
 
 #define STATUS_OK 0
+#define STATUS_FAIL 1
 #define STATUS_VERSION_NA 0x2F
 #define STATUS_VALID 0x1
 

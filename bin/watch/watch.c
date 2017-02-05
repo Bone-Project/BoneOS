@@ -42,10 +42,9 @@ int cmd_watch_handler (char *cmd)
     if (num_opts == 1)
     {
         printk (cmd_watch.invalid_use_msg);
-        return STATUS_OK;
+        return STATUS_FAIL;
     }
-    main_watch_opt_handler (cmd);
-    return STATUS_OK;
+    return main_watch_opt_handler (cmd);
 }
 
 struct cmd_t cmd_watch =

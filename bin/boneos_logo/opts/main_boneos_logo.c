@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <misc/status_codes.h>
@@ -48,39 +49,32 @@ int main_boneos_opt_handler(char *cmd)
      {
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg = 0x7;
         video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg = 0x0;
-        /*printk("*********** ********** *      * *******      **********  *********\n");
-        printk("*         * *        * * *    * *            *        *  *\n");
-        printk("*         * *        * *  *   * *            *        *  *\n");
-        printk("*   ******* *        * *   *  * *******      *        *  *********\n");
-        printk("*         * *        * *    * * *            *        *          *\n");
-        printk("*         * *        * *     ** *            *        *          *\n");
-        printk("*********** ********** *      * *******      **********  *********\n");*/
-        printk ("MMMMMMMMmysyNMMMMMMMMNNNNNNNNMMMMMMMMNysymMMMMMMMM\n"
-                "MMMMMMmyooooohhyso++//////////++osyhhoooooymMMMMMM\n"
-                "MMMMmyoooooooo//////////////////////ooooooooymMMMM\n"
-                "MMmyooooooooo////////////////////////oooooooooymMM\n"
-                "Nyoooooooooo+////////////////////////+ooooooooooyN"
+        printk   (
+                "      myooooohhyso++//////////++osyhhoooooym\n"
+                "    myoooooooo//////////////////////ooooooooy\n"
+                "  myooooooooo////////////////////////oooooooooym\n"
+                " yoooooooooo+////////////////////////+ooooooooooy\n"
                 "soooooooooo+//////////////////////////+oooooooooos\n"
                 "hooooooooo+////////////////////////////+oooooooooh\n"
-                "Mdoooooooo////+sso//////////////oss+////oooooooodM\n"
-                "MMdsooooo////+ddddo////////////odddd+////ooooosdMM\n"
-                "MMMmsooo+/////shhy////:----:////yhhs/////+ooosmMMM\n"
-                "MMMMNysd////////////:-......-:////////////dsyNMMMM\n"
-                "MMMMMMMM+//////////:..........://////////+MMMMMMMM\n"
-                "MMMMMMMMy/////////-..-:++++:-..-/////////yMMMMMMMM\n"
-                "MMMMMMMds-..-://:-...yddddddy...-://:-...ohNMMMMMM\n"
-                "MMMMMN/`      `:.....ohddddh+.....:.`     `-dMMMMM\n"
-                "MMMMMh         `......-:oo:-......`         /MMMMM\n"
-                "MMMMMM/         ..................`````````-mMMMMM\n"
-                "MMMMMm.````````````.....`.......```````````.yMMMMM\n"
-                "MMMMMh``````````````````````````````````````+MMMMM\n"
-                "MMMMMMy-``````:dNNmyo++++++++oymNNNo.`````.oNMMMMM\n"
-                "MMMMMMMMmhyydNMMMMMMMMMMMMMMMMMMMMMMNdhyydNMMMMMMM\n"
-                "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n");
+                " doooooooo////####//////////////####////ooooooood\n"
+                "  dsooooo////######////////////######////ooooosd\n"
+                "   msooo+/////####////:----:////####/////+ooosm\n"
+                "     ysd////////////:-......-:////////////dsy\n"
+                "        +//////////:..........://////////+\n"
+                "        y/////////-..-:####:-..-/////////y\n"
+                "         /(....)/:-...########...-://(...)\n"
+                "        /      /:.....########.....:/     /   \n"
+                "       |       /......-####-....../       |  \n"
+                "      |        |..................|        |\n"
+                "     |         //..................//       | \n"
+                "      |                                    | \n"
+                "       |      .######++++++++#######.      |\n"
+                "       (______)                     (______)\n");
      }
      else if(opts[2].str[0] == '\0' || opts[3].str[0] == '\0')
      {
        printk(cmd_boneos_logo_opt_color.invalid_use_msg);
+       return STATUS_FAIL;
      }
      else
      {
@@ -94,6 +88,7 @@ int main_boneos_opt_handler(char *cmd)
    else
    {
      printk(cmd_boneos_logo.invalid_use_msg);
+     return STATUS_FAIL;
    }
   return STATUS_OK;
 }

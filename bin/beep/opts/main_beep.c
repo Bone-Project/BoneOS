@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale<amanuel2>: start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <misc/status_codes.h>
@@ -43,27 +44,26 @@ int main_beep_opt_handler (char *cmd)
     str_t opts[num_opts];
     get_opt(cmd,opts);
 
-  if(strcmp(opts[1].str, "-n")==0)
-    cmd_beep_opt_count.handler(cmd);
-  else if(strcmp(opts[1].str,"-S")==0)
-    pc_speaker_silent();
-  else if(strcmp(opts[1].str, "-f")==0)
-  {
-    int freq_set = atoi(opts[2].str);
-    pcspkr_beep(freq_set);
-
-
-    if(strcmp(opts[3].str, "-n")==0)
+    if(strcmp(opts[1].str, "-n")==0)
+        cmd_beep_opt_count.handler(cmd);
+    else if(strcmp(opts[1].str,"-S")==0)
+        pc_speaker_silent();
+    else if(strcmp(opts[1].str, "-f")==0)
     {
-      int time_beep = atoi(opts[4].str);
-      sleep(time_beep);
-      pc_speaker_silent();
-    }
-  }
-  else if(strcmp(opts[1].str, "--help")==0)
-    printk(cmd_beep.help);
-  else
-    pcspkr_beep(PCSPKR_DEFAULT_FREQ);
+        int freq_set = atoi(opts[2].str);
+        pcspkr_beep(freq_set);
 
-  return STATUS_OK;
+        if(strcmp(opts[3].str, "-n")==0)
+        {
+            int time_beep = atoi(opts[4].str);
+            sleep(time_beep);
+            pc_speaker_silent();
+        }
+    }
+    else if(strcmp(opts[1].str, "--help")==0)
+        printk(cmd_beep.help);
+    else
+        pcspkr_beep(PCSPKR_DEFAULT_FREQ);
+
+    return STATUS_OK;
 }
