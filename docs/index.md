@@ -21,6 +21,7 @@ BoneOS is an efficient yet powerful Operating System. Please report any issues o
     - [Changing the Compiler](Configuration/ChangeCompiler.md)
     - [Changing the Linker](Configuration/ChangeLinker.md)
     - [Changing the Platform](Configuration/ChangePlatform.md)
+    - [Changing the RAM used](Configuration/ChangeRAM.md)
  - Utilities
     - [Utilities Provided](Utilities/AdditionalUtilities.md)
     - [Using Nodemon](Utilities/Nodemon.md)

@@ -78,13 +78,10 @@ void loop_terminal()
     {
         if (shell_instance_cnt != 1)
             printk("Shell #%d\n" , shell_instance_cnt);
+
         printk ("%s release %s started at ", VAR_OSNAME, VAR_RELEASE);
         start_time = rtc_get_time();
         rtc_print_struct(start_time);
-    }
-    else
-    {
-        //skip_prints = false;
     }
 
     for (total_cmd = 0; cmds [total_cmd]; total_cmd ++);
@@ -101,6 +98,7 @@ void loop_terminal()
 
         int FG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg;
         int BG__ = video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg;
+
         if(video_drivers[VGA_VIDEO_DRIVER_INDEX]->fg==0x7 && video_drivers[VGA_VIDEO_DRIVER_INDEX]->bg==0x0)
         {
             printck(2,0,"%s@boneos:",VAR_USER);
