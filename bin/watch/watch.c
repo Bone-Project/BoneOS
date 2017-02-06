@@ -59,7 +59,8 @@ struct cmd_t cmd_watch =
                 "DESCRIPTION : \n "
                 "\tPrints out the current user.\n"
                 "OPTIONS : \n "
-                "[-n <seconds>] Sets the interval to the number of seconds specified.\n",
+                "[-n <seconds>] Sets the interval to the number of seconds specified.\n "
+                "[-t] No title while running watch.\n",
   .cmd_opts =  cmd_watch_opts,
   .handler = &cmd_watch_handler,
   .invalid_use_msg = "Invalid use of watch command.\n"
