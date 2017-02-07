@@ -49,6 +49,7 @@ int main_watch_opt_handler (char *cmd)
     command [0] = '\0';
     int actual_command_index = 0;
     bool no_title = false;
+    bool errexit = false;
 
     if (num_opts == 1)
     {
@@ -94,6 +95,15 @@ int main_watch_opt_handler (char *cmd)
                     }
                     no_title = true;
                 }
+                else if (!strcmp (opts [i].str, "-e"))
+                {
+                    if (errexit == true)
+                    {
+                        printk (cmd_watch.invalid_use_msg);
+                        return STATUS_FAIL;
+                    }
+                    errexit = true;
+                }
                 else
                 {
                     if (strlen (command) == 0)
@@ -125,9 +135,33 @@ int main_watch_opt_handler (char *cmd)
                         printk ("Every %ds: %s \n\n", interval / 1000, command);
                     }
 
-                    cmds[i]->handler(command);
+                    int status = cmds[i]->handler(command);
                     assertkm(device_initalized(PIT_DRIVER_INDEX) , "PIT NOT INITALIZED FOR SLEEP()");
                     int64_t expiry = pit_ticks + ((uint64_t)interval * IRQ_SEC_HIT) / 1000;
+
+                    if (status == STATUS_FAIL && errexit == true)
+                    {
+                        int temp = video_driver_height - vga_driver.video_row;
+                        while (temp > 1) {printk ("\n"); temp --;}
+                        printk ("Specified command exited with a non-zero status, press a key to exit");
+
+                        while (1)
+                        {
+                            kbd_info.scancode = kbd_enc_read_input_buf();
+
+                            if (kbd_info.scancode & 0x80);
+                            else
+                            {
+                                kbd_info.key = key_press (kbd_info.scancode);
+
+                                if (kbd_info.key > 0 && kbd_info.key < 127)
+                                {
+                                    cmds[CMD_CLEAR_INDEX]->handler ("clear");
+                                    return STATUS_OK;
+                                }
+                            }
+                        }
+                    }
 
                     while (pit_ticks < expiry)
                     {

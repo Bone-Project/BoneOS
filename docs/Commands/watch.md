@@ -19,3 +19,5 @@
 >- `-t`: turn off the header showing the interval and the command at the top of the display, as well as the following blank line.
 
 >- `-n <seconds>`: Specify the update interval.
+
+>- `-e`: Freezes on a non-zero return status of the specified command, and exits on a key press.
