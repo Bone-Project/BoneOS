@@ -38,26 +38,25 @@ struct cmd_opt_t* cmd_whoami_opts[] =
 
 int cmd_whoami_handler (char *cmd)
 {
-    main_whoami_opt_handler (cmd);
-    return STATUS_OK;
+    return main_whoami_opt_handler (cmd);
 }
 
 struct cmd_t cmd_whoami =
 {
-  .name = "whoami",
-  .usage ="whoami [--help]",
-  .help = "whoami(1) \t\t\t\t BoneOS Terminal Manual \n"
+    .name = "whoami",
+    .usage ="whoami [--help]",
+    .help = "whoami(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\twhoami\n"
                 "SYNOPSIS : \n "
                 "\twhoami [option] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tPrints out the current user.\n",
-  .cmd_opts =  cmd_whoami_opts,
-  .handler = &cmd_whoami_handler,
-  .invalid_use_msg = "Invalid use of whoami command.\n"
+    .cmd_opts =  cmd_whoami_opts,
+    .handler = &cmd_whoami_handler,
+    .invalid_use_msg = "Invalid use of whoami command.\n"
                      "Type whoami --help for more help.\n",
-  .privilege = USER
+    .privilege = USER
 };
 
 

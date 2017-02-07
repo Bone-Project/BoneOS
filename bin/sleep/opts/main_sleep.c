@@ -15,12 +15,13 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
- 
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
+
 #include <misc/status_codes.h>
 #include <string/string.h>
 #include <unistd/unistd.h>
@@ -39,22 +40,22 @@ static int current_sleep_mode=0;
 
 int main_sleep_opt_handler(char *cmd)
 {
-   size_t num_opts = get_opt_count(cmd);
-   str_t opts[num_opts];
-   get_opt(cmd,opts);
-   size_t num_len = strlen(opts[1].str);
-   
-   if(opts[1].str[num_len-1] == 's') current_sleep_mode = SLEEP_MODE_SECONDS;
-   else if(opts[1].str[num_len-1] == 'm') current_sleep_mode = SLEEP_MODE_MINUTES;
-   else if(opts[1].str[num_len-1] == 'h') current_sleep_mode = SLEEP_MODE_HOURS;
-   else if(opts[1].str[num_len-1] == 'd') current_sleep_mode = SLEEP_MODE_DAYS;
-   else current_sleep_mode=SLEEP_MODE_SECONDS;
+    size_t num_opts = get_opt_count(cmd);
+    str_t opts[num_opts];
+    get_opt(cmd,opts);
+    size_t num_len = strlen(opts[1].str);
 
-   int __seconds_sleep = atoi(opts[1].str);
-   printk(" \n");
-   sleep(__seconds_sleep * current_sleep_mode);
-   
-   return STATUS_OK;
+    if(opts[1].str[num_len-1] == 's') current_sleep_mode = SLEEP_MODE_SECONDS;
+    else if(opts[1].str[num_len-1] == 'm') current_sleep_mode = SLEEP_MODE_MINUTES;
+    else if(opts[1].str[num_len-1] == 'h') current_sleep_mode = SLEEP_MODE_HOURS;
+    else if(opts[1].str[num_len-1] == 'd') current_sleep_mode = SLEEP_MODE_DAYS;
+    else current_sleep_mode=SLEEP_MODE_SECONDS;
+
+    int __seconds_sleep = atoi(opts[1].str);
+    printk(" \n");
+    sleep(__seconds_sleep * current_sleep_mode);
+
+    return STATUS_OK;
 }
 
 
