@@ -15,9 +15,9 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
+ **                 Ashish Ahuja <Fortunate-MAN>
  **
  **  @contributors:
-
  **     Amanuel Bogale <amanuel2> : start
  **     Ashish Ahuja <Fortunate-MAN>
  **/
@@ -46,7 +46,6 @@ int cmd_date_handler(char* cmd)
    }
    return STATUS_OK;
 }
-
 
 struct cmd_t cmd_date =
 {

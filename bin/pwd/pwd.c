@@ -38,26 +38,25 @@ struct cmd_opt_t* cmd_pwd_opts[] =
 
 int cmd_pwd_handler (char *cmd)
 {
-    main_pwd_opt_handler (cmd);
-    return STATUS_OK;
+    return main_pwd_opt_handler (cmd);
 }
 
 struct cmd_t cmd_pwd =
 {
-  .name = "pwd",
-  .usage ="pwd [--help]",
-  .help = "pwd(1) \t\t\t\t BoneOS Terminal Manual \n"
+    .name = "pwd",
+    .usage ="pwd [--help]",
+    .help = "pwd(1) \t\t\t\t BoneOS Terminal Manual \n"
                 "NAME : \n "
                 "\tpwd\n"
                 "SYNOPSIS : \n "
                 "\tpwd [option] [--help]\n"
                 "DESCRIPTION : \n "
                 "\tPrints out the current working directory.\n",
-  .cmd_opts =  cmd_pwd_opts,
-  .handler = &cmd_pwd_handler,
-  .invalid_use_msg = "Invalid use of pwd command.\n"
+    .cmd_opts =  cmd_pwd_opts,
+    .handler = &cmd_pwd_handler,
+    .invalid_use_msg = "Invalid use of pwd command.\n"
                      "Type in pwd --help for more help.\n",
-  .privilege = USER
+    .privilege = USER
 };
 
 

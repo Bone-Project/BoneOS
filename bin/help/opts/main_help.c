@@ -15,12 +15,13 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
- 
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
+
 #include <misc/status_codes.h>
 #include <string/string.h>
 #include <unistd/unistd.h>
@@ -33,31 +34,28 @@
 
 int main_help_opt_handler(char *cmd)
 {
-   size_t num_opts = get_opt_count(cmd);
-   str_t opts[num_opts];
-   get_opt(cmd,opts);
-   
-   if(strcmp(opts[1].str,"-cmd")==0)
-   {
-      if(strcmp(opts[2].str,"--help")==0)
-         printk(cmd_help_opt_cmd.help);
-      else   
-         cmd_help_opt_cmd.handler(cmd);
-   }
-   else if(strcmp(opts[1].str , "--help")==0)
-   {
-      printk(cmd_help.help);
-   }
-   else
-   {
-      printk(cmd_help.invalid_use_msg);
-   }
-   
-   return STATUS_OK;
+    size_t num_opts = get_opt_count(cmd);
+    str_t opts[num_opts];
+    get_opt(cmd,opts);
+
+    if(strcmp(opts[1].str,"-cmd")==0)
+    {
+        if(strcmp(opts[2].str,"--help")==0)
+            printk(cmd_help_opt_cmd.help);
+        else
+            return cmd_help_opt_cmd.handler(cmd);
+    }
+    else if(strcmp(opts[1].str , "--help")==0)
+    {
+        printk(cmd_help.help);
+    }
+    else
+    {
+        printk(cmd_help.invalid_use_msg);
+        return STATUS_FAIL;
+    }
+
+    return STATUS_OK;
 }
-
-
-
-
 
 

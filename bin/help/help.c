@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <misc/status_codes.h>
@@ -64,9 +65,7 @@ int cmd_help_handler(char* cmd)
         return STATUS_OK;
     }
 
-    main_help_opt_handler(cmd);
-
-    return STATUS_OK;
+    return main_help_opt_handler(cmd);
 }
 
 struct cmd_t cmd_help =

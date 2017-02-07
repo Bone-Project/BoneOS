@@ -15,11 +15,12 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
 
 #include <misc/status_codes.h>
 #include <sh/shell.h>
@@ -32,7 +33,7 @@
 #include <stddef.h>
 #include <clear/opts/main_clear.h>
 
-struct cmd_opt_t* cmd_clear_opts[] = 
+struct cmd_opt_t* cmd_clear_opts[] =
 {
   &cmd_clear_opt_color,
   0
@@ -46,12 +47,11 @@ int cmd_clear_handler(char* cmd)
       video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
       return STATUS_OK;
    }
-   
-   main_clear_opt_handler(cmd); 
-   return STATUS_OK;
+
+   return main_clear_opt_handler(cmd);
 }
 
-struct cmd_t cmd_clear = 
+struct cmd_t cmd_clear =
 {
   .name = "clear",
   .usage = "clear [--help]  [-color <fg-color> <bg-color>] [-color --def]  [-color <--help>] ",
@@ -65,9 +65,9 @@ struct cmd_t cmd_clear =
                 "\tcolor with the -color command and providing it\n "
                 "\ta Foreground as well as a Background Color \n"
                 "MORE HELP : \n "
-                "\t[clear -color --help] for help on -color option\n",   
+                "\t[clear -color --help] for help on -color option\n",
   .cmd_opts =  cmd_clear_opts,
-  .handler = &cmd_clear_handler,    
+  .handler = &cmd_clear_handler,
   .invalid_use_msg = "Invalid use of clear command.\n"
                      "Type in clear --help for more help.\n",
   .privilege = USER

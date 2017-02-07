@@ -15,11 +15,12 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
 
 #include <misc/status_codes.h>
 #include <sh/shell.h>
@@ -29,7 +30,7 @@
 #include <cursor/cursor.h>
 #include <cursor/opts/main_cursor.h>
 
-struct cmd_opt_t* cmd_cursor_opts[] = 
+struct cmd_opt_t* cmd_cursor_opts[] =
 {
    0
 };
@@ -40,15 +41,14 @@ int cmd_cursor_handler(char* cmd)
    if(num_opts == 1)
    {
       printk(cmd_cursor.invalid_use_msg);
-      return STATUS_OK;
+      return STATUS_FAIL;
    }
-      
-   main_cursor_opt_handler(cmd); 
-   return STATUS_OK;
+
+   return main_cursor_opt_handler(cmd);
 }
 
 
-struct cmd_t cmd_cursor = 
+struct cmd_t cmd_cursor =
 {
   .name = "cursor",
   .usage ="cursor [-t <CRSR_START> <CRSR_END>] [-t block] [-t def] [--help]",
@@ -63,9 +63,9 @@ struct cmd_t cmd_cursor =
                 "\t Option Summary \n "
                 "\t\t [-t <CRSR_START> <CRSR_END>] : cursor now changes to custom type.\n "
                 "\t\t [-t block] : cursor is changed to a block cursor (START:0,END:20)\n "
-                "\t\t [-t def] : cursor changes to default underline.  (START:15,END:15)\n", 
+                "\t\t [-t def] : cursor changes to default underline.  (START:15,END:15)\n",
   .cmd_opts =  cmd_cursor_opts,
-  .handler = &cmd_cursor_handler,    
+  .handler = &cmd_cursor_handler,
   .invalid_use_msg = "Invalid use of cursor command.\n"
                       "Type in cursor --help for more help.\n",
   .privilege = USER

@@ -15,11 +15,12 @@
  **   along with BoneOS.  If not, see <http://www.gnu.org/licenses/>.
  **
  **  @main_author : Amanuel Bogale
- **  
+ **
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **/  
+ **     Ashish Ahuja <Fortunate-MAN>
+ **/
 
 #include <misc/status_codes.h>
 #include <sh/shell.h>
@@ -31,7 +32,7 @@
 
 
 
-struct cmd_opt_t* cmd_echo_opts[] = 
+struct cmd_opt_t* cmd_echo_opts[] =
 {
     0
 };
@@ -42,16 +43,14 @@ int cmd_echo_handler(char* cmd)
    if(num_opts == 1)
    {
      printk(cmd_echo.invalid_use_msg);
-     return STATUS_OK;    
+     return STATUS_FAIL;
    }
-    
-   main_echo_opt_handler(cmd);    
-    
-   return STATUS_OK;
+
+   return main_echo_opt_handler(cmd);
 }
 
 
-struct cmd_t cmd_echo = 
+struct cmd_t cmd_echo =
 {
   .name = "echo",
   .usage ="echo [value] [--help]",
@@ -63,7 +62,7 @@ struct cmd_t cmd_echo =
                 "DESCRIPTION : \n "
                 "\tPrints out the VALUE listed by option\n",
   .cmd_opts =  cmd_echo_opts,
-  .handler = &cmd_echo_handler,    
+  .handler = &cmd_echo_handler,
   .invalid_use_msg = "Invalid use of echo command.\n"
                      "Type in echo --help for more help.\n",
   .privilege = USER

@@ -51,11 +51,11 @@ int main_pwd_opt_handler (char *cmd)
         else
         {
             printk (cmd_pwd.invalid_use_msg);
-            return STATUS_OK;
+            return STATUS_FAIL;
         }
     }
 
-    return STATUS_OK;
+    return STATUS_FAIL;
 }
 
 
