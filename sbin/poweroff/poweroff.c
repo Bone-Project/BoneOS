@@ -19,6 +19,7 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
+ **     Ashish Ahuja <Fortunate-MAN>
  **/
 
 #include <misc/status_codes.h>
@@ -50,7 +51,10 @@ int cmd_poweroff_handler(char* cmd)
     else if(strcmp(opts[1].str, "--help") == 0)
         printk(cmd_poweroff.help);
     else
+    {
         printk(cmd_poweroff.invalid_use_msg);
+        return STATUS_FAIL;
+    }
 
     return STATUS_OK;
 }

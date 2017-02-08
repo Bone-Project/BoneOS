@@ -55,7 +55,7 @@ int cmd_shutdown_handler(char* cmd)
     if(num_opts == 1)
     {
         printk (cmd_shutdown.invalid_use_msg);
-        return STATUS_OK;
+        return STATUS_FAIL;
     }
     else if(strcmp(opts[1].str, "--help") == 0)
     {
@@ -67,7 +67,7 @@ int cmd_shutdown_handler(char* cmd)
         if (num_opts == 2)
         {
             printk (cmd_shutdown.invalid_use_msg);
-            return STATUS_OK;
+            return STATUS_FAIL;
         }
 
         if (!strcmp (opts [2].str, "now"))
@@ -82,7 +82,7 @@ int cmd_shutdown_handler(char* cmd)
                 if (isalpha (opts [2].str [i]))
                 {
                     printk (cmd_shutdown.invalid_use_msg);
-                    return STATUS_OK;
+                    return STATUS_FAIL;
                 }
             }
 
@@ -126,7 +126,7 @@ int cmd_shutdown_handler(char* cmd)
         if (num_opts == 2)
         {
             printk (cmd_shutdown.invalid_use_msg);
-            return STATUS_OK;
+            return STATUS_FAIL;
         }
 
         if (!strcmp (opts [2].str, "now"))
@@ -141,7 +141,7 @@ int cmd_shutdown_handler(char* cmd)
                 if (isalpha (opts [2].str [i]))
                 {
                     printk (cmd_shutdown.invalid_use_msg);
-                    return STATUS_OK;
+                    return STATUS_FAIL;
                 }
             }
 
@@ -183,6 +183,7 @@ int cmd_shutdown_handler(char* cmd)
     else
     {
         printk(cmd_shutdown.invalid_use_msg);
+        return STATUS_FAIL;
     }
 
     return STATUS_OK;
