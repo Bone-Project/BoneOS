@@ -28,6 +28,7 @@ SECTIONS
     *(.bss)
   }
 
+  . = ALIGN(4096);
   _kernel_end = .;
   /DISCARD/ : { *(.fini_array*) *(.comment) }
 }
