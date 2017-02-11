@@ -32,6 +32,7 @@
 #include <string/string.h>
 
 extern uint32_t _kernel_end;
+uint32_t free_mem_start = 0;
 
 static int **buddy;
 
@@ -49,7 +50,7 @@ static void init_reigion(uint32_t base,uint32_t size){
 	base = base;
 	for (size_t i = 0;i < NUMBER_OF_BUDDIES;i++) {
 		for (size_t j = 0;j < size;j++){
-			
+
 		}
 	}
 }
@@ -63,9 +64,9 @@ void init_page_frame(multiboot_info_t *multiboot){
 		buddy[i] = (int *) (&_kernel_end + NUMBER_OF_BUDDIES * 4 + (_mmngr_mem_size.size >> (i + PAGE_SHIFT - 1)));
 	}
 	printk("0x%x\n",_mmngr_mem_size.size);
-	
+
 	multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) (multiboot->mmap_addr);
-          
+
   	while(mmap < (multiboot_memory_map_t*) (multiboot->mmap_addr + multiboot->mmap_length))
   	{
   	  	if(mmap->type == MULTIBOOT_MEMORY_AVAILABLE)

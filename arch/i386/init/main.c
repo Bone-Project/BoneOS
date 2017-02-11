@@ -51,6 +51,7 @@
 #include <misc/status_codes.h>
 #include <stdlib/stdlib.h>
 #include <var/cpu/cpu_info.h>
+#include <stdlib/stdlib.h>
 
 /*
  * Calling all Global C Objects
@@ -61,6 +62,7 @@
 typedef void (*constructor)();
 extern constructor start_ctors;
 extern constructor end_ctors;
+extern uint32_t _kernel_end;
 extern void callConstructors(void)
 {
     for(constructor* i = &start_ctors;i != &end_ctors; i++)
@@ -82,6 +84,34 @@ static inline void kernel_init_early()
     //getchar(); //Start out getchar();
 }
 
+
+void append(char s[], char n) {
+    int len = strlen(s);
+    s[len] = n;
+    s[len+1] = '\0';
+}
+
+void hex_to_ascii(int n, char str[]) {
+    append(str, '0');
+    append(str, 'x');
+    char zeros = 0;
+
+    int32_t tmp;
+    int i;
+    for (i = 28; i > 0; i -= 4) {
+        tmp = (n >> i) & 0xF;
+        if (tmp == 0 && zeros == 0) continue;
+        zeros = 1;
+        if (tmp > 0xA) append(str, tmp - 0xA + 'a');
+        else append(str, tmp + '0');
+    }
+
+    tmp = n & 0xF;
+    if (tmp >= 0xA) append(str, tmp - 0xA + 'a');
+    else append(str, tmp + '0');
+}
+
+
 /*
  * @function kernelMain:
  *      Main function of the kernel,
@@ -99,6 +129,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
+    free_mem_start = _kernel_end;
+
 	//pmm_util_init(multiboot_structure);
     //init_page_frame(multiboot_structure);
 
@@ -108,6 +140,38 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     #endif
 
     init_terminal();
+
+    //Some parts of this has been copied from https://github.com/cfenollosa/os-tutorial/blob/master/23-fixes/kernel/kernel.c for testing purposes
+    uint32_t phys_addr;
+    /*uint32_t page = kmalloc(1000, 1, &phys_addr);
+    char page_str[16] = "";
+    hex_to_ascii(page, page_str);
+    char phys_str[16] = "";
+    hex_to_ascii(phys_addr, phys_str);
+    printk("Page: ");
+    printk(page_str);
+    printk(", physical address: ");
+    printk(phys_str);
+    printk ("\n");
+    char *addr = 0;
+    int n = 10;
+    hex_to_ascii(page, addr);
+    char *point = (char *) addr;
+    strcpy (point, "abcd");
+    printk ("%s\n", point);
+    for(int i=0;i<n;i++)
+     printk("%c\n",*addr++);*/
+
+    uint32_t addr = kmalloc (1, 1, &phys_addr);
+    if (!addr) panik ("kmalloc error!");
+    char *str = 0;
+    hex_to_ascii (addr, str);
+    int *int_addr = (int*) str;
+    *int_addr = 42;
+    for(int i=0;i<10;i++)
+     printk("%d\n",*str++);
+
+    printk ("\n");
 
     while(1)
         hlt();

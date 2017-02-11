@@ -57,10 +57,10 @@ void __debug_print_memory_size()
 int mem_amt(multiboot_info_t* multiboot_structure, bool mmap_avail)
 {
     multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) multiboot_structure->mmap_addr;
-  
+
     int amt_mem=0;
-          
-  	while(mmap < (multiboot_memory_map_t*) (multiboot_structure->mmap_addr + multiboot_structure->mmap_length)) 
+
+  	while(mmap < (multiboot_memory_map_t*) (multiboot_structure->mmap_addr + multiboot_structure->mmap_length))
   	{
   	  if(mmap_avail==true)
   	  {
@@ -71,7 +71,7 @@ int mem_amt(multiboot_info_t* multiboot_structure, bool mmap_avail)
   	      amt_mem+=mmap->len;
 	  mmap = (multiboot_memory_map_t*) ( (unsigned int)mmap + mmap->size + sizeof(mmap->size) );
   	}
-  	
+
     return amt_mem;
 }
 
