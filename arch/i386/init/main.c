@@ -141,36 +141,6 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     init_terminal();
 
-    //Some parts of this has been copied from https://github.com/cfenollosa/os-tutorial/blob/master/23-fixes/kernel/kernel.c for testing purposes
-    uint32_t phys_addr;
-    /*uint32_t page = kmalloc(1000, 1, &phys_addr);
-    char page_str[16] = "";
-    hex_to_ascii(page, page_str);
-    char phys_str[16] = "";
-    hex_to_ascii(phys_addr, phys_str);
-    printk("Page: ");
-    printk(page_str);
-    printk(", physical address: ");
-    printk(phys_str);
-    printk ("\n");
-    char *addr = 0;
-    int n = 10;
-    hex_to_ascii(page, addr);
-    char *point = (char *) addr;
-    strcpy (point, "abcd");
-    printk ("%s\n", point);
-    for(int i=0;i<n;i++)
-     printk("%c\n",*addr++);*/
-
-    uint32_t addr = kmalloc (1, 1, &phys_addr);
-    if (!addr) panik ("kmalloc error!");
-    char *str = 0;
-    hex_to_ascii (addr, str);
-    int *int_addr = (int*) str;
-    *int_addr = 42;
-    for(int i=0;i<10;i++)
-     printk("%d\n",*str++);
-
     printk ("\n");
 
     while(1)
