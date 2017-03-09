@@ -25,6 +25,11 @@
  #include <stdint.h>
  #include <io/io.h>
  
+ /**
+  * Get adress to send to CONFIG_PORT
+  * via I/O.
+  */
+  
  static inline uint32_t pci_get_address(uint32_t bus, uint32_t slot, uint32_t func, uint8_t offset)
  {
      return ( (uint32_t) 
@@ -53,7 +58,18 @@
     return tmp;
  }
  
- uint16_t check_vendor(uint8_t bus, uint8_t slot)
+ void get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
  {
-   //If checking etc...
+  
+  //Set up PCI DESCRIPTOR
+  pci_descriptor_t pdt;
+  
+  pdt.bus = bus;
+  pdt.device = device;
+  pdt.function = function;
+  
+  //OFFSET = Diffrent Info.
+  pdt.vendor_id = read_data(bus,device,function,0x00);
+  pci.device_id = read_data(bus,device,function,0x02);
+  
  }
