@@ -58,7 +58,7 @@
     return tmp;
  }
  
- void get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
+ pci_descriptor_t get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
  {
   
   //Set up PCI DESCRIPTOR
@@ -69,7 +69,31 @@
   pdt.function = function;
   
   //OFFSET = Diffrent Info.
-  pdt.vendor_id = read_data(bus,device,function,0x00);
-  pci.device_id = read_data(bus,device,function,0x02);
+  /*
   
+   OFFSET
+   ------
+   
+   0x00 = Vendor ID 
+   0x02 = Device ID
+   0x0B = Class ID
+   0x0A = SubClass ID
+   0x09 = Interface ID
+   
+   0x08 = Revision
+   0x3C = Interrupt
+  
+   */
+   pdt.vendor_id    = read_data(bus,device,function,0x00);
+   pci.device_id    = read_data(bus,device,function,0x02);
+   
+   pci.class_id     = read_data(bus,device,function,0x0B);
+   pci.subclass_id  = read_data(bus,device,function,0x0A);
+  
+   pci.interface_id = read_data(bus,device,function,0x09);
+  
+   pci.revision     = read_data(bus,device,function,0x08);
+   pci.interrupt    = read_data(bus,device,function,0x3C);
+   
+   return pdt;
  }
