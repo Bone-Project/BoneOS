@@ -22,7 +22,7 @@ typedef struct
     uint8_t interface_id;
 
     uint8_t revision; 
-}pci_descriptor_t;
+}pci_descriptor_header00h_t;
 
 extern void write_config_address(uint8_t bus, uint8_t slot,uint8_t func, uint8_t offset);
 extern uint16_t read_data(uint8_t offset);

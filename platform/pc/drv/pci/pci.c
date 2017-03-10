@@ -82,18 +82,19 @@
    
    0x08 = Revision
    0x3C = Interrupt
-  
    */
-   pdt.vendor_id    = read_data(bus,device,function,0x00);
-   pci.device_id    = read_data(bus,device,function,0x02);
    
-   pci.class_id     = read_data(bus,device,function,0x0B);
-   pci.subclass_id  = read_data(bus,device,function,0x0A);
+   
+   pdt.vendor_id    = read_data(bus,device,function,0x00);
+   pdt.device_id    = read_data(bus,device,function,0x02);
+   
+   pdt.class_id     = read_data(bus,device,function,0x0B);
+   pdt.subclass_id  = read_data(bus,device,function,0x0A);
   
-   pci.interface_id = read_data(bus,device,function,0x09);
+   pdt.interface_id = read_data(bus,device,function,0x09);
   
-   pci.revision     = read_data(bus,device,function,0x08);
-   pci.interrupt    = read_data(bus,device,function,0x3C);
+   pdt.revision     = read_data(bus,device,function,0x08);
+   pdt.interrupt    = read_data(bus,device,function,0x3C);
    
    return pdt;
  } 
