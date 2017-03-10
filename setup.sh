@@ -17,11 +17,16 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    echo pwd
    echo "RUNNING UNDER a linux distro"
-    sudo apt-get update
+	    current_dir=$PWD
+		cd /home/$USER
+		git clone git://github.com/kanaka/noVNC
+		cd $current_dir
+   		sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+	    sudo apt-get update
 	if [ -z "$TRAVIS" ]; then
-		sudo apt-get install -y nasm gcc-5 gcc-5-multilib qemu grub-common xorriso grub-pc-bin supervisor
+		sudo apt-get install -y nasm qemu gcc-5 gcc-5-multilib grub-common xorriso grub-pc-bin supervisor xvfb x11vnc fluxbox
 	else
-		sudo apt-get install nasm gcc-5 gcc-5-multilib qemu grub-common xorriso grub-pc-bin supervisor
+		sudo apt-get install nasm gcc-5 gcc-5-multilib qemu grub-common xorriso grub-pc-bin supervisor xvfb x11vnc fluxbox
 	fi
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something under Windows NT platform
