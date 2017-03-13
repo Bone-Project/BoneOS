@@ -21,9 +21,10 @@
  **     Amanuel Bogale <amanuel2> : start
  **/
  
- #include <stdargs.h>
  #include <stdint.h>
+ #include <stddef.h>
  #include <io/io.h>
+ #include <drv/pci/pci.h>
  
  /**
   * Get adress to send to CONFIG_PORT
@@ -32,11 +33,14 @@
   
  static inline uint32_t pci_get_address(uint32_t bus, uint32_t slot, uint32_t func, uint8_t offset)
  {
-     return ( (uint32_t) 
+     return ( 
+              (uint32_t) 
      
-              ((bus << 16) | (slot << 11) |
-              (func << 8) | (offset & 0xfc) | ((uint32_t)0x80000000)); 
-            )
+              ( 
+                 (bus << 16) | (slot << 11) |
+                 (func << 8) | (offset & 0xfc) | ((uint32_t)0x80000000)
+              ) 
+            );
  }
  
  void write_config_address(uint8_t bus, uint8_t slot,uint8_t func, uint8_t offset)
@@ -45,24 +49,23 @@
     uint32_t lbus  = (uint32_t)bus; //long bus(32bit pad)
     uint32_t lslot = (uint32_t)slot; //^^ slot/device
     uint32_t lfunc = (uint32_t)func;//^^ function
-    uint16_t tmp = 0;
     
     address = pci_get_address(lbus,lslot,lfunc,offset);
-    outl(PORT_CONFIG_ADDRESS,address); //32bit I/O Stream
+    outd(PORT_CONFIG_ADDRESS,address); //32bit I/O Stream
  }
  
  uint16_t read_data(uint8_t offset)
  {
     uint16_t tmp = 0; //init + declare
-    tmp = (uint16_t) (inl(PORT_CONFIG_DATA) >> ((offset & 2) * 8)) & 0xffff);
+    tmp = (uint16_t) (ind(PORT_CONFIG_DATA) >> ((offset & 2) * 8)) & 0xffff;
     return tmp;
  }
  
- pci_descriptor_t get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
+ pci_descriptor_header00h_t get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
  {
   
   //Set up PCI DESCRIPTOR
-  pci_descriptor_t pdt;
+  pci_descriptor_header00h_t pdt;
   
   pdt.bus = bus;
   pdt.device = device;
@@ -70,7 +73,6 @@
   
   //OFFSET = Diffrent Info.
   /*
-  
    OFFSET
    ------
    
@@ -95,6 +97,8 @@
   
    pdt.revision     = read_data(bus,device,function,0x08);
    pdt.interrupt    = read_data(bus,device,function,0x3C);
+   
+   pdt.cache_line_size = read_data(bus,device,function,0xF);
    
    return pdt;
  } 
