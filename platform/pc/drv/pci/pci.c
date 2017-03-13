@@ -61,6 +61,13 @@
     return tmp;
  }
  
+ uint16_t write_address_read_data(uint8_t bus, uint8_t slot,uint8_t func, uint8_t offset) 
+ {
+   write_config_address(bus,slot,func,offset);
+   uint16_t tmp = read_data(offset);
+   return tmp;
+ }
+ 
  pci_descriptor_header00h_t get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
  {
   
@@ -86,19 +93,19 @@
    0x3C = Interrupt
    */
    
+               
+   pdt.vendor_id    = write_address_read_data(bus,device,function,0x00);
+   pdt.device_id    = write_address_read_data(bus,device,function,0x02);
    
-   pdt.vendor_id    = read_data(bus,device,function,0x00);
-   pdt.device_id    = read_data(bus,device,function,0x02);
-   
-   pdt.class_id     = read_data(bus,device,function,0x0B);
-   pdt.subclass_id  = read_data(bus,device,function,0x0A);
+   pdt.class_id     = write_address_read_data(bus,device,function,0x0B);
+   pdt.subclass_id  = write_address_read_data(bus,device,function,0x0A);
   
-   pdt.interface_id = read_data(bus,device,function,0x09);
+   pdt.interface_id = write_address_read_data(bus,device,function,0x09);
   
-   pdt.revision     = read_data(bus,device,function,0x08);
-   pdt.interrupt    = read_data(bus,device,function,0x3C);
+   pdt.revision_id     = write_address_read_data(bus,device,function,0x08);
+   pdt.interrupt    = write_address_read_data(bus,device,function,0x3C);
    
-   pdt.cache_line_size = read_data(bus,device,function,0xF);
+   pdt.cache_line_size = write_address_read_data(bus,device,function,0xF);
    
    return pdt;
  } 
