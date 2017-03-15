@@ -120,10 +120,23 @@ bool device_has_func(uint16_t bus, uint16_t device)
  
 void print_pci_devices()
 {
- printf("----PCI DEVICES----");
+ printk("----PCI DEVICES----");
  
   for(int bus=0; bus<8; bus++)
   {
+    for(int device=0; device<32; device++)
+    {
      
+      int num_func = device_has_func(bus,device);
+      
+      for(int func=0; func<num_func; func++)
+      {
+       
+        pci_descriptor_header00h_t pci_head = get_descriptor(bus,device,func);
+        
+        printk("VENDOR : 0x%x" , pci_head.vendor_id);       
+      }
+     
+    }
   }
 }

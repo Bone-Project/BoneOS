@@ -52,6 +52,7 @@
 #include <stdlib/stdlib.h>
 #include <var/cpu/cpu_info.h>
 #include <stdlib/stdlib.h>
+#include <drv/pci/pci.h>
 
 /*
  * Calling all Global C Objects
@@ -129,7 +130,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
-    free_mem_start = _kernel_end;
+    //free_mem_start = _kernel_end;
 
 	//pmm_util_init(multiboot_structure);
     //init_page_frame(multiboot_structure);
@@ -139,8 +140,9 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
       __debug_print_cpu_info();
     #endif
 
-    init_terminal();
-
+    //init_terminal();
+      print_pci_devices();
+      
     printk ("\n");
 
     while(1)
