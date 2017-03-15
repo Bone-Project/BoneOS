@@ -23,8 +23,10 @@
  
  #include <stdint.h>
  #include <stddef.h>
+ #include <stdbool.h>
  #include <io/io.h>
  #include <drv/pci/pci.h>
+ #include <stdio/stdio.h>
  
  /**
   * Get adress to send to CONFIG_PORT
@@ -109,3 +111,19 @@
    
    return pdt;
  } 
+ 
+bool device_has_func(uint16_t bus, uint16_t device)
+{
+ return write_address_read_data(bus,device,0,0x0E) & (1<<7);
+}
+
+ 
+void print_pci_devices()
+{
+ printf("----PCI DEVICES----");
+ 
+  for(int bus=0; bus<8; bus++)
+  {
+     
+  }
+}
