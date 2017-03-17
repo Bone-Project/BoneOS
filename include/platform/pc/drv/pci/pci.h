@@ -50,6 +50,8 @@ extern uint16_t read_data(uint8_t offset);
 extern uint16_t check_vendor(uint8_t bus, uint8_t slot);
 extern void print_pci_devices_enumeration_scheme();
 
+extern multiple_pci_device_t pci_devices;
+
 #endif /*_DRV_PCI_H_*/
 
 //00000000000000000000000011110101

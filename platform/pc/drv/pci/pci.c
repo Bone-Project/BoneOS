@@ -28,6 +28,11 @@
  #include <drv/pci/pci.h>
  #include <stdio/stdio.h>
  
+
+//PCI DEVICES INFO 
+multiple_pci_device_t pci_devices;
+   
+   
  /**
   * Get adress to send to CONFIG_PORT
   * via I/O.
@@ -120,8 +125,7 @@ bool device_has_func(uint16_t bus, uint16_t device)
 
 multiple_pci_device_t fill_pci_devices() {
  
-  multiple_pci_device_t pci_devices;
-  int counter_pci_device;
+  int counter_pci_device = 0;
   for(int bus=0; bus<8; bus++)
   {
     for(int device=0; device<32; device++)
@@ -142,7 +146,7 @@ multiple_pci_device_t fill_pci_devices() {
          pci_devices.pci_device[counter_pci_device].device_id = pci_head.device_id;
          
          pci_devices.pci_device[counter_pci_device].bus = bus;
-          pci_devices.pci_device[counter_pci_device].function = func;
+         pci_devices.pci_device[counter_pci_device].function = func;
          counter_pci_device++;
          
         }
