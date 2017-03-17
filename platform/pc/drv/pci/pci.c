@@ -73,43 +73,43 @@
  pci_descriptor_header00h_t get_descriptor(uint16_t bus, uint16_t device, uint16_t function)
  {
   
-  //Set up PCI DESCRIPTOR
-  pci_descriptor_header00h_t pdt;
-  
-  pdt.bus = bus;
-  pdt.device = device;
-  pdt.function = function;
-  
-  //OFFSET = Diffrent Info.
-  /*
-   OFFSET
-   ------
+   //Set up PCI DESCRIPTOR
+   pci_descriptor_header00h_t pdt;
    
-   0x00 = Vendor ID 
-   0x02 = Device ID
-   0x0B = Class ID
-   0x0A = SubClass ID
-   0x09 = Interface ID
+   pdt.bus = bus;
+   pdt.device = device;
+   pdt.function = function;
    
-   0x08 = Revision
-   0x3C = Interrupt
-   */
+   //OFFSET = Diffrent Info.
+   /*
+    OFFSET
+    ------
+    
+    0x00 = Vendor ID 
+    0x02 = Device ID
+    0x0B = Class ID
+    0x0A = SubClass ID
+    0x09 = Interface ID
+    
+    0x08 = Revision
+    0x3C = Interrupt
+    */
+    
+                
+    pdt.vendor_id    = write_address_read_data(bus,device,function,0x00);
+    pdt.device_id    = write_address_read_data(bus,device,function,0x02);
+    
+    pdt.class_id     = write_address_read_data(bus,device,function,0x0B);
+    pdt.subclass_id  = write_address_read_data(bus,device,function,0x0A);
    
-               
-   pdt.vendor_id    = write_address_read_data(bus,device,function,0x00);
-   pdt.device_id    = write_address_read_data(bus,device,function,0x02);
+    pdt.interface_id = write_address_read_data(bus,device,function,0x09);
    
-   pdt.class_id     = write_address_read_data(bus,device,function,0x0B);
-   pdt.subclass_id  = write_address_read_data(bus,device,function,0x0A);
-  
-   pdt.interface_id = write_address_read_data(bus,device,function,0x09);
-  
-   pdt.revision_id     = write_address_read_data(bus,device,function,0x08);
-   pdt.interrupt    = write_address_read_data(bus,device,function,0x3C);
-   
-   pdt.cache_line_size = write_address_read_data(bus,device,function,0xF);
-   
-   return pdt;
+    pdt.revision_id     = write_address_read_data(bus,device,function,0x08);
+    pdt.interrupt    = write_address_read_data(bus,device,function,0x3C);
+    
+    pdt.cache_line_size = write_address_read_data(bus,device,function,0xF);
+    
+    return pdt;
  } 
  
 bool device_has_func(uint16_t bus, uint16_t device)
@@ -120,7 +120,7 @@ bool device_has_func(uint16_t bus, uint16_t device)
  
 void print_pci_devices()
 {
- printk("----PCI DEVICES----");
+ printk("----PCI DEVICES----\n");
  
   for(int bus=0; bus<8; bus++)
   {
@@ -134,8 +134,12 @@ void print_pci_devices()
        
         pci_descriptor_header00h_t pci_head = get_descriptor(bus,device,func);
         
-        printk("VENDOR : 0x%x" , pci_head.vendor_id);       
-      }
+        if(pci_head.vendor_id != 0xFFFF && pci_head.device_id != 0xFF)
+        { 
+          printk("VENDOR : 0x%x , DEVICE_ID: 0x%x \n" , pci_head.vendor_id, pci_head.device_id);
+        }
+         
+        }
      
     }
   }

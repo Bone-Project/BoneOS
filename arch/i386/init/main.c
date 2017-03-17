@@ -141,6 +141,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     #endif
 
     //init_terminal();
+    printk("\n");
       print_pci_devices();
       
     printk ("\n");
