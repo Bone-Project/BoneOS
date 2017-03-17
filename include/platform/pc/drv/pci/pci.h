@@ -29,6 +29,10 @@ typedef struct
 typedef struct
 {
     uint16_t vendor_id;
+    uint16_t device_id;
+    uint16_t class_id;
+    uint16_t subclass_id;
+    
     uint16_t bus;
     uint16_t function;
     
@@ -36,10 +40,15 @@ typedef struct
     char* vendor; //If Specified
 }pci_device_t;
 
+typedef struct
+{ 
+   pci_device_t pci_device[200];
+}multiple_pci_device_t;
+
 extern void write_config_address(uint8_t bus, uint8_t slot,uint8_t func, uint8_t offset);
 extern uint16_t read_data(uint8_t offset);
 extern uint16_t check_vendor(uint8_t bus, uint8_t slot);
-extern void print_pci_devices();
+extern void print_pci_devices_enumeration_scheme();
 
 #endif /*_DRV_PCI_H_*/
 

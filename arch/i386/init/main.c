@@ -142,7 +142,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     //init_terminal();
     printk("\n");
-      print_pci_devices();
+      print_pci_devices_enumeration_scheme();
       
     printk ("\n");
 

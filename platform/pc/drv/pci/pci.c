@@ -117,10 +117,46 @@ bool device_has_func(uint16_t bus, uint16_t device)
  return write_address_read_data(bus,device,0,0x0E) & (1<<7);
 }
 
+
+multiple_pci_device_t fill_pci_devices() {
  
-void print_pci_devices()
+  multiple_pci_device_t pci_devices;
+  int counter_pci_device;
+  for(int bus=0; bus<8; bus++)
+  {
+    for(int device=0; device<32; device++)
+    {
+     
+      int num_func = device_has_func(bus,device);
+      
+      for(int func=0; func<num_func; func++)
+      {
+       
+        pci_descriptor_header00h_t pci_head = get_descriptor(bus,device,func);
+        
+        if(pci_head.vendor_id != 0xFFFF && pci_head.device_id != 0xFF)
+        {
+         pci_devices.pci_device[counter_pci_device].vendor_id = pci_head.vendor_id;
+         pci_devices.pci_device[counter_pci_device].class_id = pci_head.class_id;
+         pci_devices.pci_device[counter_pci_device].subclass_id = pci_head.subclass_id;
+         pci_devices.pci_device[counter_pci_device].device_id = pci_head.device_id;
+         
+         pci_devices.pci_device[counter_pci_device].bus = bus;
+          pci_devices.pci_device[counter_pci_device].function = func;
+         counter_pci_device++;
+         
+        }
+        
+      }
+    }
+  }
+  return pci_devices;
+}
+
+void print_pci_devices_enumeration_scheme()
 {
- printk("----PCI DEVICES----\n");
+ printk("----PCI DEVICES---\n");
+ printk("VENDOR\tDEVICE\tCLASS\tCLASS-ID\n");
  
   for(int bus=0; bus<8; bus++)
   {
@@ -135,9 +171,7 @@ void print_pci_devices()
         pci_descriptor_header00h_t pci_head = get_descriptor(bus,device,func);
         
         if(pci_head.vendor_id != 0xFFFF && pci_head.device_id != 0xFF)
-        { 
-          printk("VENDOR : 0x%x , DEVICE_ID: 0x%x \n" , pci_head.vendor_id, pci_head.device_id);
-        }
+          printk("0x%x\t0x%x\t0x%x\t0x%x\n" , pci_head.vendor_id, pci_head.device_id, pci_head.class_id,pci_head.subclass_id);
          
         }
      
