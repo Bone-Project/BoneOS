@@ -49,6 +49,7 @@ extern void write_config_address(uint8_t bus, uint8_t slot,uint8_t func, uint8_t
 extern uint16_t read_data(uint8_t offset);
 extern uint16_t check_vendor(uint8_t bus, uint8_t slot);
 extern void print_pci_devices_enumeration_scheme();
+multiple_pci_device_t fill_pci_devices();
 
 extern multiple_pci_device_t pci_devices;
 

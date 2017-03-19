@@ -90,32 +90,34 @@ multiple_pci_device_t pci_devices;
     OFFSET
     ------
     
-    0x00 = Vendor ID 
-    0x02 = Device ID
-    0x0B = Class ID
-    0x0A = SubClass ID
+    0x00 = Vendor ID -- VENDOR (0x8086 = Intel)
+    0x02 = Device ID -- Diffrent to all specific Devices (0x7000 = ISA To PCI Storage Controller)
+    0x0B = Class ID  -- Class Identifier = (0x1 = Mass Storage Controller)
+    0x0A = SubClass ID -- Subclass from Class = (0x1 = IDE Controller)
     0x09 = Interface ID
     
     0x08 = Revision
     0x3C = Interrupt
     */
     
-                
-    pdt.vendor_id    = write_address_read_data(bus,device,function,0x00);
-    pdt.device_id    = write_address_read_data(bus,device,function,0x02);
+                 
+    pdt.vendor_id       = write_address_read_data(bus,device,function,0x00);
+    pdt.device_id       = write_address_read_data(bus,device,function,0x02);
     
-    pdt.class_id     = write_address_read_data(bus,device,function,0x0B);
-    pdt.subclass_id  = write_address_read_data(bus,device,function,0x0A);
+    pdt.class_id        = write_address_read_data(bus,device,function,0x0B);
+    pdt.subclass_id     = write_address_read_data(bus,device,function,0x0A);
    
-    pdt.interface_id = write_address_read_data(bus,device,function,0x09);
+    pdt.interface_id    = write_address_read_data(bus,device,function,0x09);
    
     pdt.revision_id     = write_address_read_data(bus,device,function,0x08);
-    pdt.interrupt    = write_address_read_data(bus,device,function,0x3C);
+    pdt.interrupt       = write_address_read_data(bus,device,function,0x3C);
     
     pdt.cache_line_size = write_address_read_data(bus,device,function,0xF);
     
     return pdt;
  } 
+ 
+ 
  
 bool device_has_func(uint16_t bus, uint16_t device)
 {
@@ -123,7 +125,8 @@ bool device_has_func(uint16_t bus, uint16_t device)
 }
 
 
-multiple_pci_device_t fill_pci_devices() {
+multiple_pci_device_t fill_pci_devices() 
+{
  
   int counter_pci_device = 0;
   for(int bus=0; bus<8; bus++)
@@ -148,7 +151,6 @@ multiple_pci_device_t fill_pci_devices() {
          pci_devices.pci_device[counter_pci_device].bus = bus;
          pci_devices.pci_device[counter_pci_device].function = func;
          counter_pci_device++;
-         
         }
         
       }
@@ -162,7 +164,7 @@ void print_pci_devices_enumeration_scheme()
  printk("----PCI DEVICES---\n");
  printk("VENDOR\tDEVICE\tCLASS\tCLASS-ID\n");
  
-  for(int bus=0; bus<8; bus++)
+  for(int bus=0; bus<256; bus++)
   {
     for(int device=0; device<32; device++)
     {
