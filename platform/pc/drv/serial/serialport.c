@@ -24,9 +24,19 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <io/io.h>
+#include <drv/serial/serialport.h>
 
 
-void init_serial_port{
+/*
+ * @function init_serial_port : 
+ *   initalizes the serial port.
+ */
+
+void init_serial_port() {
     //Init I/O Procedures
+    outb(PORT_COM1,     0x00); //Disable Interrupts
+    outb(PORT_COM1 + 3, 0x80); //Enable Divisor Mode
+    outb(PORT_COM1  , 0x03); //Set SerialPort to fire at 115200 bps. Be carefull to be same speed or less than computer can handle
     outb();
+    
 }
