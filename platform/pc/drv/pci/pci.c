@@ -94,7 +94,7 @@ multiple_pci_device_t pci_devices;
     0x02 = Device ID -- Diffrent to all specific Devices (0x7000 = ISA To PCI Storage Controller)
     0x0B = Class ID  -- Class Identifier = (0x1 = Mass Storage Controller)
     0x0A = SubClass ID -- Subclass from Class = (0x1 = IDE Controller)
-    0x09 = Interface ID
+    0x09 = Interface ID -- Subclass specific interface seperation
     
     0x08 = Revision
     0x3C = Interrupt
@@ -121,7 +121,7 @@ multiple_pci_device_t pci_devices;
  
 bool device_has_func(uint16_t bus, uint16_t device)
 {
- return write_address_read_data(bus,device,0,0x0E) & (1<<7);
+    return write_address_read_data(bus,device,0,0x0E) & (1<<7);
 }
 
 
@@ -156,7 +156,7 @@ multiple_pci_device_t fill_pci_devices()
       }
     }
   }
-  return pci_devices;
+ return pci_devices;
 }
 
 void print_pci_devices_enumeration_scheme()
@@ -179,7 +179,7 @@ void print_pci_devices_enumeration_scheme()
         if(pci_head.vendor_id != 0xFFFF && pci_head.device_id != 0xFF)
           printk("0x%x\t0x%x\t0x%x\t0x%x\n" , pci_head.vendor_id, pci_head.device_id, pci_head.class_id,pci_head.subclass_id);
          
-        }
+      }
      
     }
   }
