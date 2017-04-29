@@ -53,6 +53,7 @@
 #include <var/cpu/cpu_info.h>
 #include <stdlib/stdlib.h>
 #include <drv/pci/pci.h>
+#include <drv/serial/serialport.h>
 
 /*
  * Calling all Global C Objects
@@ -82,34 +83,8 @@ void crash_me()
 
 static inline void kernel_init_early()
 {
-    //getchar(); //Start out getchar();
-}
+    init_serial_port();
 
-
-void append(char s[], char n) {
-    int len = strlen(s);
-    s[len] = n;
-    s[len+1] = '\0';
-}
-
-void hex_to_ascii(int n, char str[]) {
-    append(str, '0');
-    append(str, 'x');
-    char zeros = 0;
-
-    int32_t tmp;
-    int i;
-    for (i = 28; i > 0; i -= 4) {
-        tmp = (n >> i) & 0xF;
-        if (tmp == 0 && zeros == 0) continue;
-        zeros = 1;
-        if (tmp > 0xA) append(str, tmp - 0xA + 'a');
-        else append(str, tmp + '0');
-    }
-
-    tmp = n & 0xF;
-    if (tmp >= 0xA) append(str, tmp - 0xA + 'a');
-    else append(str, tmp + '0');
 }
 
 
@@ -149,6 +124,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
       printk("0x%x + 0x%x", pci_devices.pci_device[0].vendor_id , pci_devices.pci_device[0].subclass_id);
       
     printk ("\n");
+
+    write_serial('B');
 
     while(1)
         hlt();

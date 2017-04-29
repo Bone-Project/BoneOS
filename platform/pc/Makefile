@@ -21,7 +21,8 @@ CSRCS = \
 	cpu/interrupts/pic.c \
 	drv/cmos/rtc/rtc.c \
 	io/io.c \
-	drv/pcspkr/pcspkr.c
+	drv/pcspkr/pcspkr.c \
+	drv/serial/serialport.c 
 
 
 LIBNAME := platform
