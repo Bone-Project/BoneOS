@@ -34,9 +34,11 @@
 
 void init_serial_port() {
     //Init I/O Procedures
-    outb(PORT_COM1,     0x00); //Disable Interrupts
-    outb(PORT_COM1 + 3, 0x80); //Enable Divisor Mode
-    outb(PORT_COM1  , 0x03); //Set SerialPort to fire at 115200 bps. Be carefull to be same speed or less than computer can handle
-    outb();
-    
+    outb(COM_PORT1 + 1 , 0x00); //Disable Interrupts
+    outb(COM_PORT1 + 3 , 0x80); //Enable Divisor Mode
+    outb(COM_PORT1 + 0 , 0x03); //Set SerialPort to fire at 115200 bps. Be carefull to be same speed or less than computer can handle
+    outb(COM_PORT1 + 1 , 0x00);
+    outb(COM_PORT1 + 3 , 0x03);
+    outb(COM_PORT1 + 2 , 0xC7);
+    outb(COM_PORT1 + 4 , 0x0B);
 }
