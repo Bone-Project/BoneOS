@@ -44,6 +44,18 @@ void init_serial_port()
     outb(COM_PORT1 + 4 , 0x0B);
 }
 
+int serial_received()
+{
+   return inb(COM_PORT1 + 5) & 1;
+}
+ 
+char read_serial() 
+{
+   while (serial_received() == 0);
+ 
+   return inb(COM_PORT1);
+}
+
 int is_transmit_empty() 
 {
    return inb(COM_PORT1 + 5) & 0x20;

@@ -126,7 +126,8 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     printk ("\n");
 
     write_serial('B');
-
+    
+    printk("Char : %c" , read_serial());    
     while(1)
         hlt();
 }

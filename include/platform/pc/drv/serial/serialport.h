@@ -17,5 +17,6 @@
 
 extern void init_serial_port();
 extern void write_serial(char a);
+extern char read_serial();
 
 #endif /*_SERIAL_SERIALPORT_H_*/
