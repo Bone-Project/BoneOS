@@ -77,6 +77,11 @@ int init_vga_driver()
         vga_driver.fg = 7;
         vga_driver.bg = 0;
     }
+    else if(strcmp(video_driver_mode, "GRAPHICS")==0)
+    {
+        vga_driver.mode = GRAPHICS_MODE;
+        // /vga_driver.put_pixel = function();
+    }
 
     return STATUS_OK;
 }
