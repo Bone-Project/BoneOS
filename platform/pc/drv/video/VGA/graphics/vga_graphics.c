@@ -38,7 +38,7 @@ int init_graphics_mode()
     video_driver_height = RES_1_HEIGHT;
     video_driver_mode = "GRAPHICS";
     
-    setMode(RES_1_WIDTH,RES_1_HEIGHT,RES_1_COLORDEPTH);
+    setMode(RES_1_WIDTH,RES_1_HEIGHT,RES_1_COLORDEPTH, 0x7);
     
     return STATUS_OK;
 }

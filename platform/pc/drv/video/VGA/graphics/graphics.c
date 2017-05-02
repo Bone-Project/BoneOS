@@ -41,14 +41,14 @@ uint8_t* getFrameBufferSeg()
     switch(segmentNumber)
     {
         default:
-            case 0<<2: return (uint8_t*)0xC0000000;
-            case 1<<2: return (uint8_t*)0xA0000 + 0xC0000000;
-            case 2<<2: return (uint8_t*)0xB0000 + 0xC0000000;
-            case 3<<2: return (uint8_t*)0xB8000 + 0xC0000000;
+        case 0<<2: return (uint8_t*)0x00000;
+        case 1<<2: return (uint8_t*)0xA0000;
+        case 2<<2: return (uint8_t*)0xB0000;
+        case 3<<2: return (uint8_t*)0xB8000;
     }
 }
 
-void putPixel(int32_t x, int32_t y, uint8_t colorIndex)
+void vgaGrapicsPutPixel(int32_t x, int32_t y, uint8_t colorIndex)
 {
     if(x < 0 || RES_1_WIDTH <= x
     || y < 0 || RES_1_HEIGHT<= y)
@@ -62,10 +62,10 @@ void fillRectangle(uint32_t x, uint32_t y , uint32_t w, uint32_t h, uint8_t colo
 {
    for(uint32_t Y = y; Y < y+h; Y++)
         for(uint32_t X = x; X < x+w; X++)
-            putPixel(X, Y, colorHex);
+            vgaGrapicsPutPixel(X, Y, colorHex);
 }
 
-void setMode(int width, int height, int colorDepth)
+void setMode(int width, int height, int colorDepth, uint8_t background)
 {
     bool support = supports_mode(width,height,colorDepth);
     if(support==false)
@@ -77,7 +77,7 @@ void setMode(int width, int height, int colorDepth)
     if(width==RES_1_WIDTH && height==RES_1_HEIGHT && colorDepth==RES_1_COLORDEPTH)
         writeRegister(g_320x200x256);
         
-    fillRectangle(0,0,200,200,0x7);
+    fillRectangle(0,0,RES_1_WIDTH,RES_1_HEIGHT,background);
 }
 
 

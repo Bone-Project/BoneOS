@@ -132,7 +132,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     
     // printk("Char : %c" , read_serial());    
     
-    setMode(RES_1_WIDTH,RES_1_HEIGHT,RES_1_COLORDEPTH);
+    setMode(RES_1_WIDTH,RES_1_HEIGHT,RES_1_COLORDEPTH,0x7);
     while(1)
         hlt();
 }
