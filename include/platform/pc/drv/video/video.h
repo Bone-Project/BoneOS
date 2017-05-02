@@ -24,7 +24,7 @@ typedef void(*clear_t)(void);
 typedef void(*putch_t)(char c);
 typedef void(*scroll_t)(int offset);
 typedef int(*update_cursor_t)(int row,int col, uint8_t crsr_start,uint8_t crsr_end);
-typedef void(*put_pixel_t)(int32_t x, int32_t y,  rgb_t rgb);
+typedef void(*put_pixel_t)(int32_t x, int32_t y,  uint8_t color_index);
 
 
 /*

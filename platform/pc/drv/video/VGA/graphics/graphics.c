@@ -80,6 +80,11 @@ void setMode(int width, int height, int colorDepth, uint8_t background)
     fillRectangle(0,0,RES_1_WIDTH,RES_1_HEIGHT,background);
 }
 
+void clearVgaGraphics()
+{
+    fillRectangle(0,0,RES_1_WIDTH,RES_1_HEIGHT,0x0);
+}
+
 
 void writeRegister(uint8_t * register_res)
 {

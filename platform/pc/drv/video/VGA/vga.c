@@ -81,7 +81,17 @@ int init_vga_driver()
     else if(strcmp(video_driver_mode, "GRAPHICS")==0)
     {
         vga_driver.mode = GRAPHICS_MODE;
-        // /vga_driver.put_pixel = function();
+        vga_driver.put_pixel = vgaGrapicsPutPixel;
+        set_mode_util(
+         0,
+         vgaGrapicsPutPixel,
+         clearVgaGraphics,
+         0,
+         0
+        );
+        vga_driver.name = "VGA_TEXTMODE_320_x_200";
+        vga_driver.fg = 7;
+        vga_driver.bg = 0;
     }
 
     return STATUS_OK;

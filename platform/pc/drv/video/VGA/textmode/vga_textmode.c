@@ -35,9 +35,9 @@
 
 int init_vga_textmode()
 {
-    __textmode.w = video_driver_width;
-    __textmode.h = video_driver_height;
-    __textmode.name = video_driver_fullname;
+    __textmode.w = 80;
+    __textmode.h = 25;
+    __textmode.name = "VGA_TEXTMODE_80_x_25";
     return STATUS_OK;
 }
 
