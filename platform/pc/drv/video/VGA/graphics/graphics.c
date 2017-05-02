@@ -34,6 +34,37 @@ bool supports_mode(int width, int height, int colorDepth)
     return(width==RES_1_WIDTH && height==RES_1_HEIGHT && colorDepth==RES_1_COLORDEPTH);
 }
 
+uint8_t* getFrameBufferSeg()
+{
+    outb(0x3ce,0x06);
+    uint8_t segmentNumber = inb(0x3cf) & (3<<2);
+    switch(segmentNumber)
+    {
+        default:
+            case 0<<2: return (uint8_t*)0xC0000000;
+            case 1<<2: return (uint8_t*)0xA0000 + 0xC0000000;
+            case 2<<2: return (uint8_t*)0xB0000 + 0xC0000000;
+            case 3<<2: return (uint8_t*)0xB8000 + 0xC0000000;
+    }
+}
+
+void putPixel(int32_t x, int32_t y, uint8_t colorIndex)
+{
+    if(x < 0 || RES_1_WIDTH <= x
+    || y < 0 || RES_1_HEIGHT<= y)
+        return;
+
+    uint8_t* pixelAddress = getFrameBufferSeg() + RES_1_WIDTH*y + x;
+    *pixelAddress = colorIndex;
+}
+
+void fillRectangle(uint32_t x, uint32_t y , uint32_t w, uint32_t h, uint8_t colorHex)
+{
+   for(uint32_t Y = y; Y < y+h; Y++)
+        for(uint32_t X = x; X < x+w; X++)
+            putPixel(X, Y, colorHex);
+}
+
 void setMode(int width, int height, int colorDepth)
 {
     bool support = supports_mode(width,height,colorDepth);
@@ -45,6 +76,8 @@ void setMode(int width, int height, int colorDepth)
     
     if(width==RES_1_WIDTH && height==RES_1_HEIGHT && colorDepth==RES_1_COLORDEPTH)
         writeRegister(g_320x200x256);
+        
+    fillRectangle(0,0,200,200,0x7);
 }
 
 
