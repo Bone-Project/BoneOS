@@ -38,6 +38,9 @@ int init_vga_textmode()
     __textmode.w = 80;
     __textmode.h = 25;
     __textmode.name = "VGA_TEXTMODE_80_x_25";
+    
+    video_driver_mode = "TEXTMODE";
+    
     return STATUS_OK;
 }
 

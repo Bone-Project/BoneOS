@@ -29,12 +29,21 @@
 #include <stdint.h>
 #include <stddef.h>
 
+
+size_t video_driver_width = 320;
+size_t video_driver_height = 200;
+char* video_driver_name = "VGA";
+char* video_driver_mode = "GRAPHICS";
+char* video_driver_fullname = "VGA_TEXTMODE_320_x_200";
+
+
 //Video Driver Handler
 struct device_driver_t video_driver =
 {
     .name = "Video Driver",
     .version = "STATUS_VERSION_NA"
 };
+
 
 
 struct video_driver_t *video_drivers[] =

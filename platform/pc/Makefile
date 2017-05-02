@@ -18,24 +18,33 @@ CSRCS = \
 	drv/pcspkr/pcspkr.c \
 	drv/serial/serialport.c \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_LOW).c \
-	
-ifeq ($(VIDEO_DRIVER),VGA)
-	ifeq ($(VIDEO_DRIVER_MODE),textmode)
-	 CSRCS += \
-		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/utils.c \
-		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/putch.c \
-		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/clear.c \
-		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/term_scroll.c \
-		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
-		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/update_cursor.c 
-	else ifeq ($(VIDEO_DRIVER_MODE),graphics_mode)
-	CSRCS += \
 	drv/video/VGA/graphics/graphics.c \
-	drv/video/VGA/graphics/vga_graphics.c
-	else
-		CSRCS += 
-	endif
-endif
+	drv/video/VGA/graphics/vga_graphics.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/utils.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/putch.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/clear.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/term_scroll.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
+	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/update_cursor.c 
+
+# Alternate Mode Specific Makefile Loading	
+# ifeq ($(VIDEO_DRIVER),VGA)
+# 	ifeq ($(VIDEO_DRIVER_MODE),textmode)
+# 	 CSRCS += \
+# 		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/utils.c \
+# 		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/putch.c \
+# 		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/clear.c \
+# 		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/term_scroll.c \
+# 		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
+# 		drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/update_cursor.c 
+# 	else ifeq ($(VIDEO_DRIVER_MODE),graphics_mode)
+# 	CSRCS += \ 
+# 	drv/video/VGA/graphics/graphics.c \
+# 	drv/video/VGA/graphics/vga_graphics.c
+# 	else
+# 		CSRCS += 
+# 	endif
+# endif
 
 
 
