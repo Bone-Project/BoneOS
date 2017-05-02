@@ -28,6 +28,7 @@
 #include <drv/video/VGA/textmode/vga_textmode.h>
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/putch.h>
+#include <drv/video/VGA/graphics/graphics.h>
 #include <string/string.h>
 
 struct video_driver_t vga_driver =
