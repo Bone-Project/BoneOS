@@ -55,6 +55,9 @@
 #include <drv/pci/pci.h>
 #include <drv/serial/serialport.h>
 
+#include <drv/video/VGA/graphics/graphics.h>
+
+
 /*
  * Calling all Global C Objects
  * constructors , via attributes:
@@ -110,24 +113,26 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 	//pmm_util_init(multiboot_structure);
     //init_page_frame(multiboot_structure);
 
-    #ifdef DEBUG
-      __debug_print_memory_size();
-      __debug_print_cpu_info();
-    #endif
+    // #ifdef DEBUG
+    //   __debug_print_memory_size();
+    //   __debug_print_cpu_info();
+    // #endif
 
-    //init_terminal();
-    printk("\n");
-      fill_pci_devices();
-      print_pci_devices_enumeration_scheme();
+    // //init_terminal();
+    // printk("\n");
+    //   fill_pci_devices();
+    //   print_pci_devices_enumeration_scheme();
       
-      printk("\n");
-      printk("0x%x + 0x%x", pci_devices.pci_device[0].vendor_id , pci_devices.pci_device[0].subclass_id);
+    //   printk("\n");
+    //   printk("0x%x + 0x%x", pci_devices.pci_device[0].vendor_id , pci_devices.pci_device[0].subclass_id);
       
-    printk ("\n");
+    // printk ("\n");
 
-    write_serial('B');
+    // write_serial('B');
     
-    printk("Char : %c" , read_serial());    
+    // printk("Char : %c" , read_serial());    
+    
+    setMode(RES_1_WIDTH,RES_1_HEIGHT,RES_1_COLORDEPTH);
     while(1)
         hlt();
 }

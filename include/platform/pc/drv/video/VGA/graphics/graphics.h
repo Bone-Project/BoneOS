@@ -1,4 +1,4 @@
-#ifdef  _VGA_VIDEO_GRAPHICS
+#ifndef  _VGA_VIDEO_GRAPHICS
 #define _VGA_VIDEO_GRAPHICS
     
     #define RES_1_WIDTH 320
