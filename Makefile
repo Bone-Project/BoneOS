@@ -94,6 +94,7 @@ INCDIRS := $(BUILDROOT)/include \
     $(BUILDROOT)/include/platform/$(PLAT) \
     $(BUILDROOT)/include/libc/string \
     $(BUILDROOT)/include/arch/shared/x86 \
+    $(BUILDROOT)/include/gui
 
 # Parameters
 LDPARAMS := -melf_$(ARCH_LINKER) --build-id=none
@@ -134,7 +135,8 @@ libraries = \
 	var/libvar.a \
 	sbin/libsbin.a \
 	arch/shared/$(ARCH_FAMILY)/libshared_arch.a \
-	platform/$(PLAT)/libplatform.a 
+	platform/$(PLAT)/libplatform.a \
+	gui/libgui.a
 	
 export libraries
 
@@ -165,6 +167,7 @@ subdirs:
 	(cd bin  && $(MAKE))
 	(cd sbin && $(MAKE))
 	(cd var  && $(MAKE))
+	(cd gui  && $(MAKE))
 	(cd platform && $(MAKE))
 
 clean-subdirs:
@@ -174,6 +177,8 @@ clean-subdirs:
 	(cd bin  && $(MAKE) clean)
 	(cd sbin && $(MAKE) clean)
 	(cd var  && $(MAKE) clean)
+	(cd gui  && $(MAKE) clean)
+	(cd libc && $(MAKE) clean)
 	(cd platform && $(MAKE) clean)
 
 .PHONY: subdirs clean-subdirs

@@ -19,5 +19,8 @@
  **  @contributors:
 
  **     Amanuel Bogale <amanuel2> : start
- **     Ashish Ahuja <Fortunate-MAN>
  **/
+ 
+ void __ISO_FORBID(){
+     
+ }

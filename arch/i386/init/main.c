@@ -56,6 +56,7 @@
 #include <drv/serial/serialport.h>
 
 #include <drv/video/VGA/graphics/graphics.h>
+#include <gui/desktop.h>
 
 
 /*
@@ -106,8 +107,6 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     sti();
     kernel_init_early();
 
-    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
-
     //free_mem_start = _kernel_end;
 
 	//pmm_util_init(multiboot_structure);
@@ -130,7 +129,10 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
 
     // write_serial('B');
     
-    // printk("Char : %c" , read_serial());    
+    // printk("Char : %c" , read_serial());
+    
+    init_desktop(0x7);
+    
     while(1)
         hlt();
 }

@@ -20,3 +20,18 @@
 
  **     Amanuel Bogale <amanuel2> : start
  **/
+ #include <drv/video/video.h>
+ #include <string/string.h>
+ #include <stdlib.h>
+
+ 
+ void init_desktop(uint8_t background)
+ {
+    if(strcmp(video_driver_mode, "GRAPHICS")!=0)
+         return;
+         
+    
+    for(uint32_t Y = 0; Y < 0+200; Y++)
+        for(uint32_t X = 0; X < 0+320; X++)
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->put_pixel(X,Y,background);
+ }
