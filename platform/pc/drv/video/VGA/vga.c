@@ -29,6 +29,7 @@
 #include <drv/video/VGA/textmode/update_cursor.h>
 #include <drv/video/VGA/textmode/putch.h>
 #include <drv/video/VGA/graphics/graphics.h>
+#include <drv/video/VGA/graphics/vga_graphics.h>
 #include <string/string.h>
 
 struct video_driver_t vga_driver =
@@ -60,6 +61,7 @@ int init_vga_driver()
     video_driver.initalized = true;
     vga_driver.res.w = video_driver_width;
     vga_driver.res.h = video_driver_height;
+    video_driver_mode="GRAPHICS"; //manually set graphics for VGA
 
     if(strcmp(video_driver_mode, "TEXTMODE") == 0)
     {
@@ -82,6 +84,7 @@ int init_vga_driver()
     {
         vga_driver.mode = GRAPHICS_MODE;
         vga_driver.put_pixel = vgaGrapicsPutPixel;
+        init_graphics_mode();
         set_mode_util(
          0,
          vgaGrapicsPutPixel,
