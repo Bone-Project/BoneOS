@@ -24,14 +24,21 @@
  #include <string/string.h>
  #include <stdlib.h>
 
+void fillrect(uint32_t x, uint32_t y , uint32_t w, uint32_t h, uint8_t colorHex)
+{
+   for(uint32_t Y = y; Y < y+h; Y++)
+        for(uint32_t X = x; X < x+w; X++)
+            vgaGrapicsPutPixel(X, Y, colorHex);
+}
  
  void init_desktop(uint8_t background)
  {
     if(strcmp(video_driver_mode, "GRAPHICS")!=0)
          return;
-         
-    
-    for(uint32_t Y = 0; Y < 0+200; Y++)
-        for(uint32_t X = 0; X < 0+320; X++)
-            video_drivers[VGA_VIDEO_DRIVER_INDEX]->put_pixel(X,Y,background);
+    fillrect(0,0,320,200,background);
+ }
+ 
+ void toolbar(/*ENUM TOOLBAR TYPE(TOP,BOT)*/)
+ {
+     fillrect(0,0,320,50,background);
  }
