@@ -32,6 +32,8 @@
 #include <libc/stdlib/itoa/itoa.h>
 #include <libc/math/powk/powk.h>
 
+#include <string/string.h>
+
 extern volatile uint8_t __crsr_start;
 extern volatile uint8_t __crsr_end;
 
@@ -78,7 +80,8 @@ void printk(const char* fmt, ...)
 
 void vprintk(const char* fmt, va_list arg)
 {
-    video_driver_mode ==== "GRAPICS"; //Here 
+    if(strcmp(video_driver_mode, "GRAPHICS")==0)
+         return;
     int integer_format;
     int after_decimal;
     float float_format;

@@ -61,7 +61,6 @@ int init_vga_driver()
     video_driver.initalized = true;
     vga_driver.res.w = video_driver_width;
     vga_driver.res.h = video_driver_height;
-    video_driver_mode="GRAPHICS"; //manually set graphics for VGA
 
     if(strcmp(video_driver_mode, "TEXTMODE") == 0)
     {

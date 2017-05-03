@@ -27,7 +27,7 @@
 #include <drv/video/VGA/graphics/graphics.h>
 #include <drv/video/VGA/graphics/resolutions.h>
 
-void writeRegister(uint8_t * register_res);
+void writeRegister(uint8_t * register_res); //prototype
 
 bool supports_mode(int width, int height, int colorDepth)
 {
@@ -131,7 +131,6 @@ void writeRegister(uint8_t * register_res)
 
     inb(0x3da);
     outb(0x3c0,0x20);
-
 }
 
 

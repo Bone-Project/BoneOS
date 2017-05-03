@@ -33,7 +33,7 @@
 size_t video_driver_width = 320;
 size_t video_driver_height = 200;
 char* video_driver_name = "VGA";
-char* video_driver_mode = "GRAPHICS";
+char* video_driver_mode = "GRAPHICS"; // options : { "TEXTMODE", "GRAPHICS" }
 char* video_driver_fullname = "VGA_TEXTMODE_320_x_200";
 
 
