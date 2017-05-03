@@ -20,12 +20,12 @@ CSRCS = \
 	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_LOW).c \
 	drv/video/VGA/graphics/graphics.c \
 	drv/video/VGA/graphics/vga_graphics.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/utils.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/putch.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/clear.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/term_scroll.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/vga_textmode.c \
-	drv/video/$(VIDEO_DRIVER)/$(VIDEO_DRIVER_MODE)/update_cursor.c 
+	drv/video/$(VIDEO_DRIVER)/textmode/utils.c \
+	drv/video/$(VIDEO_DRIVER)/textmode/putch.c \
+	drv/video/$(VIDEO_DRIVER)/textmode/clear.c \
+	drv/video/$(VIDEO_DRIVER)/textmode/term_scroll.c \
+	drv/video/$(VIDEO_DRIVER)/textmode/vga_textmode.c \
+	drv/video/$(VIDEO_DRIVER)/textmode/update_cursor.c 
 
 # Alternate Mode Specific Makefile Loading	
 # ifeq ($(VIDEO_DRIVER),VGA)
