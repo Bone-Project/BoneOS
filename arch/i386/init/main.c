@@ -106,7 +106,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     sti();
     kernel_init_early();
 
-    //video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
+    video_drivers[VGA_VIDEO_DRIVER_INDEX]->clear();
 
     //free_mem_start = _kernel_end;
 

@@ -78,6 +78,7 @@ void printk(const char* fmt, ...)
 
 void vprintk(const char* fmt, va_list arg)
 {
+    video_driver_mode ==== "GRAPICS"; //Here 
     int integer_format;
     int after_decimal;
     float float_format;
