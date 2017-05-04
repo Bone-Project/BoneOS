@@ -21,24 +21,28 @@
  **     Amanuel Bogale <amanuel2> : start
  **/
  #include <drv/video/video.h>
+
  #include <string/string.h>
  #include <stdlib.h>
 
+void toolbar(uint8_t color);
+ 
 void fillrect(uint32_t x, uint32_t y , uint32_t w, uint32_t h, uint8_t colorHex)
 {
    for(uint32_t Y = y; Y < y+h; Y++)
         for(uint32_t X = x; X < x+w; X++)
-            vgaGrapicsPutPixel(X, Y, colorHex);
+            video_drivers[VGA_VIDEO_DRIVER_INDEX]->put_pixel(X, Y, colorHex);
 }
  
- void init_desktop(uint8_t background)
+ void init_desktop(uint8_t background, uint8_t toolbar_color)
  {
     if(strcmp(video_driver_mode, "GRAPHICS")!=0)
          return;
     fillrect(0,0,320,200,background);
+    toolbar(toolbar_color);
  }
  
- void toolbar(/*ENUM TOOLBAR TYPE(TOP,BOT)*/)
+ void toolbar(/*ENUM TOOLBAR TYPE(TOP,BOT)*/uint8_t color)
  {
-     fillrect(0,0,320,50,background);
+     fillrect(0,190,320,10,color);
  }

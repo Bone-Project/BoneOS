@@ -131,7 +131,7 @@ void kernelMain(multiboot_info_t* multiboot_structure,uint32_t magicnumber)
     
     // printk("Char : %c" , read_serial());
     
-    init_desktop(0x7);
+    init_desktop(0x7,0x5);
     
     while(1)
         hlt();
