@@ -56,7 +56,7 @@
 #include <drv/serial/serialport.h>
 
 #include <drv/video/VGA/graphics/graphics.h>
-#include <gui/desktop.h>
+#include <gui/vga/desktop.h>
 
 
 /*
