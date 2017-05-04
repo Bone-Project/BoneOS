@@ -25,7 +25,7 @@
 #include <drv/video/video.h>
 #include <string/string.h>
  
-void fillrect(uint32_t x, uint32_t y , uint32_t w, uint32_t h, uint8_t colorHex)
+void fillrect_widget_inst(uint32_t x, uint32_t y , uint32_t w, uint32_t h, uint8_t colorHex)
 {
   if(strcmp(video_driver_mode, "GRAPHICS")!=0)
          return;
@@ -44,7 +44,7 @@ widget_vga_t* createWidget(uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint8
   widget->h  = h;
   widget->color = color;
   
-  fillrect(x,y,w,h,color);
+  fillrect_widget_inst(x,y,w,h,color);
  
  
   return widget;
