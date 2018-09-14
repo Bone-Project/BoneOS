@@ -213,7 +213,7 @@ iso: $(BONEOS_ISO)
 $(COMPILER): get-toolchain
 
 get-toolchain:
-	$(PYTHON) utils/cross_compiler/toolchain.py
+	[ -d cross] || git clone https://github.com/rm-hull/barebones-toolchain cross
 
 .PHONY: iso
 
