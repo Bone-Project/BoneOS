@@ -27,6 +27,15 @@ else
  endif
 endif
 
+# Docker
+# DOCKER_IMAGE=lordmilko/i686-elf-tools:latest linux env -parallel
+# DOCKER_SH=docker run -it --rm \
+# 	-v `pwd`:/work \
+# 	-w /work \
+# 	--security-opt seccomp=unconfined \
+# 	$(DOCKER_IMAGE) /bin/bash -c
+
+
 GRUB_MKRESCUE ?= grub-mkrescue
 MEMORY_USE_RAM ?= 1G
 
@@ -34,9 +43,9 @@ ifdef CROSSROOT
   HOST_ENV = $(shell uname -p)
   # Allow user to override cross-compiler directory
   CROSSROOT ?= $(BUILDROOT)/cross
-  CC := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-gcc
-  LD := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ld
-  AR := $(CROSSROOT)/cross/$(HOST_ENV)/bin/i686-elf-ar
+  CC := i686-elf-gcc
+  LD := i686-elf-ld
+  AR := i686-elf-ar
 endif
 
 GENERATED_CONFIG := config/GENERATED-CONFIG.mk
@@ -147,6 +156,11 @@ export libraries
 #
 # Standard targets
 
+# Dockerize process
+# all:
+# 	$(DOCKER_SH) "make iso"
+
+
 all: iso
 
 clean: clean-subdirs
@@ -161,14 +175,14 @@ clean: clean-subdirs
 $(libraries): subdirs
 
 subdirs:
-	(cd libc && $(MAKE))
-	(cd arch && $(MAKE))
-	(cd apps && $(MAKE))
-	(cd bin  && $(MAKE))
-	(cd sbin && $(MAKE))
-	(cd var  && $(MAKE))
-	(cd gui  && $(MAKE))
-	(cd platform && $(MAKE))
+	(cd libc && $(MAKE) all)
+	(cd arch && $(MAKE) all)
+	(cd apps && $(MAKE) all)
+	(cd bin  && $(MAKE) all)
+	(cd sbin && $(MAKE) all)
+	(cd var  && $(MAKE) all)
+	(cd gui  && $(MAKE) all)
+	(cd platform && $(MAKE) all)
 
 clean-subdirs:
 	(cd libc && $(MAKE) clean)

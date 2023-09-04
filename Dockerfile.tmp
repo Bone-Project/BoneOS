@@ -1,0 +1,118 @@
+# FROM i386/debian
+ARG BASE_IMAGE=docker.io/amd64/ubuntu:latest@sha256:b492494d8e0113c4ad3fe4528a4b5ff89faa5331f7d52c5c138196f69ce176a6
+FROM $BASE_IMAGE
+MAINTAINER Amanuel Bogale <abogale2@gmail.com>
+
+
+WORKDIR /work
+
+
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+# Install sudo
+RUN apt-get update && apt-get install -y sudo
+
+# # Install required packages
+# RUN apt-get update && apt-get install -y \
+#     git autoconf automake autopoint bash bison bzip2 flex gettext \
+#     git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev \
+#     libtool libltdl-dev libssl-dev libxml-parser-perl make \
+#     openssl p7zip-full patch perl pkg-config ruby scons \
+#     sed unzip wget xz-utils libtool-bin texinfo g++-multilib
+
+# Install missing dependencies
+RUN apt-get install -y lzip
+
+# Update package lists and install required packages
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     wget \
+#     sudo \
+#     make \
+#     lsb-release
+
+
+# Copy all the files from the host machine to the container
+COPY . .
+
+# Set non-interactive mode for package installation
+ENV DEBIAN_FRONTEND=noninteractive
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    git \
+    autoconf \
+    automake \
+    autopoint \
+    bash \
+    bison \
+    bzip2 \
+    flex \
+    gettext \
+    g++ \
+    gperf \
+    intltool \
+    libffi-dev \
+    libgdk-pixbuf2.0-dev \
+    libtool \
+    libltdl-dev \
+    libssl-dev \
+    libxml-parser-perl \
+    make \
+    python3-mako \
+    openssl \
+    p7zip-full \
+    patch \
+    perl \
+    pkg-config \
+    ruby \
+    scons \
+    sed \
+    unzip \
+    wget \
+    xz-utils \
+    libtool-bin \
+    texinfo \
+    g++-multilib \
+    lzip
+
+# Fix correct python packages on modern Ubuntu versions
+RUN if grep -q "Ubuntu" /etc/os-release; then \
+    apt-get install -y python3 python-is-python3; \
+else \
+    apt-get install -y python; \
+fi
+
+
+# Create the directory structure for MXE
+RUN mkdir -p /opt/mxe
+
+# Clone MXE repository and build mingw32.static GCC
+WORKDIR /opt/mxe
+RUN git clone https://github.com/mxe/mxe.git . && \
+    if [ "$PARALLEL" = "true" ]; then make -j4 gcc; else make gcc; fi
+
+
+
+# Go Back
+# WORKDIR /work
+
+# TODO: MAKE THIS WORK
+# Make the i686-elf-tools.sh script executable
+# RUN chmod +x ./i686-elf-tools.sh
+
+# # Run the i686-elf-tools.sh script with the "env -parallel" arguments
+# RUN sync && ./i686-elf-tools.sh linux env -parallel
+
+# # Clean up after package installations
+# RUN rm -rf /var/lib/apt/lists/* \
+#     && rm -rf /opt/mxe/.ccache \
+#     && rm -rf /opt/mxe/pkg
+
+# RUN ./i686-elf-tools.sh linux
+
+# Build your project (assuming you have a Makefile)
+RUN make
+
+# Start your application or execute other commands as needed
+CMD ["/bin/bash"]
