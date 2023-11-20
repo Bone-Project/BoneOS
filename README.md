@@ -1,5 +1,5 @@
 # [BoneOS](https://amanuel.io/projects/BoneOS/index.html)
-### (The journey resume soon. PS: after I get my new grad job 🤪)
+### (Update: Learning Rust, since I will be doing a complete rewrite in Rust. Wish me luck 😭)
 
 
 <p align="center"><a href="https://boneos.org" target="_blank"><img width="200"src="https://i.imgur.com/H6ixAr4.png"></a></p>
