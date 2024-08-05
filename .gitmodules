@@ -1,0 +1,3 @@
+[submodule "arch/amd64/boot_temp"]
+	path = arch/amd64/boot_temp
+	url = https://github.com/amanuel2/boot_temp

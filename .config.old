@@ -1,0 +1,8 @@
+#
+# Automatically generated file; DO NOT EDIT.
+# BoneOS Configuration
+#
+# CONFIG_ARCH_X64 is not set
+# CONFIG_ARCH_AARCH64 is not set
+CONFIG_ARCH_RISCV64=y
+CONFIG_ARCH="riscv64"

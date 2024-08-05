@@ -1,0 +1,44 @@
+###############################################################################
+# SPDX-License-Identifier: GPL-3.0-or-later
+###############################################################################
+
+mainmenu "BoneOS Configuration"
+
+choice ARCH
+  prompt "Architecture"
+  default ARCH_X64
+
+  config ARCH_X64
+    bool "x86_64"
+  
+  config ARCH_AARCH64
+    bool "aarch64"
+  
+  config ARCH_RISCV64
+    bool "riscv64"
+endchoice
+
+# arch between x64, aarch64, and riscv64
+  config ARCH
+    string
+      default "x86_64" if ARCH_X64
+      default "aarch64" if ARCH_AARCH64
+      default "riscv64" if ARCH_RISCV64
+
+
+choice BOOT_MODE
+  prompt "Boot Mode"
+  default BOOT_MODE_UEFI
+
+  config BOOT_MODE_BIOS
+  bool "BIOS"
+
+  config BOOT_MODE_UEFI
+  bool "UEFI"
+endchoice
+
+config BOOT_MODE
+  string
+  default "BIOS" if BOOT_MODE_BIOS
+  default "UEFI" if BOOT_MODE_UEFI
+###############################################################################

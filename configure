@@ -1,0 +1,7 @@
+
+
+### generate bindings
+make menu_config
+sh scripts/bindings.sh
+chmod +x scripts/extract_defs.sh
+scripts/extract_defs.sh kconfig.h
