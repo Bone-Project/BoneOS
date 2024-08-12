@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 ### generate bindings
 make menu_config

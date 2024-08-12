@@ -1,4 +1,7 @@
-ARCH ?= amd64
+-include ../kconfig.mk
+
+ARCH := $(CONFIG_ARCH)
+BOOT := $(CONFIG_BOOT_MODE)
 VENDOR ?= 
 LOG ?=
 STATS ?= off
@@ -20,7 +23,6 @@ OBJCOPY := llvm-objcopy
 #AS := $(CC) -c
 #LD := $(CC)
 #OBJCOPY := llvm-objcopy
-
 
 ### ISO
 ISODIR := iso
@@ -60,7 +62,7 @@ ifeq ($(MODE), release)
 endif
 
 all: build
-run: qemu-$(ARCH)
+run: qemu-$(CONFIG_BOOT_MODE)-$(CONFIG_ARCH)
 debug: debug-$(ARCH)
 
 setup:
@@ -96,14 +98,24 @@ build: setup
 	#genisoimage -R -b $(BOOTIMG) -no-emul-boot -boot-load-size 4 -boot-info-table -V CR0S -v -o $(LOADERISO) $(ISODIR)
 	#grub-mkrescue -o boot.iso $(ISODIR)
 
+
 check_boot:
 	# ld -n -T arch/$(ARCH)/link.lds -o boot.elf boot.o
 	# objcopy -O binary boot.elf boot.bin 
 	xxd -l 512 boot.bin
 
+uefi_boot:
+	cd arch; make boot; cd ../
+
 menuconfig:
 	@$(MAKE) -f scripts/Makefile $@
 
+qemu-UEFI-x86_64:
+	qemu-system-x86_64 -enable-kvm \
+    -drive if=pflash,format=raw,readonly=on,file=arch/amd64/OVMF_CODE.fd \
+    -drive if=pflash,format=raw,readonly=on,file=arch/amd64/OVMF_VARS.fd \
+	-drive format=raw,file=fat:rw:arch/uefi-os/esp \
+    -device virtio-rng-pci -vga std
 
 qemu-riscv64:
 	qemu-system-aarch64 \
@@ -133,3 +145,5 @@ debug-aarch64:
     -kernel target/setup/release/armv8-baremetal-demo-rust \
     -S -s
 
+clean:
+	cd arch/uefi-os && cargo clean && cd ../..
